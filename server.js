@@ -11,7 +11,7 @@ var port = process.env.PORT || 5000;
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
     
     res.send('Hello World')
     console.log(req.body.queryResult.parameters);
