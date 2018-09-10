@@ -24,6 +24,20 @@
 
 	<script type="text/javascript" src="lib/impact/impact.js"></script>
 	<script type="text/javascript" src="lib/game/main.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<!--   <script src="/socket.io-stream.js"></script> -->
+	  
+	  <script>
+	  var socket = io ();  
+	  socket.on('connection', function (data) {
+		console.log(data);
+	  
+	  }); 
+		socket.on('chat',function(da,ta){
+		console.log(da);
+		  console.log(ta);
+	  });
+	  </script>
 </head>
 <body>
 	<canvas id="canvas"></canvas>
