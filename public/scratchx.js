@@ -10,9 +10,13 @@
 new (function() {
 
     var ext = this;
-    var alarm_went_off = false; // This becomes true after the alarm goes off
-    var direction ;
-    var speed ;
+    var receive_data = false; // This becomes true after the alarm goes off
+    var direction   ;
+    var speed  ; 
+    var start ;
+    var side;
+    var name,character;
+    var mesg ;
 //     var socket = io ();
 
   $(document).ready(function(){
@@ -32,18 +36,27 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(da,ta){
-              console.log(da);
-              console.log(ta);
+          socket.on('chat',function(direction_socket,speed_socket,startgame_socket,turn_socket,name_socket,character_socket){
+              console.log('direction is '+direction_socket)
+              console.log('speed = '+speed_socket)
+              console.log('status is '+ startgame_socket)
+              console.log('turn ' + turn_socket)
+              console.log('name is ' + name_socket)
+              console.log('actor is '+character_socket)
+              console.log('******************************')
+              direction = direction_socket;
+              speed = speed_socket;
+              start = startgame_socket;
+              name = name_socket;
+              character = character_socket;
+              side = turn_socket;
+              receive_data = true;
               });
            });
 
-
-
       });
 
-
-
+  
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -53,22 +66,27 @@ new (function() {
         return {status: 2, msg: 'Ready'};
     };
 
-    ext.set_alarm = function(time) {
-       window.setTimeout(function() {
-           alarm_went_off = true;
-       }, time*1000);
+    ext.set_reply_message = function(reply_message) {
+        receive_data = true;
+        mesg = reply_message
+        console.log('reply message = ' + mesg)
+//        window.setTimeout(function() {
+//            receive_data = true;
+//        }, time*1000);
     };
 
-    ext.when_alarm = function() {
+    ext.when_receive_data = function() {
        // Reset alarm_went_off if it is true, and return true
        // otherwise, return false.
-       if (alarm_went_off === true) {
-           alarm_went_off = false;
+       if (receive_data === true) {
+           receive_data = false;
            return true;
        }
 
        return false;
     };
+  
+
 
     ext.get_direction = function(){
         return direction;
@@ -77,15 +95,34 @@ new (function() {
     ext.get_speed = function(){
         return speed;
     }
+    ext.get_start = function(){
+        return start;
+    }
+    
+    ext.get_side = function(){
+        return side;
+    }
+    
+    ext.get_name = function(){
+        return name;
+    }
+    
+    ext.get_character = function(){
+        return character;
+    }
 
 
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['', 'run alarm after %n seconds', 'set_alarm', '2'],
-            ['h', 'when alarm goes off', 'when_alarm'],
+            ['', 'receice message %s ', 'set_reply_message', 'default'],
+            ['h', 'when receive message', 'when_receive_data'],
+            ['r', 'start', 'get_start'],
+            ['r', 'side', 'get_side'],
             ['r', 'direction', 'get_direction'],
-            ['r', 'speed', 'get_speed'],
+            ['r', 'distance', 'get_speed'],
+            ['r', 'name', 'get_name'],
+            ['r', 'character', 'get_character'],
         ]
     };
 
