@@ -34,7 +34,7 @@ new (function() {
           socket.on('connect_error', function (data) {
               console.log(data);
 
-          }); 
+          });
 
           socket.on('chat',function(direction_socket,speed_socket,startgame_socket,turn_socket,name_socket,character_socket){
               console.log('direction is '+direction_socket)
