@@ -10,15 +10,10 @@
 new (function() {
 
     var ext = this;
-    var receive_data = false; // This becomes true after the alarm goes off
-    var direction   ;
-    var speed  ; 
-    var start ;
-    var side;
-    var name,character;
-    var mesg ;
-//     var socket = io ();
-
+    var receive_data = false; 
+    var direction ,speed ,start , side , name , character , mesg , answer_Q2;
+  
+  
   $(document).ready(function(){
     //load this script then .done text 
      $.getScript("https://alice-project-nanearnano873492.codeanyapp.com/socket.io/socket.io.js").done(function(script, text){
@@ -52,9 +47,14 @@ new (function() {
               side = turn_socket;
               receive_data = true;
               });
+       
+           socket.emit('resend',function(mesg){
+              console.log('yaaaa',mesg)
+              });
            });
 
       });
+         
 
   
     // Cleanup function when the extension is unloaded
@@ -67,14 +67,12 @@ new (function() {
     };
 
     ext.set_reply_message = function(reply_message) {
-        receive_data = true;
         mesg = reply_message
         console.log('reply message = ' + mesg)
-//        window.setTimeout(function() {
-//            receive_data = true;
-//        }, time*1000);
-    };
+        return mesg;
 
+    }; 
+    
     ext.when_receive_data = function() {
        // Reset alarm_went_off if it is true, and return true
        // otherwise, return false.
@@ -110,12 +108,16 @@ new (function() {
     ext.get_character = function(){
         return character;
     }
+    
+    ext.get_answer_Q2 = function(){
+        return answer_Q2;
+    }
 
 
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['', 'receice message %s ', 'set_reply_message', 'default'],
+            ['', 'Send message %s ', 'set_reply_message', 'default'],
             ['h', 'when receive message', 'when_receive_data'],
             ['r', 'start', 'get_start'],
             ['r', 'side', 'get_side'],
@@ -123,8 +125,10 @@ new (function() {
             ['r', 'distance', 'get_speed'],
             ['r', 'name', 'get_name'],
             ['r', 'character', 'get_character'],
+            ['r', 'answer_Q2', 'get_answer_Q2'],
         ]
     };
+
 
     // Register the extension
     ScratchExtensions.register('Speech extension', descriptor, ext);
