@@ -24,6 +24,7 @@
 
 	<script type="text/javascript" src="lib/impact/impact.js"></script>
 	<script type="text/javascript" src="lib/game/main.js"></script>
+<<<<<<< HEAD
 	<script src="/socket.io/socket.io.js"></script>
 	<!--   <script src="/socket.io-stream.js"></script> -->
 	  
@@ -38,6 +39,27 @@
 		  console.log(ta);
 	  });
 	  </script>
+=======
+  <script src="/socket.io/socket.io.js"></script>
+<!--   <script src="/socket.io-stream.js"></script> -->
+  
+  <script>
+  var socket = io ();  
+  socket.on('connection', function (data) {
+    console.log('connection');
+  
+  }); 
+    socket.on('chat',function(direction,speed,startgame,turn,name,character){
+      console.log('direction is '+direction)
+      console.log('speed = '+speed)
+      console.log('status is '+ startgame)
+      console.log('turn ' + turn)
+      console.log('name is ' + name)
+      console.log('actor is '+character)
+      console.log('********************')
+  });
+  </script>
+>>>>>>> 4ad8ea4bb2e318bd63bd712188db84e5e6067cbc
 </head>
 <body>
 	<canvas id="canvas"></canvas>
