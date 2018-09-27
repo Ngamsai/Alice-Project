@@ -14,29 +14,36 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.post('/exam', (req, res) => {
-    console.log(req.body.queryResult.fulfillmentText);
+    console.log("***************************************************************************************************")
+    //console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext =req.body.queryResult.fulfillmentText;
-    var direction,speed ;
-//     var directionSet = [];
-//     var speedSet = [];
+    var direction,speed,startgame,turn,name,character ;
+
     console.log(keep);
     direction = keep['conversation-use'];
-//     directionSet.push(direction); 
-    speed = keep['number-integer'];
-//     speedSet.push(speed);
-    console.log('show direction '+ direction);
-    console.log('show speed '+ speed);
-//     console.log('set direction is '+ directionSet);
-//     console.log('set speed is '+ speedSet);
+    speed = keep['number-integer']
+    startgame = keep['conversation-gamecontrol']
+    turn = keep['conversation-direction']
+    name = keep['name']
+    character = keep['actor']
+    console.log('show direction '+ direction)
+    console.log('show speed '+ speed)
+    console.log('show start ' + startgame)
+    console.log('turn ' + turn)
+    console.log('name is ' + name)
+    console.log('actor is ' + character)
     let responseObj = {   
                         "fulfillmentText":responsetext,
                       }
-    console.log('show responseObj');
-    console.log(responseObj);
-
-    io.emit('chat',direction,speed);
+    console.log('show responseObj')
+    console.log(responseObj)
+    io.emit('chat',direction,speed,startgame,turn,name,character)
+  
+    io.on('resend', function (remessage){
+      console.log('resendmessage is ',remessage)
+    });
   
     return res.json(responseObj);
     
