@@ -6,7 +6,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http); //server
 var port = process.env.PORT || 3000;
 // var cors = require('cors');
-
+///testtset
 // use it before all route definitions
 // app.use(cors({origin: '*'}));
 
