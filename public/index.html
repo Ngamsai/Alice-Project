@@ -33,13 +33,15 @@
     console.log('connection');
   
   }); 
-    socket.on('chat',function(direction,speed,startgame,turn,name,character){
+    socket.on('chat',function(direction,speed,startgame,turn,character,replay,ansQ2){
       console.log('direction is '+direction)
       console.log('speed = '+speed)
       console.log('status is '+ startgame)
       console.log('turn ' + turn)
       console.log('name is ' + name)
       console.log('actor is '+character)
+      console.log('repay is '+replay)
+      console.log('ansQ2 is '+ansQ2)
       console.log('********************')
   });
   </script>
