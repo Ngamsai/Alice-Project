@@ -7,7 +7,10 @@ var io = require('socket.io')(http); //server
 var port = process.env.PORT || 3000;
 
 var text = null;
-var direction = null;
+// var direction = null;
+var position = [[-30,-143]];
+var x = -30,y = -143;
+var direction = 'E';
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
@@ -18,7 +21,8 @@ app.post('/exam', (req, res) => {
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext =req.body.queryResult.fulfillmentText;
-    var direction,distance,startgame,turn,name,character,replay,ansQ2,forward_backward_direction,left_right_direction;
+    console.log('res is ',responsetext);
+    var order,distance,startgame,turn,name,character,replay,ansQ2,forward_backward_direction,left_right_direction;
  
     if(text != null){
       console.log('sh resend ',text);
@@ -33,11 +37,11 @@ app.post('/exam', (req, res) => {
     ansQ2 = keep.question
     character = keep.actor
     if(forward_backward_direction != null){
-       direction = forward_backward_direction;
-       console.log('show forward_backeard_direction ', direction)
+       order = forward_backward_direction;
+       console.log('show forward_backeard_direction ', order)
     }else if (left_right_direction != null ){
-       direction = left_right_direction;
-       console.log('show left_right_direction ', direction)
+       order = left_right_direction;
+       console.log('show left_right_direction ', order)
     }
     //show value
     if(distance != null){
@@ -55,105 +59,116 @@ app.post('/exam', (req, res) => {
     if(ansQ2 != null){
       console.log('ansQ2 is ',ansQ2)
     }
+
   
-    var x,y;
-    var position = [[x,y]];
-    position[0] = [-30,-143];
-    if (direction != null && distance != null){
-      position.push(checkorder(direction,distance,position));
-    }
-    position.push([x=10,y=60])
-    console.log(position)
-  
-    function checkorder(order,dis,position){
-      var dir = 'E';
+    if (order != null && distance != null){
+      console.log('x is '+x + ' y is '+y)
+      
       if (order == "forward"){
-        for (i=1;i<=dis;i++){
-          if(dir == 'N'){
+        for (var a=0; a<distance; a++){
+          if(direction == 'N'){
             y += 57;
           }
-          else if(dir == 'S'){
+          else if(direction == 'S'){
             y -= 57;
           }
-          else if(dir == 'W'){
+          else if(direction == 'W'){
             x -= 57;
           }
-          else if(dir == 'E'){
+          else if(direction == 'E'){
             x += 57;
+          }
+          for (var i = 0; i<position.length; i++){
+            if(position[i][0] == x){
+              if (position[i][1] == y){
+                responsetext = 'start new';
+              } 
+            }
           }
           position.push([x,y]);
         }
       }
       else if (order == "backward"){
-        for (f=1;f<=dis;f++){
-          if(dir == 'N'){
+        for (var f=0; f<distance; f++){
+          if(direction == 'N'){
             y-=57;
           }
-          else if(dir == 'S'){
+          else if(direction == 'S'){
             y+=57;
           }
-          else if(dir == 'W'){
+          else if(direction == 'W'){
             x += 57;
           }
-          else if(dir== 'E'){
+          else if(direction == 'E'){
             x -= 57;
+          }
+          for (var j = 0; j<position.length; j++){
+            if(position[j][0] == x){
+              if (position[j][1] == y){
+                responsetext = 'start new';
+              } 
+            }
           }
           position.push([x,y]);
         }
       }
       else if (order == "left"){
-        for (k=1;k<dis;k++){
-          if (dir == 'E'){
-            dir = 'N';
+        for (var k=0; k<distance; k++){
+          if (direction == 'E'){
+            direction = 'N';
           }
-          else if (dir == 'N'){
-            dir = 'W';
+          else if (direction == 'N'){
+            direction = 'W';
           }
-          else if (dir == 'W'){
-            dir = 'S';
+          else if (direction == 'W'){
+            direction = 'S';
           }
-          else if (dir == 'S'){
-            dir = 'E';
+          else if (direction == 'S'){
+            direction = 'E';
           }
         }
       }
       else if (order == "right"){
-        for (q=1;q<dis;q++){
-          if (dir == 'E'){
-            dir = 'S';
+        for (var q=0; q<distance; q++){
+          if (direction == 'E'){
+            direction = 'S';
           }
-          else if (dir == 'S'){
-            dir = 'W';
+          else if (direction == 'S'){
+            direction = 'W';
           }
-          else if (dir == 'W'){
-            dir = 'N';
+          else if (direction == 'W'){
+            direction = 'N';
           }
-          else if (dir == 'N'){
-            dir = 'E';
+          else if (direction == 'N'){
+            direction = 'E';
           }
         }
       }
-     
-      return position;
-    }  
+    }
+  
+    var n = position.length;
+    console.log('size of arr ',n)
+    console.log('position ',position)
+    console.log('x is '+x + ' y is '+y)
+    
+    if (x == 198 && y == -86){
+      responsetext = 'new state';
+    }
+    
+   
+    console.log('resq is ',responsetext);
 
     //send response
     let responseObj = {   
                           "fulfillmentText":responsetext,
                         }
-     
-    if (text != null){
-      responseObj = {
-                     "fulfillmentText":"next",
-                  }
-      text = null;
-    } 
+  
     console.log('show responseObj is ', responseObj)
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('chat',direction,distance,startgame,character,replay,ansQ2)
-    io.emit('symbols',direction,distance)
+    io.emit('chat',order,distance,startgame,character,replay,ansQ2)
+    io.emit('symbols',order,distance)
  
     return res.json(responseObj);
     
