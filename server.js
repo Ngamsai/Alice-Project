@@ -7,10 +7,10 @@ var io = require('socket.io')(http); //server
 var port = process.env.PORT || 3000;
 
 var text = null;
-// var direction = null;
 var position = [[-30,-143]];
 var x = -30,y = -143;
 var direction = 'E';
+var state = 'maze1';
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
@@ -22,7 +22,7 @@ app.post('/exam', (req, res) => {
     var keep = req.body.queryResult.parameters;
     var responsetext =req.body.queryResult.fulfillmentText;
     console.log('res is ',responsetext);
-    var order,distance,startgame,turn,name,character,replay,ansQ2,forward_backward_direction,left_right_direction;
+    var order,distance,startgame,turn,name,character,replay,ansQ2,forward_backward_direction,left_right_direction,anser;
  
     if(text != null){
       console.log('sh resend ',text);
@@ -34,7 +34,7 @@ app.post('/exam', (req, res) => {
     startgame = keep['conversation-gamecontrol']
     left_right_direction = keep['conversation-direction']
     replay =keep['conversation-replay']
-    ansQ2 = keep.question
+    anser = keep.question
     character = keep.actor
     if(forward_backward_direction != null){
        order = forward_backward_direction;
@@ -56,14 +56,12 @@ app.post('/exam', (req, res) => {
     if(replay != null){
       console.log('say replay is ',replay)
     }
-    if(ansQ2 != null){
-      console.log('ansQ2 is ',ansQ2)
+    if(anser != null){
+      console.log('ansQ2 is ',anser)
     }
 
   
     if (order != null && distance != null){
-      console.log('x is '+x + ' y is '+y)
-      
       if (order == "forward"){
         for (var a=0; a<distance; a++){
           if(direction == 'N'){
@@ -144,18 +142,60 @@ app.post('/exam', (req, res) => {
           }
         }
       }
+      console.log(position);
     }
+
+    if (state == 'maze1'){
+      if (x == 141 && y == 28){
+        responsetext = 'go to maze 2';
+        state = 'maze2';
+      }
+    }
+    else if (state == 'maze2'){
+      if (x == 141 && y == 85){
+        responsetext = 'go to maze 3';
+        state = 'maze3';
+      }
+    }
+    else if (state == 'maze3'){
+      if (x == 27 && y == -86){
+         responsetext = 'go to maze 4';
+         state = 'maze4';
+      }
+    }
+    else if (state == 'maze4'){
+      if (x == 27 && y == 85){
+          responsetext = 'go to maze 5';
+          state = 'maze5';
+      }
+    }
+    else if (state == 'maze6'){
+      if (x == 141 && y == 28){
+          responsetext = 'I keep key already'; 
+      }else 
+          responsetext = 'you have to keep a key frist';
+      
+      if (x == 198 && y == 85){  
+          for (var p = 0; p<position.length; p++){
+            if(position[p][0] == x == 141){
+               if (position[p][1] == y == 28){
+                 responsetext = 'go to next state';
+                 state = 'Q2';
+                 var randomtrees = Math.floor(Math.random() * 10) + 1;
+                 var randomstone = Math.floor(Math.random() * 10) + 1;
+                 io.emit('Q2',randomtrees,randomstone)
+               } 
+             }
+           } 
+       }
+    }
+//     else if (state == 'Q2'){
+//       responsetext = 'there are many trees ?';
+//       if (anser == randomtrees){
+        
+//       }
+//     }
   
-    var n = position.length;
-    console.log('size of arr ',n)
-    console.log('position ',position)
-    console.log('x is '+x + ' y is '+y)
-    
-    if (x == 198 && y == -86){
-      responsetext = 'new state';
-    }
-    
-   
     console.log('resq is ',responsetext);
 
     //send response
@@ -167,12 +207,13 @@ app.post('/exam', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('chat',order,distance,startgame,character,replay,ansQ2)
+    io.emit('chat',order,distance,startgame,character,replay,ansQ2,state)
     io.emit('symbols',order,distance)
  
     return res.json(responseObj);
     
  })
+
 // received messages from scratchX game control 
 io.on('connection', function (socket) { 
     var responsetext1;
@@ -182,6 +223,8 @@ io.on('connection', function (socket) {
         responsetext1 = remessage.name;
       }else if (remessage.hasOwnProperty('question2')){
        responsetext1 = remessage.question2;
+      }else if (remessage.hasOwnProperty('stateOfMaze')){
+        responsetext1 = remessage.stateOfMaze;
       }
       console.log('resendtext is ', responsetext1);
       text = responsetext1;

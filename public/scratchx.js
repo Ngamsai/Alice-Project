@@ -11,7 +11,7 @@ new (function() {
 
     var ext = this;
     var receive_data = false; 
-    var direction ,distance ,start , side , character , mesg_reply , answer_Q2 , socket , mesg_value , replay;
+    var direction ,distance ,start , side , character , mesg_reply , answer_Q2 , socket , mesg_value , replay , state , trees , stones ;
   
   
   $(document).ready(function(){
@@ -31,13 +31,28 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket){
-              console.log('direction is '+direction_socket)
-              console.log('distance = '+distance_socket)
-              console.log('status is '+ startgame_socket)
-              console.log('actor is '+character_socket)
-              console.log('replay is '+replay_socket)
-              console.log('ansQ2 is '+ansQ2_socket)
+          socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket,state_socket){
+              if(direction_socket != null){
+                console.log('direction is ',direction_socket)
+              }  
+              if(distance_socket != null){
+                console.log('distance = ',distance_socket)
+              }
+              if(startgame_socket != null ){
+                console.log('status is ', startgame_socket)
+              } 
+              if(character_socket != null ){
+                console.log('actor is ',character_socket)
+              } 
+              if(replay_socket != null ){
+                console.log('replay is ',replay_socket)
+              } 
+              if(ansQ2_socket != null ){
+                console.log('ansQ2 is ',ansQ2_socket)
+              }  
+              if(state_socket != null ){
+                console.log('ansQ2 is ',state_socket)
+              }
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
@@ -46,12 +61,26 @@ new (function() {
               receive_data = true;
               replay = replay_socket;
               answer_Q2 = ansQ2_socket;
-              });
+              state = state_socket;
+        });
+       
+        socket.on('Q2',function(randomtrees_SK,randomstone_SK){
+              if(randomtrees_SK != null ){
+                console.log('num of trees in Q2 is ',randomtrees_SK)
+              }
+              if(randomstone_SK != null ){
+                console.log('num of stones in Q2 is ',randomstone_SK)
+              }
+              console.log('******************************')
+              trees = randomtrees_SK;
+              stones = randomstone_SK;
+        });
+       
        
            
-           });
+     });
 
-      });
+   });
          
 
   
@@ -111,6 +140,18 @@ new (function() {
     ext.get_replay = function(){
         return replay;
     }
+    
+    ext.get_state = function(){
+        return state;
+    }
+    
+    ext.get_trees = function(){
+        return trees;
+    }
+    
+    ext.get_stones = function(){
+        return stones;
+    }
 
 
     // Block and block menu descriptions
@@ -125,9 +166,12 @@ new (function() {
             ['r', 'character', 'get_character'],
             ['r', 'answer_Q2', 'get_answer_Q2'],
             ['r', 'replay', 'get_replay'],
+            ['r', 'state', 'get_state'],
+            ['r', 'trees', 'get_trees'],
+            ['r', 'stones', 'get_stones'],
         ],
       menus: {
-        name_mesg: ['name', 'question2', 'answerQ2'],
+        name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
        
       }
     };
