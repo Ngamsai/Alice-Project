@@ -51,7 +51,7 @@ new (function() {
                 console.log('ansQ2 is ',ansQ2_socket)
               }  
               if(state_socket != null ){
-                console.log('ansQ2 is ',state_socket)
+                console.log('state is ',state_socket)
               }
               console.log('******************************')
               direction = direction_socket;

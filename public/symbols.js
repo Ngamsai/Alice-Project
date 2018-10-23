@@ -2,7 +2,7 @@ new (function() {
 
     var ext = this;
     var receive_data = false; 
-    var direction ,distance ;
+    var direction ,distance , state ;
   
   
   $(document).ready(function(){
@@ -22,14 +22,16 @@ new (function() {
 
           }); 
 
-          socket.on('symbols',function(direction_socket,distance_socket){
-              console.log('direction is '+direction_socket)
-              console.log('distance = '+distance_socket)
+          socket.on('symbols',function(direction_socket,distance_socket,state_socket){
+              console.log('direction is ',direction_socket)
+              console.log('distance = ',distance_socket)
+              console.log('state = ',state_socket)
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
+              state = state_socket;
               receive_data = true;
-              });
+           });
        
            
            });
@@ -65,6 +67,9 @@ new (function() {
     ext.get_distance = function(){
         return distance;
     }
+    ext.get_state = function(){
+        return state;
+    }
 
     // Block and block menu descriptions
     var descriptor = {
@@ -72,6 +77,7 @@ new (function() {
             ['h', 'when receive message', 'when_receive_data'],
             ['r', 'direction', 'get_direction'],
             ['r', 'distance', 'get_distance'],
+            ['r', 'state', 'get_state'],
         ]
        
     };

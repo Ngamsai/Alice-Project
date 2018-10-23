@@ -5,6 +5,7 @@ var path = require('path');
 var http = require('http').Server(app);
 var io = require('socket.io')(http); //server
 var port = process.env.PORT || 3000;
+const delay = require('delay');
 
 var text = null;
 var position = [[-30,-143]];
@@ -16,11 +17,12 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.post('/exam', (req, res) => {
+  
     console.log("***************************************************************************************************")
-//     console.log(req.body);
+    console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
-    var responsetext =req.body.queryResult.fulfillmentText;
+    var responsetext = req.body.queryResult.fulfillmentText;
     console.log('res is ',responsetext);
     var order,distance,startgame,turn,name,character,replay,ansQ2,forward_backward_direction,left_right_direction,anser;
  
@@ -30,39 +32,40 @@ app.post('/exam', (req, res) => {
     
     //console.log(keep);
     forward_backward_direction = keep['conversation-use'];
-    distance = keep['number-integer']
-    startgame = keep['conversation-gamecontrol']
-    left_right_direction = keep['conversation-direction']
-    replay =keep['conversation-replay']
-    anser = keep.question
-    character = keep.actor
+    left_right_direction = keep['conversation-direction'];
+    distance = keep['number-integer'];
+    startgame = keep['conversation-gamecontrol'];
+    replay =keep['conversation-replay'];
+    anser = keep.question;
+    character = keep.actor;
     if(forward_backward_direction != null){
        order = forward_backward_direction;
-       console.log('show forward_backeard_direction ', order)
+       console.log('show forward_backeard_direction ', order);
     }else if (left_right_direction != null ){
        order = left_right_direction;
-       console.log('show left_right_direction ', order)
+       console.log('show left_right_direction ', order);
     }
     //show value
     if(distance != null){
-      console.log('show distance ', distance)
+      console.log('show distance ', distance);
     }  
     if(startgame != null){
-      console.log('show start ' , startgame)
+      console.log('show start ' , startgame);
     }
     if(character != null){
-      console.log('actor is ' , character)
+      console.log('actor is ' , character);
     }
     if(replay != null){
-      console.log('say replay is ',replay)
+      console.log('say replay is ',replay);
     }
     if(anser != null){
-      console.log('ansQ2 is ',anser)
+      console.log('ansQ2 is ',anser);
     }
 
   
     if (order != null && distance != null){
-      if (order == "forward"){
+      if (order == "forward" || order == "ตรงไป"){
+        order = "forward";
         for (var a=0; a<distance; a++){
           if(direction == 'N'){
             y += 57;
@@ -80,13 +83,17 @@ app.post('/exam', (req, res) => {
             if(position[i][0] == x){
               if (position[i][1] == y){
                 responsetext = 'start new';
+                position.splice(1, position.length);
+                x = -30;
+                y = -143;
               } 
             }
           }
           position.push([x,y]);
         }
       }
-      else if (order == "backward"){
+      else if (order == "backward" || order == "ถอยหลัง"){
+        order = "backward";
         for (var f=0; f<distance; f++){
           if(direction == 'N'){
             y-=57;
@@ -104,13 +111,17 @@ app.post('/exam', (req, res) => {
             if(position[j][0] == x){
               if (position[j][1] == y){
                 responsetext = 'start new';
+                position.splice(1, position.length);
+                x = -30;
+                y = -143;
               } 
             }
           }
           position.push([x,y]);
         }
       }
-      else if (order == "left"){
+      else if (order == "left" || order == "เลี้ยวซ้าย"){
+        order = "left";
         for (var k=0; k<distance; k++){
           if (direction == 'E'){
             direction = 'N';
@@ -126,7 +137,8 @@ app.post('/exam', (req, res) => {
           }
         }
       }
-      else if (order == "right"){
+      else if (order == "right" || order == "เลี้ยวขวา"){
+        order = "right";
         for (var q=0; q<distance; q++){
           if (direction == 'E'){
             direction = 'S';
@@ -149,24 +161,40 @@ app.post('/exam', (req, res) => {
       if (x == 141 && y == 28){
         responsetext = 'go to maze 2';
         state = 'maze2';
+        position.splice(1, position.length);
+        x = -30;
+        y = -143;
+        direction = 'E';
       }
     }
     else if (state == 'maze2'){
       if (x == 141 && y == 85){
         responsetext = 'go to maze 3';
         state = 'maze3';
+        position.splice(1, position.length);
+        x = -30;
+        y = -143;
+        direction = 'E';
       }
     }
     else if (state == 'maze3'){
       if (x == 27 && y == -86){
          responsetext = 'go to maze 4';
          state = 'maze4';
+         position.splice(1, position.length);
+         x = -30;
+         y = -143;
+         direction = 'E';
       }
     }
     else if (state == 'maze4'){
       if (x == 27 && y == 85){
           responsetext = 'go to maze 5';
           state = 'maze5';
+          position.splice(1, position.length);
+          x = -30;
+          y = -143;
+          direction = 'E';
       }
     }
     else if (state == 'maze6'){
@@ -180,6 +208,9 @@ app.post('/exam', (req, res) => {
             if(position[p][0] == x == 141){
                if (position[p][1] == y == 28){
                  responsetext = 'go to next state';
+                 position.splice(1, position.length);
+                 x = -30;
+                 y = -143;
                  state = 'Q2';
                  var randomtrees = Math.floor(Math.random() * 10) + 1;
                  var randomstone = Math.floor(Math.random() * 10) + 1;
@@ -189,6 +220,7 @@ app.post('/exam', (req, res) => {
            } 
        }
     }
+  
 //     else if (state == 'Q2'){
 //       responsetext = 'there are many trees ?';
 //       if (anser == randomtrees){
@@ -203,12 +235,12 @@ app.post('/exam', (req, res) => {
                           "fulfillmentText":responsetext,
                         }
   
-    console.log('show responseObj is ', responseObj)
+    console.log('show responseObj is ', responseObj);
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('chat',order,distance,startgame,character,replay,ansQ2,state)
-    io.emit('symbols',order,distance)
+    io.emit('chat',order,distance,startgame,character,replay,ansQ2,state);
+    io.emit('symbols',order,distance,state);
  
     return res.json(responseObj);
     
