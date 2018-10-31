@@ -84,6 +84,9 @@ app.post('/', (req, res) => {
     if(anser != null){
       console.log('ansQ2 is ',anser);
     }
+
+    console.log(maze);
+    console.log(position);
   
   //when maze state will calculate this function
     if (order != null && distance != null){
@@ -379,10 +382,11 @@ app.post('/', (req, res) => {
     //emit to scratchX game and scratchX show log code 
     io.emit('chat',order,distance,startgame,character,replay,ansQ2,state,reset);
     io.emit('symbols',order,distance,state,reset);
+    var num = distance*1000;
     setTimeout(function(){
        console.log('send already');
        return res.json(responseObj);
-    },2000)
+    },num)
     
  })
 
