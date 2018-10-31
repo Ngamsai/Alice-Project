@@ -7,9 +7,9 @@ new (function() {
   
   $(document).ready(function(){
     //load this script then .done text 
-     $.getScript("https://alice-project-nanearnano873492.codeanyapp.com/socket.io/socket.io.js").done(function(script, text){
+     $.getScript("https://alice-rescue.herokuapp.com/socket.io/socket.io.js").done(function(script, text){
        console.log(text)
-       socket = io ('https://Alice-Project-nanearnano873492.codeanyapp.com');
+       socket = io ('https://alice-rescue.herokuapp.com/');
 
 
           socket.on('connection', function (data) {
