@@ -34,7 +34,7 @@
   
   }); 
 
-      socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket){             
+      socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket,reset_socket){             
               if(direction_socket != null){
                 console.log('direction = ',direction_socket);
               }  
@@ -52,14 +52,18 @@
               } 
               if(ansQ2_socket != null ){
                 console.log('ansQ2 is ',ansQ2_socket);
-              }  
+              } 
+              if(reset_socket != null ){
+                console.log('reset is ',reset_socket);
+              } 
               console.log('******************************')
             
        });
-       socket.on('symbols',function(direction_socket,distance_socket,state_socket){
+       socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket){
               console.log('direction is ',direction_socket);
               console.log('distance = ',distance_socket);
               console.log('state = ',state_socket);
+              console.log('reset from emit to symbols is ',reset_socket);
               console.log('******************************')
        });
        

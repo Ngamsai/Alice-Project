@@ -26,8 +26,9 @@ var maze_y = 1;
 var direction = 'E';
 var state = 'maze1';
 var position_flag = true;
-var order,distance,startgame,turn,name,character,replay,ansQ2,forward_backward_direction,left_right_direction,anser,language;
-
+var order,distance,forward_backward_direction,left_right_direction;
+var ansQ2,anser;
+var startgame,character,replay,reset,language;
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -53,6 +54,7 @@ app.post('/', (req, res) => {
     replay =keep['conversation-replay'];
     anser = keep.question;
     character = keep.actor;
+    reset = keep.reset;
     language = req.body.queryResult.languageCode;
     console.log('language is ',language);
     if(forward_backward_direction != null){
@@ -74,6 +76,10 @@ app.post('/', (req, res) => {
     }
     if(replay != null){
       console.log('say replay is ',replay);
+    }
+    if(reset != null){
+      console.log('reset ',reset);
+      resetPosition();
     }
     if(anser != null){
       console.log('ansQ2 is ',anser);
@@ -371,8 +377,8 @@ app.post('/', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('chat',order,distance,startgame,character,replay,ansQ2,state);
-    io.emit('symbols',order,distance,state);
+    io.emit('chat',order,distance,startgame,character,replay,ansQ2,state,reset);
+    io.emit('symbols',order,distance,state,reset);
     setTimeout(function(){
        console.log('send already');
        return res.json(responseObj);

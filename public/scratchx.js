@@ -11,7 +11,7 @@ new (function() {
 
     var ext = this;
     var receive_data = false; 
-    var direction ,distance ,start , side , character , mesg_reply , answer_Q2 , socket , mesg_value , replay , state , trees , stones ;
+    var direction ,distance ,start , character , mesg_reply , answer_Q2 , socket , mesg_value , replay , state , trees , stones , reset ;
   
   
   $(document).ready(function(){
@@ -31,7 +31,7 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket,state_socket){
+          socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket,state_socket,reset_socket){
               if(direction_socket != null){
                 console.log('direction is ',direction_socket)
               }  
@@ -47,6 +47,9 @@ new (function() {
               if(replay_socket != null ){
                 console.log('replay is ',replay_socket)
               } 
+              if(reset_socket != null ){
+                console.log('reset is ',reset_socket)
+              }
               if(ansQ2_socket != null ){
                 console.log('ansQ2 is ',ansQ2_socket)
               }  
@@ -62,6 +65,7 @@ new (function() {
               replay = replay_socket;
               answer_Q2 = ansQ2_socket;
               state = state_socket;
+              reset = reset_socket;
         });
        
         socket.on('Q2',function(randomtrees_SK,randomstone_SK){
@@ -140,6 +144,10 @@ new (function() {
     ext.get_replay = function(){
         return replay;
     }
+
+    ext.get_reset = function(){
+        return reset;
+    }
     
     ext.get_state = function(){
         return state;
@@ -166,6 +174,7 @@ new (function() {
             ['r', 'character', 'get_character'],
             ['r', 'answer_Q2', 'get_answer_Q2'],
             ['r', 'replay', 'get_replay'],
+            ['r', 'reset', 'get_reset'],
             ['r', 'state', 'get_state'],
             ['r', 'trees', 'get_trees'],
             ['r', 'stones', 'get_stones'],
