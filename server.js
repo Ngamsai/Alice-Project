@@ -31,7 +31,7 @@ var order,distance,startgame,turn,name,character,replay,ansQ2,forward_backward_d
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.post('/exam', (req, res) => {
+app.post('/', (req, res) => {
   
     console.log("***************************************************************************************************")
 //     console.log(req.body);
