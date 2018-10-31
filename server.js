@@ -139,6 +139,7 @@ app.post('/', (req, res) => {
     }
   
     function ComputePosition (){
+      console.log('compteposition access');
       if (order == "forward"){
         for (var e=0; e<distance; e++){
           if(direction == 'N'){
@@ -299,6 +300,7 @@ app.post('/', (req, res) => {
    }
   
     function checkState(){
+      console.log('access checkstate');
       if (state == 'maze1'){
         if (maze_x == 5 && maze_y == 7){
           responsetext = 'go to maze 2';
