@@ -26,21 +26,24 @@ var maze_y = 1;
 var direction = 'E';
 var state = 'maze1';
 var position_flag = true;
+var modify_flag = false;
+var sequence = 0;
 var order,distance,forward_backward_direction,left_right_direction;
+var modify,deleteCode,insert,play,reset,numberSequence,insertPosition,number;
 var ansQ2,anser;
-var startgame,character,replay,reset,language;
+var startgame,character,language;
+var arrayOrder = [[order,distance]];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.post('/', (req, res) => {
   
     console.log("***************************************************************************************************")
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext = req.body.queryResult.fulfillmentText;
 //     console.log('res is ',responsetext);
-    
  
     if(text != null){
       console.log('sh resend ',text);
@@ -51,12 +54,17 @@ app.post('/', (req, res) => {
     left_right_direction = keep['conversation-direction'];
     distance = keep['number-integer'];
     startgame = keep['conversation-gamecontrol'];
-    replay =keep['conversation-replay'];
+    play =keep['conversation-replay'];
     anser = keep.question;
     character = keep.actor;
     reset = keep.reset;
+    modify = keep.modify;
+    numberSequence = keep['number-sequence'];
+    deleteCode = keep.delete;
+    insert = keep.insert;
+    insertPosition = keep['insert-position'];
     language = req.body.queryResult.languageCode;
-    console.log('language is ',language);
+    console.log('Version is ',language);
     if(forward_backward_direction != null){
        order = forward_backward_direction;
        console.log('show forward_backeard_direction ', order);
@@ -74,8 +82,20 @@ app.post('/', (req, res) => {
     if(character != null){
       console.log('actor is ' , character);
     }
-    if(replay != null){
-      console.log('say replay is ',replay);
+    if(play != null){
+      console.log('say play is ',play);
+      play();
+    }
+    if(modify != null){
+      console.log('he will ',modify,' in number ',numberSequence);
+      modify_flag = true;
+      number = numberSequence;
+    }
+    if(deleteCode != null){
+      console.log('he will ',deleteCode,' code number ',numberSequence);
+    }
+    if(insert != null){
+      console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
     }
     if(reset != null){
       console.log('reset ',reset);
@@ -85,9 +105,6 @@ app.post('/', (req, res) => {
       console.log('ansQ2 is ',anser);
     }
 
-    console.log(maze);
-    console.log(position);
-  
   //when maze state will calculate this function
     if (order != null && distance != null){
       if (language == 'th'){
@@ -140,164 +157,200 @@ app.post('/', (req, res) => {
   
     function ComputePosition (){
       console.log('compteposition access');
-      if (order == "forward"){
-        for (var e=0; e<distance; e++){
-          if(direction == 'N'){
-            if (maze[maze_x-1][maze_y] === 0){
-              maze_x -= 2; 
-              console.log('maze_x ',maze_x);
-              position_flag = true
-            }
-            else {
-              position_flag = false
-            }
-          }
-          else if(direction == 'S'){
-            if (maze[maze_x+1][maze_y] === 0){
-              maze_x += 2; 
-              position_flag = true
-            }
-            else {
-              position_flag = false
-            }
-          }
-          else if(direction == 'W'){
-            if (maze[maze_x][maze_y-1] === 0){
-              maze_y -= 2; 
-              position_flag = true
-            }
-            else {
-              position_flag = false
-            }
-          }
-          else if(direction == 'E'){
-            if (maze[maze_x][maze_y+1] === 0){
-              maze_y += 2; 
-              position_flag = true
-            }
-            else {
-              position_flag = false
-            }
-          }
-          console.log('position length ',position.length);
-          console.log('x ',maze_x);
-          console.log('y',maze_y);
-          console.log('dir ',direction);
-          for (var k = 0; k<position.length; k++){
-            console.log('k',k);
-            if(position[k][0] == maze_x){
-              if (position[k][1] == maze_y){
-                responsetext = 'start new';
-              } 
-            }
-          }
-          if (position_flag){
-            position.push([maze_x,maze_y]);  
-          }else{
-            responsetext = 'crashing';
-          }
-          if (responsetext == 'start new'){
-              resetPosition(position);
+      if (modify_flag){
+        console.log('order change is ',order);
+        console.log('distance change is ',distance);
+        number = number - 1 ;
+        for (var i = 0 ;i<arrayOrder.length ;i++){
+          if (number == i){
+            arrayOrder[i][0] = order;
+            arrayOrder[i][1] = distance;
+            io.emit('modify',order,distance,number,modify_flag);
+            modify_flag = false;
           }
         }
       }
-      else if (order == "backward"){
-        for (var f=0; f<distance; f++){
-          if(direction == 'N'){
-            if (maze[maze_x+1][maze_y] === 0){
-              maze_x += 2; 
-              position_flag = true
+      else{
+        if (order == "forward"){
+          for (var a=0; a<distance; a++){
+            if(direction == 'N'){
+              if (maze[maze_x-1][maze_y] === 0){
+                maze_x -= 2; 
+                // console.log('maze_x ',maze_x);
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
             }
-            else {
-              position_flag = false
+            else if(direction == 'S'){
+              if (maze[maze_x+1][maze_y] === 0){
+                maze_x += 2; 
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
             }
-          }
-          else if(direction == 'S'){
-            if (maze[maze_x-1][maze_y] === 0){
-              maze_x -= 2; 
-              position_flag = true
+            else if(direction == 'W'){
+              if (maze[maze_x][maze_y-1] === 0){
+                maze_y -= 2; 
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
             }
-            else {
-              position_flag = false
+            else if(direction == 'E'){
+              if (maze[maze_x][maze_y+1] === 0){
+                maze_y += 2; 
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
             }
-          }
-          else if(direction == 'W'){
-            if (maze[maze_x][maze_y+1] === 0){
-              maze_y += 2; 
-              position_flag = true
+            // console.log('position length ',position.length);
+            // console.log('x ',maze_x);
+            // console.log('y',maze_y);
+            // console.log('dir ',direction);
+            for (var b = 0; b<position.length; b++){
+              // console.log('k',k);
+              if(position[k][0] == maze_x){
+                if (position[k][1] == maze_y){
+                  responsetext = 'start new';
+                } 
+              }
             }
-            else {
-              position_flag = false
+            if (position_flag){
+              position.push([maze_x,maze_y]);  
+              sequence += 1;
+              keepArrayOrder();
+            }else{
+              responsetext = 'crashing';
             }
-          }
-          else if(direction == 'E'){
-            if (maze[maze_x][maze_y-1] === 0){
-              maze_y -= 2; 
-              position_flag = true
+            if (responsetext == 'start new'){
+                resetPosition(position);
             }
-            else {
-              position_flag = false
-            }
-          }
-          for (var l = 0; l<position.length; l++){
-            if(position[l][0] == maze_x){
-              if (position[l][1] == maze_y){
-                responsetext = 'start new';
-                 } 
-            }
-          }
-          if (position_flag){
-            position.push([maze_x,maze_y]);  
-          }else{
-            responsetext = 'crashing';
-          }
-          if (responsetext == 'start new'){
-              resetPosition(position);
           }
         }
-      }
-      else if (order == "left"){
-        for (var g=0; g<distance; g++){
-          if (direction == 'E'){
-            direction = 'N';
-          }
-          else if (direction == 'N'){
-            direction = 'W';
-          }
-          else if (direction == 'W'){
-            direction = 'S';
-          }
-          else if (direction == 'S'){
-            direction = 'E';
+        else if (order == "backward"){
+          for (var c=0; c<distance; c++){
+            if(direction == 'N'){
+              if (maze[maze_x+1][maze_y] === 0){
+                maze_x += 2; 
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
+            }
+            else if(direction == 'S'){
+              if (maze[maze_x-1][maze_y] === 0){
+                maze_x -= 2; 
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
+            }
+            else if(direction == 'W'){
+              if (maze[maze_x][maze_y+1] === 0){
+                maze_y += 2; 
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
+            }
+            else if(direction == 'E'){
+              if (maze[maze_x][maze_y-1] === 0){
+                maze_y -= 2; 
+                position_flag = true
+              }
+              else {
+                position_flag = false
+              }
+            }
+            for (var d = 0; d<position.length; d++){
+              if(position[l][0] == maze_x){
+                if (position[l][1] == maze_y){
+                  responsetext = 'start new';
+                  } 
+              }
+            }
+            if (position_flag){
+              position.push([maze_x,maze_y]); 
+              sequence += 1;
+              keepArrayOrder(); 
+            }else{
+              responsetext = 'crashing';
+            }
+            if (responsetext == 'start new'){
+                resetPosition(position);
+            }
           }
         }
-      }
-      else if (order == "right"){
-        for (var q=0; q<distance; q++){
-          if (direction == 'E'){
-            direction = 'S';
-          }
-          else if (direction == 'S'){
-            direction = 'W';
-          }
-          else if (direction == 'W'){
-            direction = 'N';
-          }
-          else if (direction == 'N'){
-            direction = 'E';
+        else if (order == "left"){
+          sequence += 1;
+          keepArrayOrder();
+          for (var e=0; e<distance; e++){
+            if (direction == 'E'){
+              direction = 'N';
+            }
+            else if (direction == 'N'){
+              direction = 'W';
+            }
+            else if (direction == 'W'){
+              direction = 'S';
+            }
+            else if (direction == 'S'){
+              direction = 'E';
+            }
           }
         }
+        else if (order == "right"){
+          sequence += 1;
+          keepArrayOrder();
+          for (var f=0; f<distance; f++){
+            if (direction == 'E'){
+              direction = 'S';
+            }
+            else if (direction == 'S'){
+              direction = 'W';
+            }
+            else if (direction == 'W'){
+              direction = 'N';
+            }
+            else if (direction == 'N'){
+              direction = 'E';
+            }
+          }
+        }
+        io.emit('chat',order,distance,sequence);
       }
       console.log(direction);
+      console.log(distance);
       console.log(position);
     }
-  
-   function resetPosition(){
-     position.splice(1, position.length);
-     maze_x = 11;
-     maze_y = 1;
-     direction = 'E';     
-   }
+
+    function keepArrayOrder(){
+      arrayOrder.push([order,distance]);
+      console.log('arrayOrder ',arrayOrder);
+    }
+
+    function play() {
+      for (var j = 0 ;j<arrayOrder.length;j++){
+        ComputePosition();
+      }
+    }
+
+    function resetPosition(){
+      position.splice(1, position.length);
+      maze_x = 11;
+      maze_y = 1;
+      direction = 'E';     
+    }
   
     function checkState(){
       console.log('access checkstate');
@@ -382,7 +435,7 @@ app.post('/', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('chat',order,distance,startgame,character,replay,ansQ2,state,reset);
+    io.emit('controlgame',startgame,character,replay,ansQ2,state,reset)
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
     setTimeout(function(){
@@ -390,7 +443,7 @@ app.post('/', (req, res) => {
        return res.json(responseObj);
     },num)
     
- })
+})
 
 // received messages from scratchX game control 
 io.on('connection', function (socket) { 

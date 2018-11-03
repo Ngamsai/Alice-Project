@@ -34,16 +34,20 @@
   
   }); 
 
-      socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket,reset_socket){             
+      socket.on('chat',function(direction_socket,distance_socket,sequence){             
               if(direction_socket != null){
                 console.log('direction = ',direction_socket);
               }  
               if(distance_socket != null){
                 console.log('distance = ',distance_socket);
               }
-              if(startgame_socket != null ){
-                console.log('status is ', startgame_socket);
+              if(sequence != null ){
+                console.log('seq is ', sequence);
               } 
+              console.log('******************************')
+      });
+
+      socket.on('controlgram',function(startgame_socket,character_socket,replay_socket,ansQ2_socket,reset_socket){
               if(character_socket != null ){
                 console.log('actor is ',character_socket);
               } 
