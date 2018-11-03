@@ -344,6 +344,10 @@ app.post('/', (req, res) => {
     }
 
     function playFunction() {
+      position.splice(1, position.length);
+      maze_x = 11;
+      maze_y = 1;
+      direction = 'E'; 
       for (var j = 0 ;j<arrayOrder.length;j++){
         ComputePosition();
       }
