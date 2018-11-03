@@ -233,6 +233,13 @@ app.post('/', (req, res) => {
                 resetPosition(position);
             }
           }
+          if(responsetext != 'crashing'){
+            sequence += 1;
+            keepArrayOrder(); 
+          }
+          if (responsetext == 'start new') {
+            resetArrayOrder();
+          }
         }
         else if (order == "backward"){
           for (var c=0; c<distance; c++){
@@ -281,8 +288,6 @@ app.post('/', (req, res) => {
             }
             if (position_flag){
               position.push([maze_x,maze_y]); 
-              sequence += 1;
-              keepArrayOrder(); 
             }else{
               responsetext = 'crashing';
             }
@@ -290,6 +295,14 @@ app.post('/', (req, res) => {
                 resetPosition(position);
             }
           }
+          if(responsetext != 'crashing'){
+            sequence += 1;
+            keepArrayOrder(); 
+          }
+          if (responsetext == 'start new') {
+            resetArrayOrder();
+          }
+          
         }
         else if (order == "left"){
           sequence += 1;
@@ -351,6 +364,10 @@ app.post('/', (req, res) => {
       maze_y = 1;
       direction = 'E';     
     }
+
+    function resetArrayOrder(){
+      arrayOrder.splice(1, arrayOrder.length);
+    }
   
     function checkState(){
       console.log('access checkstate');
@@ -409,20 +426,7 @@ app.post('/', (req, res) => {
       console.log('responsetext from checkState is ',responsetext);
      }
     
-//     function detectCrash (collision){
-//       responsetext = 'crashing';
-//       console.log('crashing');
-//       position.splice(1, position.length);
-//       maze_x = -30;
-//       maze_y = -143;
-//     }
-  
-//     else if (state == 'Q2'){
-//       responsetext = 'there are many trees ?';
-//       if (anser == randomtrees){
-        
-//       }
-//     }
+
   
     console.log('resq is ',responsetext);
 
