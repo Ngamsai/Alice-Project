@@ -27,6 +27,7 @@ var direction = 'E';
 var state = 'maze1';
 var position_flag = true;
 var modify_flag = false;
+var Nocrashing_flag = true;
 var sequence = 0;
 var order,distance,forward_backward_direction,left_right_direction;
 var modify,deleteCode,insert,play,reset,numberSequence,insertPosition,number;
@@ -100,6 +101,7 @@ app.post('/', (req, res) => {
     if(reset != null){
       console.log('reset ',reset);
       resetPosition();
+      resetArrayOrder();
     }
     if(anser != null){
       console.log('ansQ2 is ',anser);
@@ -147,11 +149,13 @@ app.post('/', (req, res) => {
         }
         else if (responsetext == 'go to next state'){
            responsetext = 'ไปยัด่านต่อไปได้เลย';
-         }
+        }
+        keepArrayOrder();
       }
       else if (language == 'en'){
         ComputePosition();
         checkState();
+        keepArrayOrder();
       }
     }
   
@@ -176,7 +180,6 @@ app.post('/', (req, res) => {
             if(direction == 'N'){
               if (maze[maze_x-1][maze_y] === 0){
                 maze_x -= 2; 
-                // console.log('maze_x ',maze_x);
                 position_flag = true
               }
               else {
@@ -210,12 +213,7 @@ app.post('/', (req, res) => {
                 position_flag = false
               }
             }
-            // console.log('position length ',position.length);
-            // console.log('x ',maze_x);
-            // console.log('y',maze_y);
-            // console.log('dir ',direction);
             for (var b = 0; b<position.length; b++){
-              // console.log('k',k);
               if(position[b][0] == maze_x){
                 if (position[b][1] == maze_y){
                   responsetext = 'start new';
@@ -224,21 +222,13 @@ app.post('/', (req, res) => {
             }
             if (position_flag){
               position.push([maze_x,maze_y]);  
-              sequence += 1;
-              keepArrayOrder();
             }else{
               responsetext = 'crashing';
+              Nocrashing_flag = false;
             }
             if (responsetext == 'start new'){
                 resetPosition(position);
             }
-          }
-          if(responsetext != 'crashing'){
-            sequence += 1;
-            keepArrayOrder(); 
-          }
-          if (responsetext == 'start new') {
-            resetArrayOrder();
           }
         }
         else if (order == "backward"){
@@ -290,23 +280,14 @@ app.post('/', (req, res) => {
               position.push([maze_x,maze_y]); 
             }else{
               responsetext = 'crashing';
+              Nocrashing_flag = false;
             }
             if (responsetext == 'start new'){
                 resetPosition(position);
             }
           }
-          if(responsetext != 'crashing'){
-            sequence += 1;
-            keepArrayOrder(); 
-          }
-          if (responsetext == 'start new') {
-            resetArrayOrder();
-          }
-          
         }
         else if (order == "left"){
-          sequence += 1;
-          keepArrayOrder();
           for (var e=0; e<distance; e++){
             if (direction == 'E'){
               direction = 'N';
@@ -323,8 +304,6 @@ app.post('/', (req, res) => {
           }
         }
         else if (order == "right"){
-          sequence += 1;
-          keepArrayOrder();
           for (var f=0; f<distance; f++){
             if (direction == 'E'){
               direction = 'S';
@@ -343,12 +322,22 @@ app.post('/', (req, res) => {
         io.emit('chat',order,distance,sequence);
       }
       console.log(direction);
+      console.log(order);
       console.log(distance);
       console.log(position);
     }
 
     function keepArrayOrder(){
-      arrayOrder.push([order,distance]);
+      if (order == 'forward'||order == 'backward'){
+        if(Nocrashing_flag){
+          arrayOrder.push([order,distance]);
+          sequence += 1;
+        }
+      }else if (order == 'left' || order == 'right'){
+        arrayOrder.push([order,distance]);
+        sequence += 1;
+      }
+      
       console.log('arrayOrder ',arrayOrder);
     }
 
@@ -367,6 +356,7 @@ app.post('/', (req, res) => {
 
     function resetArrayOrder(){
       arrayOrder.splice(1, arrayOrder.length);
+      sequence = 0;
     }
   
     function checkState(){
