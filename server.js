@@ -216,8 +216,8 @@ app.post('/', (req, res) => {
             // console.log('dir ',direction);
             for (var b = 0; b<position.length; b++){
               // console.log('k',k);
-              if(position[k][0] == maze_x){
-                if (position[k][1] == maze_y){
+              if(position[b][0] == maze_x){
+                if (position[b][1] == maze_y){
                   responsetext = 'start new';
                 } 
               }
@@ -273,8 +273,8 @@ app.post('/', (req, res) => {
               }
             }
             for (var d = 0; d<position.length; d++){
-              if(position[l][0] == maze_x){
-                if (position[l][1] == maze_y){
+              if(position[d][0] == maze_x){
+                if (position[d][1] == maze_y){
                   responsetext = 'start new';
                   } 
               }
