@@ -33,7 +33,7 @@ var order,distance,forward_backward_direction,left_right_direction;
 var modify,deleteCode,insert,play,reset,numberSequence,insertPosition,number;
 var ansQ2,anser;
 var startgame,character,language;
-var arrayOrder = [[order,distance]];
+var arrayOrder = [['positionstart','positionstart']];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -85,7 +85,7 @@ app.post('/', (req, res) => {
     }
     if(play != null){
       console.log('say play is ',play);
-      play();
+      playFunction();
     }
     if(modify != null){
       console.log('he will ',modify,' in number ',numberSequence);
@@ -167,9 +167,10 @@ app.post('/', (req, res) => {
         number = number - 1 ;
         for (var i = 0 ;i<arrayOrder.length ;i++){
           if (number == i){
-            arrayOrder[i][0] = order;
-            arrayOrder[i][1] = distance;
+            order = arrayOrder[i][0];
+            distance = arrayOrder[i][1];
             io.emit('modify',order,distance,number,modify_flag);
+            console.log(arrayOrder[i][0],"  ",arrayOrder[i][1]);
             modify_flag = false;
           }
         }
@@ -342,7 +343,7 @@ app.post('/', (req, res) => {
       console.log('arrayOrder ',arrayOrder);
     }
 
-    function play() {
+    function playFunction() {
       for (var j = 0 ;j<arrayOrder.length;j++){
         ComputePosition();
       }
