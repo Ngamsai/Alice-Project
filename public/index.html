@@ -47,12 +47,12 @@
               console.log('******************************')
       });
 
-      socket.on('controlgram',function(startgame_socket,character_socket,replay_socket,ansQ2_socket,reset_socket){
+      socket.on('controlgram',function(startgame_socket,character_socket,play_socket,ansQ2_socket,state_socket,reset_socket){
               if(character_socket != null ){
                 console.log('actor is ',character_socket);
               } 
-              if(replay_socket != null ){
-                console.log('replay is ',replay_socket);
+              if(play_socket != null ){
+                console.log('play is ',play_socket);
               } 
               if(ansQ2_socket != null ){
                 console.log('ansQ2 is ',ansQ2_socket);
@@ -63,13 +63,13 @@
               console.log('******************************')
             
        });
-       socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket){
-              console.log('direction is ',direction_socket);
-              console.log('distance = ',distance_socket);
-              console.log('state = ',state_socket);
-              console.log('reset from emit to symbols is ',reset_socket);
-              console.log('******************************')
-       });
+      //  socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket){
+      //         console.log('direction is ',direction_socket);
+      //         console.log('distance = ',distance_socket);
+      //         console.log('state = ',state_socket);
+      //         console.log('reset from emit to symbols is ',reset_socket);
+      //         console.log('******************************')
+      //  });
        
        
   </script>
