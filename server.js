@@ -435,7 +435,7 @@ app.post('/', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('controlgame',startgame,character,replay,ansQ2,state,reset)
+    io.emit('controlgame',startgame,character,play,ansQ2,state,reset)
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
     setTimeout(function(){
