@@ -328,6 +328,7 @@ app.post('/', (req, res) => {
     }
 
     function keepArrayOrder(){
+      console.log('access keepArrayOrder');
       if (order == 'forward'||order == 'backward'){
         if(Nocrashing_flag){
           arrayOrder.push([order,distance]);
