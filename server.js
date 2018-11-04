@@ -91,6 +91,8 @@ app.post('/', (req, res) => {
       console.log('he will ',modify,' in number ',numberSequence);
       modify_flag = true;
       number = numberSequence;
+      console.log('mod def ',modify_flag);
+      console.log('number ',number);
     }
     if(deleteCode != null){
       console.log('he will ',deleteCode,' code number ',numberSequence);
