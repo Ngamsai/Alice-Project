@@ -181,6 +181,7 @@ app.post('/', (req, res) => {
       else{
         console.log('order sh ',order);
         console.log('disance sh ',distance);
+        console.log('in compute sh arr Order ',arrayOrder);
         if (order == "forward"){
           for (var a=0; a<distance; a++){
             if(direction == 'N'){
@@ -365,7 +366,7 @@ app.post('/', (req, res) => {
       for (var j = 0 ;j<arrayOrder.length;j++){
         order = arrayOrder[j][0];
         distance = arrayOrder[j][1];
-
+        console.log('from plarfunction');
         ComputePosition();
       }
     }
@@ -378,7 +379,7 @@ app.post('/', (req, res) => {
     }
 
     function resetArrayOrder(){
-      arrayOrder.splice(1, arrayOrder.length);
+      arrayOrder.splice(0, arrayOrder.length);
       sequence = 0;
     }
   
