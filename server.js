@@ -109,6 +109,9 @@ app.post('/', (req, res) => {
       console.log('ansQ2 is ',anser);
     }
 
+    console.log('order global '.order);
+    console.log('distance global ',distance);
+
   //when maze state will calculate this function
     if (order != null && distance != null){
       if (language == 'th'){
