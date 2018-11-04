@@ -167,6 +167,7 @@ app.post('/', (req, res) => {
         console.log('order change is ',order);
         console.log('distance change is ',distance);
         console.log('number ',number);
+        number = number - 1 ;
         for (var i = 0 ;i<arrayOrder.length ;i++){
           if (number == i){
             console.log('i is ',i);
