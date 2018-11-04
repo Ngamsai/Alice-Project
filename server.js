@@ -33,7 +33,7 @@ var order,distance,forward_backward_direction,left_right_direction;
 var modify,deleteCode,insert,play,reset,numberSequence,insertPosition,number;
 var ansQ2,anser;
 var startgame,character,language;
-var arrayOrder = [['positionstart','positionstart']];
+var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -178,6 +178,8 @@ app.post('/', (req, res) => {
         }
       }
       else{
+        console.log('order sh ',order);
+        console.log('disance sh ',distance);
         if (order == "forward"){
           for (var a=0; a<distance; a++){
             if(direction == 'N'){
@@ -356,10 +358,13 @@ app.post('/', (req, res) => {
       maze_x = 11;
       maze_y = 1;
       direction = 'E'; 
+      console.log('mo f ',modify_flag);
       console.log('position from play function ',position);
+      console.log('arr order ',arrayOrder);
       for (var j = 0 ;j<arrayOrder.length;j++){
         order = arrayOrder[j][0];
         distance = arrayOrder[j][1];
+
         ComputePosition();
       }
     }
