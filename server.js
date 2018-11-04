@@ -166,7 +166,7 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('order change is ',order);
         console.log('distance change is ',distance);
-        number = number - 1 ;
+        number = number;
         for (var i = 0 ;i<arrayOrder.length ;i++){
           if (number == i){
             order = arrayOrder[i][0];
