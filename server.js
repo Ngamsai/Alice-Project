@@ -170,8 +170,8 @@ app.post('/', (req, res) => {
         for (var i = 0 ;i<arrayOrder.length ;i++){
           if (number == i){
             console.log('i is ',i);
-            order = arrayOrder[i][0];
-            distance = arrayOrder[i][1];
+            arrayOrder[i][0] = order;
+            arrayOrder[i][1] = distance;
             io.emit('modify',order,distance,number,modify_flag);
             console.log(arrayOrder[i][0],"  ",arrayOrder[i][1]);
             modify_flag = false;
@@ -333,14 +333,19 @@ app.post('/', (req, res) => {
 
     function keepArrayOrder(){
       console.log('access keepArrayOrder');
-      if (order == 'forward'||order == 'backward'){
-        if(Nocrashing_flag){
+      if (modify_flag){
+        console.log('now re array order is ',arrayOrder);
+        console.log('no add array order');
+      }else{  
+        if (order == 'forward'||order == 'backward'){
+          if(Nocrashing_flag){
+            arrayOrder.push([order,distance]);
+            sequence += 1;
+          }
+        }else if (order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);
           sequence += 1;
         }
-      }else if (order == 'left' || order == 'right'){
-        arrayOrder.push([order,distance]);
-        sequence += 1;
       }
       
       console.log('arrayOrder ',arrayOrder);
@@ -351,7 +356,10 @@ app.post('/', (req, res) => {
       maze_x = 11;
       maze_y = 1;
       direction = 'E'; 
+      console.log('position from play function ',position);
       for (var j = 0 ;j<arrayOrder.length;j++){
+        order = arrayOrder[j][0];
+        distance = arrayOrder[j][1];
         ComputePosition();
       }
     }
