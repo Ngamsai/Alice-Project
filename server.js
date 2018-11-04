@@ -109,7 +109,7 @@ app.post('/', (req, res) => {
       console.log('ansQ2 is ',anser);
     }
 
-    console.log('order global '.order);
+    console.log('order global ',order);
     console.log('distance global ',distance);
 
   //when maze state will calculate this function
@@ -371,7 +371,11 @@ app.post('/', (req, res) => {
         distance = arrayOrder[j][1];
         console.log('from plarfunction');
         ComputePosition();
+        console.log('order play ',order);
+        console.log('distance play ',distance);
       }
+      console.log('order play1 ',order);
+      console.log('distance play1 ',distance);
     }
 
     function resetPosition(){
