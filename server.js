@@ -374,6 +374,8 @@ app.post('/', (req, res) => {
         console.log('order play ',order);
         console.log('distance play ',distance);
       }
+      order = null;
+      distance = null;
       console.log('order play1 ',order);
       console.log('distance play1 ',distance);
     }
