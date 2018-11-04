@@ -174,7 +174,6 @@ app.post('/', (req, res) => {
             arrayOrder[i][1] = distance;
             io.emit('modify',order,distance,number,modify_flag);
             console.log(arrayOrder[i][0],"  ",arrayOrder[i][1]);
-            modify_flag = false;
           }
         }
       }
@@ -336,6 +335,7 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('now re array order is ',arrayOrder);
         console.log('no add array order');
+        modify_flag = false;
       }else{  
         if (order == 'forward'||order == 'backward'){
           if(Nocrashing_flag){
