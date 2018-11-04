@@ -166,9 +166,10 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('order change is ',order);
         console.log('distance change is ',distance);
-        number = number;
+        console.log('number ',number);
         for (var i = 0 ;i<arrayOrder.length ;i++){
           if (number == i){
+            console.log('i is ',i);
             order = arrayOrder[i][0];
             distance = arrayOrder[i][1];
             io.emit('modify',order,distance,number,modify_flag);
