@@ -245,7 +245,7 @@ app.post('/', (req, res) => {
             for (var b = 0; b<position.length; b++){
               if(position[b][0] == maze_x){
                 if (position[b][1] == maze_y){
-                  responsetext = 'start new';
+                  responsetext = 'You can not walk the same route.';
                 } 
               }
             }
@@ -255,9 +255,9 @@ app.post('/', (req, res) => {
               responsetext = 'crashing';
               Nocrashing_flag = false;
             }
-            if (responsetext == 'start new'){
-                resetPosition(position);
-            }
+            // if (responsetext == 'start new'){
+            //     resetPosition(position);
+            // }
           }
         }
         else if (order == "backward"){
@@ -301,7 +301,7 @@ app.post('/', (req, res) => {
             for (var d = 0; d<position.length; d++){
               if(position[d][0] == maze_x){
                 if (position[d][1] == maze_y){
-                  responsetext = 'start new';
+                  responsetext = 'You can not walk the same route.';
                   } 
               }
             }
@@ -311,9 +311,9 @@ app.post('/', (req, res) => {
               responsetext = 'crashing';
               Nocrashing_flag = false;
             }
-            if (responsetext == 'start new'){
-                resetPosition(position);
-            }
+            // if (responsetext == 'start new'){
+            //     // resetPosition(position);
+            // }
           }
         }
         else if (order == "left"){
