@@ -88,6 +88,7 @@ app.post('/', (req, res) => {
       console.log('say play is ',play);
       playFunction();
       console.log('numberSequence ',numberSequence);
+      io.emit('play',play);
     }
     else if(modify != null){
       console.log('he will ',modify,' in number ',numberSequence);
@@ -99,6 +100,7 @@ app.post('/', (req, res) => {
     else if(delete_code != null){
       console.log('he will ',delete_code,' code number ',numberSequence);
       number = numberSequence;
+      io.emit('deletecode',delete_code,number);
       deleteCode();
     }
     else if(insert != null){
@@ -185,8 +187,13 @@ app.post('/', (req, res) => {
         //     console.log('i is ',i);
         //     arrayOrder[i][0] = order;
         //     arrayOrder[i][1] = distance;
+        number = number + 1 ;
         io.emit('modify',order,distance,number,modify_flag);
         console.log('arrayOrder from compute mod',arrayOrder);
+        console.log('order change is ',order);
+        console.log('distance change is ',distance);
+        console.log('number ',number);
+        console.log('mo_f ',modify_flag);
         //   }
         // }
       }
@@ -199,6 +206,8 @@ app.post('/', (req, res) => {
           arrayOrder.splice(number, 0, [order,distance]);
           console.log('arrayOrder from compute insert after',arrayOrder);
         }
+        number = number + 1 ;
+        io.emit('insert',insert_flag,insert_position,number,order,distance);
       }
       else{
         console.log('order sh ',order);
@@ -348,7 +357,10 @@ app.post('/', (req, res) => {
             }
           }
         }
-        io.emit('chat',order,distance,sequence);
+        
+        console.log('in compute sh arr Order ',arrayOrder);
+        sequence = arrayOrder.length;
+        io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
       }
       console.log(direction);
       console.log(order);
@@ -372,11 +384,11 @@ app.post('/', (req, res) => {
         if (order == 'forward'||order == 'backward'){
           if(Nocrashing_flag){
             arrayOrder.push([order,distance]);
-            sequence += 1;
+            // sequence += 1;
           }
         }else if (order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);
-          sequence += 1;
+          // sequence += 1;
         }
       }
       
@@ -474,7 +486,7 @@ app.post('/', (req, res) => {
             responsetext = 'I keep key already'; 
         }
         else if (maze_x == 3 && maze_y == 7){  
-          if (text == 'havekey'){
+          if (text == 'key'){
              responsetext = 'go to next state';
              resetPosition(position);
              state = 'Q2';

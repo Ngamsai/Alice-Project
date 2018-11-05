@@ -11,8 +11,11 @@ new (function() {
 
     var ext = this;
     var receive_data = false; 
-    var direction ,distance ,start , character , mesg_reply , answer_Q2 , socket , mesg_value , replay , state , trees , stones , reset ;
-  
+    var socket;
+    var order,direction ,distance ;
+    var start , character , mesg_reply , answer_Q2 , mesg_value , play , state , trees , stones , reset ;
+    var number,modify_flag;
+    var position_insert,insert_flag;
   
   $(document).ready(function(){
     //load this script then .done text 
@@ -31,41 +34,20 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,startgame_socket,character_socket,replay_socket,ansQ2_socket,state_socket,reset_socket){
+          socket.on('chat',function(direction_socket,distance_socket,sequence,insert_fl,modify_fl){
               if(direction_socket != null){
                 console.log('direction is ',direction_socket)
               }  
               if(distance_socket != null){
                 console.log('distance = ',distance_socket)
               }
-              if(startgame_socket != null ){
-                console.log('status is ', startgame_socket)
-              } 
-              if(character_socket != null ){
-                console.log('actor is ',character_socket)
-              } 
-              if(replay_socket != null ){
-                console.log('replay is ',replay_socket)
-              } 
-              if(reset_socket != null ){
-                console.log('reset is ',reset_socket)
-              }
-              if(ansQ2_socket != null ){
-                console.log('ansQ2 is ',ansQ2_socket)
-              }  
-              if(state_socket != null ){
-                console.log('state is ',state_socket)
-              }
+              console.log('seq ',sequence);
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
-              start = startgame_socket;
-              character = character_socket;
-              receive_data = true;
-              replay = replay_socket;
-              answer_Q2 = ansQ2_socket;
-              state = state_socket;
-              reset = reset_socket;
+              number = sequence;
+              insert_flag = insert_fl;
+              modify_flag = modify_fl;
         });
        
         socket.on('Q2',function(randomtrees_SK,randomstone_SK){
@@ -79,6 +61,75 @@ new (function() {
               trees = randomtrees_SK;
               stones = randomstone_SK;
         });
+
+        socket.on('modify',function(order,distance_mod,number_mod,modify_f){
+            console.log('order ',order);
+            console.log('distance ',distance);
+            console.log('number ',number_mod);
+            console.log('modify_flag ',modify_flag);
+            console.log('******************************');
+            direction = order;
+            distance = distance_mod;
+            number  = number_mod;
+            modify_flag = modify_f;
+
+        });
+
+        socket.on('insert',function(insert_f,insert_position,number_in,order,distance){
+            console.log('insert_flag is ',insert_flag);
+            console.log('position ',insert_position);
+            console.log('number ',number_in);
+            console.log('order ',order);
+            console.log('distance ',distance);
+            insert_flag = insert_f;
+            position_insert = insert_position;
+            number = number_in;
+            direction = order;
+            distance = distance;
+        });
+
+        socket.on('deletecode',function(delete_code,number_de){
+            console.log('delete ',delete_code);
+            console.log('number ',number_de);
+            deletecode = delete_code;
+            number = number_de
+        });
+
+        socket.on('play',function(play_socket){
+            console.log('say play ',play_socket);
+            play = play_socket;
+        });
+
+        socket.on('controlgame',function(startgame_socket,character_socket,play_check,ansQ2_socket,state_socket,reset_socket){
+            if(character_socket != null ){
+                console.log('actor is ',character_socket);
+            } 
+            if(play_socket != null ){
+                console.log('play is ',play_check);
+            } 
+            if(ansQ2_socket != null ){
+                console.log('ansQ2 is ',ansQ2_socket);
+            } 
+            if(reset_socket != null ){
+                console.log('reset is ',reset_socket);
+            } 
+            if(startgame_socket != null ){
+                console.log('status is ', startgame_socket)
+            } 
+            if(state_socket != null ){
+                console.log('state is ',state_socket)
+            }
+            console.log('******************************')
+            start = startgame_socket;
+            character = character_socket;
+            receive_data = true;
+            play = play_check;
+            answer_Q2 = ansQ2_socket;
+            state = state_socket;
+            reset = reset_socket;
+        
+        });
+     
        
        
            
