@@ -429,45 +429,50 @@ app.post('/', (req, res) => {
     function checkState(){
       console.log('access checkstate');
       if (state == 'maze1'){
-        if (maze_x == 5 && maze_y == 7){
+        if (maze_x == 7 && maze_y == 5){
           responsetext = 'go to maze 2';
           state = 'maze2';
-          resetPosition();
+          // resetPosition();
+          console.log('position pasent ',position);
         }
       }
       else if (state == 'maze2'){
-        if (maze_x == 3 && maze_y == 7){
+        if (maze_x == 7 && maze_y == 3){
           responsetext = 'go to maze 3';
           state = 'maze3';
-          resetPosition(position);
+          // resetPosition(position);
+          console.log('position pasent ',position);
         }
       }
       else if (state == 'maze3'){
-        if (maze_x == 9 && maze_y == 3){
+        if (maze_x == 5 && maze_y == 3){
            responsetext = 'go to maze 4';
            state = 'maze4';
-           resetPosition(position);
+          //  resetPosition(position);
+          console.log('position pasent ',position);
         }
       }
       else if (state == 'maze4'){
-        if (maze_x == 3 && maze_y == 3){
+        if (maze_x == 5 && maze_y == 5){
             responsetext = 'go to maze 5';
             state = 'maze5';
-            resetPosition(position);
+            // resetPosition(position);
+            console.log('position pasent ',position);
         }
       }
       else if (state == 'maze5'){
-        if (maze_x == 3 && maze_y == 9){
+        if (maze_x == 3 && maze_y == 1){
             responsetext = 'go to maze 5';
             state = 'maze5';
-            resetPosition(position);
+            // resetPosition(position);
+            console.log('position pasent ',position);
         }
       }
       else if (state == 'maze6'){
         if (maze_x == 5 && maze_y == 7){
             responsetext = 'I keep key already'; 
         }
-        else if (maze_x == 3 && maze_y == 1){  
+        else if (maze_x == 3 && maze_y == 7){  
           if (text == 'havekey'){
              responsetext = 'go to next state';
              resetPosition(position);
