@@ -31,7 +31,7 @@ var Nocrashing_flag = true;
 var insert_flag = false;
 var sequence = 0;
 var order,distance,forward_backward_direction,left_right_direction;
-var modify,deleteCode,insert,play,reset,numberSequence,insertPosition,number;
+var modify,delete_code,insert,play,reset,numberSequence,insertPosition,number,insert_position;
 var ansQ2,anser;
 var startgame,character,language;
 var arrayOrder = [];
@@ -62,7 +62,7 @@ app.post('/', (req, res) => {
     reset = keep.reset;
     modify = keep.modify;
     numberSequence = keep['number-sequence'];
-    deleteCode = keep.delete;
+    delete_code = keep.delete;
     insert = keep.insert;
     insertPosition = keep['insert-position'];
     language = req.body.queryResult.languageCode;
@@ -96,14 +96,15 @@ app.post('/', (req, res) => {
       console.log('mod def ',modify_flag);
       console.log('number ',number);
     }
-    else if(deleteCode != null){
-      console.log('he will ',deleteCode,' code number ',numberSequence);
+    else if(delete_code != null){
+      console.log('he will ',delete_code,' code number ',numberSequence);
       number = numberSequence;
       deleteCode();
     }
     else if(insert != null){
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
       number = numberSequence;
+      insert_position = insertPosition;
       insert_flag = true ;
 
     }
@@ -190,11 +191,11 @@ app.post('/', (req, res) => {
         // }
       }
       else if (insert_flag){
-        if (insertPosition == 'before'){
+        if (insert_position== 'before'){
           number = number - 1 ;
           arrayOrder.splice(number, 0, [order,distance]);
           console.log('arrayOrder from compute insert before',arrayOrder);
-        }else if (insertPosition == 'after'){
+        }else if (insert_position == 'after'){
           arrayOrder.splice(number, 0, [order,distance]);
           console.log('arrayOrder from compute insert after',arrayOrder);
         }
