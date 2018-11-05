@@ -28,6 +28,7 @@ var state = 'maze1';
 var position_flag = true;
 var modify_flag = false;
 var Nocrashing_flag = true;
+var insert_flag = false;
 var sequence = 0;
 var order,distance,forward_backward_direction,left_right_direction;
 var modify,deleteCode,insert,play,reset,numberSequence,insertPosition,number;
@@ -77,35 +78,41 @@ app.post('/', (req, res) => {
     if(distance != null){
       console.log('show distance ', distance);
     }  
-    if(startgame != null){
+    else if(startgame != null){
       console.log('show start ' , startgame);
     }
-    if(character != null){
+    else if(character != null){
       console.log('actor is ' , character);
     }
-    if(play != null){
+    else if(play != null){
       console.log('say play is ',play);
       playFunction();
+      console.log('numberSequence ',numberSequence);
     }
-    if(modify != null){
+    else if(modify != null){
       console.log('he will ',modify,' in number ',numberSequence);
       modify_flag = true;
       number = numberSequence;
       console.log('mod def ',modify_flag);
       console.log('number ',number);
     }
-    if(deleteCode != null){
+    else if(deleteCode != null){
       console.log('he will ',deleteCode,' code number ',numberSequence);
+      number = numberSequence;
+      deleteCode();
     }
-    if(insert != null){
+    else if(insert != null){
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
+      number = numberSequence;
+      insert_flag = true ;
+
     }
-    if(reset != null){
+    else if(reset != null){
       console.log('reset ',reset);
       resetPosition();
       resetArrayOrder();
     }
-    if(anser != null){
+    else if(anser != null){
       console.log('ansQ2 is ',anser);
     }
 
@@ -171,14 +178,25 @@ app.post('/', (req, res) => {
         console.log('distance change is ',distance);
         console.log('number ',number);
         number = number - 1 ;
-        for (var i = 0 ;i<arrayOrder.length ;i++){
-          if (number == i){
-            console.log('i is ',i);
-            arrayOrder[i][0] = order;
-            arrayOrder[i][1] = distance;
-            io.emit('modify',order,distance,number,modify_flag);
-            console.log(arrayOrder[i][0],"  ",arrayOrder[i][1]);
-          }
+        arrayOrder.splice(number, 1, [order,distance]);
+        // for (var i = 0 ;i<arrayOrder.length ;i++){
+        //   if (number == i){
+        //     console.log('i is ',i);
+        //     arrayOrder[i][0] = order;
+        //     arrayOrder[i][1] = distance;
+        io.emit('modify',order,distance,number,modify_flag);
+        console.log('arrayOrder from compute mod',arrayOrder);
+        //   }
+        // }
+      }
+      else if (insert_flag){
+        if (insertPosition == 'before'){
+          number = number - 1 ;
+          arrayOrder.splice(number, 0, [order,distance]);
+          console.log('arrayOrder from compute insert before',arrayOrder);
+        }else if (insertPosition == 'after'){
+          arrayOrder.splice(number, 0, [order,distance]);
+          console.log('arrayOrder from compute insert after',arrayOrder);
         }
       }
       else{
@@ -358,12 +376,19 @@ app.post('/', (req, res) => {
       console.log('arrayOrder ',arrayOrder);
     }
 
+    function deleteCode() {
+      number = number - 1 ;
+      arrayOrder.splice(number, 1);
+      onsole.log('sh arr Order when delete already');
+    }
+
     function playFunction() {
       position.splice(1, position.length);
       maze_x = 11;
       maze_y = 1;
       direction = 'E'; 
       console.log('mo f ',modify_flag);
+      console.log('in_f '.insert_flag);
       console.log('position from play function ',position);
       console.log('arr order ',arrayOrder);
       for (var j = 0 ;j<arrayOrder.length;j++){
@@ -382,6 +407,7 @@ app.post('/', (req, res) => {
 
     function resetPosition(){
       position.splice(1, position.length);
+      console.log('resetPosition ',position);
       maze_x = 11;
       maze_y = 1;
       direction = 'E';     
@@ -389,6 +415,7 @@ app.post('/', (req, res) => {
 
     function resetArrayOrder(){
       arrayOrder.splice(0, arrayOrder.length);
+      console.log('resetOrder ',arrayOrder);
       sequence = 0;
     }
   
