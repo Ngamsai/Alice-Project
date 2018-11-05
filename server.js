@@ -408,6 +408,7 @@ app.post('/', (req, res) => {
       }
       order = null;
       distance = null;
+      checkState();
       console.log('order play1 ',order);
       console.log('distance play1 ',distance);
     }
