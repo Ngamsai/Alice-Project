@@ -464,7 +464,7 @@ app.post('/', (req, res) => {
       else if (state == 'maze5'){
         if (maze_x == 3 && maze_y == 1){
             responsetext = 'go to maze 5';
-            state = 'maze5';
+            state = 'maze6';
             // resetPosition(position);
             console.log('position pasent ',position);
         }
