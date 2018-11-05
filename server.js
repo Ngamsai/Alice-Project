@@ -386,7 +386,7 @@ app.post('/', (req, res) => {
     function deleteCode() {
       number = number - 1 ;
       arrayOrder.splice(number, 1);
-      onsole.log('sh arr Order when delete already');
+      console.log('sh arr Order when delete already');
     }
 
     function playFunction() {
