@@ -395,8 +395,6 @@ app.post('/', (req, res) => {
         }
         // sequence = arrayOrder.length;
       }
-      order = null;
-      distance = null;
       console.log('arrayOrder ',arrayOrder);
     }
 
@@ -531,10 +529,12 @@ app.post('/', (req, res) => {
     //   sequence = arrayOrder.length;
     //   io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
     // }
-    // console.log('seq ',sequence);
+    console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position);
     io.emit('symbols',order,distance,state,reset);
+    order = null;
+    distance = null;
     var num = distance*1000;
     setTimeout(function(){
        console.log('send already');
