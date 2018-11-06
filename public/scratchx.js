@@ -167,8 +167,17 @@ new (function() {
     }; 
   
    ext.set_variable = function(name_variable , value_variable) {
-        if (name_variable == 'replay'){
-          replay = value_variable;
+        if (name_variable == 'play'){
+          play = value_variable;
+        }
+        else if (name_variable == 'reset'){
+            reset = value_variable;
+        }
+        else if (name_variable == 'modify'){
+            modify = value_variable;
+        }
+        else if (name_variable == 'insert'){
+            insert = value_variable;
         }
     };
     
