@@ -29,7 +29,7 @@ var position_flag = true;
 var modify_flag = false;
 var Nocrashing_flag = true;
 var insert_flag = false;
-// var sequence = 0;
+var sequence = 0;
 var order = null,distance = null ,forward_backward_direction,left_right_direction;
 var modify,delete_code,insert,play,reset,numberSequence,insertPosition,number,insert_position;
 // var ansQ2,anser;
@@ -380,21 +380,11 @@ app.post('/', (req, res) => {
         insert_flag = false;
       }
       else{  
-        if (order == 'forward'||order == 'backward'){
-          if(Nocrashing_flag){
-            arrayOrder.push([order,distance]);
-            // sequence += 1;
-          }
-          else{
-            Nocrashing_flag = true;
-          }
-          console.log('chashing ',Nocrashing_flag);
-        }else if (order == 'left' || order == 'right'){
-          arrayOrder.push([order,distance]);
-          // sequence += 1;
+        if (order == 'forward'||order == 'backward' || order == 'left' || order == 'right'){
+          arrayOrder.push([order,distance]);  
         }
-        // sequence = arrayOrder.length;
       }
+      sequence = arrayOrder.length;
       console.log('arrayOrder ',arrayOrder);
     }
 
@@ -402,6 +392,7 @@ app.post('/', (req, res) => {
       number = number - 1 ;
       arrayOrder.splice(number, 1);
       console.log('sh arr Order when delete already');
+      number = null;
     }
 
     function playFunction() {
@@ -478,7 +469,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze5'){
         if (maze_x == 3 && maze_y == 1){
-            responsetext = 'go to maze 5';
+            responsetext = 'go to maze 6';
             state = 'maze6';
             // resetPosition(position);
             console.log('position pasent ',position);
@@ -531,6 +522,7 @@ app.post('/', (req, res) => {
     // }
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
+    console.log('seq ',sequence);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position);
     io.emit('symbols',order,distance,state,reset);
     order = null;

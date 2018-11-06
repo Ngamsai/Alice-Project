@@ -34,10 +34,9 @@
   
   }); 
 
-      socket.on('chat',function(direction_socket,distance_socket,sequence,insert_fl,modify_fl,number_ch){
+      socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_ch){
               console.log('direction is ',direction_socket) 
               console.log('distance = ',distance_socket)
-              console.log('seq ',sequence);
               console.log('inser_fl ',insert_fl);
               console.log('modify_fl ',modify_fl);
               console.log('number ',number_ch)
