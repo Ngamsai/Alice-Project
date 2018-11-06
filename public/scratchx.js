@@ -52,6 +52,7 @@ new (function() {
               insert = insert_fl;
               modify = modify_fl;
               positioninsert = insert_position;
+              receive_data = true;
         });
        
         // socket.on('Q2',function(randomtrees_SK,randomstone_SK){
@@ -97,11 +98,13 @@ new (function() {
             console.log('number ',number_de);
             deletecode = delete_code;
             number = number_de
+            receive_data = true;
         });
 
         socket.on('play',function(play_socket){
             console.log('say play ',play_socket);
             play = play_socket;
+            receive_data = true;
         });
 
         socket.on('startgame',function(startgame_socket,character_socket){
@@ -124,6 +127,7 @@ new (function() {
             } 
             console.log('******************************');
             reset = reset_socket;
+            receive_data = true;
         
         });
 
@@ -133,6 +137,7 @@ new (function() {
             }
             console.log('******************************');
             state = state_socket;
+            receive_data = true;
         });
      
      
