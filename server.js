@@ -368,11 +368,15 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('now mo array order is ',arrayOrder);
         console.log('no add array order');
+        number = number + 1 ;
+        io.emit('modify',order,distance,number,modify_flag);
         modify_flag = false;
       }
       else if (insert_flag){
         console.log('now insert array order is ',arrayOrder);
         console.log('no add array order');
+        number = number + 1 ;
+        io.emit('insert',insert_flag,insert_position,number,order,distance);
         insert_flag = false;
       }
       else{  
@@ -385,6 +389,8 @@ app.post('/', (req, res) => {
           arrayOrder.push([order,distance]);
           // sequence += 1;
         }
+        sequence = arrayOrder.length;
+        io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
       }
       
       console.log('arrayOrder ',arrayOrder);
@@ -508,19 +514,19 @@ app.post('/', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
-    if (modify_flag){
-      number = number + 1 ;
-      io.emit('modify',order,distance,number,modify_flag);
-    }
-    else if (insert_flag){
-      number = number + 1 ;
-      io.emit('insert',insert_flag,insert_position,number,order,distance);
-    }
-    else if (delete_code == null && play == null && reset == null && startgame == null && character == null ){
-      console.log('arrOrder ',arrayOrder);
-      sequence = arrayOrder.length;
-      io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
-    }
+    // if (modify_flag){
+    //   number = number + 1 ;
+    //   io.emit('modify',order,distance,number,modify_flag);
+    // }
+    // else if (insert_flag){
+    //   number = number + 1 ;
+    //   io.emit('insert',insert_flag,insert_position,number,order,distance);
+    // }
+    // else if (delete_code == null && play == null && reset == null && startgame == null && character == null ){
+    //   console.log('arrOrder ',arrayOrder);
+    //   sequence = arrayOrder.length;
+    //   io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
+    // }
     
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
