@@ -386,6 +386,7 @@ app.post('/', (req, res) => {
           else{
             Nocrashing_flag = true;
           }
+          console.log('chashing ',Nocrashing_flag);
         }else if (order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);
           // sequence += 1;
