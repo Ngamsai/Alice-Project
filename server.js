@@ -368,15 +368,11 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('now mo array order is ',arrayOrder);
         console.log('no add array order');
-        number = number + 1 ;
-        io.emit('modify',order,distance,number,modify_flag);
         modify_flag = false;
       }
       else if (insert_flag){
         console.log('now insert array order is ',arrayOrder);
         console.log('no add array order');
-        number = number + 1 ;
-        io.emit('insert',insert_flag,insert_position,number,order,distance);
         insert_flag = false;
       }
       else{  
@@ -390,7 +386,6 @@ app.post('/', (req, res) => {
           // sequence += 1;
         }
         sequence = arrayOrder.length;
-        io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
       }
       
       console.log('arrayOrder ',arrayOrder);
@@ -527,7 +522,9 @@ app.post('/', (req, res) => {
     //   sequence = arrayOrder.length;
     //   io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
     // }
-    
+    console.log('seq ',sequence);
+    console.log('number ',number);
+    io.emit('chat',order,distance,sequence,insert_flag,modify_flag,number);
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
     setTimeout(function(){
