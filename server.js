@@ -250,6 +250,7 @@ app.post('/', (req, res) => {
                 position_flag = false
               }
             }
+            //check repeat
             for (var b = 0; b<position.length; b++){
               if(position[b][0] == maze_x){
                 if (position[b][1] == maze_y){
@@ -530,7 +531,7 @@ app.post('/', (req, res) => {
     // }
     console.log('seq ',sequence);
     console.log('number ',number);
-    io.emit('chat',order,distance,sequence,insert_flag,modify_flag,number);
+    io.emit('chat',order,distance,sequence,insert_flag,modify_flag,number,insert_position);
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
     setTimeout(function(){

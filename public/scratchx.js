@@ -14,7 +14,7 @@ new (function() {
     var socket;
     var direction ,distance ;
     var start , character , mesg_reply , mesg_value , play , state , reset ;
-    var number,modify;
+    var modify,number,sequence;
     var positioninsert,insert;
   
   $(document).ready(function(){
@@ -34,20 +34,24 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,sequence,insert_fl,modify_fl){
+          socket.on('chat',function(direction_socket,distance_socket,sequence_chat,insert_fl,modify_fl,number_chat,insert_position){
               if(direction_socket != null){
                 console.log('direction is ',direction_socket)
               }  
               if(distance_socket != null){
                 console.log('distance = ',distance_socket)
               }
-              console.log('seq ',sequence);
+              console.log('seq ',sequence_chat);
+              console.log('num ',number_chat);
+              console.log('position_insert ',insert_position);
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
-              number = sequence;
+              number = number_chat;
+              sequence = sequence_chat;
               insert = insert_fl;
               modify = modify_fl;
+              positioninsert = insert_position;
         });
        
         // socket.on('Q2',function(randomtrees_SK,randomstone_SK){
@@ -62,31 +66,31 @@ new (function() {
         //       stones = randomstone_SK;
         // });
 
-        socket.on('modify',function(order,distance_mod,number_mod,modify_f){
-            console.log('order ',order);
-            console.log('distance ',distance);
-            console.log('number ',number_mod);
-            console.log('modify_flag ',modify_flag);
-            console.log('******************************');
-            direction = order;
-            distance = distance_mod;
-            number  = number_mod;
-            modify = modify_f;
+        // socket.on('modify',function(order,distance_mod,number_mod,modify_f){
+        //     console.log('order ',order);
+        //     console.log('distance ',distance);
+        //     console.log('number ',number_mod);
+        //     console.log('modify_flag ',modify_flag);
+        //     console.log('******************************');
+        //     direction = order;
+        //     distance = distance_mod;
+        //     number  = number_mod;
+        //     modify = modify_f;
 
-        });
+        // });
 
-        socket.on('insert',function(insert_f,insert_position,number_in,order,distance){
-            console.log('insert_flag is ',insert_flag);
-            console.log('position ',insert_position);
-            console.log('number ',number_in);
-            console.log('order ',order);
-            console.log('distance ',distance);
-            insert = insert_f;
-            positioninsert = insert_position;
-            number = number_in;
-            direction = order;
-            distance = distance;
-        });
+        // socket.on('insert',function(insert_f,insert_position,number_in,order,distance){
+        //     console.log('insert_flag is ',insert_flag);
+        //     console.log('position ',insert_position);
+        //     console.log('number ',number_in);
+        //     console.log('order ',order);
+        //     console.log('distance ',distance);
+        //     insert = insert_f;
+        //     positioninsert = insert_position;
+        //     number = number_in;
+        //     direction = order;
+        //     distance = distance;
+        // });
 
         socket.on('deletecode',function(delete_code,number_de){
             console.log('delete ',delete_code);
@@ -218,6 +222,10 @@ new (function() {
         return number;
     }
 
+    ext.get_sequence = function(){
+        return sequence;
+    }
+
     ext.get_insert = function(){
         return insert;
     }
@@ -245,12 +253,15 @@ new (function() {
             ['r', 'direction', 'get_direction'],
             ['r', 'distance', 'get_distance'],
             ['r', 'character', 'get_character'],
-            ['r', 'answer_Q2', 'get_answer_Q2'],
-            ['r', 'replay', 'get_replay'],
+            ['r', 'play', 'get_play'],
             ['r', 'reset', 'get_reset'],
             ['r', 'state', 'get_state'],
-            ['r', 'trees', 'get_trees'],
-            ['r', 'stones', 'get_stones'],
+            ['r', 'number', 'get_number'],
+            ['r', 'sequence', 'get_sequence'],
+            ['r', 'insert', 'get_insert'],
+            ['r', 'modify', 'get_modify'],
+            ['r', 'deletecode', 'get_deletecode'],
+            ['r', 'positioninsert', 'get_positioninsert'],
         ],
       menus: {
         name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
