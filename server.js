@@ -169,8 +169,11 @@ app.post('/', (req, res) => {
       }
       else if (language == 'en'){
         ComputePosition();
+        console.log('fff');
         checkState();
+        console.log('gggggg');
         keepArrayOrder();
+        console.log('ooooooo9');
       }
     }
   
