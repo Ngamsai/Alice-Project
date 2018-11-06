@@ -93,6 +93,8 @@ app.post('/', (req, res) => {
       console.log('he will ',modify,' in number ',numberSequence);
       modify_flag = true;
       number = numberSequence;
+      order = null;
+      distance = null;
       console.log('mod def ',modify_flag);
       console.log('number ',number);
     }
@@ -143,6 +145,7 @@ app.post('/', (req, res) => {
         }else if (responsetext == 'crashing'){
           responsetext = 'ไม่สามารถไปเส้นทางนี้ได้'
         }
+        keepArrayOrder();
         checkState();
         if ( responsetext == 'go to maze 2'){
           responsetext = 'ไปยังด่านเขาวงกตที่ 2';
@@ -165,16 +168,11 @@ app.post('/', (req, res) => {
         else if (responsetext == 'go to next state'){
            responsetext = 'ไปยัด่านต่อไปได้เลย';
         }
-        keepArrayOrder();
       }
       else if (language == 'en' || language == 'en-us'){
-        console.log('777777');
         ComputePosition();
-        console.log('fff');
-        checkState();
-        console.log('gggggg');
         keepArrayOrder();
-        console.log('ooooooo9');
+        checkState();
       }
     }
   
@@ -384,6 +382,9 @@ app.post('/', (req, res) => {
           if(Nocrashing_flag){
             arrayOrder.push([order,distance]);
             // sequence += 1;
+          }
+          else{
+            Nocrashing_flag = true;
           }
         }else if (order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);
