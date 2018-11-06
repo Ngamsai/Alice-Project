@@ -12,10 +12,10 @@ new (function() {
     var ext = this;
     var receive_data = false; 
     var socket;
-    var order,direction ,distance ;
-    var start , character , mesg_reply , answer_Q2 , mesg_value , play , state , trees , stones , reset ;
-    var number,modify_flag;
-    var position_insert,insert_flag;
+    var direction ,distance ;
+    var start , character , mesg_reply , mesg_value , play , state , reset ;
+    var number,modify;
+    var positioninsert,insert;
   
   $(document).ready(function(){
     //load this script then .done text 
@@ -46,21 +46,21 @@ new (function() {
               direction = direction_socket;
               distance = distance_socket;
               number = sequence;
-              insert_flag = insert_fl;
-              modify_flag = modify_fl;
+              insert = insert_fl;
+              modify = modify_fl;
         });
        
-        socket.on('Q2',function(randomtrees_SK,randomstone_SK){
-              if(randomtrees_SK != null ){
-                console.log('num of trees in Q2 is ',randomtrees_SK)
-              }
-              if(randomstone_SK != null ){
-                console.log('num of stones in Q2 is ',randomstone_SK)
-              }
-              console.log('******************************')
-              trees = randomtrees_SK;
-              stones = randomstone_SK;
-        });
+        // socket.on('Q2',function(randomtrees_SK,randomstone_SK){
+        //       if(randomtrees_SK != null ){
+        //         console.log('num of trees in Q2 is ',randomtrees_SK)
+        //       }
+        //       if(randomstone_SK != null ){
+        //         console.log('num of stones in Q2 is ',randomstone_SK)
+        //       }
+        //       console.log('******************************')
+        //       trees = randomtrees_SK;
+        //       stones = randomstone_SK;
+        // });
 
         socket.on('modify',function(order,distance_mod,number_mod,modify_f){
             console.log('order ',order);
@@ -71,7 +71,7 @@ new (function() {
             direction = order;
             distance = distance_mod;
             number  = number_mod;
-            modify_flag = modify_f;
+            modify = modify_f;
 
         });
 
@@ -81,8 +81,8 @@ new (function() {
             console.log('number ',number_in);
             console.log('order ',order);
             console.log('distance ',distance);
-            insert_flag = insert_f;
-            position_insert = insert_position;
+            insert = insert_f;
+            positioninsert = insert_position;
             number = number_in;
             direction = order;
             distance = distance;
@@ -100,35 +100,37 @@ new (function() {
             play = play_socket;
         });
 
-        socket.on('controlgame',function(startgame_socket,character_socket,play_check,ansQ2_socket,state_socket,reset_socket){
+        socket.on('startgame',function(startgame_socket,character_socket){
             if(character_socket != null ){
                 console.log('actor is ',character_socket);
-            } 
-            if(play_socket != null ){
-                console.log('play is ',play_check);
-            } 
-            if(ansQ2_socket != null ){
-                console.log('ansQ2 is ',ansQ2_socket);
-            } 
-            if(reset_socket != null ){
-                console.log('reset is ',reset_socket);
-            } 
+            };
             if(startgame_socket != null ){
                 console.log('status is ', startgame_socket)
             } 
-            if(state_socket != null ){
-                console.log('state is ',state_socket)
-            }
-            console.log('******************************')
+            console.log('******************************');
             start = startgame_socket;
             character = character_socket;
             receive_data = true;
-            play = play_check;
-            answer_Q2 = ansQ2_socket;
-            state = state_socket;
+        
+        });
+
+        socket.on('reset',function(reset_socket){ 
+            if(reset_socket != null ){
+                console.log('reset is ',reset_socket);
+            } 
+            console.log('******************************');
             reset = reset_socket;
         
         });
+
+        socket.on('state',function(state_socket){  
+            if(state_socket != null ){
+                console.log('state is ',state_socket)
+            }
+            console.log('******************************');
+            state = state_socket;
+        });
+     
      
        
        
@@ -187,13 +189,13 @@ new (function() {
         return character;
     }
     
-    //answer for question 2 - number of tree.
-    ext.get_answer_Q2 = function(){
-        return answer_Q2;
-    }
+    // //answer for question 2 - number of tree.
+    // ext.get_answer_Q2 = function(){
+    //     return answer_Q2;
+    // }
     
-    ext.get_replay = function(){
-        return replay;
+    ext.get_play = function(){
+        return play;
     }
 
     ext.get_reset = function(){
@@ -204,12 +206,32 @@ new (function() {
         return state;
     }
     
-    ext.get_trees = function(){
-        return trees;
-    }
+    // ext.get_trees = function(){
+    //     return trees;
+    // }
     
-    ext.get_stones = function(){
-        return stones;
+    // ext.get_stones = function(){
+    //     return stones;
+    // }
+
+    ext.get_number = function(){
+        return number;
+    }
+
+    ext.get_insert = function(){
+        return insert;
+    }
+
+    ext.get_modify = function(){
+        return modify;
+    }
+
+    ext.get_deletecode = function(){
+        return deletecode;
+    }
+
+    ext.get_positioninsert = function(){
+        return positioninsert;
     }
 
 

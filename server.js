@@ -78,11 +78,10 @@ app.post('/', (req, res) => {
     if(distance != null){
       console.log('show distance ', distance);
     }  
-    else if(startgame != null){
+    else if(startgame != null || character != null ){
       console.log('show start ' , startgame);
-    }
-    else if(character != null){
       console.log('actor is ' , character);
+      io.emit('startgame',startgame,character)
     }
     else if(play != null){
       console.log('say play is ',play);
@@ -114,10 +113,11 @@ app.post('/', (req, res) => {
       console.log('reset ',reset);
       resetPosition();
       resetArrayOrder();
+      io.emit('reset',reset);
     }
-    else if(anser != null){
-      console.log('ansQ2 is ',anser);
-    }
+    // else if(anser != null){
+    //   console.log('ansQ2 is ',anser);
+    // }
 
     console.log('order global ',order);
     console.log('distance global ',distance);
@@ -489,10 +489,10 @@ app.post('/', (req, res) => {
           if (text == 'key'){
              responsetext = 'go to next state';
              resetPosition(position);
-             state = 'Q2';
-             var randomtrees = Math.floor(Math.random() * 10) + 1;
-             var randomstone = Math.floor(Math.random() * 10) + 1;
-             io.emit('Q2',randomtrees,randomstone)
+            //  state = 'Q2';
+            //  var randomtrees = Math.floor(Math.random() * 10) + 1;
+            //  var randomstone = Math.floor(Math.random() * 10) + 1;
+            //  io.emit('Q2',randomtrees,randomstone)
            } else {
              responsetext = 'You have to keep a key first';
            }
@@ -501,8 +501,6 @@ app.post('/', (req, res) => {
       console.log('responsetext from checkState is ',responsetext);
      }
     
-
-  
     console.log('resq is ',responsetext);
 
     //send response
@@ -514,7 +512,7 @@ app.post('/', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('controlgame',startgame,character,play,ansQ2,state,reset)
+    io.emit('state',state);
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
     setTimeout(function(){
