@@ -30,7 +30,7 @@ var modify_flag = false;
 var Nocrashing_flag = true;
 var insert_flag = false;
 var sequence = 0;
-var order,distance,forward_backward_direction,left_right_direction;
+var order = null,distance = null ,forward_backward_direction,left_right_direction;
 var modify,delete_code,insert,play,reset,numberSequence,insertPosition,number,insert_position;
 var ansQ2,anser;
 var startgame,character,language;
