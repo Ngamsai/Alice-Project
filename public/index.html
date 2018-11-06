@@ -34,32 +34,33 @@
   
   }); 
 
-      socket.on('chat',function(direction_socket,distance_socket,sequence,insert_fl,modify_fl){
+      socket.on('chat',function(direction_socket,distance_socket,sequence,insert_fl,modify_fl,number_ch){
               console.log('direction is ',direction_socket) 
               console.log('distance = ',distance_socket)
               console.log('seq ',sequence);
               console.log('inser_fl ',insert_fl);
               console.log('modify_fl ',modify_fl);
+              console.log('number ',number_ch)
               console.log('******************************');
       });
 
-      socket.on('modify',function(order,distance_mod,number_mod,modify_f){
-            console.log('order ',order);
-            console.log('distance ',distance_mod);
-            console.log('number ',number_mod);
-            console.log('modify_flag ',modify_f);
-            console.log('******************************');
+      // socket.on('modify',function(order,distance_mod,number_mod,modify_f){
+      //       console.log('order ',order);
+      //       console.log('distance ',distance_mod);
+      //       console.log('number ',number_mod);
+      //       console.log('modify_flag ',modify_f);
+      //       console.log('******************************');
 
-        });
+      //   });
 
-        socket.on('insert',function(insert_f,insert_position,number_in,order,distance){
-            console.log('insert_flag is ',insert_f);
-            console.log('position ',insert_position);
-            console.log('number ',number_in);
-            console.log('order ',order);
-            console.log('distance ',distance);
-            console.log('******************************');
-        });
+        // socket.on('insert',function(insert_f,insert_position,number_in,order,distance){
+        //     console.log('insert_flag is ',insert_f);
+        //     console.log('position ',insert_position);
+        //     console.log('number ',number_in);
+        //     console.log('order ',order);
+        //     console.log('distance ',distance);
+        //     console.log('******************************');
+        // });
 
         socket.on('deletecode',function(delete_code,number_de){
             console.log('delete ',delete_code);
