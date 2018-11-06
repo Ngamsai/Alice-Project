@@ -167,7 +167,8 @@ app.post('/', (req, res) => {
         }
         keepArrayOrder();
       }
-      else if (language == 'en'){
+      else if (language == 'en' || language == 'en-us'){
+        console.log('777777');
         ComputePosition();
         console.log('fff');
         checkState();
