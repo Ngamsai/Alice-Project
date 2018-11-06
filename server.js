@@ -187,8 +187,7 @@ app.post('/', (req, res) => {
         //     console.log('i is ',i);
         //     arrayOrder[i][0] = order;
         //     arrayOrder[i][1] = distance;
-        number = number + 1 ;
-        io.emit('modify',order,distance,number,modify_flag);
+        
         console.log('arrayOrder from compute mod',arrayOrder);
         console.log('order change is ',order);
         console.log('distance change is ',distance);
@@ -206,8 +205,6 @@ app.post('/', (req, res) => {
           arrayOrder.splice(number, 0, [order,distance]);
           console.log('arrayOrder from compute insert after',arrayOrder);
         }
-        number = number + 1 ;
-        io.emit('insert',insert_flag,insert_position,number,order,distance);
       }
       else{
         console.log('order sh ',order);
@@ -359,8 +356,6 @@ app.post('/', (req, res) => {
         }
         
         console.log('in compute sh arr Order ',arrayOrder);
-        sequence = arrayOrder.length;
-        io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
       }
       console.log(direction);
       console.log(order);
@@ -513,6 +508,18 @@ app.post('/', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
+    if (modify_flag){
+      number = number + 1 ;
+      io.emit('modify',order,distance,number,modify_flag);
+    }
+    else if (insert_flag){
+      number = number + 1 ;
+      io.emit('insert',insert_flag,insert_position,number,order,distance);
+    }
+    else if (delete_code == null && play == null && reset == null){
+      sequence = arrayOrder.length;
+      io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
+    }
     
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
