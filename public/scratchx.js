@@ -14,7 +14,7 @@ new (function() {
     var socket;
     var direction ,distance ;
     var start , character , mesg_reply , mesg_value , play , state , reset ;
-    var modify,number,sequence;
+    var modify,number;
     var positioninsert,insert;
   
   $(document).ready(function(){
@@ -34,7 +34,7 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,sequence_chat,insert_fl,modify_fl,number_chat,insert_position){
+          socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position){
               if(direction_socket != null){
                 console.log('direction is ',direction_socket)
               }  
@@ -48,7 +48,6 @@ new (function() {
               direction = direction_socket;
               distance = distance_socket;
               number = number_chat;
-              sequence = sequence_chat;
               insert = insert_fl;
               modify = modify_fl;
               positioninsert = insert_position;
@@ -236,9 +235,9 @@ new (function() {
         return number;
     }
 
-    ext.get_sequence = function(){
-        return sequence;
-    }
+    // ext.get_sequence = function(){
+    //     return sequence;
+    // }
 
     ext.get_insert = function(){
         return insert;
@@ -271,7 +270,6 @@ new (function() {
             ['r', 'reset', 'get_reset'],
             ['r', 'state', 'get_state'],
             ['r', 'number', 'get_number'],
-            ['r', 'sequence', 'get_sequence'],
             ['r', 'insert', 'get_insert'],
             ['r', 'modify', 'get_modify'],
             ['r', 'deletecode', 'get_deletecode'],

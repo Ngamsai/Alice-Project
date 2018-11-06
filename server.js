@@ -29,10 +29,10 @@ var position_flag = true;
 var modify_flag = false;
 var Nocrashing_flag = true;
 var insert_flag = false;
-var sequence = 0;
+// var sequence = 0;
 var order = null,distance = null ,forward_backward_direction,left_right_direction;
 var modify,delete_code,insert,play,reset,numberSequence,insertPosition,number,insert_position;
-var ansQ2,anser;
+// var ansQ2,anser;
 var startgame,character,language;
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
@@ -189,7 +189,7 @@ app.post('/', (req, res) => {
         //     console.log('i is ',i);
         //     arrayOrder[i][0] = order;
         //     arrayOrder[i][1] = distance;
-        
+        number = null;
         console.log('arrayOrder from compute mod',arrayOrder);
         console.log('order change is ',order);
         console.log('distance change is ',distance);
@@ -207,6 +207,7 @@ app.post('/', (req, res) => {
           arrayOrder.splice(number, 0, [order,distance]);
           console.log('arrayOrder from compute insert after',arrayOrder);
         }
+        number = null ;
       }
       else{
         console.log('order sh ',order);
@@ -392,9 +393,10 @@ app.post('/', (req, res) => {
           arrayOrder.push([order,distance]);
           // sequence += 1;
         }
-        sequence = arrayOrder.length;
+        // sequence = arrayOrder.length;
       }
-      
+      order = null;
+      distance = null;
       console.log('arrayOrder ',arrayOrder);
     }
 
@@ -529,9 +531,9 @@ app.post('/', (req, res) => {
     //   sequence = arrayOrder.length;
     //   io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
     // }
-    console.log('seq ',sequence);
+    // console.log('seq ',sequence);
     console.log('number ',number);
-    io.emit('chat',order,distance,sequence,insert_flag,modify_flag,number,insert_position);
+    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position);
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
     setTimeout(function(){
