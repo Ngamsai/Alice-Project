@@ -499,6 +499,7 @@ app.post('/', (req, res) => {
         }
       }
       console.log('responsetext from checkState is ',responsetext);
+      io.emit('state',state);
      }
     
     console.log('resq is ',responsetext);
@@ -512,7 +513,7 @@ app.post('/', (req, res) => {
 
   
     //emit to scratchX game and scratchX show log code 
-    io.emit('state',state);
+    
     io.emit('symbols',order,distance,state,reset);
     var num = distance*1000;
     setTimeout(function(){

@@ -35,12 +35,8 @@
   }); 
 
       socket.on('chat',function(direction_socket,distance_socket,sequence,insert_fl,modify_fl){
-              if(direction_socket != null){
-                console.log('direction is ',direction_socket)
-              }  
-              if(distance_socket != null){
-                console.log('distance = ',distance_socket)
-              }
+              console.log('direction is ',direction_socket) 
+              console.log('distance = ',distance_socket)
               console.log('seq ',sequence);
               console.log('******************************');
       });
@@ -60,11 +56,13 @@
             console.log('number ',number_in);
             console.log('order ',order);
             console.log('distance ',distance);
+            console.log('******************************');
         });
 
         socket.on('deletecode',function(delete_code,number_de){
             console.log('delete ',delete_code);
             console.log('number ',number_de);
+            console.log('******************************');
         });
 
         socket.on('play',function(play_socket){
@@ -72,28 +70,20 @@
         });
 
         socket.on('startgame',function(startgame_socket,character_socket){
-            if(character_socket != null ){
-                console.log('actor is ',character_socket);
-            };
-            if(startgame_socket != null ){
-                console.log('status is ', startgame_socket)
-            } 
+            console.log('actor is ',character_socket);
+            console.log('status is ', startgame_socket) 
             console.log('******************************');
         
         });
 
         socket.on('reset',function(reset_socket){ 
-            if(reset_socket != null ){
-                console.log('reset is ',reset_socket);
-            } 
+            console.log('reset is ',reset_socket);
             console.log('******************************');
         
         });
 
         socket.on('state',function(state_socket){  
-            if(state_socket != null ){
-                console.log('state is ',state_socket)
-            }
+            console.log('state is ',state_socket)
             console.log('******************************');
         });
        
