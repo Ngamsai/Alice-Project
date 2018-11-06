@@ -516,7 +516,7 @@ app.post('/', (req, res) => {
       number = number + 1 ;
       io.emit('insert',insert_flag,insert_position,number,order,distance);
     }
-    else if (delete_code == null && play == null && reset == null){
+    else if (delete_code == null && play == null && reset == null && startgame == null && character == null ){
       sequence = arrayOrder.length;
       io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
     }
