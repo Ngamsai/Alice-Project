@@ -119,6 +119,7 @@ app.post('/', (req, res) => {
       insert_flag = false;
       modify_flag = false;
       number = null;
+      delete_code = null;
       io.emit('reset',reset);
     }
     // else if(anser != null){
