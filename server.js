@@ -111,7 +111,8 @@ app.post('/', (req, res) => {
       if (language == 'th'){
         if (insertPosition == 'ก่อน'){
           insertPosition == 'before';
-        }else{
+        }
+        else if(insertPosition == 'หลัง'){
           insertPosition == 'after';
         }
       }
@@ -269,6 +270,7 @@ app.post('/', (req, res) => {
               if(position[b][0] == maze_x){
                 if (position[b][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
+                  repeat_flag = true;
                 } 
               }
             }
@@ -279,7 +281,7 @@ app.post('/', (req, res) => {
             }
             if (responsetext == 'You can not walk the same route.'){
                 resetPosition(position);
-                repeat_flag = true;
+                
             }
           }
         }
@@ -325,6 +327,7 @@ app.post('/', (req, res) => {
               if(position[d][0] == maze_x){
                 if (position[d][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
+                  repeat_flag = true;
                   } 
               }
             }
@@ -335,7 +338,7 @@ app.post('/', (req, res) => {
             }
             if (responsetext == 'You can not walk the same route.'){
               resetPosition(position);
-              repeat_flag = true;
+              
             }
           }
         }
