@@ -82,7 +82,6 @@ app.post('/', (req, res) => {
     else if(startgame != null || character != null ){
       console.log('show start ' , startgame);
       console.log('actor is ' , character);
-      io.emit('startgame',startgame,character)
     }
     else if(play != null){
       console.log('say play is ',play);
@@ -116,18 +115,14 @@ app.post('/', (req, res) => {
       }
       insert_position = insertPosition;
       insert_flag = true ;
-
     }
     else if(reset != null){
       console.log('reset ',reset);
       resetPosition();
       resetArrayOrder();
-      insert_position = null;
-      insert_flag = false;
-      modify_flag = false;
-      number = null;
-      delete_code = null;
-      io.emit('reset',reset);
+      
+      // delete_code = null;
+      // io.emit('reset',reset);
     }
     // else if(anser != null){
     //   console.log('ansQ2 is ',anser);
@@ -385,6 +380,7 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('now mo array order is ',arrayOrder);
         console.log('no add array order');
+        responsetext = ''
         modify_flag = false;
       }
       else if (insert_flag){
@@ -508,7 +504,7 @@ app.post('/', (req, res) => {
         }
       }
       console.log('responsetext from checkState is ',responsetext);
-      io.emit('state',state);
+      // io.emit('state',state);
      }
     
     console.log('resq is ',responsetext);
@@ -538,7 +534,7 @@ app.post('/', (req, res) => {
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     console.log('seq ',sequence);
-    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play);
+    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play,state,startgame,character,reset);
     io.emit('symbols',order,distance,state,reset);
     order = null;
     distance = null;
@@ -546,6 +542,9 @@ app.post('/', (req, res) => {
     number = null;
     delete_code = null;
     play = null ;
+    insert_position = null;
+    insert_flag = false;
+    modify_flag = false;
     // reset = null
     var num = distance*1000;
     setTimeout(function(){
