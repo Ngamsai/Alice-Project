@@ -397,9 +397,9 @@ app.post('/', (req, res) => {
       else{  
         if (order == 'forward'||order == 'backward' || order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]); 
-        }
-        if (responsetext == 'You can not walk the same route.'){
-          resetArrayOrder();
+          if (responsetext == 'You can not walk the same route.'){
+            resetArrayOrder(arrayOrder);
+          }
         }
       }
       sequence = arrayOrder.length;
