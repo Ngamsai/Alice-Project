@@ -35,17 +35,19 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position){
+          socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position,delete_fl){
               console.log('direction is ',direction_socket)
               console.log('distance = ',distance_socket)
-              console.log('num ',number_chat);
+              console.log('number ',number_chat);
               console.log('position_insert ',insert_position);
+              console.log('delete-fl ',delete_fl);
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
               number = number_chat;
               insert = insert_fl;
               modify = modify_fl;
+              deletecode = delete_fl;
               positioninsert = insert_position;
               receive_data = true;
         });
@@ -88,13 +90,13 @@ new (function() {
         //     distance = distance;
         // });
 
-        socket.on('deletecode',function(delete_code,number_de){
-            console.log('delete ',delete_code);
-            console.log('number ',number_de);
-            deletecode = delete_code;
-            number_delete = number_de;
-            receive_data = true;
-        });
+        // socket.on('deletecode',function(delete_code,number_de){
+        //     console.log('delete ',delete_code);
+        //     console.log('number ',number_de);
+        //     deletecode = delete_code;
+        //     number_delete = number_de;
+        //     receive_data = true;
+        // });
 
         socket.on('play',function(play_socket){
             console.log('say play ',play_socket);

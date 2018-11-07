@@ -27,6 +27,7 @@ var direction = 'E';
 var state = 'maze1';
 var position_flag = true;
 var modify_flag = false;
+var delete_flag = false;
 // var Nocrashing_flag = true;
 var insert_flag = false;
 var sequence = 0;
@@ -85,9 +86,9 @@ app.post('/', (req, res) => {
     }
     else if(play != null){
       console.log('say play is ',play);
-      playFunction();
-      console.log('numberSequence ',numberSequence);
       io.emit('play',play);
+      playFunction();
+      console.log('numberSequence ',numberSequence); 
     }
     else if(modify != null){
       console.log('he will ',modify,' in number ',numberSequence);
@@ -101,7 +102,7 @@ app.post('/', (req, res) => {
     else if(delete_code != null){
       console.log('he will ',delete_code,' code number ',numberSequence);
       number = numberSequence;
-      io.emit('deletecode',delete_code,number);
+      delete_flag = true;
       deleteCode();
     }
     else if(insert != null){
@@ -540,10 +541,11 @@ app.post('/', (req, res) => {
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     console.log('seq ',sequence);
-    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position);
+    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag);
     io.emit('symbols',order,distance,state,reset);
     order = null;
     distance = null;
+    delete_flag = false;
     // reset = null
     var num = distance*1000;
     setTimeout(function(){
