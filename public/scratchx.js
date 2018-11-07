@@ -15,6 +15,7 @@ new (function() {
     var direction ,distance ;
     var start , character , mesg_reply , mesg_value , play , state , reset ;
     var modify,number;
+    var number_delete;
     var positioninsert,insert;
   
   $(document).ready(function(){
@@ -91,7 +92,7 @@ new (function() {
             console.log('delete ',delete_code);
             console.log('number ',number_de);
             deletecode = delete_code;
-            number = number_de
+            number_delete = number_de;
             receive_data = true;
         });
 
@@ -106,7 +107,7 @@ new (function() {
                 console.log('actor is ',character_socket);
             };
             if(startgame_socket != null ){
-                console.log('status is ', startgame_socket)
+                console.log('status is ', startgame_socket);
             } 
             console.log('******************************');
             start = startgame_socket;
@@ -214,6 +215,10 @@ new (function() {
         return number;
     }
 
+    ext.get_number_delete = function(){
+        return number_delete;
+    }
+
     // ext.get_sequence = function(){
     //     return sequence;
     // }
@@ -249,6 +254,7 @@ new (function() {
             ['r', 'reset', 'get_reset'],
             ['r', 'state', 'get_state'],
             ['r', 'number', 'get_number'],
+            ['r', 'number_delete', 'get_number_delete'],
             ['r', 'insert', 'get_insert'],
             ['r', 'modify', 'get_modify'],
             ['r', 'deleteCode', 'get_deletecode'],
