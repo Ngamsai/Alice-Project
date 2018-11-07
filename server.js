@@ -160,8 +160,8 @@ app.post('/', (req, res) => {
           responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้';
         }
         keepArrayOrder();
-        if (responsetext = 'say play for play your actor'){
-          responsetext = 'กรุณาพูดว่า เล่น เพื่อเดินตัวละคร'
+        if (responsetext == 'say play for play your actor'){
+          responsetext = 'กรุณาพูดว่า เล่น เพื่อเดินตัวละคร';
         }
         checkState();
         if ( responsetext == 'go to maze 2'){
