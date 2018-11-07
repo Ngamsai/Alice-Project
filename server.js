@@ -30,7 +30,7 @@ var modify_flag = false;
 var delete_flag = false;
 var play_flag = false;
 var reset_flag = false;
-// var Nocrashing_flag = true;
+var repeat_flag = false;
 var insert_flag = false;
 var sequence = 0;
 var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
@@ -269,6 +269,7 @@ app.post('/', (req, res) => {
               if(position[b][0] == maze_x){
                 if (position[b][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
+                  repeat_flag = true;
                 } 
               }
             }
@@ -276,7 +277,6 @@ app.post('/', (req, res) => {
               position.push([maze_x,maze_y]);  
             }else{
               responsetext = 'crashing';
-              Nocrashing_flag = false;
             }
             if (responsetext == 'You can not walk the same route.'){
                 resetPosition(position);
@@ -325,6 +325,7 @@ app.post('/', (req, res) => {
               if(position[d][0] == maze_x){
                 if (position[d][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
+                  repeat_flag = true;
                   } 
               }
             }
@@ -332,7 +333,6 @@ app.post('/', (req, res) => {
               position.push([maze_x,maze_y]); 
             }else{
               responsetext = 'crashing';
-              Nocrashing_flag = false;
             }
             if (responsetext == 'You can not walk the same route.'){
               resetPosition(position);
@@ -395,14 +395,18 @@ app.post('/', (req, res) => {
         insert_flag = false;
       }
       else{  
-        if (order == 'forward'||order == 'backward' || order == 'left' || order == 'right'){
-          arrayOrder.push([order,distance]); 
-          if (responsetext == 'You can not walk the same route.'){
-            resetArrayOrder(arrayOrder);
+        if (order == 'forward'||order == 'backward'){
+          arrayOrder.push([order,distance]);
+          if(repeat_flag){
+            console.log('repeating ',repeating_flag);
+            resetArrayOrder();
+            repeat_flag = false; 
           }
+        }else if (order == 'left' || order == 'right'){
+          arrayOrder.push([order,distance]);
         }
       }
-      sequence = arrayOrder.length;
+      // sequence = arrayOrder.length;
       console.log('arrayOrder ',arrayOrder);
     }
 
@@ -438,6 +442,7 @@ app.post('/', (req, res) => {
     }
 
     function resetPosition(){
+      console.log('access reset position');
       position.splice(1, position.length);
       console.log('resetPosition ',position);
       maze_x = 11;
@@ -446,6 +451,7 @@ app.post('/', (req, res) => {
     }
 
     function resetArrayOrder(){
+      console.log('access reset array Order');
       arrayOrder.splice(0, arrayOrder.length);
       console.log('resetOrder ',arrayOrder);
       // order = null;
