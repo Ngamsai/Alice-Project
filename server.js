@@ -154,10 +154,10 @@ app.post('/', (req, res) => {
           order = "right";
         }
         ComputePosition();
-        if (responsetext == 'start new') {
+        if (responsetext == 'You can not walk the same route.') {
           responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้ง';
         }else if (responsetext == 'crashing'){
-          responsetext = 'ไม่สามารถไปเส้นทางนี้ได้'
+          responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้';
         }
         keepArrayOrder();
         if (responsetext = 'say play for play your actor'){
@@ -278,9 +278,10 @@ app.post('/', (req, res) => {
               responsetext = 'crashing';
               Nocrashing_flag = false;
             }
-            // if (responsetext == 'start new'){
-            //     resetPosition(position);
-            // }
+            if (responsetext == 'You can not walk the same route.'){
+                resetPosition(position);
+                resetArrayOrder();
+            }
           }
         }
         else if (order == "backward"){
@@ -334,9 +335,10 @@ app.post('/', (req, res) => {
               responsetext = 'crashing';
               Nocrashing_flag = false;
             }
-            // if (responsetext == 'start new'){
-            //     // resetPosition(position);
-            // }
+            if (responsetext == 'You can not walk the same route.'){
+              resetPosition(position);
+              resetArrayOrder();
+            }
           }
         }
         else if (order == "left"){
@@ -540,8 +542,8 @@ app.post('/', (req, res) => {
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     console.log('seq ',sequence);
-    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset,number_deletecode);
-    io.emit('symbols',order,distance,state,reset);
+    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
+    io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position);
     order = null;
     distance = null;
     startgame = null;
@@ -549,6 +551,7 @@ app.post('/', (req, res) => {
     delete_flag = false;
     number_deletecode = null;
     play_flag = false ;
+    reset_flag = false;
     
     // reset = null
     var num = distance*1000;
