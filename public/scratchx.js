@@ -35,12 +35,8 @@ new (function() {
           }); 
 
           socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position){
-              if(direction_socket != null){
-                console.log('direction is ',direction_socket)
-              }  
-              if(distance_socket != null){
-                console.log('distance = ',distance_socket)
-              }
+              console.log('direction is ',direction_socket)
+              console.log('distance = ',distance_socket)
               console.log('num ',number_chat);
               console.log('position_insert ',insert_position);
               console.log('******************************')
