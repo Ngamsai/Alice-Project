@@ -396,10 +396,10 @@ app.post('/', (req, res) => {
       }
       else{  
         if (order == 'forward'||order == 'backward' || order == 'left' || order == 'right'){
-          arrayOrder.push([order,distance]);  
-          if (responsetext == 'You can not walk the same route.'){
-            resetArrayOrder();
-          }
+          arrayOrder.push([order,distance]); 
+        }
+        if (responsetext == 'You can not walk the same route.'){
+          resetArrayOrder();
         }
       }
       sequence = arrayOrder.length;
