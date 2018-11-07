@@ -34,8 +34,7 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,insert_fl
-            ,modify_fl,number_chat,insert_position){
+          socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position){
               if(direction_socket != null){
                 console.log('direction is ',direction_socket)
               }  
