@@ -92,8 +92,6 @@ app.post('/', (req, res) => {
       console.log('he will ',modify,' in number ',numberSequence);
       modify_flag = true;
       number = numberSequence;
-      order = null;
-      distance = null;
       console.log('mod def ',modify_flag);
       console.log('number ',number);
     }
@@ -120,7 +118,10 @@ app.post('/', (req, res) => {
       console.log('reset ',reset);
       resetPosition();
       resetArrayOrder();
-      
+      insert_position = null;
+      insert_flag = false;
+      modify_flag = false;
+        
       // delete_code = null;
       // io.emit('reset',reset);
     }
@@ -546,9 +547,7 @@ app.post('/', (req, res) => {
     number = null;
     delete_code = null;
     play = null ;
-    insert_position = null;
-    insert_flag = false;
-    modify_flag = false;
+    
     // reset = null
     var num = distance*1000;
     setTimeout(function(){
