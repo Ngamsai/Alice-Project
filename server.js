@@ -407,6 +407,7 @@ app.post('/', (req, res) => {
         }
       }
       // sequence = arrayOrder.length;
+      console.log('repeating ',repeat_flag);
       console.log('arrayOrder ',arrayOrder);
     }
 
