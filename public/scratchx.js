@@ -175,6 +175,9 @@ new (function() {
         else if (name_variable == 'insert'){
             insert = value_variable;
         }
+        else if (name_variable == 'delete'){
+            deletecode = value_variable;
+        }
     };
     
     ext.when_receive_data = function() {
