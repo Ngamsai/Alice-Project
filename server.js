@@ -398,7 +398,7 @@ app.post('/', (req, res) => {
         if (order == 'forward'||order == 'backward'){
           arrayOrder.push([order,distance]);
           if(repeat_flag){
-            console.log('repeating ',repeating_flag);
+            console.log('repeating ',repeat_flag);
             resetArrayOrder();
             repeat_flag = false; 
           }
