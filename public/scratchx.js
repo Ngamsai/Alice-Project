@@ -277,7 +277,7 @@ new (function() {
             ['r', 'insert', 'get_insert'],
             ['r', 'modify', 'get_modify'],
             ['r', 'deleteCode', 'get_deletecode'],
-            ['r', 'positiOnInsert', 'get_positioninsert'],
+            ['r', 'positionInsert', 'get_positioninsert'],
         ],
       menus: {
         name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
