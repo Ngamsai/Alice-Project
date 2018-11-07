@@ -107,6 +107,13 @@ app.post('/', (req, res) => {
     else if(insert != null){
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
       number = numberSequence;
+      if (language == 'th'){
+        if (insertPosition == 'ก่อน'){
+          insertPosition == 'before';
+        }else{
+          insertPosition == 'after';
+        }
+      }
       insert_position = insertPosition;
       insert_flag = true ;
 
@@ -128,6 +135,7 @@ app.post('/', (req, res) => {
 
     console.log('order global ',order);
     console.log('distance global ',distance);
+
 
   //when maze state will calculate this function
     if (order != null && distance != null){
