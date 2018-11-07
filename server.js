@@ -115,6 +115,10 @@ app.post('/', (req, res) => {
       console.log('reset ',reset);
       resetPosition();
       resetArrayOrder();
+      insert_position = null;
+      insert_flag = false;
+      modify_flag = false;
+      number = null;
       io.emit('reset',reset);
     }
     // else if(anser != null){
@@ -430,6 +434,8 @@ app.post('/', (req, res) => {
     function resetArrayOrder(){
       arrayOrder.splice(0, arrayOrder.length);
       console.log('resetOrder ',arrayOrder);
+      order = null;
+      distance = null;
       sequence = 0;
     }
   
