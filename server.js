@@ -280,7 +280,6 @@ app.post('/', (req, res) => {
             }
             if (responsetext == 'You can not walk the same route.'){
                 resetPosition(position);
-                resetArrayOrder();
             }
           }
         }
@@ -337,7 +336,6 @@ app.post('/', (req, res) => {
             }
             if (responsetext == 'You can not walk the same route.'){
               resetPosition(position);
-              resetArrayOrder();
             }
           }
         }
@@ -399,6 +397,9 @@ app.post('/', (req, res) => {
       else{  
         if (order == 'forward'||order == 'backward' || order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);  
+          if (responsetext == 'You can not walk the same route.'){
+            resetArrayOrder();
+          }
         }
       }
       sequence = arrayOrder.length;
