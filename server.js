@@ -103,7 +103,6 @@ app.post('/', (req, res) => {
       number = numberSequence;
       io.emit('deletecode',delete_code,number);
       deleteCode();
-      delete_code = null;
     }
     else if(insert != null){
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
@@ -399,6 +398,7 @@ app.post('/', (req, res) => {
       arrayOrder.splice(number, 1);
       console.log('sh arr Order when delete already');
       number = null;
+      delete_code = null;
     }
 
     function playFunction() {
