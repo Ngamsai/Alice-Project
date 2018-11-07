@@ -92,6 +92,9 @@ new (function() {
         else if (name_variable == 'delete'){
             deletecode = value_variable;
         }
+        else if (name_variable == 'delete'){
+            state = value_variable;
+        }
     };
 
     ext.get_direction = function(){
