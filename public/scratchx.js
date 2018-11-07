@@ -35,7 +35,7 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position,delete_fl,play_socket,state_socket,startgame_socket,character_socket,reset_socket){
+          socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position,delete_fl,play_fl,state_socket,startgame_socket,character_socket,reset_socket,number_deletecode){
               console.log('direction is ',direction_socket)
               console.log('distance = ',distance_socket)
               console.log('insert ',insert_fl);
@@ -43,11 +43,12 @@ new (function() {
               console.log('number ',number_chat);
               console.log('position_insert ',insert_position);
               console.log('delete-fl ',delete_fl);
-              console.log('play ',play_socket);
+              console.log('play ',play_fl);
               console.log('state is ',state_socket);
               console.log('start ',startgame_socket);
               console.log('char ',character_socket);
               console.log('reset ',reset_socket);
+              console.log('num_delete ',number_deletecode);
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
@@ -56,11 +57,12 @@ new (function() {
               number = number_chat;
               positioninsert = insert_position;
               deletecode = delete_fl;
-              play = play_socket;
+              play = play_fl;
               state = state_socket;
               start = startgame_socket;
               character = character_socket;
               reset = reset_socket;
+              num_delete = number_deletecode;
               receive_data = true;
         });
        

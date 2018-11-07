@@ -28,12 +28,15 @@ var state = 'maze1';
 var position_flag = true;
 var modify_flag = false;
 var delete_flag = false;
+var play_flag = false;
+var reset_flag = false;
 // var Nocrashing_flag = true;
 var insert_flag = false;
 var sequence = 0;
 var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
 var modify = null,delete_code = null,insert = null,play = null,reset = null,numberSequence = null,insertPosition = null,number = null,insert_position = null;
 // var ansQ2,anser;
+var number_deletecode = null ;
 var startgame = null ,character = null,language = null;
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
@@ -85,6 +88,7 @@ app.post('/', (req, res) => {
     }
     else if(play != null){
       console.log('say play is ',play);
+      play_flag = true;
       playFunction();
       console.log('numberSequence ',numberSequence); 
     }
@@ -97,7 +101,7 @@ app.post('/', (req, res) => {
     }
     else if(delete_code != null){
       console.log('he will ',delete_code,' code number ',numberSequence);
-      number = numberSequence;
+      number_deletecode = numberSequence;
       delete_flag = true;
       deleteCode();
     }
@@ -116,11 +120,12 @@ app.post('/', (req, res) => {
     }
     else if(reset != null){
       console.log('reset ',reset);
+      reset_flag = true;
       resetPosition();
       resetArrayOrder();
-      insert_position = null;
-      insert_flag = false;
-      modify_flag = false;
+      // insert_position = null;
+      // insert_flag = false;
+      // modify_flag = false;
         
       // delete_code = null;
       // io.emit('reset',reset);
@@ -196,11 +201,6 @@ app.post('/', (req, res) => {
         console.log('number ',number);
         number = number - 1 ;
         arrayOrder.splice(number, 1, [order,distance]);
-        // for (var i = 0 ;i<arrayOrder.length ;i++){
-        //   if (number == i){
-        //     console.log('i is ',i);
-        //     arrayOrder[i][0] = order;
-        //     arrayOrder[i][1] = distance;
         number = null;
         console.log('arrayOrder from compute mod',arrayOrder);
         console.log('order change is ',order);
@@ -220,6 +220,7 @@ app.post('/', (req, res) => {
           console.log('arrayOrder from compute insert after',arrayOrder);
         }
         number = null ;
+        insert_position = null;
       }
       else{
         console.log('order sh ',order);
@@ -403,10 +404,10 @@ app.post('/', (req, res) => {
     }
 
     function deleteCode() {
-      number = number - 1 ;
-      arrayOrder.splice(number, 1);
+      number_deletecode = number_deletecode - 1 ;
+      arrayOrder.splice(number_deletecode, 1);
       console.log('sh arr Order when delete already');
-      number = number + 1 ;
+      number_deletecode = number_deletecode + 1 ;
     }
 
     function playFunction() {
@@ -444,8 +445,8 @@ app.post('/', (req, res) => {
     function resetArrayOrder(){
       arrayOrder.splice(0, arrayOrder.length);
       console.log('resetOrder ',arrayOrder);
-      order = null;
-      distance = null;
+      // order = null;
+      // distance = null;
       sequence = 0;
     }
   
@@ -539,14 +540,15 @@ app.post('/', (req, res) => {
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     console.log('seq ',sequence);
-    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play,state,startgame,character,reset);
+    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset,number_deletecode);
     io.emit('symbols',order,distance,state,reset);
     order = null;
     distance = null;
+    startgame = null;
+    character = null;
     delete_flag = false;
-    number = null;
-    delete_code = null;
-    play = null ;
+    number_deletecode = null;
+    play_flag = false ;
     
     // reset = null
     var num = distance*1000;
