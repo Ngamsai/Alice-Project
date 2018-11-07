@@ -62,7 +62,7 @@ new (function() {
               start = startgame_socket;
               character = character_socket;
               reset = reset_socket;
-              num_delete = number_deletecode;
+              number_delete = number_deletecode;
               receive_data = true;
         });
        
