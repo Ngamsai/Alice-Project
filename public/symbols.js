@@ -3,6 +3,7 @@ new (function() {
     var ext = this;
     var receive_data = false; 
     var direction ,distance , state , reset ;
+    var modify , insert , deletes , seq , play ,positionInsert ;
   
   
   $(document).ready(function(){
@@ -27,11 +28,23 @@ new (function() {
               console.log('distance = ',distance_socket);
               console.log('state = ',state_socket);
               console.log('reset ',reset_socket);
+              console.log('modify ',modify_socket);
+              console.log('insert ',insert_socket);
+              console.log('deletes ',deletes_socket);
+              console.log('seq ',seq_socket);
+              console.log('play ',play_socket);
+              console.log('positionInsert ',positionInsert_socket);
               console.log('******************************');
               direction = direction_socket;
               distance = distance_socket;
               state = state_socket;
               reset = reset_socket;
+              modify = modify_socket;
+              insert = insert_socket;
+              deletes = deletes_socket;
+              seq = seq_socket;
+              play = play_socket;
+              positionInsert = positionInsert_socket;
               receive_data = true;
            });
        
@@ -59,8 +72,6 @@ new (function() {
 
        return false;
     };
-  
-
 
     ext.get_direction = function(){
         return direction;
@@ -75,7 +86,30 @@ new (function() {
     ext.get_reset = function(){
         return reset;
     }
+    
+    ext.get_insert = function(){
+        return insert;
+    }
 
+    ext.get_modify = function(){
+        return modify;
+    }
+
+    ext.get_deletes = function(){
+        return deletes;
+    }
+
+    ext.get_positioninsert = function(){
+        return positionInsert;
+    }
+
+    ext.get_seq = function(){
+        return seq;
+    }
+
+    ext.get_play = function(){
+        return play;
+    }
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -84,6 +118,12 @@ new (function() {
             ['r', 'distance', 'get_distance'],
             ['r', 'state', 'get_state'],
             ['r', 'reset', 'get_reset'],
+            ['r', 'modify', 'get_modify'],
+            ['r', 'insert', 'get_insert'],
+            ['r', 'deletes', 'get_deletes'],
+            ['r', 'seq', 'get_seq'],
+            ['r', 'play', 'get_play'],
+            ['r', 'positionInsert', 'get_positionInsert'],
         ]
        
     };
