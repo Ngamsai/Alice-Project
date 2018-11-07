@@ -27,13 +27,13 @@ var direction = 'E';
 var state = 'maze1';
 var position_flag = true;
 var modify_flag = false;
-var Nocrashing_flag = true;
+// var Nocrashing_flag = true;
 var insert_flag = false;
 var sequence = 0;
-var order = null,distance = null ,forward_backward_direction,left_right_direction;
-var modify,delete_code,insert,play,reset,numberSequence,insertPosition,number,insert_position;
+var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
+var modify = null,delete_code = null,insert = null,play = null,reset = null,numberSequence = null,insertPosition = null,number = null,insert_position = null;
 // var ansQ2,anser;
-var startgame,character,language;
+var startgame = null ,character = null,language = null;
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
@@ -115,6 +115,11 @@ app.post('/', (req, res) => {
       console.log('reset ',reset);
       resetPosition();
       resetArrayOrder();
+      insert_position = null;
+      insert_flag = false;
+      modify_flag = false;
+      number = null;
+      delete_code = null;
       io.emit('reset',reset);
     }
     // else if(anser != null){
@@ -199,7 +204,7 @@ app.post('/', (req, res) => {
         // }
       }
       else if (insert_flag){
-        if (insert_position== 'before'){
+        if (insert_position == 'before'){
           number = number - 1 ;
           arrayOrder.splice(number, 0, [order,distance]);
           console.log('arrayOrder from compute insert before',arrayOrder);
@@ -393,6 +398,7 @@ app.post('/', (req, res) => {
       arrayOrder.splice(number, 1);
       console.log('sh arr Order when delete already');
       number = null;
+      delete_code = null;
     }
 
     function playFunction() {
@@ -430,6 +436,8 @@ app.post('/', (req, res) => {
     function resetArrayOrder(){
       arrayOrder.splice(0, arrayOrder.length);
       console.log('resetOrder ',arrayOrder);
+      order = null;
+      distance = null;
       sequence = 0;
     }
   
@@ -527,6 +535,7 @@ app.post('/', (req, res) => {
     io.emit('symbols',order,distance,state,reset);
     order = null;
     distance = null;
+    // reset = null
     var num = distance*1000;
     setTimeout(function(){
        console.log('send already');
