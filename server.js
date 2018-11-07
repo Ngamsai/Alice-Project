@@ -86,7 +86,6 @@ app.post('/', (req, res) => {
     }
     else if(play != null){
       console.log('say play is ',play);
-      io.emit('play',play);
       playFunction();
       console.log('numberSequence ',numberSequence); 
     }
@@ -406,8 +405,7 @@ app.post('/', (req, res) => {
       number = number - 1 ;
       arrayOrder.splice(number, 1);
       console.log('sh arr Order when delete already');
-      number = null;
-      delete_code = null;
+      number = number + 1 ;
     }
 
     function playFunction() {
@@ -429,7 +427,6 @@ app.post('/', (req, res) => {
       }
       order = null;
       distance = null;
-      play = null;
       checkState();
       console.log('order play1 ',order);
       console.log('distance play1 ',distance);
@@ -541,11 +538,14 @@ app.post('/', (req, res) => {
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     console.log('seq ',sequence);
-    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag);
+    io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play);
     io.emit('symbols',order,distance,state,reset);
     order = null;
     distance = null;
     delete_flag = false;
+    number = null;
+    delete_code = null;
+    play = null ;
     // reset = null
     var num = distance*1000;
     setTimeout(function(){
