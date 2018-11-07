@@ -34,13 +34,14 @@
   
   }); 
 
-      socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_ch){
+      socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_ch,position_insert,delete_fl){
               console.log('direction is ',direction_socket) 
               console.log('distance = ',distance_socket)
               console.log('inser_fl ',insert_fl);
               console.log('modify_fl ',modify_fl);
-              console.log('number ',number_ch)
-              console.log('position insert ',)
+              console.log('number ',number_ch);
+              console.log('position insert ',position_insert);
+              console.log('del_fl ',delete_fl);
               console.log('******************************');
       });
 
@@ -62,11 +63,11 @@
         //     console.log('******************************');
         // });
 
-        socket.on('deletecode',function(delete_code,number_de){
-            console.log('delete ',delete_code);
-            console.log('number ',number_de);
-            console.log('******************************');
-        });
+        // socket.on('deletecode',function(delete_code,number_de){
+        //     console.log('delete ',delete_code);
+        //     console.log('number ',number_de);
+        //     console.log('******************************');
+        // });
 
         socket.on('play',function(play_socket){
             console.log('say play ',play_socket);
