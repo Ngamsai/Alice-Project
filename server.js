@@ -540,7 +540,7 @@ app.post('/', (req, res) => {
     console.log('number ',number);
     console.log('seq ',sequence);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play,state,startgame,character,reset);
-    io.emit('symbols',order,distance,state,reset);
+    io.emit('symbols',order,distance,state,reset,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position);
     order = null;
     distance = null;
     delete_flag = false;
