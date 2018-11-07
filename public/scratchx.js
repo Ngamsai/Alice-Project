@@ -41,7 +41,6 @@ new (function() {
               if(distance_socket != null){
                 console.log('distance = ',distance_socket)
               }
-              console.log('seq ',sequence_chat);
               console.log('num ',number_chat);
               console.log('position_insert ',insert_position);
               console.log('******************************')
