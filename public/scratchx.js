@@ -34,7 +34,8 @@ new (function() {
 
           }); 
 
-          socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position){
+          socket.on('chat',function(direction_socket,distance_socket,insert_fl
+            ,modify_fl,number_chat,insert_position){
               if(direction_socket != null){
                 console.log('direction is ',direction_socket)
               }  
@@ -137,10 +138,6 @@ new (function() {
             state = state_socket;
             receive_data = true;
         });
-     
-     
-       
-       
            
      });
 
@@ -205,11 +202,6 @@ new (function() {
         return character;
     }
     
-    // //answer for question 2 - number of tree.
-    // ext.get_answer_Q2 = function(){
-    //     return answer_Q2;
-    // }
-    
     ext.get_play = function(){
         return play;
     }
@@ -222,13 +214,6 @@ new (function() {
         return state;
     }
     
-    // ext.get_trees = function(){
-    //     return trees;
-    // }
-    
-    // ext.get_stones = function(){
-    //     return stones;
-    // }
 
     ext.get_number = function(){
         return number;
@@ -271,8 +256,8 @@ new (function() {
             ['r', 'number', 'get_number'],
             ['r', 'insert', 'get_insert'],
             ['r', 'modify', 'get_modify'],
-            ['r', 'deletecode', 'get_deletecode'],
-            ['r', 'positioninsert', 'get_positioninsert'],
+            ['r', 'deleteCode', 'get_deletecode'],
+            ['r', 'positiOnInsert', 'get_positioninsert'],
         ],
       menus: {
         name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
