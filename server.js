@@ -154,6 +154,9 @@ app.post('/', (req, res) => {
           responsetext = 'ไม่สามารถไปเส้นทางนี้ได้'
         }
         keepArrayOrder();
+        if (responsetext = 'say play for play your actor'){
+          responsetext = 'กรุณาพูดว่า เล่น เพื่อเดินตัวละคร'
+        }
         checkState();
         if ( responsetext == 'go to maze 2'){
           responsetext = 'ไปยังด่านเขาวงกตที่ 2';
@@ -380,12 +383,13 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('now mo array order is ',arrayOrder);
         console.log('no add array order');
-        responsetext = ''
+        responsetext = 'say play for play your actor';
         modify_flag = false;
       }
       else if (insert_flag){
         console.log('now insert array order is ',arrayOrder);
         console.log('no add array order');
+        responsetext = 'say play for play your actor';
         insert_flag = false;
       }
       else{  
