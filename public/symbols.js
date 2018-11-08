@@ -153,7 +153,7 @@ new (function() {
             ['r', 'seq', 'get_seq'],
             ['r', 'seq_del', 'get_seq_del'],
             ['r', 'play', 'get_play'],
-            ['r', 'positionInsert', 'get_positionInsert'],
+            ['r', 'positionInsert', 'get_positioninsert'],
         ],
         menus: {
             name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
