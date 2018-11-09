@@ -37,7 +37,7 @@ var order = null,distance = null ,forward_backward_direction = null,left_right_d
 var modify = null,delete_code = null,insert = null,play = null,reset = null,numberSequence = null,insertPosition = null,number = null,insert_position = null;
 // var ansQ2,anser;
 var number_deletecode = null ;
-var startgame = null ,character = null,language = null;
+var startgame = null ,character = null,language;
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
@@ -116,6 +116,7 @@ app.post('/', (req, res) => {
           insertPosition == 'after';
         }
       }
+      console.log('insert position ',insertPosition);
       insert_position = insertPosition;
       insert_flag = true ;
     }
@@ -550,6 +551,7 @@ app.post('/', (req, res) => {
     //   sequence = arrayOrder.length;
     //   io.emit('chat',order,distance,sequence,insert_flag,modify_flag);
     // }
+    console.log('lan ',language);
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     console.log('seq ',sequence);
@@ -565,11 +567,11 @@ app.post('/', (req, res) => {
     reset_flag = false;
     
     // reset = null
-    var num = distance*1000;
+    // var num = distance*1000;
     setTimeout(function(){
        console.log('send already');
        return res.json(responseObj);
-    },num)
+    },5000)
     
 })
 
