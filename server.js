@@ -580,7 +580,7 @@ app.post('/', (req, res) => {
     setTimeout(function(){
        console.log('send already');
        return res.json(responseObj);
-    },5000)
+    },2000)
     
 })
 
