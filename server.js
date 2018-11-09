@@ -136,65 +136,6 @@ app.post('/', (req, res) => {
     //   console.log('ansQ2 is ',anser);
     // }
 
-    console.log('order global ',order);
-    console.log('distance global ',distance);
-
-
-  //when maze state will calculate this function
-    if (order != null && distance != null){
-      if (language == 'th'){
-        if (order == "ตรงไป"){
-          order = "forward";
-        }
-        else if (order == "ถอยหลัง"){
-          order = "backward";
-        }
-        else if (order == "เลี้ยวซ้าย"){
-          order = "left";
-        }
-        else if (order == "เลี้ยวขวา"){
-          order = "right";
-        }
-        ComputePosition();
-        if (responsetext == 'You can not walk the same route.') {
-          responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้ง';
-        }else if (responsetext == 'crashing'){
-          responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้';
-        }
-        keepArrayOrder();
-        if (responsetext == 'say play for play your actor'){
-          responsetext = 'กรุณาพูดว่า เล่น เพื่อเดินตัวละคร';
-        }
-        checkState();
-        if ( responsetext == 'go to maze 2'){
-          responsetext = 'ไปยังด่านเขาวงกตที่ 2';
-        }
-        else if (responsetext == 'go to maze 3'){
-          responsetext = 'ไปยังด่านเขาวงกตที่ 3';
-        }
-        else if (responsetext == 'go to maze 4'){
-          responsetext = 'ไปยังด่านเขาวงกตที่ 4';
-        }
-        else if (responsetext == 'go to maze 5'){
-           responsetext = 'ไปยังด่านเขาวงกตที่ 5';
-        }
-        else if (responsetext == 'I keep key already'){
-           responsetext = 'เก็บกุญแจได้แล้ว'; 
-        }
-        else if (responsetext == 'you have to keep a key frist'){
-           responsetext = 'ต้องไปเก็บกุญแจก่อนมาไขประตูนะ';
-        }
-        else if (responsetext == 'go to next state'){
-           responsetext = 'ไปยัด่านต่อไปได้เลย';
-        }
-      }
-      else if (language == 'en' || language == 'en-us'){
-        ComputePosition();
-        keepArrayOrder();
-        checkState();
-      }
-    }
-  
     function ComputePosition (){
       console.log('compteposition access');
       if (modify_flag){
@@ -525,7 +466,68 @@ app.post('/', (req, res) => {
       }
       console.log('responsetext from checkState is ',responsetext);
       // io.emit('state',state);
-     }
+    }
+
+    console.log('order global ',order);
+    console.log('distance global ',distance);
+
+
+  //when maze state will calculate this function
+    if (order != null && distance != null){
+      if (language == 'th'){
+        if (order == "ตรงไป"){
+          order = "forward";
+        }
+        else if (order == "ถอยหลัง"){
+          order = "backward";
+        }
+        else if (order == "เลี้ยวซ้าย"){
+          order = "left";
+        }
+        else if (order == "เลี้ยวขวา"){
+          order = "right";
+        }
+        ComputePosition();
+        if (responsetext == 'You can not walk the same route.') {
+          responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้ง';
+        }else if (responsetext == 'crashing'){
+          responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้';
+        }
+        keepArrayOrder();
+        if (responsetext == 'say play for play your actor'){
+          responsetext = 'กรุณาพูดว่า เล่น เพื่อเดินตัวละคร';
+        }
+        checkState();
+        if ( responsetext == 'go to maze 2'){
+          responsetext = 'ไปยังด่านเขาวงกตที่ 2';
+        }
+        else if (responsetext == 'go to maze 3'){
+          responsetext = 'ไปยังด่านเขาวงกตที่ 3';
+        }
+        else if (responsetext == 'go to maze 4'){
+          responsetext = 'ไปยังด่านเขาวงกตที่ 4';
+        }
+        else if (responsetext == 'go to maze 5'){
+           responsetext = 'ไปยังด่านเขาวงกตที่ 5';
+        }
+        else if (responsetext == 'I keep key already'){
+           responsetext = 'เก็บกุญแจได้แล้ว'; 
+        }
+        else if (responsetext == 'you have to keep a key frist'){
+           responsetext = 'ต้องไปเก็บกุญแจก่อนมาไขประตูนะ';
+        }
+        else if (responsetext == 'go to next state'){
+           responsetext = 'ไปยัด่านต่อไปได้เลย';
+        }
+      }
+      else if (language == 'en' || language == 'en-us'){
+        ComputePosition();
+        keepArrayOrder();
+        checkState();
+      }
+    }
+  
+    
     
     console.log('resq is ',responsetext);
 
