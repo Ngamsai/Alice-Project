@@ -233,25 +233,25 @@ app.post('/', (req, res) => {
                 position_flag = false
               }
             }
-            //check repeat
-            for (var b = 0; b<position.length; b++){
-              console.log('x ',maze_x,' y ',maze_y);
-              if(position[b][0] == maze_x && position[b][1] == maze_y){
-                responsetext = 'You can not walk the same route.';
-                console.log(position[b][0],' ',position[b][1]);
-                repeat_flag = true;
-                console.log('access check repeat',repeat_flag);
-              }
-            }
             if (position_flag){
+              //check repeat
+              for (var b = 0; b<position.length; b++){
+                console.log('x ',maze_x,' y ',maze_y);
+                if(position[b][0] == maze_x && position[b][1] == maze_y){
+                  responsetext = 'You can not walk the same route.';
+                  console.log(position[b][0],' ',position[b][1]);
+                  repeat_flag = true;
+                  console.log('access check repeat',repeat_flag);
+                }
+              }
               position.push([maze_x,maze_y]);  
             }else{
               responsetext = 'crashing';
               console.log('text clashing');
             }
             if (responsetext == 'You can not walk the same route.'){
-                resetPosition(position);
-                console.log('do funcyion resetposition when repeat');
+              resetPosition(position);
+              console.log('do funcyion resetposition when repeat');
             }
           }
         }
@@ -293,17 +293,17 @@ app.post('/', (req, res) => {
                 position_flag = false
               }
             }
-            for (var d = 0; d<position.length; d++){
-              console.log('x ',maze_x,' y ',maze_y);
-              if(position[d][0] == maze_x && position[d][1] == maze_y){
-                responsetext = 'You can not walk the same route.';
-                console.log(position[d][0],' ',position[d][1]);
-                repeat_flag = true;
-                console.log('access check repeat',repeat_flag); 
+            if (position_flag){ 
+              for (var d = 0; d<position.length; d++){
+                console.log('x ',maze_x,' y ',maze_y);
+                if(position[d][0] == maze_x && position[d][1] == maze_y){
+                  responsetext = 'You can not walk the same route.';
+                  console.log(position[d][0],' ',position[d][1]);
+                  repeat_flag = true;
+                  console.log('access check repeat',repeat_flag); 
+                }
               }
-            }
-            if (position_flag){
-              position.push([maze_x,maze_y]); 
+              position.push([maze_x,maze_y]);
             }else{
               responsetext = 'crashing';
               console.log('text clashing');
