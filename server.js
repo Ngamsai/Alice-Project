@@ -565,8 +565,9 @@ app.post('/', (req, res) => {
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
     console.log('seq ',sequence);
+    console.log('repeat_f ',repeat_flag);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
-    io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position);
+    io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag);
     order = null;
     distance = null;
     startgame = null;

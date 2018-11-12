@@ -4,6 +4,7 @@ new (function() {
     var receive_data = false; 
     var direction ,distance , state , reset ;
     var modify , insert , deletes , seq ,seq_del, play ,positionInsert ;
+    var repeat;
   
   
   $(document).ready(function(){
@@ -24,7 +25,7 @@ new (function() {
           }); 
 
           socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket,modify_socket ,
-             insert_socket , deletes_socket , seq_socket ,seq_del_socket, play_socket ,positionInsert_socket ){
+             insert_socket , deletes_socket , seq_socket ,seq_del_socket, play_socket ,positionInsert_socket,repeat_socket ){
               console.log('direction is ',direction_socket);
               console.log('distance = ',distance_socket);
               console.log('state = ',state_socket);
@@ -36,6 +37,7 @@ new (function() {
               console.log('seq_del ',seq_del_socket);
               console.log('play ',play_socket);
               console.log('positionInsert ',positionInsert_socket);
+              console.log('repeat_f ',repeat_socket);
               console.log('******************************');
               direction = direction_socket;
               distance = distance_socket;
@@ -48,6 +50,7 @@ new (function() {
               seq_del = seq_del_socket;
               play = play_socket;
               positionInsert = positionInsert_socket;
+              repeat = repeat_socket;
               receive_data = true;
            });
        
@@ -135,6 +138,10 @@ new (function() {
         return play;
     }
 
+    ext.get_repeat = function(){
+        return repeat;
+    }
+
     ext.get_seq_del = function(){
         return seq_del;
     }
@@ -153,6 +160,7 @@ new (function() {
             ['r', 'seq', 'get_seq'],
             ['r', 'seq_del', 'get_seq_del'],
             ['r', 'play', 'get_play'],
+            ['r', 'repeat', 'get_repeat'],
             ['r', 'positionInsert', 'get_positioninsert'],
         ],
         menus: {
