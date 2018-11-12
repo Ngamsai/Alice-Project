@@ -417,7 +417,7 @@ app.post('/', (req, res) => {
         // console.log('order play ',order);
         // console.log('distance play ',distance);
       }
-      num = 500*arrayOrder.length;
+      num = 500*position.length;
       order = null;
       distance = null;
       checkState();
