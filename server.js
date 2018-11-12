@@ -255,6 +255,7 @@ app.post('/', (req, res) => {
               console.log('do funcyion resetposition when repeat');
             }
           }
+          num = distance*500;
         }
         else if (order == "backward"){
           for (var c=0; c<distance; c++){
@@ -314,6 +315,7 @@ app.post('/', (req, res) => {
               console.log('do funcyion resetposition when repeat');
             }
           }
+          num = distance*500;
         }
         else if (order == "left"){
           for (var e=0; e<distance; e++){
@@ -330,6 +332,7 @@ app.post('/', (req, res) => {
               direction = 'E';
             }
           }
+          num = 500;
         }
         else if (order == "right"){
           for (var f=0; f<distance; f++){
@@ -346,9 +349,10 @@ app.post('/', (req, res) => {
               direction = 'E';
             }
           }
+          num = 500;
         }
         // console.log('in compute sh arr Order ',arrayOrder);
-        num = distance*1000;
+        
       }
       // console.log(direction);
       // console.log(order);
