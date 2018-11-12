@@ -32,7 +32,8 @@ var play_flag = false;
 var reset_flag = false;
 var repeat_flag = false;
 var insert_flag = false;
-var sequence = 0;
+var num = 500;
+// var sequence = 0;
 var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
 var modify = null,delete_code = null,insert = null,play = null,reset = null,numberSequence = null,insertPosition = null,number = null,insert_position = null;
 // var ansQ2,anser;
@@ -347,6 +348,7 @@ app.post('/', (req, res) => {
           }
         }
         // console.log('in compute sh arr Order ',arrayOrder);
+        num = distance*1000;
       }
       // console.log(direction);
       // console.log(order);
@@ -432,7 +434,7 @@ app.post('/', (req, res) => {
       console.log('resetOrder ',arrayOrder);
       // order = null;
       // distance = null;
-      sequence = 0;
+      // sequence = 0;
     }
   
     function checkState(){
@@ -563,7 +565,7 @@ app.post('/', (req, res) => {
     console.log('lan ',language);
     console.log('order final ',order,' distance final ',distance);
     console.log('number ',number);
-    console.log('seq ',sequence);
+    // console.log('seq ',sequence);
     console.log('repeat_f ',repeat_flag);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
     io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag);
@@ -582,7 +584,9 @@ app.post('/', (req, res) => {
     setTimeout(function(){
        console.log('send already');
        return res.json(responseObj);
-    },2000)
+    },num)
+
+    console.log('num ',num);
     
 })
 
