@@ -592,6 +592,7 @@ app.post('/', (req, res) => {
        console.log('send already');
        return res.json(responseObj);
     },num)
+    console.log('num ',num);
     num = 500;
     console.log('num ',num);
     
