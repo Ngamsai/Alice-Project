@@ -413,6 +413,7 @@ app.post('/', (req, res) => {
         distance = arrayOrder[j][1];
         // console.log('from playfunction');
         ComputePosition();
+        num += 500;
         // console.log('order play ',order);
         // console.log('distance play ',distance);
       }
