@@ -235,12 +235,12 @@ app.post('/', (req, res) => {
             }
             //check repeat
             for (var b = 0; b<position.length; b++){
-              if(position[b][0] == maze_x){
-                if (position[b][1] == maze_y){
-                  responsetext = 'You can not walk the same route.';
-                  repeat_flag = true;
-                  console.log('access check repeat');
-                } 
+              console.log('x ',maze_x,' y ',maze_y);
+              if(position[b][0] == maze_x && position[b][1] == maze_y){
+                responsetext = 'You can not walk the same route.';
+                console.log(position[b][0],' ',position[b][1]);
+                repeat_flag = true;
+                console.log('access check repeat',repeat_flag);
               }
             }
             if (position_flag){
@@ -294,12 +294,12 @@ app.post('/', (req, res) => {
               }
             }
             for (var d = 0; d<position.length; d++){
-              if(position[d][0] == maze_x){
-                if (position[d][1] == maze_y){
-                  responsetext = 'You can not walk the same route.';
-                  repeat_flag = true;
-                  console.log('access check repeat');
-                } 
+              console.log('x ',maze_x,' y ',maze_y);
+              if(position[d][0] == maze_x && position[d][1] == maze_y){
+                responsetext = 'You can not walk the same route.';
+                console.log(position[d][0],' ',position[d][1]);
+                repeat_flag = true;
+                console.log('access check repeat',repeat_flag); 
               }
             }
             if (position_flag){
@@ -346,7 +346,7 @@ app.post('/', (req, res) => {
             }
           }
         }
-        console.log('in compute sh arr Order ',arrayOrder);
+        // console.log('in compute sh arr Order ',arrayOrder);
       }
       // console.log(direction);
       // console.log(order);
@@ -382,7 +382,7 @@ app.post('/', (req, res) => {
       }
       // sequence = arrayOrder.length;
       console.log('repeating check in funtion keppArray ',repeat_flag);
-      // console.log('arrayOrder ',arrayOrder);
+      console.log('arrayOrder ',arrayOrder);
     }
 
     function deleteCode() {
