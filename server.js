@@ -373,8 +373,7 @@ app.post('/', (req, res) => {
           arrayOrder.push([order,distance]);
           if(repeat_flag){
             console.log('repeating ',repeat_flag);
-            resetArrayOrder();
-            repeat_flag = false; 
+            resetArrayOrder(); 
           }
         }else if (order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);
@@ -576,6 +575,7 @@ app.post('/', (req, res) => {
     number_deletecode = null;
     play_flag = false ;
     reset_flag = false;
+    repeat_flag = false;
     
     // reset = null
     // var num = distance*1000;
