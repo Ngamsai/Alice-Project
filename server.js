@@ -136,20 +136,46 @@ app.post('/', (req, res) => {
     //   console.log('ansQ2 is ',anser);
     // }
 
+    //when maze state will calculate this function
+    if (order != null && distance != null){
+      if (language == 'th'){
+        if (order == "ตรงไป"){
+          order = "forward";
+        }
+        else if (order == "ถอยหลัง"){
+          order = "backward";
+        }
+        else if (order == "เลี้ยวซ้าย"){
+          order = "left";
+        }
+        else if (order == "เลี้ยวขวา"){
+          order = "right";
+        }
+        ComputePosition();
+        keepArrayOrder();
+        checkState();
+      }
+      else if (language == 'en' || language == 'en-us'){
+        ComputePosition();
+        keepArrayOrder();
+        checkState();
+      }
+    }
+
     function ComputePosition (){
       console.log('compteposition access');
       if (modify_flag){
-        console.log('order change is ',order);
-        console.log('distance change is ',distance);
-        console.log('number ',number);
+        // console.log('order change is ',order);
+        // console.log('distance change is ',distance);
+        // console.log('number ',number);
         number = number - 1 ;
         arrayOrder.splice(number, 1, [order,distance]);
         number = null;
         console.log('arrayOrder from compute mod',arrayOrder);
-        console.log('order change is ',order);
-        console.log('distance change is ',distance);
-        console.log('number ',number);
-        console.log('mo_f ',modify_flag);
+        // console.log('order change is ',order);
+        // console.log('distance change is ',distance);
+        // console.log('number ',number);
+        // console.log('mo_f ',modify_flag);
         //   }
         // }
       }
@@ -166,9 +192,9 @@ app.post('/', (req, res) => {
         insert_position = null;
       }
       else{
-        console.log('order sh ',order);
-        console.log('disance sh ',distance);
-        console.log('in compute sh arr Order ',arrayOrder);
+        // console.log('order sh ',order);
+        // console.log('disance sh ',distance);
+        // console.log('in compute sh arr Order ',arrayOrder);
         if (order == "forward"){
           for (var a=0; a<distance; a++){
             if(direction == 'N'){
@@ -213,6 +239,7 @@ app.post('/', (req, res) => {
                 if (position[b][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
                   repeat_flag = true;
+                  console.log('access check repeat');
                 } 
               }
             }
@@ -220,10 +247,11 @@ app.post('/', (req, res) => {
               position.push([maze_x,maze_y]);  
             }else{
               responsetext = 'crashing';
+              console.log('text clashing');
             }
             if (responsetext == 'You can not walk the same route.'){
                 resetPosition(position);
-                
+                console.log('do funcyion resetposition when repeat');
             }
           }
         }
@@ -270,17 +298,19 @@ app.post('/', (req, res) => {
                 if (position[d][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
                   repeat_flag = true;
-                  } 
+                  console.log('access check repeat');
+                } 
               }
             }
             if (position_flag){
               position.push([maze_x,maze_y]); 
             }else{
               responsetext = 'crashing';
+              console.log('text clashing');
             }
             if (responsetext == 'You can not walk the same route.'){
               resetPosition(position);
-              
+              console.log('do funcyion resetposition when repeat');
             }
           }
         }
@@ -316,12 +346,11 @@ app.post('/', (req, res) => {
             }
           }
         }
-        
         console.log('in compute sh arr Order ',arrayOrder);
       }
-      console.log(direction);
-      console.log(order);
-      console.log(distance);
+      // console.log(direction);
+      // console.log(order);
+      // console.log(distance);
       console.log(position);
     }
 
@@ -352,33 +381,35 @@ app.post('/', (req, res) => {
         }
       }
       // sequence = arrayOrder.length;
-      console.log('repeating ',repeat_flag);
-      console.log('arrayOrder ',arrayOrder);
+      console.log('repeating check in funtion keppArray ',repeat_flag);
+      // console.log('arrayOrder ',arrayOrder);
     }
 
     function deleteCode() {
+      console.log('access delete code');
       number_deletecode = number_deletecode - 1 ;
       arrayOrder.splice(number_deletecode, 1);
-      console.log('sh arr Order when delete already');
+      console.log('sh arr Order when delete already',arrayOrder);
       number_deletecode = number_deletecode + 1 ;
     }
 
     function playFunction() {
+      console.log('access play function');
       position.splice(1, position.length);
       maze_x = 11;
       maze_y = 1;
       direction = 'E'; 
-      console.log('mo f ',modify_flag);
-      console.log('in_f '.insert_flag);
+      // console.log('mo f ',modify_flag);
+      // console.log('in_f '.insert_flag);
       console.log('position from play function ',position);
       console.log('arr order ',arrayOrder);
       for (var j = 0 ;j<arrayOrder.length;j++){
         order = arrayOrder[j][0];
         distance = arrayOrder[j][1];
-        console.log('from plarfunction');
+        // console.log('from playfunction');
         ComputePosition();
-        console.log('order play ',order);
-        console.log('distance play ',distance);
+        // console.log('order play ',order);
+        // console.log('distance play ',distance);
       }
       order = null;
       distance = null;
@@ -412,7 +443,7 @@ app.post('/', (req, res) => {
           responsetext = 'go to maze 2';
           state = 'maze2';
           // resetPosition();
-          console.log('position pasent ',position);
+          // console.log('position pasent ',position);
         }
       }
       else if (state == 'maze2'){
@@ -420,7 +451,7 @@ app.post('/', (req, res) => {
           responsetext = 'go to maze 3';
           state = 'maze3';
           // resetPosition(position);
-          console.log('position pasent ',position);
+          // console.log('position pasent ',position);
         }
       }
       else if (state == 'maze3'){
@@ -428,7 +459,7 @@ app.post('/', (req, res) => {
            responsetext = 'go to maze 4';
            state = 'maze4';
           //  resetPosition(position);
-          console.log('position pasent ',position);
+          // console.log('position pasent ',position);
         }
       }
       else if (state == 'maze4'){
@@ -436,7 +467,7 @@ app.post('/', (req, res) => {
             responsetext = 'go to maze 5';
             state = 'maze5';
             // resetPosition(position);
-            console.log('position pasent ',position);
+            // console.log('position pasent ',position);
         }
       }
       else if (state == 'maze5'){
@@ -444,7 +475,7 @@ app.post('/', (req, res) => {
             responsetext = 'go to maze 6';
             state = 'maze6';
             // resetPosition(position);
-            console.log('position pasent ',position);
+            // console.log('position pasent ',position);
         }
       }
       else if (state == 'maze6'){
@@ -468,38 +499,8 @@ app.post('/', (req, res) => {
       // io.emit('state',state);
     }
 
-    console.log('order global ',order);
-    console.log('distance global ',distance);
-
-
-  //when maze state will calculate this function
-    if (order != null && distance != null){
-      if (language == 'th'){
-        if (order == "ตรงไป"){
-          order = "forward";
-        }
-        else if (order == "ถอยหลัง"){
-          order = "backward";
-        }
-        else if (order == "เลี้ยวซ้าย"){
-          order = "left";
-        }
-        else if (order == "เลี้ยวขวา"){
-          order = "right";
-        }
-        ComputePosition();
-        
-        keepArrayOrder();
-       
-        checkState();
-        
-      }
-      else if (language == 'en' || language == 'en-us'){
-        ComputePosition();
-        keepArrayOrder();
-        checkState();
-      }
-    }
+    // console.log('order global ',order);
+    // console.log('distance global ',distance);
 
     if(language == 'th'){
       if (responsetext == 'You can not walk the same route.') {
