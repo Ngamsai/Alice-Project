@@ -32,6 +32,7 @@ var play_flag = false;
 var reset_flag = false;
 var repeat_flag = false;
 var insert_flag = false;
+var crash_flag = false;
 var num = 500;
 // var sequence = 0;
 var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
@@ -248,6 +249,7 @@ app.post('/', (req, res) => {
               position.push([maze_x,maze_y]);  
             }else{
               responsetext = 'crashing';
+              crash_flag = true;
               console.log('text clashing');
             }
             if (responsetext == 'You can not walk the same route.'){
@@ -575,7 +577,7 @@ app.post('/', (req, res) => {
     // console.log('seq ',sequence);
     console.log('repeat_f ',repeat_flag);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
-    io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag);
+    io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag,crash_flag);
     order = null;
     distance = null;
     startgame = null;
@@ -585,6 +587,7 @@ app.post('/', (req, res) => {
     play_flag = false ;
     reset_flag = false;
     repeat_flag = false;
+    crash_flag = false;
     
     // reset = null
     // var num = distance*1000;
