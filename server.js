@@ -84,8 +84,13 @@ app.post('/', (req, res) => {
     if(distance != null){
       console.log('show distance ', distance);
     }  
-    else if(startgame != null || character != null ){
+    else if(startgame != null ){
+      state = 'maze1';
+      resetPosition();
+      resetArrayOrder();
       console.log('show start ' , startgame);
+    }
+    else if (character != null ) {
       console.log('actor is ' , character);
     }
     else if(play != null){
@@ -238,7 +243,7 @@ app.post('/', (req, res) => {
             if (position_flag){
               //check repeat
               for (var b = 0; b<position.length; b++){
-                console.log('x ',maze_x,' y ',maze_y);
+                // console.log('x ',maze_x,' y ',maze_y);
                 if(position[b][0] == maze_x && position[b][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
                   console.log(position[b][0],' ',position[b][1]);
@@ -388,7 +393,7 @@ app.post('/', (req, res) => {
         }
       }
       // sequence = arrayOrder.length;
-      console.log('repeating check in funtion keppArray ',repeat_flag);
+      console.log('repeating check in funtion keepArray function ',repeat_flag);
       console.log('arrayOrder ',arrayOrder);
     }
 
@@ -514,34 +519,37 @@ app.post('/', (req, res) => {
 
     if(language == 'th'){
       if (responsetext == 'You can not walk the same route.') {
-        responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้ง';
+        responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้งนะจ๊ะ';
       }
       else if (responsetext == 'crashing'){
-        responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้';
+        responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
       else if (responsetext == 'say play for play your actor'){
-        responsetext = 'กรุณาพูดว่า เล่น เพื่อเดินตัวละคร';
+        responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้มักกี้';
       }
       else if ( responsetext == 'go to maze 2'){
-        responsetext = 'ไปยังด่านเขาวงกตที่ 2';
+        responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
       }
       else if (responsetext == 'go to maze 3'){
-        responsetext = 'ไปยังด่านเขาวงกตที่ 3';
+        responsetext = 'ด่าน 3 แล้วดูคำสั่งดีๆก่อนนะ';
       }
       else if (responsetext == 'go to maze 4'){
-        responsetext = 'ไปยังด่านเขาวงกตที่ 4';
+        responsetext = 'ด่าน 3 ผ่านมาได้แล้วด่าน 4 แก้นิดเดียวเอง ดูดีๆนะ';
       }
       else if (responsetext == 'go to maze 5'){
-         responsetext = 'ไปยังด่านเขาวงกตที่ 5';
+         responsetext = 'เข้าสู่ด่าน 5 เลย';
+      }
+      else if (responsetext == 'go to maze 6'){
+        responsetext = 'ด่ายสุดท้ายแล้วนะ ต้องไปเก็บกุญแจก่อนแล้วเข้าไปเข้าประตูให้ได้นะ';
       }
       else if (responsetext == 'I keep key already'){
-         responsetext = 'เก็บกุญแจได้แล้ว'; 
+         responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
       }
       else if (responsetext == 'you have to keep a key frist'){
          responsetext = 'ต้องไปเก็บกุญแจก่อนมาไขประตูนะ';
       }
       else if (responsetext == 'go to next state'){
-         responsetext = 'ไปยัด่านต่อไปได้เลย';
+         responsetext = 'เก่งมากเลย ทำสำเร็จทุกด่านแล้ว มารับรางวัลที่พี่คนสวยนะคะ';
       }
     }
   
@@ -573,9 +581,10 @@ app.post('/', (req, res) => {
     // }
     console.log('lan ',language);
     console.log('order final ',order,' distance final ',distance);
-    console.log('number ',number);
+    console.log('number of code modify',number);
+    console.log('state ',state);
     // console.log('seq ',sequence);
-    console.log('repeat_f ',repeat_flag);
+    // console.log('repeat_f ',repeat_flag);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
     io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag,crash_flag);
     order = null;
