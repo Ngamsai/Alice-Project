@@ -531,13 +531,16 @@ app.post('/', (req, res) => {
         responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
       }
       else if (responsetext == 'go to maze 3'){
-        responsetext = 'ผ่านด่าน 2 แล้วด่าน 3 ดูคำสั่งดีๆก่อนนะ';
+        responsetext = 'ด่าน 3 แล้วดูคำสั่งดีๆก่อนนะ';
       }
       else if (responsetext == 'go to maze 4'){
         responsetext = 'ด่าน 3 ผ่านมาได้แล้วด่าน 4 แก้นิดเดียวเอง ดูดีๆนะ';
       }
       else if (responsetext == 'go to maze 5'){
-         responsetext = 'ด่าน 4 ผ่านไปแล้วเข้าสู่ด่าน 5 เลย';
+         responsetext = 'เข้าสู่ด่าน 5 เลย';
+      }
+      else if (responsetext == 'go to maze 6'){
+        responsetext = 'ด่ายสุดท้ายแล้วนะ ต้องไปเก็บกุญแจก่อนแล้วเข้าไปเข้าประตูให้ได้นะ';
       }
       else if (responsetext == 'I keep key already'){
          responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
