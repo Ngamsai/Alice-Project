@@ -514,34 +514,34 @@ app.post('/', (req, res) => {
 
     if(language == 'th'){
       if (responsetext == 'You can not walk the same route.') {
-        responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้ง';
+        responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้งนะจ๊ะ';
       }
       else if (responsetext == 'crashing'){
-        responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้';
+        responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
       else if (responsetext == 'say play for play your actor'){
-        responsetext = 'กรุณาพูดว่า เล่น เพื่อเดินตัวละคร';
+        responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้มักกี้';
       }
       else if ( responsetext == 'go to maze 2'){
-        responsetext = 'ไปยังด่านเขาวงกตที่ 2';
+        responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
       }
       else if (responsetext == 'go to maze 3'){
-        responsetext = 'ไปยังด่านเขาวงกตที่ 3';
+        responsetext = 'ผ่านด่าน 2 แล้วด่าน 3 ดูคำสั่งดีๆก่อนนะ';
       }
       else if (responsetext == 'go to maze 4'){
-        responsetext = 'ไปยังด่านเขาวงกตที่ 4';
+        responsetext = 'ด่าน 3 ผ่านมาได้แล้วด่าน 4 แก้นิดเดียวเอง ดูดีๆนะ';
       }
       else if (responsetext == 'go to maze 5'){
-         responsetext = 'ไปยังด่านเขาวงกตที่ 5';
+         responsetext = 'ด่าน 4 ผ่านไปแล้วเข้าสู่ด่าน 5 เลย';
       }
       else if (responsetext == 'I keep key already'){
-         responsetext = 'เก็บกุญแจได้แล้ว'; 
+         responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
       }
       else if (responsetext == 'you have to keep a key frist'){
          responsetext = 'ต้องไปเก็บกุญแจก่อนมาไขประตูนะ';
       }
       else if (responsetext == 'go to next state'){
-         responsetext = 'ไปยัด่านต่อไปได้เลย';
+         responsetext = 'เก่งมากเลย ทำสำเร็จทุกด่านแล้ว มารับรางวัลที่พี่คนสวยนะคะ';
       }
     }
   
