@@ -84,8 +84,13 @@ app.post('/', (req, res) => {
     if(distance != null){
       console.log('show distance ', distance);
     }  
-    else if(startgame != null || character != null ){
+    else if(startgame != null ){
+      state = 'maze1';
+      resetPosition();
+      resetArrayOrder();
       console.log('show start ' , startgame);
+    }
+    else if (character != null ) {
       console.log('actor is ' , character);
     }
     else if(play != null){
@@ -238,7 +243,7 @@ app.post('/', (req, res) => {
             if (position_flag){
               //check repeat
               for (var b = 0; b<position.length; b++){
-                console.log('x ',maze_x,' y ',maze_y);
+                // console.log('x ',maze_x,' y ',maze_y);
                 if(position[b][0] == maze_x && position[b][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
                   console.log(position[b][0],' ',position[b][1]);
@@ -388,7 +393,7 @@ app.post('/', (req, res) => {
         }
       }
       // sequence = arrayOrder.length;
-      console.log('repeating check in funtion keppArray ',repeat_flag);
+      console.log('repeating check in funtion keepArray function ',repeat_flag);
       console.log('arrayOrder ',arrayOrder);
     }
 
@@ -573,9 +578,10 @@ app.post('/', (req, res) => {
     // }
     console.log('lan ',language);
     console.log('order final ',order,' distance final ',distance);
-    console.log('number ',number);
+    console.log('number of code modify',number);
+    console.log('state ',state);
     // console.log('seq ',sequence);
-    console.log('repeat_f ',repeat_flag);
+    // console.log('repeat_f ',repeat_flag);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
     io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag,crash_flag);
     order = null;
