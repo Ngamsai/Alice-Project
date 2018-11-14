@@ -525,16 +525,16 @@ app.post('/', (req, res) => {
         responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
       else if (responsetext == 'say play for play your actor'){
-        responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้มักกี้';
+        responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
       }
       else if ( responsetext == 'go to maze 2'){
         responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
       }
       else if (responsetext == 'go to maze 3'){
-        responsetext = 'ด่าน 3 แล้วดูคำสั่งดีๆก่อนนะ';
+        responsetext = 'ด่าน3แล้ว ระวังอย่าเดินซ้ำช่องเดิมที่เคยเดินผ่านมาในด่านก่อนหน้านะ';
       }
       else if (responsetext == 'go to maze 4'){
-        responsetext = 'ด่าน 3 ผ่านมาได้แล้วด่าน 4 แก้นิดเดียวเอง ดูดีๆนะ';
+        responsetext = 'ด่าน 3 ผ่านมาได้แล้วด่าน 4 แก้นิดเดียวเอง';
       }
       else if (responsetext == 'go to maze 5'){
          responsetext = 'เข้าสู่ด่าน 5 เลย';
