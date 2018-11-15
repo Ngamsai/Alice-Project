@@ -117,10 +117,10 @@ app.post('/', (req, res) => {
       number = numberSequence;
       if (language == 'th'){
         if (insertPosition == 'ก่อน'){
-          insertPosition == 'before';
+          insert_Position == 'before';
         }
         else if(insertPosition == 'หลัง'){
-          insertPosition == 'after';
+          insert_Position == 'after';
         }
       }
       console.log('insert position ',insertPosition);
@@ -497,7 +497,7 @@ app.post('/', (req, res) => {
         if (maze_x == 5 && maze_y == 7){
             responsetext = 'I keep key already'; 
         }
-        else if (maze_x == 3 && maze_y == 7){  
+        else if (maze_x == 9 && maze_y == 5){  
           if (text == 'key'){
              responsetext = 'go to next state';
              resetPosition(position);
@@ -582,6 +582,7 @@ app.post('/', (req, res) => {
     console.log('lan ',language);
     console.log('order final ',order,' distance final ',distance);
     console.log('number of code modify',number);
+    console.log('position insert ',insertPosition);
     console.log('state ',state);
     // console.log('seq ',sequence);
     // console.log('repeat_f ',repeat_flag);
