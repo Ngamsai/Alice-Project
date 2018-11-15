@@ -117,10 +117,10 @@ app.post('/', (req, res) => {
       number = numberSequence;
       if (language == 'th'){
         if (insertPosition == 'ก่อน'){
-          insert_Position == 'before';
+          insert_position == 'before';
         }
         else if(insertPosition == 'หลัง'){
-          insert_Position == 'after';
+          insert_position == 'after';
         }
       }
       console.log('insert position ',insertPosition);
