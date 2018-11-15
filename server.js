@@ -439,7 +439,10 @@ app.post('/', (req, res) => {
       console.log('resetPosition ',position);
       maze_x = 11;
       maze_y = 1;
-      direction = 'E';     
+      direction = 'E'; 
+      modify_flag = false;
+      insert_flag = false;
+      delete_flag = false;    
     }
 
     function resetArrayOrder(){
