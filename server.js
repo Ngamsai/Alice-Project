@@ -115,16 +115,17 @@ app.post('/', (req, res) => {
     else if(insert != null){
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
       number = numberSequence;
-      if (language == 'th'){
-        if (insertPosition == 'ก่อน'){
-          insert_position == 'before';
-        }
-        else if(insertPosition == 'หลัง'){
-          insert_position == 'after';
-        }
-      }
+      // if (language == 'th'){
+      //   if (insertPosition == 'ก่อน'){
+      //     insert_position == 'before';
+      //   }
+      //   else if(insertPosition == 'หลัง'){
+      //     insert_position == 'after';
+      //   }
+      // }
       console.log('insert position ',insertPosition);
       insert_position = insertPosition;
+      console.log('insert_position ',insert_position);
       insert_flag = true ;
     }
     else if(reset != null){
@@ -142,6 +143,16 @@ app.post('/', (req, res) => {
     // else if(anser != null){
     //   console.log('ansQ2 is ',anser);
     // }
+    if (language == 'th'){
+      if (insertPosition != null){
+        if (insert_position == 'ก่อน'){
+          insert_position = 'before';
+        }
+        else if (insert_position == 'หลัง'){
+          insert_position = 'after';
+        } 
+      }
+    }
 
     //when maze state will calculate this function
     if (order != null && distance != null){
