@@ -92,6 +92,9 @@ app.post('/', (req, res) => {
     }
     else if (character != null ) {
       console.log('actor is ' , character);
+      if (character != 1 || character != 2 || character == null){
+        responsetext = 'เลือกตัวละครใหม่อีกครั้ง';
+      }
     }
     else if(play != null){
       console.log('say play is ',play);
