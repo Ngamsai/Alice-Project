@@ -92,7 +92,7 @@ app.post('/', (req, res) => {
     }
     else if (character != null ) {
       console.log('actor is ' , character);
-      if (character != 1 || character != 2 || character == null){
+      if (character != 1 || character != 2){
         responsetext = 'เลือกตัวละครใหม่อีกครั้ง';
       }
     }
