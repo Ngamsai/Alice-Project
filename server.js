@@ -25,6 +25,7 @@ var maze_x = 11;
 var maze_y = 1;
 var direction = 'E';
 var state = 'maze1';
+var status_state = 0;
 var position_flag = true;
 var modify_flag = false;
 var delete_flag = false;
@@ -85,15 +86,17 @@ app.post('/', (req, res) => {
       console.log('show distance ', distance);
     }  
     else if(startgame != null ){
+      status_state = 1 ;
       state = 'maze1';
       resetPosition();
       resetArrayOrder();
       console.log('show start ' , startgame);
     }
     else if (character != null ) {
+      status_state = 2;
       console.log('actor is ' , character);
       if (character != 1 || character != 2){
-        responsetext = 'เลือกตัวละครใหม่อีกครั้ง';
+        responsetext = 'เลือกได้เฉพาะตัวที่ 1 หรือ 2 เท่านั้นนะคะ';
       }
     }
     else if(play != null){
