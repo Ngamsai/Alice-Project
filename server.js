@@ -41,7 +41,7 @@ var modify = null,delete_code = null,insert = null,play = null,reset = null,numb
 // var ansQ2,anser;
 var number_deletecode = null ;
 var startgame = null ,language;
-var character = '0';
+var character;
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
@@ -66,7 +66,7 @@ app.post('/', (req, res) => {
     startgame = keep['conversation-gamecontrol'];
     play =keep['conversation-replay'];
     anser = keep.question;
-    character = keep.actor;
+    character = keep.character;
     reset = keep.reset;
     modify = keep.modify;
     numberSequence = keep['number-modify'];
