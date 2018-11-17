@@ -41,7 +41,7 @@ var modify = null,delete_code = null,insert = null,play = null,reset = null,numb
 // var ansQ2,anser;
 var number_deletecode = null ;
 var startgame = null ,language;
-var character = 0;
+var character = '0';
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
@@ -96,7 +96,7 @@ app.post('/', (req, res) => {
     else if (character != null ) {
       status_state = 2;
       console.log('actor is ' , character);
-      if (character != 1 || character != 2 ){
+      if (character != '1' || character != '2' ){
         responsetext = 'เลือกได้เฉพาะตัวที่ 1 หรือ 2 เท่านั้นนะคะ';
       }
     }
