@@ -165,7 +165,7 @@ app.post('/', (req, res) => {
     //when maze state will calculate this function
     if (order != null && distance != null){
       if (language == 'th'){
-        if (order == "ตรงไป"){
+        if (order == "เดินหน้า"){
           order = "forward";
         }
         else if (order == "ถอยหลัง"){
