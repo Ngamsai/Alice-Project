@@ -519,7 +519,7 @@ app.post('/', (req, res) => {
         if (maze_x == 5 && maze_y == 7){
             responsetext = 'I keep key already'; 
         }
-        else if (maze_x == 9 && maze_y == 5){  
+        else if (maze_x == 5 && maze_y == 9){  
           if (text == 'key'){
              responsetext = 'go to next state';
              resetPosition(position);
