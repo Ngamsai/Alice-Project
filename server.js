@@ -34,6 +34,7 @@ var reset_flag = false;
 var repeat_flag = false;
 var insert_flag = false;
 var crash_flag = false;
+var havetoDo_flag = false;
 var num = 500;
 // var sequence = 0;
 var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
@@ -190,6 +191,14 @@ app.post('/', (req, res) => {
 
     function ComputePosition (){
       console.log('compteposition access');
+      if (havetoDo_flag){
+        if (!modify_flag || !insert_flag || !delete_flag || reset == nall){
+          responsetext = 'have to use modify group order only.';
+        }
+        else{
+          havetoDo_flag = false;
+        }
+      }
       if (modify_flag){
         // console.log('order change is ',order);
         // console.log('distance change is ',distance);
@@ -483,6 +492,7 @@ app.post('/', (req, res) => {
           state = 'maze2';
           resetPosition();
           console.log('position pasent ',position);
+          havetoDo_flag = true;
         }
       }
       else if (state == 'maze2'){
@@ -491,6 +501,7 @@ app.post('/', (req, res) => {
           state = 'maze3';
           resetPosition(position);
           console.log('position pasent ',position);
+          havetoDo_flag = true;
         }
       }
       else if (state == 'maze3'){
@@ -499,6 +510,7 @@ app.post('/', (req, res) => {
            state = 'maze4';
            resetPosition(position);
           console.log('position pasent ',position);
+          havetoDo_flag = true;
         }
       }
       else if (state == 'maze4'){
@@ -507,6 +519,7 @@ app.post('/', (req, res) => {
             state = 'maze5';
             resetPosition(position);
             console.log('position pasent ',position);
+            havetoDo_flag = true;
         }
       }
       else if (state == 'maze5'){
@@ -515,6 +528,7 @@ app.post('/', (req, res) => {
             state = 'maze6';
             resetPosition(position);
             console.log('position pasent ',position);
+            havetoDo_flag = true;
         }
       }
       else if (state == 'maze6'){
@@ -550,6 +564,9 @@ app.post('/', (req, res) => {
       }
       else if (responsetext == 'say play for play your actor'){
         responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
+      }
+      else if (responsetext == 'have to use modify group order only.'){
+        responsetext = 'ต้องแก้ไขคำสั่งเหล่านี้ก่อน';
       }
       else if ( responsetext == 'go to maze 2'){
         responsetext = 'ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
