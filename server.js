@@ -226,7 +226,7 @@ app.post('/', (req, res) => {
         number = null ;
         insert_position = null;
       }
-      else{
+      else if (havetoDo_flag == false){
         // console.log('order sh ',order);
         // console.log('disance sh ',distance);
         // console.log('in compute sh arr Order ',arrayOrder);
@@ -409,7 +409,7 @@ app.post('/', (req, res) => {
         responsetext = 'say play for play your actor';
         insert_flag = false;
       }
-      else{  
+      else if (havetoDo_flag == false){  
         if (order == 'forward'||order == 'backward'){
           arrayOrder.push([order,distance]);
           if(repeat_flag){
