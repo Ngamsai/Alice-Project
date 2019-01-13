@@ -353,7 +353,7 @@ app.post('/', (req, res) => {
             }
             else if (direction == 'W'){
               direction = 'S';
-            }
+            } 
             else if (direction == 'S'){
               direction = 'E';
             }
@@ -405,7 +405,8 @@ app.post('/', (req, res) => {
           arrayOrder.push([order,distance]);
           if(repeat_flag){
             console.log('repeating ',repeat_flag);
-            resetArrayOrder(); 
+            position.pop();
+            //resetArrayOrder(); 
           }
         }else if (order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);
@@ -472,47 +473,48 @@ app.post('/', (req, res) => {
       // distance = null;
       // sequence = 0;
     }
-  
+
+   //ไม่ต้องย้ายกลับไปจุดเริ่มต้นเพราะ code อยู่ที่เดิม แต่ตำแหน่งเปลี่ยนสรุปว่าจะพูด code ต่อยังไงนะ งง ?
     function checkState(){
       console.log('access checkstate');
       if (state == 'maze1'){
         if (maze_x == 7 && maze_y == 5){
           responsetext = 'go to maze 2';
           state = 'maze2';
-          // resetPosition();
-          // console.log('position pasent ',position);
+          resetPosition();
+          console.log('position pasent ',position);
         }
       }
       else if (state == 'maze2'){
         if (maze_x == 7 && maze_y == 3){
           responsetext = 'go to maze 3';
           state = 'maze3';
-          // resetPosition(position);
-          // console.log('position pasent ',position);
+          resetPosition(position);
+          console.log('position pasent ',position);
         }
       }
       else if (state == 'maze3'){
         if (maze_x == 5 && maze_y == 3){
            responsetext = 'go to maze 4';
            state = 'maze4';
-          //  resetPosition(position);
-          // console.log('position pasent ',position);
+           resetPosition(position);
+          console.log('position pasent ',position);
         }
       }
       else if (state == 'maze4'){
         if (maze_x == 5 && maze_y == 5){
             responsetext = 'go to maze 5';
             state = 'maze5';
-            // resetPosition(position);
-            // console.log('position pasent ',position);
+            resetPosition(position);
+            console.log('position pasent ',position);
         }
       }
       else if (state == 'maze5'){
         if (maze_x == 3 && maze_y == 1){
             responsetext = 'go to maze 6';
             state = 'maze6';
-            // resetPosition(position);
-            // console.log('position pasent ',position);
+            resetPosition(position);
+            console.log('position pasent ',position);
         }
       }
       else if (state == 'maze6'){
