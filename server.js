@@ -276,10 +276,10 @@ app.post('/', (req, res) => {
               crash_flag = true;
               console.log('text clashing');
             }
-            if (responsetext == 'You can not walk the same route.'){
-              resetPosition(position);
-              console.log('do funcyion resetposition when repeat');
-            }
+            // if (responsetext == 'You can not walk the same route.'){
+            //   resetPosition(position);
+            //   console.log('do funcyion resetposition when repeat');
+            // }
           }
           num = distance*500;
         }
@@ -323,7 +323,7 @@ app.post('/', (req, res) => {
             }
             if (position_flag){ 
               for (var d = 0; d<position.length; d++){
-                console.log('x ',maze_x,' y ',maze_y);
+                // console.log('x ',maze_x,' y ',maze_y);
                 if(position[d][0] == maze_x && position[d][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
                   console.log(position[d][0],' ',position[d][1]);
@@ -336,10 +336,10 @@ app.post('/', (req, res) => {
               responsetext = 'crashing';
               console.log('text clashing');
             }
-            if (responsetext == 'You can not walk the same route.'){
-              resetPosition(position);
-              console.log('do funcyion resetposition when repeat');
-            }
+            // if (responsetext == 'You can not walk the same route.'){
+            //   resetPosition(position);
+            //   console.log('do funcyion resetposition when repeat');
+            // }
           }
           num = distance*500;
         }
@@ -543,7 +543,7 @@ app.post('/', (req, res) => {
 
     if(language == 'th'){
       if (responsetext == 'You can not walk the same route.') {
-        responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ กลับไปเริ่มต้นอีกครั้งนะจ๊ะ';
+        responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
       else if (responsetext == 'crashing'){
         responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
@@ -552,19 +552,19 @@ app.post('/', (req, res) => {
         responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
       }
       else if ( responsetext == 'go to maze 2'){
-        responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
+        responsetext = 'ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'go to maze 3'){
-        responsetext = 'ด่าน3แล้ว ระวังอย่าเดินซ้ำช่องเดิมที่เคยเดินผ่านมาในด่านก่อนหน้านะ';
+        responsetext = 'ด่าน3แล้ว ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'go to maze 4'){
-        responsetext = 'ด่าน 3 ผ่านมาได้แล้วด่าน 4 แก้นิดเดียวเอง';
+        responsetext = 'ด่าน 4 แล้วต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'go to maze 5'){
-         responsetext = 'เข้าสู่ด่าน 5 เลย';
+         responsetext = 'เข้าสู่ด่าน 5 เลย ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'go to maze 6'){
-        responsetext = 'ด่ายสุดท้ายแล้วนะ ต้องไปเก็บกุญแจก่อนแล้วเข้าไปเข้าประตูให้ได้นะ';
+        responsetext = 'ด่ายสุดท้ายต้องไปเก็บกุญแจโดยใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'I keep key already'){
          responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
