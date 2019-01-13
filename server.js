@@ -265,7 +265,7 @@ app.post('/', (req, res) => {
                 // console.log('x ',maze_x,' y ',maze_y);
                 if(position[b][0] == maze_x && position[b][1] == maze_y){
                   responsetext = 'You can not walk the same route.';
-                  console.log(position[b][0],' ',position[b][1]);
+                  console.log(position[b][0],position[b][1]);
                   repeat_flag = true;
                   console.log('access check repeat',repeat_flag);
                 }
@@ -276,10 +276,10 @@ app.post('/', (req, res) => {
               crash_flag = true;
               console.log('text clashing');
             }
-            // if (responsetext == 'You can not walk the same route.'){
-            //   resetPosition(position);
-            //   console.log('do funcyion resetposition when repeat');
-            // }
+            if (responsetext == 'You can not walk the same route.'){
+              position.pop();
+              console.log('do function resetposition when repeat');
+            }
           }
           num = distance*500;
         }
@@ -336,10 +336,10 @@ app.post('/', (req, res) => {
               responsetext = 'crashing';
               console.log('text clashing');
             }
-            // if (responsetext == 'You can not walk the same route.'){
-            //   resetPosition(position);
-            //   console.log('do funcyion resetposition when repeat');
-            // }
+            if (responsetext == 'You can not walk the same route.'){
+              position.pop();
+              console.log('do function resetposition when repeat');
+            }
           }
           num = distance*500;
         }
@@ -405,7 +405,7 @@ app.post('/', (req, res) => {
           arrayOrder.push([order,distance]);
           if(repeat_flag){
             console.log('repeating ',repeat_flag);
-            position.pop();
+            
             //resetArrayOrder(); 
           }
         }else if (order == 'left' || order == 'right'){
