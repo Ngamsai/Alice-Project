@@ -198,6 +198,7 @@ app.post('/', (req, res) => {
         else{
           havetoDo_flag = false;
         }
+        console.log("haveto ",havetoDo_flag);
       }
       if (modify_flag){
         // console.log('order change is ',order);
@@ -392,6 +393,7 @@ app.post('/', (req, res) => {
       // console.log(direction);
       // console.log(order);
       // console.log(distance);
+      console.log("play_falg is ",play_flag);
       console.log(position);
     }
 
@@ -628,6 +630,7 @@ app.post('/', (req, res) => {
     console.log('state ',state);
     // console.log('seq ',sequence);
     // console.log('repeat_f ',repeat_flag);
+    console.log("playF ",play_flag);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
     io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag,crash_flag);
     order = null;
