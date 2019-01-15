@@ -50,7 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.post('/', (req, res) => {
   
     console.log("***************************************************************************************************")
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext = req.body.queryResult.fulfillmentText;
@@ -96,24 +96,24 @@ app.post('/', (req, res) => {
     }
     else if (character != null ) {
       status_state = 2;
-      console.log('actor is ' , typeof character);
+      console.log('actor is ' ,character);
       // if (character != 1 || character != 2 ){
       //   responsetext = 'เลือกได้เฉพาะตัวที่ 1 หรือ 2 เท่านั้นนะคะ';
 
       // }
     }
     else if(play != null){
-      console.log('say play is ',play);
+      console.log('play is ',play);
       play_flag = true;
       playFunction();
-      console.log('numberSequence ',numberSequence); 
+      // console.log('numberSequence ',numberSequence); 
     }
     else if(modify != null){
       console.log('he will ',modify,' in number ',numberSequence);
       modify_flag = true;
       number = numberSequence;
-      console.log('mod def ',modify_flag);
-      console.log('number ',number);
+      // console.log('mod def ',modify_flag);
+      // console.log('number ',number);
     }
     else if(delete_code != null){
       console.log('he will ',delete_code,' code number ',numberSequence);
@@ -132,9 +132,9 @@ app.post('/', (req, res) => {
       //     insert_position == 'after';
       //   }
       // }
-      console.log('insert position ',insertPosition);
+      // console.log('insert position ',insertPosition);
       insert_position = insertPosition;
-      console.log('insert_position ',insert_position);
+      // console.log('insert_position ',insert_position);
       insert_flag = true ;
     }
     else if(reset != null){
@@ -192,11 +192,11 @@ app.post('/', (req, res) => {
     function ComputePosition (){
       console.log('compteposition access');
       if (havetoDo_flag){
-        if (!modify_flag || !insert_flag || !delete_flag || reset == nall){
-          responsetext = 'have to use modify group order only.';
+        if (modify_flag == true || insert_flag == true || delete_flag == true || reset != null){
+          havetoDo_flag = false;
         }
         else{
-          havetoDo_flag = false;
+          responsetext = 'have to use modify group order only.';
         }
         console.log("haveto ",havetoDo_flag);
       }
