@@ -226,7 +226,7 @@ app.post('/', (req, res) => {
         number = null ;
         insert_position = null;
       }
-      else if (havetoDo_flag == false){
+      else if (havetoDo_flag == false || play_flag == true){
         // console.log('order sh ',order);
         // console.log('disance sh ',distance);
         // console.log('in compute sh arr Order ',arrayOrder);
@@ -569,7 +569,7 @@ app.post('/', (req, res) => {
         responsetext = 'ต้องแก้ไขคำสั่งเหล่านี้ก่อน';
       }
       else if ( responsetext == 'go to maze 2'){
-        responsetext = 'ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+        responsetext = 'ด่าน 2 ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'go to maze 3'){
         responsetext = 'ด่าน3แล้ว ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
