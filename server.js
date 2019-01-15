@@ -460,6 +460,7 @@ app.post('/', (req, res) => {
       checkState();
       console.log('order play1 ',order);
       console.log('distance play1 ',distance);
+      play_flag = false;
     }
 
     function resetPosition(){
@@ -635,7 +636,6 @@ app.post('/', (req, res) => {
     character = null;
     delete_flag = false;
     number_deletecode = null;
-    play_flag = false ;
     reset_flag = false;
     repeat_flag = false;
     crash_flag = false;
