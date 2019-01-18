@@ -90,6 +90,7 @@ app.post('/', (req, res) => {
     else if(startgame != null ){
       status_state = 1 ;
       state = 'maze1';
+      havetoDo_flag == false
       resetPosition();
       resetArrayOrder();
       console.log('show start ' , startgame);
