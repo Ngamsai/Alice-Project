@@ -493,7 +493,7 @@ app.post('/', (req, res) => {
       console.log('access checkstate');
       if (state == 'maze1'){
         if (maze_x == 7 && maze_y == 5){
-          responsetext = 'go to maze 2';
+          responsetext = 'In the stage two, you must modify,delete or insert';
           state = 'maze2';
           resetPosition();
           console.log('position pasent ',position);
@@ -502,7 +502,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze2'){
         if (maze_x == 7 && maze_y == 3){
-          responsetext = 'go to maze 3';
+          responsetext = 'In the stage three, you must modify,delete or insert';
           state = 'maze3';
           resetPosition(position);
           console.log('position pasent ',position);
@@ -511,7 +511,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze3'){
         if (maze_x == 5 && maze_y == 3){
-           responsetext = 'go to maze 4';
+           responsetext = 'In the stage four, you must modify,delete or insert';
            state = 'maze4';
            resetPosition(position);
           console.log('position pasent ',position);
@@ -520,7 +520,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze4'){
         if (maze_x == 5 && maze_y == 5){
-            responsetext = 'go to maze 5';
+            responsetext = 'In the stage five, you must modify,delete or insert';
             state = 'maze5';
             resetPosition(position);
             console.log('position pasent ',position);
@@ -529,7 +529,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze5'){
         if (maze_x == 3 && maze_y == 1){
-            responsetext = 'go to maze 6';
+            responsetext = 'In the stage six, you must modify,delete or insert';
             state = 'maze6';
             resetPosition(position);
             console.log('position pasent ',position);
@@ -542,7 +542,7 @@ app.post('/', (req, res) => {
         }
         else if (maze_x == 5 && maze_y == 9){  
           if (text == 'key'){
-             responsetext = 'go to next state';
+             responsetext = 'excellent!!';
              resetPosition(position);
             //  state = 'Q2';
             //  var randomtrees = Math.floor(Math.random() * 10) + 1;
@@ -570,7 +570,7 @@ app.post('/', (req, res) => {
       else if (responsetext == 'say play for play your actor'){
         responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
       }
-      else if (responsetext == 'have to use modify group order only.'){
+      else if (responsetext == 'you must use modify group order only.'){
         responsetext = 'ต้องแก้ไขคำสั่งเหล่านี้ก่อน';
       }
       else if ( responsetext == 'In the stage two, you must modify,delete or insert'){
