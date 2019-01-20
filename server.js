@@ -561,10 +561,10 @@ app.post('/', (req, res) => {
     // console.log('distance global ',distance);
 
     if(language == 'th'){
-      if (responsetext == 'You can not walk the same route.') {
-        responsetext = 'ไม่สามารถเดินซ้ำเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
+      if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
+        responsetext = 'ไม่สามารถเดินชนเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
-      else if (responsetext == 'crashing'){
+      else if (responsetext == 'crashing ,you must modify,delete or insert'){
         responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
       else if (responsetext == 'say play for play your actor'){
@@ -573,19 +573,19 @@ app.post('/', (req, res) => {
       else if (responsetext == 'have to use modify group order only.'){
         responsetext = 'ต้องแก้ไขคำสั่งเหล่านี้ก่อน';
       }
-      else if ( responsetext == 'go to maze 2'){
+      else if ( responsetext == 'In the stage two, you must modify,delete or insert'){
         responsetext = 'ด่าน 2 ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
-      else if (responsetext == 'go to maze 3'){
+      else if (responsetext == 'In the stage three, you must modify,delete or insert'){
         responsetext = 'ด่าน3แล้ว ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
-      else if (responsetext == 'go to maze 4'){
+      else if (responsetext == 'In the stage four, you must modify,delete or insert'){
         responsetext = 'ด่าน 4 แล้วต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
-      else if (responsetext == 'go to maze 5'){
+      else if (responsetext == 'In the stage five, you must modify,delete or insert'){
          responsetext = 'เข้าสู่ด่าน 5 เลย ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
-      else if (responsetext == 'go to maze 6'){
+      else if (responsetext == 'In the stage six, you must modify,delete or insert'){
         responsetext = 'ด่ายสุดท้ายต้องไปเก็บกุญแจโดยใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'I keep key already'){
@@ -594,8 +594,8 @@ app.post('/', (req, res) => {
       else if (responsetext == 'you have to keep a key frist'){
          responsetext = 'ต้องไปเก็บกุญแจก่อนมาไขประตูนะ';
       }
-      else if (responsetext == 'go to next state'){
-         responsetext = 'เก่งมากเลย ทำสำเร็จทุกด่านแล้ว มารับรางวัลที่พี่คนสวยนะคะ';
+      else if (responsetext == 'excellent!!'){
+         responsetext = 'เก่งมากเลย ทำสำเร็จทุกด่านแล้ว มารับรางวัลนะคะ';
       }
     }
   
