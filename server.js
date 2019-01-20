@@ -464,7 +464,7 @@ app.post('/', (req, res) => {
       checkState();
       console.log('order play1 ',order);
       console.log('distance play1 ',distance);
-      play_flag = false;
+      // play_flag = false;
     }
 
     function resetPosition(){
@@ -641,6 +641,7 @@ app.post('/', (req, res) => {
     startgame = null;
     character = null;
     delete_flag = false;
+    play_flag = false;
     number_deletecode = null;
     reset_flag = false;
     repeat_flag = false;
