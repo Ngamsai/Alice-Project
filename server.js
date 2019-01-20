@@ -94,6 +94,7 @@ app.post('/', (req, res) => {
       resetPosition();
       resetArrayOrder();
       console.log('show start ' , startgame);
+      console.log('Do is ',havetoDo_flag);
     }
     else if (character != null ) {
       status_state = 2;
@@ -629,6 +630,7 @@ app.post('/', (req, res) => {
     console.log('number of code modify',number);
     console.log('position insert ',insertPosition);
     console.log('state ',state);
+    console.log('have to do ',havetoDo_flag);
     // console.log('seq ',sequence);
     // console.log('repeat_f ',repeat_flag);
     console.log("playF ",play_flag);
