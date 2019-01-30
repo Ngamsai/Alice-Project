@@ -99,7 +99,7 @@ app.post('/', (req, res) => {
     else if (character != null ) {
       status_state = 2;
       console.log('actor is ' ,typeof character);
-      if (character != "1" || character != "2" ){
+      if (character == "1" || character == "2" ){
         responsetext = 'เลือกได้เฉพาะตัวที่ 1 หรือ 2 เท่านั้นนะคะ';
 
       }
