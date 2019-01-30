@@ -50,7 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.post('/', (req, res) => {
   
     console.log("***************************************************************************************************")
-    // console.log(req.body);
+    console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext = req.body.queryResult.fulfillmentText;
@@ -99,7 +99,7 @@ app.post('/', (req, res) => {
     else if (character != null ) {
       status_state = 2;
       console.log('actor is ' ,typeof character);
-      if (character != 1 || character != 2 ){
+      if (character != "1" || character != "2" ){
         responsetext = 'เลือกได้เฉพาะตัวที่ 1 หรือ 2 เท่านั้นนะคะ';
 
       }
