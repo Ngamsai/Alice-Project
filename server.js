@@ -102,7 +102,7 @@ app.post('/', (req, res) => {
       if (character == "1" || character == "2" ){
       }
       else{
-        responsetext = 'เลือกได้เฉพาะตัวที่ 1 หรือ 2 เท่านั้นนะคะ';
+        responsetext = 'you can choose 1 or 2 only';
       }
     }
     else if(play != null){
@@ -199,7 +199,7 @@ app.post('/', (req, res) => {
           havetoDo_flag = false;
         }
         else{
-          responsetext = 'have to use modify group order only.';
+          responsetext = 'you must use modify group order only.';
         }
         console.log("haveto ",havetoDo_flag);
       }
@@ -277,7 +277,7 @@ app.post('/', (req, res) => {
               for (var b = 0; b<position.length; b++){
                 // console.log('x ',maze_x,' y ',maze_y);
                 if(position[b][0] == maze_x && position[b][1] == maze_y){
-                  responsetext = 'You can not walk the same route.';
+                  responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                   console.log(position[b][0],position[b][1]);
                   repeat_flag = true;
                   console.log('access check repeat',repeat_flag);
@@ -285,11 +285,11 @@ app.post('/', (req, res) => {
               }
               position.push([maze_x,maze_y]);  
             }else{
-              responsetext = 'crashing';
+              responsetext = 'crashing ,you must modify,delete or insert';
               crash_flag = true;
               console.log('text clashing');
             }
-            if (responsetext == 'You can not walk the same route.'){
+            if (responsetext == 'You can not walk the same route, you must modify,delete or insert.'){
               position.pop();
               console.log('do function resetposition when repeat');
             }
@@ -338,7 +338,7 @@ app.post('/', (req, res) => {
               for (var d = 0; d<position.length; d++){
                 // console.log('x ',maze_x,' y ',maze_y);
                 if(position[d][0] == maze_x && position[d][1] == maze_y){
-                  responsetext = 'You can not walk the same route.';
+                  responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                   console.log(position[d][0],' ',position[d][1]);
                   repeat_flag = true;
                   console.log('access check repeat',repeat_flag); 
@@ -346,10 +346,10 @@ app.post('/', (req, res) => {
               }
               position.push([maze_x,maze_y]);
             }else{
-              responsetext = 'crashing';
+              responsetext = 'crashing ,you must modify,delete or insert';
               console.log('text clashing');
             }
-            if (responsetext == 'You can not walk the same route.'){
+            if (responsetext == 'You can not walk the same route, you must modify,delete or insert.'){
               position.pop();
               console.log('do function resetposition when repeat');
             }
@@ -562,7 +562,13 @@ app.post('/', (req, res) => {
     // console.log('distance global ',distance);
 
     if(language == 'th'){
-      if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
+      if (responsetext == 'you can choose 1 or 2 only') {
+        responsetext = 'เลือกได้เฉพาะเบอร์ 1 หรือ เบอร์ 2 เท่านั้นนะคะ';
+      }
+      else if (responsetext == 'you must use modify group order only.') {
+        responsetext = 'ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม เท่านั้นนะคะ'
+      }
+      else if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
         responsetext = 'ไม่สามารถเดินชนเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
       else if (responsetext == 'crashing ,you must modify,delete or insert'){
@@ -570,9 +576,6 @@ app.post('/', (req, res) => {
       }
       else if (responsetext == 'say play for play your actor'){
         responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
-      }
-      else if (responsetext == 'you must use modify group order only.'){
-        responsetext = 'ต้องแก้ไขคำสั่งเหล่านี้ก่อน';
       }
       else if ( responsetext == 'In the stage two, you must modify,delete or insert'){
         responsetext = 'ด่าน 2 ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
@@ -592,7 +595,7 @@ app.post('/', (req, res) => {
       else if (responsetext == 'I keep key already'){
          responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
       }
-      else if (responsetext == 'you have to keep a key frist'){
+      else if (responsetext == 'you have to keep a key first'){
          responsetext = 'ต้องไปเก็บกุญแจก่อนมาไขประตูนะ';
       }
       else if (responsetext == 'excellent!!'){
