@@ -25,7 +25,7 @@ var maze_x = 11;
 var maze_y = 1;
 var direction = 'E';
 var state = 'maze1';
-var status_state = 0;
+//var status_state = 0;
 var position_flag = true;
 var modify_flag = false;
 var delete_flag = false;
@@ -37,9 +37,9 @@ var crash_flag = false;
 var havetoDo_flag = false;
 var num = 500;
 // var sequence = 0;
+var tutorial_state = '0-0';
 var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
 var modify = null,delete_code = null,insert = null,play = null,reset = null,numberSequence = null,insertPosition = null,number = null,insert_position = null;
-// var ansQ2,anser;
 var number_deletecode = null ;
 var startgame = null ,language;
 var character;
@@ -90,6 +90,7 @@ app.post('/', (req, res) => {
       status_state = 1 ;
       state = 'maze1';
       havetoDo_flag = false;
+      tutorial_state = '0-0';
       resetPosition();
       resetArrayOrder();
       console.log('show start ' , startgame);
@@ -107,7 +108,9 @@ app.post('/', (req, res) => {
     else if(play != null){
       console.log('play is ',play);
       play_flag = true;
-      playFunction();
+      if (tutorial_state == null) {
+        playFunction();
+      }
       // console.log('numberSequence ',numberSequence); 
     }
     else if(modify != null){
@@ -121,20 +124,13 @@ app.post('/', (req, res) => {
       console.log('he will ',delete_code,' code number ',numberSequence);
       number_deletecode = numberSequence;
       delete_flag = true;
-      deleteCode();
+      if (tutorial_state == null) {
+        deleteCode();
+      }
     }
     else if(insert != null){
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
       number = numberSequence;
-      // if (language == 'th'){
-      //   if (insertPosition == 'ก่อน'){
-      //     insert_position == 'before';
-      //   }
-      //   else if(insertPosition == 'หลัง'){
-      //     insert_position == 'after';
-      //   }
-      // }
-      // console.log('insert position ',insertPosition);
       insert_position = insertPosition;
       // console.log('insert_position ',insert_position);
       insert_flag = true ;
@@ -144,16 +140,8 @@ app.post('/', (req, res) => {
       reset_flag = true;
       resetPosition();
       resetArrayOrder();
-      // insert_position = null;
-      // insert_flag = false;
-      // modify_flag = false;
-        
-      // delete_code = null;
-      // io.emit('reset',reset);
     }
-    // else if(anser != null){
-    //   console.log('ansQ2 is ',anser);
-    // }
+
     if (language == 'th'){
       if (insertPosition != null){
         if (insert_position == 'ก่อน'){
@@ -165,8 +153,132 @@ app.post('/', (req, res) => {
       }
     }
 
+    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามเรานะ พูดว่า เดินหน้า 2 ช่อง') {
+      tutorial_state = '1-1';
+    }
+    console.log('tutorial is ',tutorial_state);
+    if (tutorial_state == '1-1') {
+      if (order == 'เดินหน้า' && distance == '2') {
+        responsetext = 'พูดว่า เลี้ยวซ้าย 1 ครั้งเพื่อให้ตัวละครเลี้ยวซ้าย';
+        tutorial_state = '1-2';
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง';
+      }
+    }else if (tutorial_state == '1-2') {
+      if (order == 'เลี้ยวซ้าย' && distance == '1') {
+        responsetext = 'พูดว่า เดินหน้า 1 ช่อง';
+        tutorial_state = '1-3';
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย 1 ครั้ง';
+      }
+    }else if (tutorial_state == '1-3') {
+      if (order == 'เดินหน้า' && distance == '1') {
+        responsetext = 'พูดว่า เลี้ยวขวา 2 ครั้ง';
+        tutorial_state = '1-4';
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 1 ช่อง';
+      }
+    }else if (tutorial_state == '1-4'){
+      if (order == 'เลี้ยวขวา' && distance == '2') {
+        responsetext = 'ต่อไปลองพูดว่า เดินหน้าดูสิว่าจะเกิดอะไรขึ้น';
+        tutorial_state = '1-5';
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา 2 ครั้ง';
+      }
+    }else if (tutorial_state == '1-5') {
+      if (order == 'เดินหน้า' && distance == '1') {
+        responsetext = 'ไม่สามารถเดินชนเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า แก้ไขตัวที่ 5';
+        tutorial_state = '1-6';
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
+      }
+    }else if (tutorial_state == '1-6') {
+      if (modify_flag == true && number == '5') {
+        responsetext = 'พูดสิ่งที่ต้องการเปลี่ยนในบรรทัดที่ 5 มาเลย เช่นพูดว่า ถอยหลัง 1 ช่อง';
+        tutorial_state = '1-7';
+        modify_flag = false;
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขตัวที่ 5';
+      }
+    }else if (tutorial_state == '1-7') {
+      if (order == 'ถอยหลัง' && distance == '1') {
+        responsetext = 'พูดว่าเล่นเพื่อนย้ายตัวละครไปยังตำแหน่งใหม่';
+        tutorial_state = '1-8';
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง 1 ช่อง'
+      }
+    }else if (tutorial_state == '1-8') {
+      if (play_flag == true) {
+        responsetext = 'เปลี่ยนด่านใหม่มาแล้ว ตัวละครเดินไปได้ 2 ช่องแล้ว ต่อไปพูดว่า เลี้ยวซ้าย';
+        tutorial_state = '2-2';
+        play_flag = false;
+      }else {
+        responsetext = 'ต้องพูดว่าเล่นก่อนนะคะ';
+      }
+    }else if (tutorial_state == '2-2') {
+      if (order == 'เลี้ยวซ้าย' && distance == '1') {
+        responsetext = 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น';
+        tutorial_state = '2-3';
+      }else {
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย';
+      }
+    }else if (tutorial_state == '2-3') {
+      if (order == 'เดินหน้า' && distance == '1'){
+        responsetext == 'ไม่สามารถเดินเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า เพิ่มหลังตัวที่1';
+        tutorial_state = '2-4';
+      }else {
+        responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
+      }
+    }else if (tutorial_state == '2-4') {
+      if (insert_flag == true && insert_position == 'หลัง' && number == '1'){
+        responsetext = 'พูดว่า เดินหน้า 1 ช่อง เพื่อเพิ่มคำสั่งหลังบรรทัดที่1';
+        tutorial_state = '2-5';
+        insert_flag = false;
+      }else {
+        responsetext = 'ต้องพูดว่า เพิ่มหลังตัวที่1นะ';
+      }
+    }else if (tutorial_state == '2-5') {
+        if (order == 'เดินหน้า' && distance == '1') {
+          responsetext = 'พูดว่าเล่นเพื่อเดินตัวละคร';
+          tutorial_state == '2-6';
+        }else {
+          responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า1ช่องนะคะ ลองพูดใหม่อีกครั้งนะคะ';
+        }
+    }else if (tutorial_state == '2-6') {
+      if (play_flag == true) {
+        responsetext  = 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้วจะเดินเข้าประตูต้องพูดว่า ถอยหลัง 2 ช่องนะ';
+        tutorial_state = '3-5';
+        play_flag = false;
+      }else {
+        responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะตัวละครถึงจะเดินมาที่แก้มา';
+      }
+    }else if (tutorial_state == '3-5') {
+      if (order == 'ถอยหลัง' && distance == '2') {
+        responsetext = 'ผ่านด่านมาแล้วด่านต่อไปเดินย้อนกลับไม่ได้ ต้องพูดว่า ลบตัวที่ 5';
+        tutorial_state = '3-6';
+      }else {
+        responsetext = 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 2 ช่องนะ';
+      }
+    }else if (tutorial_state == '3-6') {
+      if (delete_flag == true && number_deletecode == '5') {
+        responsetext = 'พูดว่าเล่นเพื่อนเดินตัวละคร';
+        tutorial_state = '3-7';
+        delete_flag = false;
+      }else {
+        responsetext = 'แค่ลบตัวที่ 5 ทิ้งก็เข้าประตูได้แล้วนะ';
+      }
+    }else if (tutorial_state == '3-7') {
+      if (play_flag == true) {
+        responsetext = 'เรียนจบแล้วต่อไปเป็นการทดสอบน้าเดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ';
+        play_flag = false;
+        tutorial_state = null;
+      }else {
+        responsetext = 'ต้องพูดว่าเล่นก่อนนะ';
+      }
+    }
+    
     //when maze state will calculate this function
-    if (order != null && distance != null){
+    if (order != null && distance != null && tutorial_state == null){
       if (language == 'th'){
         if (order == "เดินหน้า"){
           order = "forward";
@@ -202,7 +314,7 @@ app.post('/', (req, res) => {
         }
         console.log("haveto ",havetoDo_flag);
       }
-      if (modify_flag){
+      if (modify_flag && tutorial_state == null){
         // console.log('order change is ',order);
         // console.log('distance change is ',distance);
         // console.log('number ',number);
@@ -217,7 +329,7 @@ app.post('/', (req, res) => {
         //   }
         // }
       }
-      else if (insert_flag){
+      else if (insert_flag && tutorial_state == null){
         if (insert_position == 'before'){
           number = number - 1 ;
           arrayOrder.splice(number, 0, [order,distance]);
