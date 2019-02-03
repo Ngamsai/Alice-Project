@@ -214,6 +214,7 @@ app.post('/', (req, res) => {
         tutorial_state = '1-8';
         status_state = 9;
         modify_flag = false;
+        number = null;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง 1 ช่อง'
       }
@@ -230,7 +231,6 @@ app.post('/', (req, res) => {
         responsetext = 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น';
         tutorial_state = '2-3';
         status_state = 11;
-        play_flag = false;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย';
       }
@@ -255,6 +255,8 @@ app.post('/', (req, res) => {
           responsetext = 'พูดว่าเล่นเพื่อเดินตัวละคร';
           tutorial_state == '2-6';
           status_state = 14;
+          insert_position = null;
+          number = null;
           insert_flag = false;
         }else {
           responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า1ช่องนะคะ ลองพูดใหม่อีกครั้งนะคะ';
@@ -272,7 +274,6 @@ app.post('/', (req, res) => {
         responsetext = 'ผ่านด่านมาแล้วด่านต่อไปเดินย้อนกลับไม่ได้ ต้องพูดว่า ลบตัวที่ 5';
         tutorial_state = '3-6';
         status_state = 16;
-        play_flag = false;
       }else {
         responsetext = 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 2 ช่องนะ';
       }
@@ -289,7 +290,6 @@ app.post('/', (req, res) => {
         responsetext = 'เรียนจบแล้วต่อไปเป็นการทดสอบน้าเดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ';
         status_state = 18;
         tutorial_state = null;
-        delete_flag = false;
       }else {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะ';
       }
