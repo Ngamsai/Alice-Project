@@ -155,9 +155,7 @@ app.post('/', (req, res) => {
 
     if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามเรานะ พูดว่า เดินหน้า 2 ช่อง') {
       tutorial_state = '1-1';
-    }
-    console.log('tutorial is ',tutorial_state);
-    if (tutorial_state == '1-1') {
+    }else if (tutorial_state == '1-1') {
       if (order == 'เดินหน้า' && distance == '2') {
         responsetext = 'พูดว่า เลี้ยวซ้าย 1 ครั้งเพื่อให้ตัวละครเลี้ยวซ้าย';
         tutorial_state = '1-2';
@@ -276,6 +274,8 @@ app.post('/', (req, res) => {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะ';
       }
     }
+
+    console.log('tutorial is ',tutorial_state);
     
     //when maze state will calculate this function
     if (order != null && distance != null && tutorial_state == null){
