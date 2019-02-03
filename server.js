@@ -83,18 +83,23 @@ app.post('/', (req, res) => {
        console.log('show left_right_direction ', order);
     }
     //show value
-    if(distance != null){
-      console.log('show distance ', distance);
-    }  
-    else if(startgame != null){
-      status_state = 1 ;
+    if (req.body.queryResult.action =='input.welcome') {
+      status_state = 0 ;
       state = 'maze1';
       havetoDo_flag = false;
       tutorial_state = '0-0';
       resetPosition();
       resetArrayOrder();
+      console.log('all position when restart',position);
+      console.log('array of order when restart',arrayOrder);
+    }
+    else if(distance != null){
+      console.log('show distance ', distance);
+    }  
+    else if(startgame != null && status_state == 0){
+      status_state = 1 ;
       console.log('show start ' , startgame);
-      console.log('Do is ',havetoDo_flag);
+      // console.log('Do is ',havetoDo_flag);
     }
     else if (character != null && status_state == 1) {
       status_state = 2;
