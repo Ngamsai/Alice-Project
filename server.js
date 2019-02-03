@@ -204,7 +204,6 @@ app.post('/', (req, res) => {
       if (modify_flag == true && number == '5') {
         responsetext = 'พูดสิ่งที่ต้องการเปลี่ยนในบรรทัดที่ 5 มาเลย เช่นพูดว่า ถอยหลัง 1 ช่อง';
         tutorial_state = '1-7';
-        modify_flag = false;
         status_state = 8;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขตัวที่ 5';
@@ -214,6 +213,7 @@ app.post('/', (req, res) => {
         responsetext = 'พูดว่าเล่นเพื่อนย้ายตัวละครไปยังตำแหน่งใหม่';
         tutorial_state = '1-8';
         status_state = 9;
+        modify_flag = false;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง 1 ช่อง'
       }
@@ -221,7 +221,6 @@ app.post('/', (req, res) => {
       if (play_flag == true) {
         responsetext = 'เปลี่ยนด่านใหม่มาแล้ว ตัวละครเดินไปได้ 2 ช่องแล้ว ต่อไปพูดว่า เลี้ยวซ้าย';
         tutorial_state = '2-2';
-        play_flag = false;
         status_state = 10;
       }else {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะคะ';
@@ -231,6 +230,7 @@ app.post('/', (req, res) => {
         responsetext = 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น';
         tutorial_state = '2-3';
         status_state = 11;
+        play_flag = false;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย';
       }
@@ -246,7 +246,6 @@ app.post('/', (req, res) => {
       if (insert_flag == true && insert_position == 'หลัง' && number == '1'){
         responsetext = 'พูดว่า เดินหน้า 1 ช่อง เพื่อเพิ่มคำสั่งหลังบรรทัดที่1';
         tutorial_state = '2-5';
-        insert_flag = false;
         status_state = 13;
       }else {
         responsetext = 'ต้องพูดว่า เพิ่มหลังตัวที่1นะ';
@@ -256,6 +255,7 @@ app.post('/', (req, res) => {
           responsetext = 'พูดว่าเล่นเพื่อเดินตัวละคร';
           tutorial_state == '2-6';
           status_state = 14;
+          insert_flag = false;
         }else {
           responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า1ช่องนะคะ ลองพูดใหม่อีกครั้งนะคะ';
         }
@@ -263,7 +263,6 @@ app.post('/', (req, res) => {
       if (play_flag == true) {
         responsetext  = 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้วจะเดินเข้าประตูต้องพูดว่า ถอยหลัง 2 ช่องนะ';
         tutorial_state = '3-5';
-        play_flag = false;
         status_state = 15;
       }else {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะตัวละครถึงจะเดินมาที่แก้มา';
@@ -273,6 +272,7 @@ app.post('/', (req, res) => {
         responsetext = 'ผ่านด่านมาแล้วด่านต่อไปเดินย้อนกลับไม่ได้ ต้องพูดว่า ลบตัวที่ 5';
         tutorial_state = '3-6';
         status_state = 16;
+        play_flag = false;
       }else {
         responsetext = 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 2 ช่องนะ';
       }
@@ -280,7 +280,6 @@ app.post('/', (req, res) => {
       if (delete_flag == true && number_deletecode == '5') {
         responsetext = 'พูดว่าเล่นเพื่อนเดินตัวละคร';
         tutorial_state = '3-7';
-        delete_flag = false;
         status_state = 17;
       }else {
         responsetext = 'แค่ลบตัวที่ 5 ทิ้งก็เข้าประตูได้แล้วนะ';
@@ -288,9 +287,9 @@ app.post('/', (req, res) => {
     }else if (tutorial_state == '3-7' && status_state == 17) {
       if (play_flag == true) {
         responsetext = 'เรียนจบแล้วต่อไปเป็นการทดสอบน้าเดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ';
-        play_flag = false;
         status_state = 18;
         tutorial_state = null;
+        delete_flag = false;
       }else {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะ';
       }
