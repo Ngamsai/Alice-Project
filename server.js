@@ -158,10 +158,26 @@ app.post('/', (req, res) => {
       }
     }
 
+    if (order != null && distance != null){
+      if (language == 'th'){
+        if (order == "เดินหน้า"){
+          order = "forward";
+        }
+        else if (order == "ถอยหลัง"){
+          order = "backward";
+        }
+        else if (order == "เลี้ยวซ้าย"){
+          order = "left";
+        }
+        else if (order == "เลี้ยวขวา"){
+          order = "right";
+        }
+    }
+
     if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามเรานะ พูดว่า เดินหน้า 2 ช่อง') {
       tutorial_state = '1-1';
     }else if (tutorial_state == '1-1' && status_state == 2) {
-      if (order == 'เดินหน้า' && distance == '2') {
+      if (order == 'forward' && distance == '2') {
         responsetext = 'พูดว่า เลี้ยวซ้าย 1 ครั้งเพื่อให้ตัวละครเลี้ยวซ้าย';
         tutorial_state = '1-2';
         status_state = 3;
@@ -169,7 +185,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง';
       }
     }else if (tutorial_state == '1-2' && status_state == 3) {
-      if (order == 'เลี้ยวซ้าย' && distance == '1') {
+      if (order == 'left' && distance == '1') {
         responsetext = 'พูดว่า เดินหน้า 1 ช่อง';
         tutorial_state = '1-3';
         status_state = 4;
@@ -177,7 +193,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย 1 ครั้ง';
       }
     }else if (tutorial_state == '1-3' && status_state == 4) {
-      if (order == 'เดินหน้า' && distance == '1') {
+      if (order == 'forward' && distance == '1') {
         responsetext = 'พูดว่า เลี้ยวขวา 2 ครั้ง';
         tutorial_state = '1-4';
         status_state = 5;
@@ -185,7 +201,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 1 ช่อง';
       }
     }else if (tutorial_state == '1-4' && status_state == 5){
-      if (order == 'เลี้ยวขวา' && distance == '2') {
+      if (order == 'right' && distance == '2') {
         responsetext = 'ต่อไปลองพูดว่า เดินหน้าดูสิว่าจะเกิดอะไรขึ้น';
         tutorial_state = '1-5';
         status_state = 6;
@@ -193,7 +209,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา 2 ครั้ง';
       }
     }else if (tutorial_state == '1-5' && status_state == 6) {
-      if (order == 'เดินหน้า' && distance == '1') {
+      if (order == 'forward' && distance == '1') {
         responsetext = 'ไม่สามารถเดินชนเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า แก้ไขตัวที่ 5';
         tutorial_state = '1-6';
         status_state = 7;
@@ -209,7 +225,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขตัวที่ 5';
       }
     }else if (tutorial_state == '1-7' && status_state == 8) {
-      if (order == 'ถอยหลัง' && distance == '1') {
+      if (order == 'backward' && distance == '1') {
         responsetext = 'พูดว่าเล่นเพื่อนย้ายตัวละครไปยังตำแหน่งใหม่';
         tutorial_state = '1-8';
         status_state = 9;
@@ -227,7 +243,7 @@ app.post('/', (req, res) => {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะคะ';
       }
     }else if (tutorial_state == '2-2' && status_state == 10) {
-      if (order == 'เลี้ยวซ้าย' && distance == '1') {
+      if (order == 'left' && distance == '1') {
         responsetext = 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น';
         tutorial_state = '2-3';
         status_state = 11;
@@ -235,7 +251,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย';
       }
     }else if (tutorial_state == '2-3' && status_state == 11) {
-      if (order == 'เดินหน้า' && distance == '1'){
+      if (order == 'forward' && distance == '1'){
         responsetext == 'ไม่สามารถเดินเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า เพิ่มหลังตัวที่1';
         tutorial_state = '2-4';
         status_state = 12;
@@ -243,7 +259,7 @@ app.post('/', (req, res) => {
         responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
       }
     }else if (tutorial_state == '2-4' && status_state == 12) {
-      if (insert_flag == true && insert_position == 'หลัง' && number == '1'){
+      if (insert_flag == true && insert_position == 'after' && number == '1'){
         responsetext = 'พูดว่า เดินหน้า 1 ช่อง เพื่อเพิ่มคำสั่งหลังบรรทัดที่1';
         tutorial_state = '2-5';
         status_state = 13;
@@ -251,7 +267,7 @@ app.post('/', (req, res) => {
         responsetext = 'ต้องพูดว่า เพิ่มหลังตัวที่1นะ';
       }
     }else if (tutorial_state == '2-5' && status_state == 13) {
-        if (order == 'เดินหน้า' && distance == '1') {
+        if (order == 'forward' && distance == '1') {
           responsetext = 'พูดว่าเล่นเพื่อเดินตัวละคร';
           tutorial_state == '2-6';
           status_state = 14;
@@ -270,7 +286,7 @@ app.post('/', (req, res) => {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะตัวละครถึงจะเดินมาที่แก้มา';
       }
     }else if (tutorial_state == '3-5' && status_state == 15) {
-      if (order == 'ถอยหลัง' && distance == '2') {
+      if (order == 'backward' && distance == '2') {
         responsetext = 'ผ่านด่านมาแล้วด่านต่อไปเดินย้อนกลับไม่ได้ ต้องพูดว่า ลบตัวที่ 5';
         tutorial_state = '3-6';
         status_state = 16;
@@ -299,28 +315,9 @@ app.post('/', (req, res) => {
     
     //when maze state will calculate this function
     if (order != null && distance != null && tutorial_state == null && status_state == 18){
-      if (language == 'th'){
-        if (order == "เดินหน้า"){
-          order = "forward";
-        }
-        else if (order == "ถอยหลัง"){
-          order = "backward";
-        }
-        else if (order == "เลี้ยวซ้าย"){
-          order = "left";
-        }
-        else if (order == "เลี้ยวขวา"){
-          order = "right";
-        }
-        ComputePosition();
-        keepArrayOrder();
-        checkState();
-      }
-      else if (language == 'en' || language == 'en-us'){
-        ComputePosition();
-        keepArrayOrder();
-        checkState();
-      }
+      ComputePosition();
+      keepArrayOrder();
+      checkState();
     }
 
     function ComputePosition (){
