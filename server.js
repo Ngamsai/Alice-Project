@@ -760,6 +760,7 @@ app.post('/', (req, res) => {
           else if (order == "เลี้ยวขวา"){
             order = "right";
           }
+        }
       }
     }
     
