@@ -286,7 +286,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '2-3' && status_state == 11) {
       if (order == 'forward' && distance == '1'){
-        responsetext == 'ไม่สามารถเดินเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า เพิ่มหลังตัวที่1';
+        responsetext = 'ไม่สามารถเดินเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า เพิ่มหลังตัวที่1';
         tutorial_state = '2-4';
         status_state = 12;
       }else {
