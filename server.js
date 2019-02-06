@@ -101,54 +101,70 @@ app.post('/', (req, res) => {
       console.log('show start ' , startgame);
       // console.log('Do is ',havetoDo_flag);
     }
-    else if (character != null && status_state == 1) {
-      status_state = 2;
-      console.log('actor is ' ,typeof character);
-      if (character == "1" || character == "2" ){
+    else if (character != null) {
+      if (status_state == 1){
+        console.log('actor is ' ,character);
+        if (character == "1" || character == "2" ){
+          status_state = 2;
+        }
+        else{
+          responsetext = 'you can choose 1 or 2 only';
+        }
+      }else {
+        responsetext = 'Sorry, could you say that again?';
       }
-      else{
-        responsetext = 'you can choose 1 or 2 only';
-      }
+      
+      
     }
     else if(play != null){
       console.log('play is ',play);
       play_flag = true;
-      if (tutorial_state == null) {
+      if (status_state == 9){
+        console.log('tutorial_state9_play_flag ',play_flag);
+      }else if (status_state == 14){
+        console.log('tutorial_state14_play_flag ',play_flag);
+      }else if (status_state == 17){
+        console.log('tutorial_state17_play_flag ',play_flag);
+      }else  if  (status_state == 19) {
         playFunction();
+      }else {
+        play_flag = false;
+        responsetext = 'can not play your code now';
       }
       // console.log('numberSequence ',numberSequence); 
     }
     else if(modify != null){
-      console.log('he will ',modify,' in number ',numberSequence);
       modify_flag = true;
       number = numberSequence;
-      // console.log('mod def ',modify_flag);
-      // console.log('number ',number);
+      if (status_state == 7) {
+        console.log('tutorial_state7_mod_flag ',modify_flag,' num ',number)
+      }else if (status_state == 19){
+        console.log('tutorial_state7_mod_flag ',modify_flag,' num ',number)
+      }else {
+        modify_flag = false;
+        responsetext = 'can not change your code now';
+      }
+      console.log('he will ',modify,'status-mod ',modify_flag,' in number ',numberSequence);
     }
     else if(delete_code != null){
-      console.log('he will ',delete_code,' code number ',numberSequence);
       number_deletecode = numberSequence;
       delete_flag = true;
-      if (tutorial_state == null) {
+      if (status_state == 16){
+        console.log('tutorial_state16_del_flag ',delete_flag,' num ',number_deletecode)
+      }else  if (status_state == 19){
+        console.log('tutorial_state19_del_flag ',delete_flag,' num ',number_deletecode)
         deleteCode();
+      }else {
+        delete_flag = false;
+        responsetext = 'can not delete your code now';
       }
+      console.log('he will ',delete_code,'status-delete ',delete_flag,' delete_number ',numberSequence);
     }
     else if(insert != null){
-      console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
       number = numberSequence;
       insert_position = insertPosition;
-      // console.log('insert_position ',insert_position);
       insert_flag = true ;
-    }
-    else if(reset != null){
-      console.log('reset ',reset);
-      reset_flag = true;
-      resetPosition();
-      resetArrayOrder();
-    }
-
-    if (language == 'th'){
-      if (insertPosition != null){
+      if (language == 'th'){
         if (insert_position == 'ก่อน'){
           insert_position = 'before';
         }
@@ -156,6 +172,23 @@ app.post('/', (req, res) => {
           insert_position = 'after';
         } 
       }
+      console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
+      if (status_state == 12){
+        console.log('tutorial_state12_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
+      }else if (status_state == 19) {
+        console.log('tutorial_state12_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
+      }else{
+        responsetext = 'can not add your code now';
+      }
+    }
+    else if(reset != null){
+      if (status_state == 19){
+        console.log('reset in true_state ',reset);
+        reset_flag = true;
+        resetPosition();
+        resetArrayOrder();
+      }
+      console.log('reset ',reset);
     }
 
     if (order != null && distance != null){
@@ -175,7 +208,9 @@ app.post('/', (req, res) => {
       }
     }
 
-    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามเรานะ พูดว่า เดินหน้า 2 ช่อง') {
+    console.log('state ',status_state);
+
+    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เดินหน้า 2 ช่อง') {
       tutorial_state = '1-1';
     }else if (tutorial_state == '1-1' && status_state == 2) {
       if (order == 'forward' && distance == '2') {
@@ -203,7 +238,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-4' && status_state == 5){
       if (order == 'right' && distance == '2') {
-        responsetext = 'ต่อไปลองพูดว่า เดินหน้าดูสิว่าจะเกิดอะไรขึ้น';
+        responsetext = 'ต่อไปลองพูดว่า เดินหน้าดูสิว่าจะเกิดอะไรขึ้น';//ที่นี้ลองดูซิว่าจะเกิดอะไรขึ้นเมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า
         tutorial_state = '1-5';
         status_state = 6;
       }else {
@@ -211,7 +246,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-5' && status_state == 6) {
       if (order == 'forward' && distance == '1') {
-        responsetext = 'ไม่สามารถเดินชนเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า แก้ไขตัวที่ 5';
+        responsetext = 'ไม่สามารถเดินชนเส้นทางเดิมได้ ต้องแก้ไขคำสั่งนี้ก่อนเช่นพูดว่า แก้ไขตัวที่ 5';//ขอให้แก้ไขคำสั่งโดยพูดว่าแก้ไขตัวที่5
         tutorial_state = '1-6';
         status_state = 7;
       }else {
@@ -227,17 +262,15 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-7' && status_state == 8) {
       if (order == 'backward' && distance == '1') {
-        responsetext = 'พูดว่าเล่นเพื่อนย้ายตัวละครไปยังตำแหน่งใหม่';
+        responsetext = 'พูดว่าเล่นเพื่อย้ายตัวละครไปยังตำแหน่งใหม่';//ที่นี้ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้งพูดว่า เล่นใหม่ 
         tutorial_state = '1-8';
         status_state = 9;
-        modify_flag = false;
-        number = null;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง 1 ช่อง'
       }
     }else if (tutorial_state == '1-8' && status_state == 9) {
       if (play_flag == true) {
-        responsetext = 'เปลี่ยนด่านใหม่มาแล้ว ตัวละครเดินไปได้ 2 ช่องแล้ว ต่อไปพูดว่า เลี้ยวซ้าย';
+        responsetext = 'เปลี่ยนด่านใหม่มาแล้ว ตัวละครเดินไปได้ 2 ช่องแล้ว ต่อไปพูดว่า เลี้ยวซ้าย';//ยินดีด้วยจบด่าน1แล้ว ที่นี้มาเล่นด่านที่2  
         tutorial_state = '2-2';
         status_state = 10;
       }else {
@@ -272,9 +305,6 @@ app.post('/', (req, res) => {
           responsetext = 'พูดว่าเล่นเพื่อเดินตัวละคร';
           tutorial_state == '2-6';
           status_state = 14;
-          insert_position = null;
-          number = null;
-          insert_flag = false;
         }else {
           responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า1ช่องนะคะ ลองพูดใหม่อีกครั้งนะคะ';
         }
@@ -767,6 +797,15 @@ app.post('/', (req, res) => {
     reset_flag = false;
     repeat_flag = false;
     crash_flag = false;
+
+    if (tutorial_state == '1-7' && status_state == 8){
+      modify_flag = false;
+      number = null;
+    }else if (tutorial_state == '2-5' && status_state == 13){
+      insert_flag = false;
+      insert_position = null;
+      number =null;
+    }
     
     // reset = null
     // var num = distance*1000;
@@ -804,4 +843,6 @@ io.on('connect_error', function (data) {
 http.listen(port, function () {
     console.log('listening on *: ' + port);
 });
+
+// สร่าง block เดินหน้า 3 เลี้ยวขวา แทนเป็น A ทำ A 4 ครั้ง  ต่อไป ทำ A โดยลดระยะลง 1 ทุกครั้ง ทำซ้อน block ซ้อน block
      
