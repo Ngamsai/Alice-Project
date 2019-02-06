@@ -290,7 +290,7 @@ app.post('/', (req, res) => {
         tutorial_state = '2-4';
         status_state = 12;
       }else {
-        responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
       }
     }else if (tutorial_state == '2-4' && status_state == 12) {
       if (insert_flag == true && insert_position == 'after' && number == '1'){
