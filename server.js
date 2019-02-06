@@ -346,15 +346,15 @@ app.post('/', (req, res) => {
     
     //when maze state will calculate this function
     if (order != null && distance != null && tutorial_state == null && status_state == 18){
-      status_state = 19;
       ComputePosition();
       keepArrayOrder();
       checkState();
+      status_state = 19;
     }
 
     function ComputePosition (){
       console.log('compteposition access');
-      if (havetoDo_flag){
+      if (havetoDo_flag && status_state == 19){
         if (modify_flag == true || insert_flag == true || delete_flag == true || reset != null){
           havetoDo_flag = false;
         }
@@ -363,7 +363,7 @@ app.post('/', (req, res) => {
         }
         console.log("haveto ",havetoDo_flag);
       }
-      if (modify_flag && tutorial_state == null){
+      if (modify_flag && status_state == 19){
         // console.log('order change is ',order);
         // console.log('distance change is ',distance);
         // console.log('number ',number);
@@ -378,7 +378,7 @@ app.post('/', (req, res) => {
         //   }
         // }
       }
-      else if (insert_flag && tutorial_state == null){
+      else if (insert_flag && status_state == 19){
         if (insert_position == 'before'){
           number = number - 1 ;
           arrayOrder.splice(number, 0, [order,distance]);
@@ -390,7 +390,7 @@ app.post('/', (req, res) => {
         number = null ;
         insert_position = null;
       }
-      else if (havetoDo_flag == false || play_flag == true){
+      else if (havetoDo_flag == false || play_flag == true && status_state == 18){
         // console.log('order sh ',order);
         // console.log('disance sh ',distance);
         // console.log('in compute sh arr Order ',arrayOrder);
