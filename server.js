@@ -303,7 +303,7 @@ app.post('/', (req, res) => {
     }else if (tutorial_state == '2-5' && status_state == 13) {
         if (order == 'forward' && distance == '1') {
           responsetext = 'พูดว่าเล่นเพื่อเดินตัวละคร';
-          tutorial_state == '2-6';
+          tutorial_state = '2-6';
           status_state = 14;
         }else {
           responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า1ช่องนะคะ ลองพูดใหม่อีกครั้งนะคะ';
