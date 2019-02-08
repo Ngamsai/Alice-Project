@@ -317,7 +317,7 @@ app.post('/', (req, res) => {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะตัวละครถึงจะเดินมาที่แก้มา';
       }
     }else if (tutorial_state == '3-5' && status_state == 15) {
-      if (order == 'backward' && distance == '2') {
+      if (order == 'backward' && distance == '1') {
         responsetext = 'ผ่านด่านมาแล้วด่านต่อไปเดินย้อนกลับไม่ได้ ต้องพูดว่า ลบตัวที่ 5';
         tutorial_state = '3-6';
         status_state = 16;
