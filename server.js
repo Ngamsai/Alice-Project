@@ -273,6 +273,7 @@ app.post('/', (req, res) => {
       if (play_flag == true) {
         responsetext = 'ยินดีด้วยจบด่าน1แล้ว ทีนี้มาเล่นด่านที่2 สังเกตคำสั่งว่าตัวละครเดินมา 2 ช่องแล้ว ต่อไปให้พูดว่าเลี้ยวซ้าย';
         status_state = 10;
+        tutorial_state = '2-2';
       }else {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะคะ';
       }
