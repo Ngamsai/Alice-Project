@@ -303,7 +303,7 @@ app.post('/', (req, res) => {
     }else if (tutorial_state == '2-5' && status_state == 13) {
         if (order == 'forward' && distance == '1') {
           responsetext = 'พูดว่าเล่นเพื่อเดินตัวละคร';
-          tutorial_state == '2-6';
+          tutorial_state = '2-6';
           status_state = 14;
         }else {
           responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า1ช่องนะคะ ลองพูดใหม่อีกครั้งนะคะ';
@@ -317,7 +317,7 @@ app.post('/', (req, res) => {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะตัวละครถึงจะเดินมาที่แก้มา';
       }
     }else if (tutorial_state == '3-5' && status_state == 15) {
-      if (order == 'backward' && distance == '2') {
+      if (order == 'backward' && distance == '1') {
         responsetext = 'ผ่านด่านมาแล้วด่านต่อไปเดินย้อนกลับไม่ได้ ต้องพูดว่า ลบตัวที่ 5';
         tutorial_state = '3-6';
         status_state = 16;
