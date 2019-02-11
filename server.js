@@ -192,7 +192,6 @@ app.post('/', (req, res) => {
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
       if (status_state == 12){
         console.log('tutorial_state12_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
-        tutorial();
       }else if (status_state == 19) {
         console.log('tutorial_state12_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
       }else{
