@@ -243,6 +243,7 @@ app.post('/', (req, res) => {
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง';
       }
+      state = null;
     }else if (tutorial_state == '1-2' && status_state == 3) {
       if (order == 'left' && distance == '1') {
         responsetext = 'พูดว่า เดินหน้า 1 ช่อง';
@@ -282,7 +283,7 @@ app.post('/', (req, res) => {
         tutorial_state = '1-7';
         status_state = 8;
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขตัวที่ 5';
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขบรรทัดที่ 5';
       }
     }else if (tutorial_state == '1-7' && status_state == 8) {
       if (order == 'backward' && distance == '1') {
@@ -309,9 +310,10 @@ app.post('/', (req, res) => {
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย';
       }
+      state = null;
     }else if (tutorial_state == '2-3' && status_state == 11) {
       if (order == 'forward' && distance == '1'){
-        responsetext = 'ไม่สามารถเดินไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนให้พูดว่า เพิ่มหลังตัวที่1';
+        responsetext = 'ไม่สามารถเดินไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนให้พูดว่า เพิ่มหลังบรรทัดที่1';
         crash_flag = true;
         tutorial_state = '2-4';
         status_state = 12;
@@ -324,7 +326,7 @@ app.post('/', (req, res) => {
         tutorial_state = '2-5';
         status_state = 13;
       }else {
-        responsetext = 'ต้องพูดว่า เพิ่มหลังตัวที่1นะ';
+        responsetext = 'ต้องพูดว่า เพิ่มหลังบรรทัดที่1นะ';
       }
     }else if (tutorial_state == '2-5' && status_state == 13) {
         if (order == 'forward' && distance == '1') {
@@ -360,6 +362,7 @@ app.post('/', (req, res) => {
       }else {
         responsetext = 'แค่ลบบรรทัดที่ 5 ทิ้งก็เข้าประตูได้แล้วนะ';
       }
+      state = null;
     }else if (tutorial_state == '3-7' && status_state == 17) {
       if (play_flag == true) {
         responsetext = 'เรียนจบแล้วต่อไปเป็นการทดสอบน้า เดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ';
@@ -828,7 +831,6 @@ app.post('/', (req, res) => {
     reset_flag = false;
     repeat_flag = false;
     crash_flag = false;
-    state = null;
 
     if (tutorial_state == '1-7' && status_state == 8){
       modify_flag = false;
