@@ -93,8 +93,16 @@ app.post('/', (req, res) => {
       console.log('all position when restart',position);
       console.log('array of order when restart',arrayOrder);
     }
-    else if(distance != null){
-      console.log('show distance ', distance);
+    else if(order != null && distance != null){
+      console.log('sh order',order,'show distance ', distance);
+      if (tutorial_state != null){
+        tutorial();
+      }else{
+        ComputePosition();
+        keepArrayOrder();
+        checkState();
+        status_state = 19;
+      }
     }  
     else if(startgame != null && status_state == 0){
       status_state = 1 ;
@@ -356,12 +364,12 @@ app.post('/', (req, res) => {
     console.log('tutorial is ',tutorial_state);
     
     //when maze state will calculate this function
-    if (order != null && distance != null && tutorial_state == null && status_state == 18){
-      ComputePosition();
-      keepArrayOrder();
-      checkState();
-      status_state = 19;
-    }
+    // if (order != null && distance != null && tutorial_state == null && status_state == 18){
+    //   ComputePosition();
+    //   keepArrayOrder();
+    //   checkState();
+    //   status_state = 19;
+    // }
 
     function ComputePosition (){
       console.log('compteposition access');
