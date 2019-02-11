@@ -824,6 +824,7 @@ app.post('/', (req, res) => {
     reset_flag = false;
     repeat_flag = false;
     crash_flag = false;
+    state = null;
 
     if (tutorial_state == '1-7' && status_state == 8){
       modify_flag = false;
