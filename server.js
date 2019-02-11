@@ -95,13 +95,13 @@ app.post('/', (req, res) => {
     }
     else if(order != null && distance != null){
       console.log('sh order',order,'show distance ', distance);
-      if (tutorial_state != null){
-        tutorial();
-      }else{
+      if (tutorial_state == null){
         ComputePosition();
         keepArrayOrder();
         checkState();
         status_state = 19;
+      }else{
+        tutorial();
       }
     }  
     else if(startgame != null && status_state == 0){
