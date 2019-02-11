@@ -225,6 +225,7 @@ app.post('/', (req, res) => {
     }
 
     console.log('state ',status_state);
+    console.log('tutorial is ',tutorial_state);
 
     function tutorial (){
       if (tutorial_state == '1-1' && status_state == 2) {
@@ -360,7 +361,6 @@ app.post('/', (req, res) => {
         }
       }
     }
-    console.log('tutorial is ',tutorial_state);
     
     //when maze state will calculate this function
     // if (order != null && distance != null && tutorial_state == null && status_state == 18){
