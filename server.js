@@ -296,11 +296,11 @@ app.post('/', (req, res) => {
         responsetext = 'ยินดีด้วยจบด่าน1แล้ว ทีนี้มาเล่นด่านที่2 สังเกตคำสั่งว่าตัวละครเดินมา 2 ช่องแล้ว ต่อไปให้พูดว่าเลี้ยวซ้าย';
         status_state = 10;
         tutorial_state = '2-2';
+        state = 'tutorial_state2';
       }else {
-        responsetext = 'ต้องพูดว่าเล่นก่อนนะคะ';
+        responsetext = 'ต้องพูดว่าเล่นก่อนนะคะ';//flow control ,action posiger
       }
     }else if (tutorial_state == '2-2' && status_state == 10) {
-      state = 'tutorial_state2';
       if (order == 'left' && distance == '1') {
         responsetext = 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น';
         tutorial_state = '2-3';
@@ -337,6 +337,7 @@ app.post('/', (req, res) => {
         responsetext  = 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้ว จะเดินเข้าประตูต้องพูดว่า ถอยหลัง 1 ช่องนะ';
         tutorial_state = '3-5';
         status_state = 15;
+        tutorial_state = '3-6';
       }else {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะ';
       }
@@ -344,7 +345,6 @@ app.post('/', (req, res) => {
       state = 'tutorial_state3';
       if (order == 'backward' && distance == '1') {
         responsetext = 'ผ่านด่านมาแล้ว  ไม่สามารถเดินทับเส้นทางเดิมได้  ฉะนั้นด่านต่อไป ต้องพูดว่า ลบบรรทัดที่ 5';
-        tutorial_state = '3-6';
         status_state = 16;
       }else {
         responsetext = 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 1 ช่องนะ';
