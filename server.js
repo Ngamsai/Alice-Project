@@ -261,7 +261,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-4' && status_state == 5){
       if (order == 'right' && distance == '2') {
-        responsetext = 'ทีนี้ลองดูซิว่าจะเกิดอะไรขึ้นเมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า';
+        responsetext = 'ทีนี้ ลองดูซิว่าจะเกิดอะไรขึ้น เมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า';
         tutorial_state = '1-5';
         status_state = 6;
       }else {
@@ -285,7 +285,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-7' && status_state == 8) {
       if (order == 'backward' && distance == '1') {
-        responsetext = 'ที่นี้ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้งพูดว่า เล่นใหม่'; 
+        responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่'; 
         tutorial_state = '1-8';
         status_state = 9;
       }else {
@@ -326,7 +326,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '2-5' && status_state == 13) {
         if (order == 'forward' && distance == '1') {
-          responsetext = 'ที่นี้ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้งพูดว่า เล่นใหม่';
+          responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่';
           tutorial_state = '2-6';
           status_state = 14;
         }else {
@@ -337,21 +337,22 @@ app.post('/', (req, res) => {
         responsetext  = 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้ว จะเดินเข้าประตูต้องพูดว่า ถอยหลัง 1 ช่องนะ';
         tutorial_state = '3-5';
         status_state = 15;
-        tutorial_state = '3-6';
+        state = 'tutorial_state3';
       }else {
         responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะ';
       }
     }else if (tutorial_state == '3-5' && status_state == 15) {
-      state = 'tutorial_state3';
       if (order == 'backward' && distance == '1') {
         responsetext = 'ผ่านด่านมาแล้ว  ไม่สามารถเดินทับเส้นทางเดิมได้  ฉะนั้นด่านต่อไป ต้องพูดว่า ลบบรรทัดที่ 5';
         status_state = 16;
+        tutorial_state = '3-6';
+        state = 'tutorial_state4';
       }else {
         responsetext = 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 1 ช่องนะ';
       }
     }else if (tutorial_state == '3-6' && status_state == 16) {
       if (delete_flag == true && number_deletecode == '5') {
-        responsetext = 'ที่นี้ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้งพูดว่า เล่นใหม่';
+        responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่';
         tutorial_state = '3-7';
         status_state = 17;
       }else {
