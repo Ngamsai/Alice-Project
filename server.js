@@ -135,10 +135,6 @@ app.post('/', (req, res) => {
       }else {
         responsetext = 'Sorry, could you say that again?';
       }
-      if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เดินหน้า 2 ช่อง') {
-        tutorial_state = '1-1';
-        state = 'tutorial_state1';
-      }
     }
     else if(play != null){
       console.log('play is ',play);
@@ -236,8 +232,11 @@ app.post('/', (req, res) => {
     console.log('tutorial is ',tutorial_state);
 
     
-      
-    if (tutorial_state == '1-1' && status_state == 2) {
+    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เดินหน้า 2 ช่อง') {
+      tutorial_state = '1-1';
+      state = 'tutorial_state1';
+    }  
+    else if (tutorial_state == '1-1' && status_state == 2) {
       if (order == 'forward' && distance == '2') {
         responsetext = 'พูดว่า เลี้ยวซ้าย 1 ครั้ง';
         tutorial_state = '1-2';
