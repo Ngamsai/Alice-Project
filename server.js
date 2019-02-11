@@ -271,6 +271,7 @@ app.post('/', (req, res) => {
       if (order == 'forward' && distance == '1') {
         responsetext = 'ไม่สามารถเดินทับเส้นทางเดิมได้ ขอให้แก้ไขคำสั่งโดยพูดว่าแก้ไขบรรทัดที่5';
         tutorial_state = '1-6';
+        repeat_flag = true;
         status_state = 7;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
@@ -311,6 +312,7 @@ app.post('/', (req, res) => {
     }else if (tutorial_state == '2-3' && status_state == 11) {
       if (order == 'forward' && distance == '1'){
         responsetext = 'ไม่สามารถเดินไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนให้พูดว่า เพิ่มหลังตัวที่1';
+        crash_flag = true;
         tutorial_state = '2-4';
         status_state = 12;
       }else {
@@ -532,6 +534,7 @@ app.post('/', (req, res) => {
               }
               position.push([maze_x,maze_y]);
             }else{
+              crash_flag = true;
               responsetext = 'crashing ,you must modify,delete or insert';
               console.log('text clashing');
             }
@@ -603,11 +606,11 @@ app.post('/', (req, res) => {
       else if (havetoDo_flag == false){  
         if (order == 'forward'||order == 'backward'){
           arrayOrder.push([order,distance]);
-          if(repeat_flag){
-            console.log('repeating ',repeat_flag);
+          // if(repeat_flag){
+          //   console.log('repeating ',repeat_flag);
             
-            //resetArrayOrder(); 
-          }
+          //   //resetArrayOrder(); 
+          // }
         }else if (order == 'left' || order == 'right'){
           arrayOrder.push([order,distance]);
         }
