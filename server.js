@@ -94,6 +94,20 @@ app.post('/', (req, res) => {
       console.log('array of order when restart',arrayOrder);
     }
     else if(order != null && distance != null){
+      if (language == 'th'){
+        if (order == "เดินหน้า"){
+          order = "forward";
+        }
+        else if (order == "ถอยหลัง"){
+          order = "backward";
+        }
+        else if (order == "เลี้ยวซ้าย"){
+          order = "left";
+        }
+        else if (order == "เลี้ยวขวา"){
+          order = "right";
+        }
+      }
       console.log('sh order',order,'show distance ', distance);
       if (tutorial_state == null){
         ComputePosition();
@@ -102,6 +116,7 @@ app.post('/', (req, res) => {
         status_state = 19;
       }else{
         tutorial();
+        console.log('will access tutorial');
       }
     }  
     else if(startgame != null && status_state == 0){
@@ -207,27 +222,28 @@ app.post('/', (req, res) => {
       console.log('reset ',reset);
     }
 
-    if (order != null && distance != null){
-      if (language == 'th'){
-        if (order == "เดินหน้า"){
-          order = "forward";
-        }
-        else if (order == "ถอยหลัง"){
-          order = "backward";
-        }
-        else if (order == "เลี้ยวซ้าย"){
-          order = "left";
-        }
-        else if (order == "เลี้ยวขวา"){
-          order = "right";
-        }
-      }
-    }
+    // if (order != null && distance != null){
+    //   if (language == 'th'){
+    //     if (order == "เดินหน้า"){
+    //       order = "forward";
+    //     }
+    //     else if (order == "ถอยหลัง"){
+    //       order = "backward";
+    //     }
+    //     else if (order == "เลี้ยวซ้าย"){
+    //       order = "left";
+    //     }
+    //     else if (order == "เลี้ยวขวา"){
+    //       order = "right";
+    //     }
+    //   }
+    // }
 
     console.log('state ',status_state);
     console.log('tutorial is ',tutorial_state);
 
     function tutorial (){
+      console.log('access tutorial');
       if (tutorial_state == '1-1' && status_state == 2) {
         if (order == 'forward' && distance == '2') {
           responsetext = 'พูดว่า เลี้ยวซ้าย 1 ครั้ง';
