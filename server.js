@@ -708,6 +708,7 @@ app.post('/', (req, res) => {
           maze_state = 'maze2';
           resetPosition();
           console.log('position pasent ',position);
+          console.log('maze_stste2 ',maze_state);
           havetoDo_flag = true;
         }
       }
@@ -718,6 +719,7 @@ app.post('/', (req, res) => {
           maze_state = 'maze3';
           resetPosition(position);
           console.log('position pasent ',position);
+          console.log('maze_stste3 ',maze_state);
           havetoDo_flag = true;
         }
       }
@@ -728,6 +730,7 @@ app.post('/', (req, res) => {
            maze_state = 'maze4';
            resetPosition(position);
           console.log('position pasent ',position);
+          console.log('maze_stste4 ',maze_state);
           havetoDo_flag = true;
         }
       }
@@ -738,6 +741,7 @@ app.post('/', (req, res) => {
             maze_state = 'maze5';
             resetPosition(position);
             console.log('position pasent ',position);
+            console.log('maze_stste5 ',maze_state);
             havetoDo_flag = true;
         }
       }
@@ -748,6 +752,7 @@ app.post('/', (req, res) => {
             maze_state = 'maze6';
             resetPosition(position);
             console.log('position pasent ',position);
+            console.log('maze_stste6 ',maze_state);
             havetoDo_flag = true;
         }
       }
@@ -838,6 +843,7 @@ app.post('/', (req, res) => {
     console.log('position insert ',insertPosition);
     console.log('state ',state);
     console.log('have to do ',havetoDo_flag);
+    console.log('maze_state ',maze_state);
     // console.log('seq ',sequence);
     // console.log('repeat_f ',repeat_flag);
     console.log("playF ",play_flag);
