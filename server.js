@@ -884,7 +884,7 @@ app.post('/', (req, res) => {
         responsetext = "You can say , what do you want to insert commands  after  line number 1 . Say forward 1 time";
       }
       else if (responsetext == 'ต้องพูดว่า เพิ่มหลังบรรทัดที่1นะ'){
-        responsetext = "Still can't speak properly, you have to say forward 1 times";
+        responsetext = "Still can't speak properly, you have to say insert after line 1";
       }
       else if (responsetext == 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้ว จะเดินเข้าประตูต้องพูดว่า ถอยหลัง 1 ช่องนะ'){
         responsetext = "Change to stage 3 ,then you near the door. To walk into the door, say back 1 time";
@@ -900,6 +900,9 @@ app.post('/', (req, res) => {
       }
       else if (responsetext == 'เรียนจบแล้วต่อไปเป็นการทดสอบน้า เดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ'){
         responsetext = "Passed the test , Next walk into the door to complete 6 stage";
+      }
+      else if (responsetext == 'ต้องพูดว่าเล่นใหม่ก่อนนะ') {
+        responsetext = 'Have to say replay first';
       }
     }
   
