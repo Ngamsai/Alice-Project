@@ -113,7 +113,7 @@ app.post('/', (req, res) => {
           order = "right";
         }
         else if (order == "กลับหลังหัน"){
-          order = "right";
+          order = "return";
           distance = '2';
         }
       }
@@ -271,7 +271,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 1 ช่อง';
       }
     }else if (tutorial_state == '1-4' && status_state == 5){
-      if (order == 'right' && distance == '2') {
+      if (order == 'return' && distance == '2') {
         responsetext = 'ทีนี้ ลองดูซิว่าจะเกิดอะไรขึ้น เมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า';
         tutorial_state = '1-5';
         status_state = 6;
