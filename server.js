@@ -615,13 +615,13 @@ app.post('/', (req, res) => {
       if (modify_flag){
         console.log('now mo array order is ',arrayOrder);
         console.log('no add array order');
-        responsetext = 'say play for play your actor';
+        responsetext = 'say replay for replay your actor';
         modify_flag = false;
       }
       else if (insert_flag){
         console.log('now insert array order is ',arrayOrder);
         console.log('no add array order');
-        responsetext = 'say play for play your actor';
+        responsetext = 'say replay for replay your actor';
         insert_flag = false;
       }
       else if (havetoDo_flag == false){  
@@ -796,8 +796,8 @@ app.post('/', (req, res) => {
       else if (responsetext == 'crashing ,you must modify,delete or insert'){
         responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
       }
-      else if (responsetext == 'say play for play your actor'){
-        responsetext = 'พูดว่า เล่น เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
+      else if (responsetext == 'say replay for replay your actor'){
+        responsetext = 'พูดว่า เล่นใหม่ เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
       }
       else if ( responsetext == 'In the stage two, you must modify,delete or insert'){
         responsetext = 'ด่าน 2 ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
