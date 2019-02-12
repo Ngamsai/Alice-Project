@@ -35,10 +35,11 @@ var repeat_flag = false;
 var insert_flag = false;
 var crash_flag = false;
 var havetoDo_flag = false;
+var maze_state = null;
 var num = 500;
 // var sequence = 0;
 var tutorial_state = '0-0';
-var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null;
+var order = null,distance = null ,forward_backward_direction = null,left_right_direction = null,direction_return = null;
 var modify = null,delete_code = null,insert = null,play = null,reset = null,numberSequence = null,insertPosition = null,number = null,insert_position = null;
 var number_deletecode = null ;
 var startgame = null ,language;
@@ -62,6 +63,7 @@ app.post('/', (req, res) => {
     
     forward_backward_direction = keep['conversation-use'];
     left_right_direction = keep['conversation-direction'];
+    direction_return = keep['turn-around'];
     distance = keep['number-integer'];
     startgame = keep['conversation-gamecontrol'];
     play =keep['conversation-replay'];
@@ -81,6 +83,9 @@ app.post('/', (req, res) => {
     }else if (left_right_direction != null ){
        order = left_right_direction;
        console.log('show left_right_direction ', order);
+    }else if (direction_return != null ){
+      order = direction_return;
+      console.log('show return ',order);
     }
     //show value
     if (req.body.queryResult.action =='input.welcome') {
@@ -107,6 +112,10 @@ app.post('/', (req, res) => {
         else if (order == "เลี้ยวขวา"){
           order = "right";
         }
+        else if (order == "กลับหลังหัน"){
+          order = "right";
+          distance = '2';
+        }
       }
       console.log('sh order',order,'show distance ', distance);
       if (tutorial_state == null){
@@ -114,6 +123,7 @@ app.post('/', (req, res) => {
         keepArrayOrder();
         checkState();
         status_state = 19;
+        maze_state = 'maze1';
       }else{
         console.log('will access tutorial');
       }
@@ -254,7 +264,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-3' && status_state == 4) {
       if (order == 'forward' && distance == '1') {
-        responsetext = 'พูดว่า เลี้ยวขวา 2 ครั้ง';
+        responsetext = 'พูดว่า กลับหลังหัน';
         tutorial_state = '1-4';
         status_state = 5;
       }else {
@@ -266,7 +276,7 @@ app.post('/', (req, res) => {
         tutorial_state = '1-5';
         status_state = 6;
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา 2 ครั้ง';
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า กลับหลังหัน';
       }
     }else if (tutorial_state == '1-5' && status_state == 6) {
       if (order == 'forward' && distance == '1') {
@@ -694,6 +704,7 @@ app.post('/', (req, res) => {
         if (maze_x == 7 && maze_y == 5){
           responsetext = 'In the stage two, you must modify,delete or insert';
           state = 'maze2';
+          maze_state = 'maze2';
           resetPosition();
           console.log('position pasent ',position);
           havetoDo_flag = true;
@@ -703,6 +714,7 @@ app.post('/', (req, res) => {
         if (maze_x == 7 && maze_y == 3){
           responsetext = 'In the stage three, you must modify,delete or insert';
           state = 'maze3';
+          maze_state = 'maze3';
           resetPosition(position);
           console.log('position pasent ',position);
           havetoDo_flag = true;
@@ -712,6 +724,7 @@ app.post('/', (req, res) => {
         if (maze_x == 5 && maze_y == 3){
            responsetext = 'In the stage four, you must modify,delete or insert';
            state = 'maze4';
+           maze_state = 'maze4';
            resetPosition(position);
           console.log('position pasent ',position);
           havetoDo_flag = true;
@@ -721,6 +734,7 @@ app.post('/', (req, res) => {
         if (maze_x == 5 && maze_y == 5){
             responsetext = 'In the stage five, you must modify,delete or insert';
             state = 'maze5';
+            maze_state = 'maze5';
             resetPosition(position);
             console.log('position pasent ',position);
             havetoDo_flag = true;
@@ -730,6 +744,7 @@ app.post('/', (req, res) => {
         if (maze_x == 3 && maze_y == 1){
             responsetext = 'In the stage six, you must modify,delete or insert';
             state = 'maze6';
+            maze_state = 'maze6';
             resetPosition(position);
             console.log('position pasent ',position);
             havetoDo_flag = true;
@@ -826,13 +841,14 @@ app.post('/', (req, res) => {
     // console.log('repeat_f ',repeat_flag);
     console.log("playF ",play_flag);
     io.emit('chat',order,distance,insert_flag,modify_flag,number,insert_position,delete_flag,play_flag,state,startgame,character,reset_flag,number_deletecode);
-    io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag,crash_flag);
+    io.emit('symbols',order,distance,state,reset_flag,modify_flag,insert_flag,delete_flag,number,number_deletecode,play_flag,insert_position,repeat_flag,crash_flag,maze_state);
     order = null;
     distance = null;
     startgame = null;
     character = null;
     delete_flag = false;
     play_flag = false;
+    maze_state = null;
     number_deletecode = null;
     reset_flag = false;
     repeat_flag = false;

@@ -4,7 +4,7 @@ new (function() {
     var receive_data = false; 
     var direction ,distance , state , reset ;
     var modify , insert , deletes , seq ,seq_del, play ,positionInsert ;
-    var repeat,crash;
+    var repeat,crash,return_direction;
   
   
   $(document).ready(function(){
@@ -26,7 +26,7 @@ new (function() {
 
           socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket,modify_socket ,
              insert_socket , deletes_socket , seq_socket ,seq_del_socket, play_socket ,
-             positionInsert_socket,repeat_socket,crash_socket ){
+             positionInsert_socket,repeat_socket,crash_socket,return_socket ){
               console.log('direction is ',direction_socket);
               console.log('distance = ',distance_socket);
               console.log('state = ',state_socket);
@@ -40,6 +40,7 @@ new (function() {
               console.log('positionInsert ',positionInsert_socket);
               console.log('repeat_f ',repeat_socket);
               console.log('crash ',crash_socket);
+              console.log('return ',return_socket);
               console.log('******************************');
               direction = direction_socket;
               distance = distance_socket;
@@ -54,6 +55,7 @@ new (function() {
               positionInsert = positionInsert_socket;
               repeat = repeat_socket;
               crash = crash_socket;
+              return_direction = return_socket;
               receive_data = true;
            });
        
@@ -149,6 +151,10 @@ new (function() {
         return crash;
     }
 
+    ext.get_return_direction = function(){
+        return return_direction;
+    }
+
     ext.get_seq_del = function(){
         return seq_del;
     }
@@ -169,6 +175,7 @@ new (function() {
             ['r', 'play', 'get_play'],
             ['r', 'repeat', 'get_repeat'],
             ['r', 'crash', 'get_crash'],
+            ['r', 'return_direction', 'get_return_direction'],
             ['r', 'positionInsert', 'get_positioninsert'],
         ],
         menus: {
