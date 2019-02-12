@@ -812,7 +812,7 @@ app.post('/', (req, res) => {
          responsetext = 'เข้าสู่ด่าน 5 เลย ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'In the stage six, you must modify,delete or insert'){
-        responsetext = 'ด่ายสุดท้ายต้องไปเก็บกุญแจโดยใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+        responsetext = 'ด่านสุดท้ายต้องไปเก็บกุญแจโดยใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
       }
       else if (responsetext == 'I keep key already'){
          responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
@@ -830,10 +830,10 @@ app.post('/', (req, res) => {
         responsetext = 'Say , turn left 1 time';
       }
       else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง'){
-        responsetext = 'Still can not speak properly, you have to say go to forward 2 times';
+        responsetext = 'Still can not speak properly, you have to say forward 2 times';
       }
       else if (responsetext == 'พูดว่า เดินหน้า 1 ช่อง') {
-        responsetext = 'Say , move forward 1 time';
+        responsetext = 'Say , forward 1 time';
       }
       else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย 1 ครั้ง'){
         responsetext = 'Still can not speak properly, you have to say turn left 1 time';
@@ -857,10 +857,10 @@ app.post('/', (req, res) => {
         responsetext = "Still can't speak properly, you have to say  forward";
       }
       else if (responsetext == 'พูดสิ่งที่ต้องการเปลี่ยนในบรรทัดที่ 5 มาเลย ให้พูดว่า ถอยหลัง 1 ช่อง'){
-        responsetext = "You can say , what do you want to change commands  in line number 5 . Say backward 1 time";
+        responsetext = "You can say , what do you want to edit commands  in line number 5 . Say backward 1 time";
       }
       else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขบรรทัดที่ 5'){
-        responsetext = "Still can't speak properly, you have to say modify line number 5";
+        responsetext = "Still can't speak properly, you have to say edit line number 5";
       }
       else if (responsetext == 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่'){
         responsetext = "Try to work all new commands again. You have to say replay";
@@ -903,6 +903,9 @@ app.post('/', (req, res) => {
       }
       else if (responsetext == 'ต้องพูดว่าเล่นใหม่ก่อนนะ') {
         responsetext = 'Have to say replay first';
+      }
+      else if (responsetext == 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า 1 ช่องนะคะ'){
+        responsetext = 'If it is correct, I must say forward 1 time';
       }
     }
   
