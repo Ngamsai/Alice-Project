@@ -382,6 +382,10 @@ app.post('/', (req, res) => {
     //   checkState();
     //   status_state = 19;
     // }
+    if (havetoDo_flag == true && delete_flag == true){
+      havetoDo_flag = false;
+      console.log('havetoDo_delete ,',havetoDo_flag);
+    }
 
     function ComputePosition (){
       console.log('compteposition access');
