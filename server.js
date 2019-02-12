@@ -825,7 +825,7 @@ app.post('/', (req, res) => {
       }
     }
 
-    if(language == 'en'){
+    if(language == 'en' || language == 'en-us'){
       if ( responsetext == 'พูดว่า เลี้ยวซ้าย 1 ครั้ง') {
         responsetext = 'Say , turn left 1 time';
       }
