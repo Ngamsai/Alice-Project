@@ -4,7 +4,7 @@ new (function() {
     var receive_data = false; 
     var direction ,distance , state , reset ;
     var modify , insert , deletes , seq ,seq_del, play ,positionInsert ;
-    var repeat,crash,return_direction;
+    var repeat,crash,maze_state;
   
   
   $(document).ready(function(){
@@ -26,7 +26,7 @@ new (function() {
 
           socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket,modify_socket ,
              insert_socket , deletes_socket , seq_socket ,seq_del_socket, play_socket ,
-             positionInsert_socket,repeat_socket,crash_socket,return_socket ){
+             positionInsert_socket,repeat_socket,crash_socket,maze_state_socket ){
               console.log('direction is ',direction_socket);
               console.log('distance = ',distance_socket);
               console.log('state = ',state_socket);
@@ -40,7 +40,7 @@ new (function() {
               console.log('positionInsert ',positionInsert_socket);
               console.log('repeat_f ',repeat_socket);
               console.log('crash ',crash_socket);
-              console.log('return ',return_socket);
+              console.log('maze_state ',maze_state_socket);
               console.log('******************************');
               direction = direction_socket;
               distance = distance_socket;
@@ -55,7 +55,7 @@ new (function() {
               positionInsert = positionInsert_socket;
               repeat = repeat_socket;
               crash = crash_socket;
-              return_direction = return_socket;
+              maze_state = maze_state_socket;
               receive_data = true;
            });
        
@@ -151,8 +151,8 @@ new (function() {
         return crash;
     }
 
-    ext.get_return_direction = function(){
-        return return_direction;
+    ext.get_maze_state = function(){
+        return maze_state;
     }
 
     ext.get_seq_del = function(){
@@ -175,7 +175,7 @@ new (function() {
             ['r', 'play', 'get_play'],
             ['r', 'repeat', 'get_repeat'],
             ['r', 'crash', 'get_crash'],
-            ['r', 'return_direction', 'get_return_direction'],
+            ['r', 'maze_state', 'get_maze_state'],
             ['r', 'positionInsert', 'get_positioninsert'],
         ],
         menus: {
