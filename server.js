@@ -83,10 +83,11 @@ app.post('/', (req, res) => {
     }else if (left_right_direction != null ){
        order = left_right_direction;
        console.log('show left_right_direction ', order);
-    }else if (direction_return != null ){
-      order = direction_return;
-      console.log('show return ',order);
     }
+    // else if (direction_return != null ){
+    //   order = direction_return;
+    //   console.log('show return ',order);
+    // }
     //show value
     if (req.body.queryResult.action =='input.welcome') {
       status_state = 0 ;
@@ -112,10 +113,10 @@ app.post('/', (req, res) => {
         else if (order == "เลี้ยวขวา"){
           order = "right";
         }
-        else if (order == "กลับหลังหัน"){
-          order = "return";
-          distance = '2';
-        }
+        // else if (order == "กลับหลังหัน"){
+        //   order = "return";
+        //   distance = '2';
+        // }
       }
       console.log('sh order',order,'show distance ', distance);
       if (tutorial_state == null){
@@ -271,7 +272,7 @@ app.post('/', (req, res) => {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 1 ช่อง';
       }
     }else if (tutorial_state == '1-4' && status_state == 5){
-      if (order == 'return' && distance == '2') {
+      if (order == 'right' && distance == '2') {
         responsetext = 'ทีนี้ ลองดูซิว่าจะเกิดอะไรขึ้น เมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า';
         tutorial_state = '1-5';
         status_state = 6;
