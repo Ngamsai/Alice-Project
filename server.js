@@ -386,8 +386,10 @@ app.post('/', (req, res) => {
     function ComputePosition (){
       console.log('compteposition access');
       if (havetoDo_flag && status_state == 19){
+        console.log('havetoDo ,',havetoDo_flag);
         if (modify_flag == true || insert_flag == true || delete_flag == true || reset != null){
           havetoDo_flag = false;
+          console.log('havetoDo ,',havetoDo_flag);
         }
         else{
           responsetext = 'you must use modify group order only.';
