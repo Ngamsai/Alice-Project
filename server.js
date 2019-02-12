@@ -124,7 +124,6 @@ app.post('/', (req, res) => {
         keepArrayOrder();
         checkState();
         status_state = 19;
-        maze_state = 'maze1';
       }else{
         console.log('will access tutorial');
       }
@@ -240,9 +239,8 @@ app.post('/', (req, res) => {
 
     console.log('state ',status_state);
     console.log('tutorial is ',tutorial_state);
-
-    
-    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เดินหน้า 2 ช่อง') {
+   
+    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เดินหน้า 2 ช่อง' ||  responsetext == 'Next, Will be learning how to play the game, Repeat after me, move forward 2 times') {
       tutorial_state = '1-1';
       state = 'tutorial_state1';
     }  
@@ -265,7 +263,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-3' && status_state == 4) {
       if (order == 'forward' && distance == '1') {
-        responsetext = 'พูดว่า กลับหลังหัน';
+        responsetext = 'พูดว่า เลี้ยวขวา 2 ครั้ง';
         tutorial_state = '1-4';
         status_state = 5;
       }else {
@@ -277,7 +275,7 @@ app.post('/', (req, res) => {
         tutorial_state = '1-5';
         status_state = 6;
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า กลับหลังหัน';
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา 2 ครั้ง';
       }
     }else if (tutorial_state == '1-5' && status_state == 6) {
       if (order == 'forward' && distance == '1') {
@@ -311,7 +309,7 @@ app.post('/', (req, res) => {
         tutorial_state = '2-2';
         state = 'tutorial_state2';
       }else {
-        responsetext = 'ต้องพูดว่าเล่นก่อนนะคะ';//flow control ,action posiger
+        responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';//flow control ,action posiger
       }
     }else if (tutorial_state == '2-2' && status_state == 10) {
       if (order == 'left' && distance == '1') {
@@ -354,7 +352,7 @@ app.post('/', (req, res) => {
         status_state = 15;
         state = 'tutorial_state3';
       }else {
-        responsetext = 'ต้องพูดว่าเล่นก่อนนะจ๊ะ';
+        responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';
       }
     }else if (tutorial_state == '3-5' && status_state == 15) {
       if (order == 'backward' && distance == '1') {
@@ -393,6 +391,9 @@ app.post('/', (req, res) => {
     //   checkState();
     //   status_state = 19;
     // }
+    if (status_state == 18 ){
+      maze_state = 'maze1';
+    }
     if (havetoDo_flag == true && delete_flag == true){
       havetoDo_flag = false;
       console.log('havetoDo_delete ,',havetoDo_flag);
@@ -821,6 +822,84 @@ app.post('/', (req, res) => {
       }
       else if (responsetext == 'excellent!!'){
          responsetext = 'เก่งมากเลย ทำสำเร็จทุกด่านแล้ว มารับรางวัลนะคะ';
+      }
+    }
+
+    if(language == 'en'){
+      if ( responsetext == 'พูดว่า เลี้ยวซ้าย 1 ครั้ง') {
+        responsetext = 'Say , turn left 1 time';
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง'){
+        responsetext = 'Still can not speak properly, you have to say go to forward 2 times';
+      }
+      else if (responsetext == 'พูดว่า เดินหน้า 1 ช่อง') {
+        responsetext = 'Say , move forward 1 time';
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย 1 ครั้ง'){
+        responsetext = 'Still can not speak properly, you have to say turn left 1 time';
+      }
+      else if (responsetext == 'พูดว่า เลี้ยวขวา 2 ครั้ง') {
+        responsetext = 'Say , turn right 2 times';
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 1 ช่อง')  {
+        responsetext = 'Still can not speak properly, you have to say go to forward 1 time'; 
+      }
+      else if ( responsetext == 'ทีนี้ ลองดูซิว่าจะเกิดอะไรขึ้น เมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า'){
+        responsetext = "Let's see what happens , when walking the same path , To say forward";
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา 2 ครั้ง') {
+        responsetext = "Still can't speak properly, you have to say turn right 2 times";
+      }
+      else if (responsetext == 'ไม่สามารถเดินทับเส้นทางเดิมได้ ขอให้แก้ไขคำสั่งโดยพูดว่าแก้ไขบรรทัดที่5'){
+        responsetext = "Can't walk over the same path, please edit the commands , you can say edit line number 5";
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า'){
+        responsetext = "Still can't speak properly, you have to say  forward";
+      }
+      else if (responsetext == 'พูดสิ่งที่ต้องการเปลี่ยนในบรรทัดที่ 5 มาเลย ให้พูดว่า ถอยหลัง 1 ช่อง'){
+        responsetext = "You can say , what do you want to change commands  in line number 5 . Say backward 1 time";
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขบรรทัดที่ 5'){
+        responsetext = "Still can't speak properly, you have to say modify line number 5";
+      }
+      else if (responsetext == 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่'){
+        responsetext = "Try to work all new commands again. You have to say replay";
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง 1 ช่อง'){
+        responsetext = "Still can't speak properly, you have to say backward 1 time";
+      }
+      else if (responsetext == 'ยินดีด้วยจบด่าน1แล้ว ทีนี้มาเล่นด่านที่2 สังเกตคำสั่งว่าตัวละครเดินมา 2 ช่องแล้ว ต่อไปให้พูดว่าเลี้ยวซ้าย'){
+        responsetext = "Congratulations to the end of Stage 1.Come to play Stage 2 and Observe the commands that the characters walked in 2 times. Next , you can say turn left";
+      }
+      else if (responsetext == 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น'){
+        responsetext = "Next, you say forward .Let's see what happens?";
+      }
+      else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย'){
+        responsetext = "Still can't speak properly, you have to say turn left";
+      }
+      else if (responsetext == 'ไม่สามารถเดินไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนให้พูดว่า เพิ่มหลังบรรทัดที่1'){
+        responsetext = "Can not walk this route , you have to edit this command , say insert after line 1";
+      }
+      else if (responsetext == 'พูดคำสั่งที่ต้องการเพิ่มหลังบรรทัดที่ 1 มาเลย ให้พูดว่า เดินหน้า'){
+        responsetext = "You can say , what do you want to insert commands  after  line number 1 . Say forward 1 time";
+      }
+      else if (responsetext == 'ต้องพูดว่า เพิ่มหลังบรรทัดที่1นะ'){
+        responsetext = "Still can't speak properly, you have to say forward 1 times";
+      }
+      else if (responsetext == 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้ว จะเดินเข้าประตูต้องพูดว่า ถอยหลัง 1 ช่องนะ'){
+        responsetext = "Change to stage 3 ,then you near the door. To walk into the door, say back 1 time";
+      }
+      else if (responsetext == 'ผ่านด่านมาแล้ว  ไม่สามารถเดินทับเส้นทางเดิมได้  ฉะนั้นด่านต่อไป ต้องพูดว่า ลบบรรทัดที่ 5'){
+        responsetext = "Passed the stage 3 .Can not walk the same path , then you have to say delete line 5";
+      }
+      else if (responsetext == 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 1 ช่องนะ'){
+        responsetext = "The best way to walk into the door is back 1 time";
+      }
+      else if (responsetext == 'แค่ลบบรรทัดที่ 5 ทิ้งก็เข้าประตูได้แล้วนะ'){
+        responsetext = "Just delete number 5";
+      }
+      else if (responsetext == 'เรียนจบแล้วต่อไปเป็นการทดสอบน้า เดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ'){
+        responsetext = "Passed the test , Next walk into the door to complete 6 stage";
       }
     }
   
