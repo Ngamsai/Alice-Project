@@ -323,7 +323,7 @@ app.post('/', (req, res) => {
     }
     else if (tutorial_state == '2-4' && status_state == 9) {
       if (play_flag == true) {
-        num = 6000;
+        num = 7000;
         responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งเพิ่มน้า ให้พูดว่า เพิ่มหลังบรรทัดที่ 1';
         crash_flag = true;
         tutorial_state = '3-1';
@@ -376,7 +376,7 @@ app.post('/', (req, res) => {
     }
     else if (tutorial_state == '4-2' && status_state == 14) {
       if (play_flag == true) {
-        num = 8000;
+        num = 9000;
         responsetext = 'เรียนจบแล้วต่อไปเป็นการทดสอบน้า เดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ';
         status_state = 15;
         tutorial_state = null;
