@@ -283,7 +283,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-4' && status_state == 5) {
       if (order == 'backward' && distance == '1') {
-        responsetext = 'ไม่สามารถเดินทับเส้นทางเดิมได้  ต้องแก้ไขคำสั่งนี้ก่อนน้าจ๊ะ เรียนคำสั่งแก้ไขได้ในด่านต่อไป พูดว่า ด่าน2'; 
+        responsetext = 'ไม่สามารถเดินทับเส้นทางเดิมได้  ต้องแก้ไขคำสั่งนี้ก่อนน้า เรียนคำสั่งแก้ไขได้ในด่านต่อไป พูดว่า ด่าน2'; 
         tutorial_state = '2-1';
         repeat_flag = true;
         status_state = 6;
@@ -298,7 +298,7 @@ app.post('/', (req, res) => {
         status_state = 7;
         tutorial_state = '2-2';
       }else {
-        responsetext = 'พูดว่า ด่าน 2 ถึงจะเรียนต่อได้น้า';//flow control ,action posiger
+        responsetext = 'ถ้าจะเรียนต่อ ต้องพูดว่า ด่าน 2 น้า';//flow control ,action posiger
       }
     }
     else if (tutorial_state == '2-2' && status_state == 7) {
@@ -322,7 +322,7 @@ app.post('/', (req, res) => {
     }
     else if (tutorial_state == '2-4' && status_state == 9) {
       if (play_flag == true) {
-        responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งเพิ่มนะจ๊ะ ให้พูดว่า เพิ่มหลังบรรทัดที่ 1';
+        responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งเพิ่มน้า ให้พูดว่า เพิ่มหลังบรรทัดที่ 1';
         crash_flag = true;
         tutorial_state = '3-1';
         status_state = 10;
@@ -352,7 +352,7 @@ app.post('/', (req, res) => {
     }
     else if (tutorial_state == '3-3' && status_state == 12) {
       if (play_flag == true) {
-        responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งลบนะจ๊ะ ให้พูดว่า ลบบรรทัดที่ 4';
+        responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งลบน้าจ๊ะ ให้พูดว่า ลบบรรทัดที่ 4';
         crash_flag = true;
         tutorial_state = '4-1';
         status_state = 13;
