@@ -706,10 +706,9 @@ app.post('/', (req, res) => {
           responsetext = 'In the stage two, you must modify,delete or insert';
           state = 'maze2';
           maze_state = 'maze2';
-          resetPosition();
           console.log('position pasent ',position);
           console.log('maze_stste2 ',maze_state);
-          havetoDo_flag = true;
+          // havetoDo_flag = true;
         }
       }
       else if (state == 'maze2'){
@@ -717,10 +716,10 @@ app.post('/', (req, res) => {
           responsetext = 'In the stage three, you must modify,delete or insert';
           state = 'maze3';
           maze_state = 'maze3';
-          resetPosition(position);
+          // resetPosition(position);
           console.log('position pasent ',position);
           console.log('maze_stste3 ',maze_state);
-          havetoDo_flag = true;
+          // havetoDo_flag = true;
         }
       }
       else if (state == 'maze3'){
@@ -728,10 +727,10 @@ app.post('/', (req, res) => {
            responsetext = 'In the stage four, you must modify,delete or insert';
            state = 'maze4';
            maze_state = 'maze4';
-           resetPosition(position);
+          //  resetPosition(position);
           console.log('position pasent ',position);
           console.log('maze_stste4 ',maze_state);
-          havetoDo_flag = true;
+          // havetoDo_flag = true;
         }
       }
       else if (state == 'maze4'){
@@ -739,10 +738,10 @@ app.post('/', (req, res) => {
             responsetext = 'In the stage five, you must modify,delete or insert';
             state = 'maze5';
             maze_state = 'maze5';
-            resetPosition(position);
+            // resetPosition(position);
             console.log('position pasent ',position);
             console.log('maze_stste5 ',maze_state);
-            havetoDo_flag = true;
+            // havetoDo_flag = true;
         }
       }
       else if (state == 'maze5'){
@@ -750,10 +749,10 @@ app.post('/', (req, res) => {
             responsetext = 'In the stage six, you must modify,delete or insert';
             state = 'maze6';
             maze_state = 'maze6';
-            resetPosition(position);
+            // resetPosition(position);
             console.log('position pasent ',position);
             console.log('maze_stste6 ',maze_state);
-            havetoDo_flag = true;
+            // havetoDo_flag = true;
         }
       }
       else if (state == 'maze6'){
@@ -945,10 +944,10 @@ app.post('/', (req, res) => {
     repeat_flag = false;
     crash_flag = false;
 
-    if (tutorial_state == '1-7' && status_state == 8){
+    if (tutorial_state == '2-3' && status_state == 8){
       modify_flag = false;
       number = null;
-    }else if (tutorial_state == '2-5' && status_state == 13){
+    }else if (tutorial_state == '3-2' && status_state == 11){
       insert_flag = false;
       insert_position = null;
       number =null;
