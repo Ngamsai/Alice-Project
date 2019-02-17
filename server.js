@@ -226,6 +226,7 @@ app.post('/', (req, res) => {
     else if (tutorial_two != null && tutorail_state_two != null){
       if (status_state == 6 && tutorial_two == 'ด่าน' && tutorail_state_two == 2){
         console.log('access state two ',tutorial_state,' at ',tutorail_state_two);
+        num = 6000;
         state = 'tutorial_state2-1';
       }
     }
@@ -322,6 +323,7 @@ app.post('/', (req, res) => {
     }
     else if (tutorial_state == '2-4' && status_state == 9) {
       if (play_flag == true) {
+        num = 6000;
         responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งเพิ่มน้า ให้พูดว่า เพิ่มหลังบรรทัดที่ 1';
         crash_flag = true;
         tutorial_state = '3-1';
@@ -352,6 +354,7 @@ app.post('/', (req, res) => {
     }
     else if (tutorial_state == '3-3' && status_state == 12) {
       if (play_flag == true) {
+        num = 6000;
         responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งลบน้าจ๊ะ ให้พูดว่า ลบบรรทัดที่ 4';
         crash_flag = true;
         tutorial_state = '4-1';
@@ -373,6 +376,7 @@ app.post('/', (req, res) => {
     }
     else if (tutorial_state == '4-2' && status_state == 14) {
       if (play_flag == true) {
+        num = 8000;
         responsetext = 'เรียนจบแล้วต่อไปเป็นการทดสอบน้า เดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ';
         status_state = 15;
         tutorial_state = null;
