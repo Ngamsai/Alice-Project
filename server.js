@@ -258,10 +258,10 @@ app.post('/', (req, res) => {
         responsetext = 'พูดว่า เลี้ยวซ้าย 1 ครั้ง';
         tutorial_state = '1-2';
         status_state = 3;
+        state = 'tutorial_state1-2';
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา';
       }
-      state = null;
     }
     else if (tutorial_state == '1-2' && status_state == 3) {
       if (order == 'left' && distance == '1') {
@@ -271,6 +271,7 @@ app.post('/', (req, res) => {
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย 1 ครั้ง';
       }
+      state = null;
     }
     else if (tutorial_state == '1-3' && status_state == 4) {
       if (order == 'forward' && distance == '2') {
@@ -282,7 +283,7 @@ app.post('/', (req, res) => {
       }
     }else if (tutorial_state == '1-4' && status_state == 5) {
       if (order == 'backward' && distance == '1') {
-        responsetext = 'ไม่สามารถเดินทับเส้นทางเดิมได้  ต้องแก้ไขคำสั่งนี้ก่อนนะจ๊ะ เรียนคำสั่งแก้ไขได้ในด่านต่อไป พูดว่า ด่าน2'; 
+        responsetext = 'ไม่สามารถเดินทับเส้นทางเดิมได้  ต้องแก้ไขคำสั่งนี้ก่อนน้าจ๊ะ เรียนคำสั่งแก้ไขได้ในด่านต่อไป พูดว่า ด่าน2'; 
         tutorial_state = '2-1';
         repeat_flag = true;
         status_state = 6;
