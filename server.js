@@ -703,7 +703,7 @@ app.post('/', (req, res) => {
       console.log('access checkstate');
       if (state == 'maze1'){
         if (maze_x == 7 && maze_y == 5){
-          responsetext = 'In the stage two, you must modify,delete or insert';
+          responsetext = 'In the stage two';
           state = 'maze2';
           maze_state = 'maze2';
           console.log('position pasent ',position);
@@ -713,7 +713,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze2'){
         if (maze_x == 7 && maze_y == 3){
-          responsetext = 'In the stage three, you must modify,delete or insert';
+          responsetext = 'In the stage three';
           state = 'maze3';
           maze_state = 'maze3';
           // resetPosition(position);
@@ -724,7 +724,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze3'){
         if (maze_x == 5 && maze_y == 3){
-           responsetext = 'In the stage four, you must modify,delete or insert';
+           responsetext = 'In the stage four';
            state = 'maze4';
            maze_state = 'maze4';
           //  resetPosition(position);
@@ -735,7 +735,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze4'){
         if (maze_x == 5 && maze_y == 5){
-            responsetext = 'In the stage five, you must modify,delete or insert';
+            responsetext = 'In the stage five';
             state = 'maze5';
             maze_state = 'maze5';
             // resetPosition(position);
@@ -746,7 +746,7 @@ app.post('/', (req, res) => {
       }
       else if (state == 'maze5'){
         if (maze_x == 3 && maze_y == 1){
-            responsetext = 'In the stage six, you must modify,delete or insert';
+            responsetext = 'In the stage six';
             state = 'maze6';
             maze_state = 'maze6';
             // resetPosition(position);
@@ -797,20 +797,20 @@ app.post('/', (req, res) => {
       else if (responsetext == 'say replay for replay your actor'){
         responsetext = 'พูดว่า เล่นใหม่ เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
       }
-      else if ( responsetext == 'In the stage two, you must modify,delete or insert'){
-        responsetext = 'ด่าน 2 ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if ( responsetext == 'In the stage two'){
+        responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
       }
-      else if (responsetext == 'In the stage three, you must modify,delete or insert'){
-        responsetext = 'ด่าน3แล้ว ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage three'){
+        responsetext = 'ด่าน 3 แล้ว ดูดีๆนะแก้นิดเดียวเอง';
       }
-      else if (responsetext == 'In the stage four, you must modify,delete or insert'){
-        responsetext = 'ด่าน 4 แล้วต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage four'){
+        responsetext = 'ด่าน 4 แล้ว ระวังนะ เดินทับเส้นทางเดิมไม่ได้นะ';
       }
-      else if (responsetext == 'In the stage five, you must modify,delete or insert'){
-         responsetext = 'เข้าสู่ด่าน 5 เลย ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage five'){
+         responsetext = 'ไปต่อด่าน 5 เลย';
       }
-      else if (responsetext == 'In the stage six, you must modify,delete or insert'){
-        responsetext = 'ด่านสุดท้ายต้องไปเก็บกุญแจโดยใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage six'){
+        responsetext = 'ด่านสุดท้ายต้องไปเก็บกุญแจก่อนน้า';
       }
       else if (responsetext == 'I keep key already'){
          responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
