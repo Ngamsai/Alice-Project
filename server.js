@@ -43,6 +43,8 @@ var order = null,distance = null ,forward_backward_direction = null,left_right_d
 var modify = null,delete_code = null,insert = null,play = null,reset = null,numberSequence = null,insertPosition = null,number = null,insert_position = null;
 var number_deletecode = null ;
 var startgame = null ,language;
+var tutorial_two = null;
+var tutorail_state_two = null;
 var character;
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
@@ -69,6 +71,8 @@ app.post('/', (req, res) => {
     play =keep['conversation-replay'];
     anser = keep.question;
     character = keep.actor;
+    tutorial_two = keep.state;
+    tutorail_state_two = keep['num-state']
     reset = keep.reset;
     modify = keep.modify;
     numberSequence = keep['number-modify'];
@@ -123,7 +127,7 @@ app.post('/', (req, res) => {
         ComputePosition();
         keepArrayOrder();
         checkState();
-        status_state = 19;
+        status_state = 16;
       }else{
         console.log('will access tutorial');
       }
@@ -151,11 +155,11 @@ app.post('/', (req, res) => {
       play_flag = true;
       if (status_state == 9){
         console.log('tutorial_state9_play_flag ',play_flag);
+      }else if (status_state == 12){
+        console.log('tutorial_state12_play_flag ',play_flag);
       }else if (status_state == 14){
         console.log('tutorial_state14_play_flag ',play_flag);
-      }else if (status_state == 17){
-        console.log('tutorial_state17_play_flag ',play_flag);
-      }else  if  (status_state == 19) {
+      }else  if  (status_state == 16) {
         playFunction();
       }else {
         play_flag = false;
@@ -167,8 +171,8 @@ app.post('/', (req, res) => {
       number = numberSequence;
       if (status_state == 7) {
         console.log('tutorial_state7_mod_flag ',modify_flag,' num ',number);
-      }else if (status_state == 19){
-        console.log('tutorial_state7_mod_flag ',modify_flag,' num ',number)
+      }else if (status_state == 16){
+        console.log('tutorial_state16_mod_flag ',modify_flag,' num ',number)
       }else {
         modify_flag = false;
       }
@@ -177,10 +181,10 @@ app.post('/', (req, res) => {
     else if(delete_code != null){
       number_deletecode = numberSequence;
       delete_flag = true;
-      if (status_state == 16){
-        console.log('tutorial_state16_del_flag ',delete_flag,' num ',number_deletecode);
-      }else  if (status_state == 19){
-        console.log('tutorial_state19_del_flag ',delete_flag,' num ',number_deletecode)
+      if (status_state == 13){
+        console.log('tutorial_state13_del_flag ',delete_flag,' num ',number_deletecode);
+      }else  if (status_state == 16){
+        console.log('tutorial_state16_del_flag ',delete_flag,' num ',number_deletecode)
         deleteCode();
       }else {
         delete_flag = false;
@@ -200,10 +204,10 @@ app.post('/', (req, res) => {
         } 
       }
       console.log('he will ',insert,' ',insertPosition,' number ',numberSequence);
-      if (status_state == 12){
-        console.log('tutorial_state12_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
-      }else if (status_state == 19) {
-        console.log('tutorial_state12_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
+      if (status_state == 10){
+        console.log('tutorial_state10_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
+      }else if (status_state == 16) {
+        console.log('tutorial_state16_insert_flag ',insert_flag,' position ',insert_position,' number ',number);
       }else{
         number = null;
         insert_position = null;
@@ -211,7 +215,7 @@ app.post('/', (req, res) => {
       }
     }
     else if(reset != null){
-      if (status_state == 19){
+      if (status_state == 16){
         console.log('reset in true_state ',reset);
         reset_flag = true;
         resetPosition();
@@ -219,7 +223,13 @@ app.post('/', (req, res) => {
       }
       console.log('reset ',reset);
     }
-
+    else if (tutorial_two != null && tutorail_state_two != null){
+      if (status_state == 6 && tutorial_two == 'ด่าน' && tutorail_state_two == 2){
+        console.log('access state two ',tutorial_state,' at ',tutorail_state_two);
+        num = 6000;
+        state = 'tutorial_state2-1';
+      }
+    }
     // if (order != null && distance != null){
     //   if (language == 'th'){
     //     if (order == "เดินหน้า"){
@@ -240,142 +250,135 @@ app.post('/', (req, res) => {
     console.log('state ',status_state);
     console.log('tutorial is ',tutorial_state);
    
-    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เดินหน้า 2 ช่อง' ||  responsetext == 'Next, Will be learning how to play the game, Repeat after me, move forward 2 times') {
+    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เลี้ยวขวา' ||  responsetext == 'Next, Will be learning how to play the game, Repeat after me, turn right') {
       tutorial_state = '1-1';
-      state = 'tutorial_state1';
+      state = 'tutorial_state1-1';
     }  
     else if (tutorial_state == '1-1' && status_state == 2) {
-      if (order == 'forward' && distance == '2') {
+      if (order == 'right' && distance == '1') {
         responsetext = 'พูดว่า เลี้ยวซ้าย 1 ครั้ง';
         tutorial_state = '1-2';
         status_state = 3;
+        state = 'tutorial_state1-2';
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง';
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา';
       }
-      state = null;
-    }else if (tutorial_state == '1-2' && status_state == 3) {
+    }
+    else if (tutorial_state == '1-2' && status_state == 3) {
       if (order == 'left' && distance == '1') {
-        responsetext = 'พูดว่า เดินหน้า 1 ช่อง';
+        responsetext = 'พูดว่า เดิน 2 ช่อง';
         tutorial_state = '1-3';
         status_state = 4;
       }else {
         responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย 1 ครั้ง';
       }
-    }else if (tutorial_state == '1-3' && status_state == 4) {
-      if (order == 'forward' && distance == '1') {
-        responsetext = 'พูดว่า เลี้ยวขวา 2 ครั้ง';
+      state = null;
+    }
+    else if (tutorial_state == '1-3' && status_state == 4) {
+      if (order == 'forward' && distance == '2') {
+        responsetext = 'ให้พูดว่า ถอยหลัง';
         tutorial_state = '1-4';
         status_state = 5;
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 1 ช่อง';
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง';
       }
-    }else if (tutorial_state == '1-4' && status_state == 5){
-      if (order == 'right' && distance == '2') {
-        responsetext = 'ทีนี้ ลองดูซิว่าจะเกิดอะไรขึ้น เมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า';
-        tutorial_state = '1-5';
+    }else if (tutorial_state == '1-4' && status_state == 5) {
+      if (order == 'backward' && distance == '1') {
+        responsetext = 'ไม่สามารถเดินทับเส้นทางเดิมได้  ต้องแก้ไขคำสั่งนี้ก่อนน้า เรียนคำสั่งแก้ไขได้ในด่านต่อไป พูดว่า ด่าน2'; 
+        tutorial_state = '2-1';
+        repeat_flag = true;
         status_state = 6;
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา 2 ครั้ง';
+        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง'
       }
-    }else if (tutorial_state == '1-5' && status_state == 6) {
-      if (order == 'forward' && distance == '1') {
-        responsetext = 'ไม่สามารถเดินทับเส้นทางเดิมได้ ขอให้แก้ไขคำสั่งโดยพูดว่าแก้ไขบรรทัดที่5';
-        tutorial_state = '1-6';
-        repeat_flag = true;
+    } 
+    else if (tutorial_state == '2-1' && status_state == 6) {
+      if (tutorial_two == 'ด่าน' && tutorail_state_two == 2) {
+        responsetext = 'ไม่สามารถเดินไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อน  ให้พูดว่า แก้ไขบรรทัดที่1';
+        crash_flag = true;
         status_state = 7;
+        tutorial_state = '2-2';
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
+        responsetext = 'ถ้าจะเรียนต่อ ต้องพูดว่า ด่าน 2 น้า';//flow control ,action posiger
       }
-    }else if (tutorial_state == '1-6' && status_state == 7) {
-      if (modify_flag == true && number == '5') {
-        responsetext = 'พูดสิ่งที่ต้องการเปลี่ยนในบรรทัดที่ 5 มาเลย ให้พูดว่า ถอยหลัง 1 ช่อง';
-        tutorial_state = '1-7';
+    }
+    else if (tutorial_state == '2-2' && status_state == 7) {
+      if (modify_flag== true && number == '1'){
+        responsetext = 'พูดคำสั่งที่ต้องการแก้ไขในบรรทัดที่ 1 มาเลย ให้พูดว่า เดินหน้า 3 ช่อง';
+        tutorial_state = '2-3';
         status_state = 8;
       }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขบรรทัดที่ 5';
-      }
-    }else if (tutorial_state == '1-7' && status_state == 8) {
-      if (order == 'backward' && distance == '1') {
-        responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่'; 
-        tutorial_state = '1-8';
-        status_state = 9;
-      }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง 1 ช่อง'
-      }
-    }else if (tutorial_state == '1-8' && status_state == 9) {
-      if (play_flag == true) {
-        responsetext = 'ยินดีด้วยจบด่าน1แล้ว ทีนี้มาเล่นด่านที่2 สังเกตคำสั่งว่าตัวละครเดินมา 2 ช่องแล้ว ต่อไปให้พูดว่าเลี้ยวซ้าย';
-        status_state = 10;
-        tutorial_state = '2-2';
-        state = 'tutorial_state2';
-      }else {
-        responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';//flow control ,action posiger
-      }
-    }else if (tutorial_state == '2-2' && status_state == 10) {
-      if (order == 'left' && distance == '1') {
-        responsetext = 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น';
-        tutorial_state = '2-3';
-        status_state = 11;
-      }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย';
+        responsetext = 'ต้องพูดว่า แก้ไขบรรทัดที่1นะ';
       }
       state = null;
-    }else if (tutorial_state == '2-3' && status_state == 11) {
-      if (order == 'forward' && distance == '1'){
-        responsetext = 'ไม่สามารถเดินไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนให้พูดว่า เพิ่มหลังบรรทัดที่1';
-        crash_flag = true;
-        tutorial_state = '2-4';
-        status_state = 12;
-      }else {
-        responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า';
-      }
-    }else if (tutorial_state == '2-4' && status_state == 12) {
-      if (insert_flag == true && insert_position == 'after' && number == '1'){
-        responsetext = 'พูดคำสั่งที่ต้องการเพิ่มหลังบรรทัดที่ 1 มาเลย ให้พูดว่า เดินหน้า';
-        tutorial_state = '2-5';
-        status_state = 13;
-      }else {
-        responsetext = 'ต้องพูดว่า เพิ่มหลังบรรทัดที่1นะ';
-      }
-    }else if (tutorial_state == '2-5' && status_state == 13) {
-        if (order == 'forward' && distance == '1') {
+    }
+    else if (tutorial_state == '2-3' && status_state == 8) {
+        if (order == 'forward' && distance == '3') {
           responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่';
-          tutorial_state = '2-6';
-          status_state = 14;
+          tutorial_state = '2-4';
+          status_state = 9;
         }else {
-          responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า 1 ช่องนะคะ';
+          responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า 3 ช่องนะคะ';
         }
-    }else if (tutorial_state == '2-6' && status_state == 14) {
+    }
+    else if (tutorial_state == '2-4' && status_state == 9) {
       if (play_flag == true) {
-        responsetext  = 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้ว จะเดินเข้าประตูต้องพูดว่า ถอยหลัง 1 ช่องนะ';
-        tutorial_state = '3-5';
-        status_state = 15;
-        state = 'tutorial_state3';
+        num = 7000;
+        responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งเพิ่มน้า ให้พูดว่า เพิ่มหลังบรรทัดที่ 1';
+        crash_flag = true;
+        tutorial_state = '3-1';
+        status_state = 10;
+        state = 'tutorial_state2-2';
       }else {
         responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';
       }
-    }else if (tutorial_state == '3-5' && status_state == 15) {
-      if (order == 'backward' && distance == '1') {
-        responsetext = 'ผ่านด่านมาแล้ว  ไม่สามารถเดินทับเส้นทางเดิมได้  ฉะนั้นด่านต่อไป ต้องพูดว่า ลบบรรทัดที่ 5';
-        status_state = 16;
-        tutorial_state = '3-6';
-        state = 'tutorial_state4';
+    }
+    else if (tutorial_state == '3-1' && status_state == 10) {
+      if (insert_flag == true && insert_position == 'after' && number == '1'){
+        responsetext = 'พูดคำสั่งที่ต้องการเพิ่มหลังบรรทัดที่ 1 มาเลย ให้พูดว่า เดินหน้า';
+        tutorial_state = '3-2';
+        status_state = 11;
       }else {
-        responsetext = 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 1 ช่องนะ';
-      }
-    }else if (tutorial_state == '3-6' && status_state == 16) {
-      if (delete_flag == true && number_deletecode == '5') {
-        responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่';
-        tutorial_state = '3-7';
-        status_state = 17;
-      }else {
-        responsetext = 'แค่ลบบรรทัดที่ 5 ทิ้งก็เข้าประตูได้แล้วนะ';
+        responsetext = 'ต้องพูดว่า เพิ่มหลังบรรทัดที่1นะ';
       }
       state = null;
-    }else if (tutorial_state == '3-7' && status_state == 17) {
+    }
+    else if (tutorial_state == '3-2' && status_state == 11) {
+      if (order == 'forward' && distance == '1') {
+        responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่';
+        tutorial_state = '3-3';
+        status_state = 12;
+      }else {
+        responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า นะคะ';
+      }
+    }
+    else if (tutorial_state == '3-3' && status_state == 12) {
       if (play_flag == true) {
+        num = 6000;
+        responsetext  = 'ยินดีด้วยผ่านด่านแล้ว ต่อไปจะเรียนคำสั่งลบน้าจ๊ะ ให้พูดว่า ลบบรรทัดที่ 4';
+        crash_flag = true;
+        tutorial_state = '4-1';
+        status_state = 13;
+        state = 'tutorial_state2-3';
+      }else {
+        responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';
+      }
+    }
+    else if (tutorial_state == '4-1' && status_state == 13) {
+      if (delete_flag == true && number_deletecode == '4') {
+        responsetext = 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่';
+        tutorial_state = '4-2';
+        status_state = 14;
+      }else {
+        responsetext = 'แค่ลบบรรทัดที่ 4 ทิ้งนะ';
+      }
+      state = null;
+    }
+    else if (tutorial_state == '4-2' && status_state == 14) {
+      if (play_flag == true) {
+        num = 9000;
         responsetext = 'เรียนจบแล้วต่อไปเป็นการทดสอบน้า เดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ';
-        status_state = 18;
+        status_state = 15;
         tutorial_state = null;
         state = 'maze1';
       }else {
@@ -391,7 +394,7 @@ app.post('/', (req, res) => {
     //   checkState();
     //   status_state = 19;
     // }
-    if (status_state == 18 ){
+    if (status_state == 15 ){
       maze_state = 'maze1';
     }
     if (havetoDo_flag == true && delete_flag == true){
@@ -401,7 +404,7 @@ app.post('/', (req, res) => {
 
     function ComputePosition (){
       console.log('compteposition access');
-      if (havetoDo_flag && status_state == 19){
+      if (havetoDo_flag && status_state == 16){
         console.log('havetoDo ,',havetoDo_flag);
         if (modify_flag == true || insert_flag == true || delete_flag == true || reset != null){
           havetoDo_flag = false;
@@ -412,7 +415,7 @@ app.post('/', (req, res) => {
         }
         console.log("haveto ",havetoDo_flag);
       }
-      if (modify_flag && status_state == 19){
+      if (modify_flag && status_state == 16){
         // console.log('order change is ',order);
         // console.log('distance change is ',distance);
         // console.log('number ',number);
@@ -427,7 +430,7 @@ app.post('/', (req, res) => {
         //   }
         // }
       }
-      else if (insert_flag && status_state == 19){
+      else if (insert_flag && status_state == 16){
         if (insert_position == 'before'){
           number = number - 1 ;
           arrayOrder.splice(number, 0, [order,distance]);
@@ -439,7 +442,7 @@ app.post('/', (req, res) => {
         number = null ;
         insert_position = null;
       }
-      else if (havetoDo_flag == false || play_flag == true && status_state == 18){
+      else if (havetoDo_flag == false || play_flag == true && status_state == 15){
         // console.log('order sh ',order);
         // console.log('disance sh ',distance);
         // console.log('in compute sh arr Order ',arrayOrder);
@@ -668,8 +671,8 @@ app.post('/', (req, res) => {
         // console.log('order play ',order);
         // console.log('distance play ',distance);
       }
-      var turntime = 300*arrayOrder.length;
-      num = 500*position.length + turntime;
+      var turntime = 500*arrayOrder.length;
+      num = 800*position.length + turntime;
       order = null;
       distance = null;
       checkState();
@@ -704,57 +707,56 @@ app.post('/', (req, res) => {
       console.log('access checkstate');
       if (state == 'maze1'){
         if (maze_x == 7 && maze_y == 5){
-          responsetext = 'In the stage two, you must modify,delete or insert';
+          responsetext = 'In the stage two';
           state = 'maze2';
           maze_state = 'maze2';
-          resetPosition();
           console.log('position pasent ',position);
           console.log('maze_stste2 ',maze_state);
-          havetoDo_flag = true;
+          // havetoDo_flag = true;
         }
       }
       else if (state == 'maze2'){
         if (maze_x == 7 && maze_y == 3){
-          responsetext = 'In the stage three, you must modify,delete or insert';
+          responsetext = 'In the stage three';
           state = 'maze3';
           maze_state = 'maze3';
-          resetPosition(position);
+          // resetPosition(position);
           console.log('position pasent ',position);
           console.log('maze_stste3 ',maze_state);
-          havetoDo_flag = true;
+          // havetoDo_flag = true;
         }
       }
       else if (state == 'maze3'){
         if (maze_x == 5 && maze_y == 3){
-           responsetext = 'In the stage four, you must modify,delete or insert';
+           responsetext = 'In the stage four';
            state = 'maze4';
            maze_state = 'maze4';
-           resetPosition(position);
+          //  resetPosition(position);
           console.log('position pasent ',position);
           console.log('maze_stste4 ',maze_state);
-          havetoDo_flag = true;
+          // havetoDo_flag = true;
         }
       }
       else if (state == 'maze4'){
         if (maze_x == 5 && maze_y == 5){
-            responsetext = 'In the stage five, you must modify,delete or insert';
+            responsetext = 'In the stage five';
             state = 'maze5';
             maze_state = 'maze5';
-            resetPosition(position);
+            // resetPosition(position);
             console.log('position pasent ',position);
             console.log('maze_stste5 ',maze_state);
-            havetoDo_flag = true;
+            // havetoDo_flag = true;
         }
       }
       else if (state == 'maze5'){
         if (maze_x == 3 && maze_y == 1){
-            responsetext = 'In the stage six, you must modify,delete or insert';
+            responsetext = 'In the stage six';
             state = 'maze6';
             maze_state = 'maze6';
-            resetPosition(position);
+            // resetPosition(position);
             console.log('position pasent ',position);
             console.log('maze_stste6 ',maze_state);
-            havetoDo_flag = true;
+            // havetoDo_flag = true;
         }
       }
       else if (state == 'maze6'){
@@ -799,20 +801,20 @@ app.post('/', (req, res) => {
       else if (responsetext == 'say replay for replay your actor'){
         responsetext = 'พูดว่า เล่นใหม่ เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
       }
-      else if ( responsetext == 'In the stage two, you must modify,delete or insert'){
-        responsetext = 'ด่าน 2 ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if ( responsetext == 'In the stage two'){
+        responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
       }
-      else if (responsetext == 'In the stage three, you must modify,delete or insert'){
-        responsetext = 'ด่าน3แล้ว ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage three'){
+        responsetext = 'ด่าน 3 แล้ว ดูดีๆนะแก้นิดเดียวเอง';
       }
-      else if (responsetext == 'In the stage four, you must modify,delete or insert'){
-        responsetext = 'ด่าน 4 แล้วต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage four'){
+        responsetext = 'ด่าน 4 แล้ว ระวังนะ เดินทับเส้นทางเดิมไม่ได้นะ';
       }
-      else if (responsetext == 'In the stage five, you must modify,delete or insert'){
-         responsetext = 'เข้าสู่ด่าน 5 เลย ต้องใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage five'){
+         responsetext = 'ไปต่อด่าน 5 เลย';
       }
-      else if (responsetext == 'In the stage six, you must modify,delete or insert'){
-        responsetext = 'ด่านสุดท้ายต้องไปเก็บกุญแจโดยใช้คำสั่งแก้ไข ลบ หรือ เพิ่ม ก่อนนะ';
+      else if (responsetext == 'In the stage six'){
+        responsetext = 'ด่านสุดท้ายต้องไปเก็บกุญแจก่อนน้า';
       }
       else if (responsetext == 'I keep key already'){
          responsetext = 'เก็บกุญแจได้แล้ว เดินไปหาประตูเลย'; 
@@ -825,7 +827,7 @@ app.post('/', (req, res) => {
       }
     }
 
-    if(language == 'en' || language == 'en-us' || language == 'en-gb'){
+    if(language == 'en' || language == 'en-us'){
       if ( responsetext == 'พูดว่า เลี้ยวซ้าย 1 ครั้ง') {
         responsetext = 'Say , turn left 1 time';
       }
@@ -946,10 +948,10 @@ app.post('/', (req, res) => {
     repeat_flag = false;
     crash_flag = false;
 
-    if (tutorial_state == '1-7' && status_state == 8){
+    if (tutorial_state == '2-3' && status_state == 8){
       modify_flag = false;
       number = null;
-    }else if (tutorial_state == '2-5' && status_state == 13){
+    }else if (tutorial_state == '3-2' && status_state == 11){
       insert_flag = false;
       insert_position = null;
       number =null;
