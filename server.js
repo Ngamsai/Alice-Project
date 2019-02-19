@@ -326,7 +326,7 @@ app.post('/', (req, res) => {
             responsetext = 'จบแล้วมาทดสอบกันหน่อย ถ้าพร้อมแล้วให้พูดว่า ทดสอบ';
             status_state = 5;
         } else {
-            responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 3 ช่อง';
+            responsetext = 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดิน 3 ช่อง';
         }
     }
     else if (status_state == 5) {
@@ -335,7 +335,7 @@ app.post('/', (req, res) => {
             responsetext = 'ต้องเดินไปเข้าประตูให้ได้นะ';
             status_state = 6;
         } else {
-            responsetext = 'ทดสอบง่ายๆ ลองดูหน่อย พูดว่า ทดสอบ'
+            responsetext = 'ทดสอบง่ายๆ ลองดูหน่อย พูดว่า ทดสอบ';
         }
     }
     else if (status_state == 6) {
@@ -358,7 +358,7 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 8) {
         if (modify_flag == true && number == '2') {
-            responsetext = 'ที่นี้จะเปลี่ยนจากถอยหลังเป็นเดินหน้า ให้พูดว่า เดินหน้า';
+            responsetext = 'ทีนี้จะเปลี่ยนจากถอยหลังเป็นเดินหน้า ให้พูดว่า เดินหน้า';
             status_state = 9;
         } else {
             responsetext = 'ถ้าจะให้ถูกต้องต้องพูดว่า เปลี่ยนตัวที่ 2';
@@ -387,7 +387,7 @@ app.post('/', (req, res) => {
             responsetext = 'ต้องเดินไปเข้าประตูโดยใช้คำสั่งเปลี่ยน';
             status_state = 12;
         } else {
-            responsetext = 'ทดสอบง่ายๆ ลองดูหน่อย พูดว่า ทดสอบ'
+            responsetext = 'ลองดูหน่อย พูดว่า ทดสอบ';
         }
     }
     else if (status_state == 12) {
@@ -476,13 +476,13 @@ app.post('/', (req, res) => {
             responsetext = 'พูดว่า เล่นใหม่';
             status_state = 22;
         } else {
-            responsetext = 'ยังไม่เพิ่มไม่ถูกนะ ลองอีกที';
+            responsetext = 'ยังพูดไม่ถูกนะ ลองอีกที';
         }
     }
     else if (status_state == 22) {
         if (play_flag == true) {
             num = 6000;
-            responsetext = 'เก่งมาก ต่อไปจะเรียนคำสั่งลบน้าจ๊า ให้พูดว่า ลบตัวที่ 4';
+            responsetext = 'เก่งมาก ต่อไปจะเรียนคำสั่งลบนะจ๊า ให้พูดว่า ลบตัวที่ 4';
             status_state = 23;
             state = 'tutorial_state4-1';
         } else {
@@ -529,14 +529,14 @@ app.post('/', (req, res) => {
         if (play_flag == true) {
             state = 'tutorial_state5-1';
             num = 9000;
-            responsetext = 'สุดท้ายแล้วตอบคำถามให้ได้ก่อนถึงจะเล่นเกมได้  ตั้งใจฟังนะ การเดินในรูปด้านซ้าย  เกิดจาก คำสั่งต่างๆ ในรูปด้านขวา ถูกหรือ ไม่ถูก';
+            responsetext = 'สุดท้ายแล้วตอบคำถามให้ได้ก่อนถึงจะเล่นเกมได้  ตั้งใจฟังนะ การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ถูกหรือ ไม่ถูก';
             status_state = 28;
         } else {
             responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';
         }
     }
     else if (status_state == 28) {
-        if (anser == 'Incoorect') {
+        if (anser == 'Incorect') {
             responsetext = 'เก่งมากเลยจ๊า เล่นเกมจะต้องเดินเข้าประตูให้ครบ 6 ด่านนะ';
             status_state = 30;
             state = 'maze1';
@@ -549,7 +549,7 @@ app.post('/', (req, res) => {
             status_state = 29;
         }
         else {
-            responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';
+            responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ถูกหรือ ไม่ถูก';
         }
     }
     else if (status_state == 29){
