@@ -5,6 +5,7 @@ new (function() {
     var direction ,distance , state , reset ;
     var modify , insert , deletes , seq ,seq_del, play ,positionInsert ;
     var repeat,crash,maze_state;
+    var answerQuestion;
   
   
   $(document).ready(function(){
@@ -26,7 +27,7 @@ new (function() {
 
           socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket,modify_socket ,
              insert_socket , deletes_socket , seq_socket ,seq_del_socket, play_socket ,
-             positionInsert_socket,repeat_socket,crash_socket,maze_state_socket ){
+             positionInsert_socket,repeat_socket,crash_socket,maze_state_socket,answer_socket ){
               console.log('direction is ',direction_socket);
               console.log('distance = ',distance_socket);
               console.log('state = ',state_socket);
@@ -56,6 +57,7 @@ new (function() {
               repeat = repeat_socket;
               crash = crash_socket;
               maze_state = maze_state_socket;
+              answerQuestion = answer_socket;
               receive_data = true;
            });
        
@@ -158,6 +160,11 @@ new (function() {
     ext.get_seq_del = function(){
         return seq_del;
     }
+
+    ext.get_answer = function(){
+        return answerQuestion;
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -177,6 +184,7 @@ new (function() {
             ['r', 'crash', 'get_crash'],
             ['r', 'maze_state', 'get_maze_state'],
             ['r', 'positionInsert', 'get_positioninsert'],
+            ['r', 'answer', 'get_answer'],
         ],
         menus: {
             name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
