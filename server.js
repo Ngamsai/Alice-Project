@@ -296,9 +296,9 @@ app.post('/', (req, res) => {
     console.log('state ', status_state);
 
     //tutorial**********************************************************************************************************
-    if (status_state == 2) {
+    if (status_state == 2 && already == 'พร้อมแล้ว') {
         if (already == 'พร้อมแล้ว') {
-            responsetext = 'จับตาดูที่ตัวละคร และ สัญญาลักษณ์ให้ดีนะ เริ่มกันเลย พูดว่า เลี้ยวซ้าย';
+            responsetext = 'จับตาดูที่ตัวละคร และ สัญญาลักษณ์ให้ดีนะ เริ่มกันเลย ให้พูดว่า เลี้ยวซ้าย';
             state = 'tutorial_state1-1';
             console.log('access tutorial ', already);
             status_state = 3;
