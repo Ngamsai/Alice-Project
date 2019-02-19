@@ -299,7 +299,7 @@ app.post('/', (req, res) => {
     if (responsetext == 'มาเรียนกันก่อนนะ   ตั้งใจฟังที่พี่อลิซบอกนะคะ  ถ้าพร้อมแล้วให้พูดว่า   พร้อมแล้ว'){
         status_state = 2;
     }
-    else if (status_state == 2) {
+    if (status_state == 2) {
         if (already == 'พร้อมแล้ว') {
             responsetext = 'จับตาดูที่ตัวละคร และ สัญญาลักษณ์ให้ดีนะ เริ่มกันเลย ให้พูดว่า เลี้ยวซ้าย';
             state = 'tutorial_state1-1';
