@@ -144,7 +144,7 @@ app.post('/', (req, res) => {
         if (status_state == 1) {
             console.log('actor is ', character);
             if (character == "1" || character == "2") {
-                status_state = 2;
+                console.log('character is ',character);
             }
             else {
                 responsetext = 'you can choose 1 or 2 only';
@@ -296,7 +296,10 @@ app.post('/', (req, res) => {
     console.log('state ', status_state);
 
     //tutorial**********************************************************************************************************
-    if (status_state == 2 && already == 'พร้อมแล้ว') {
+    if (responsetext == 'มาเรียนกันก่อนนะ   ตั้งใจฟังที่พี่อลิซบอกนะคะ  ถ้าพร้อมแล้วให้พูดว่า   พร้อมแล้ว'){
+        status_state = 2;
+    }
+    else if (status_state == 2 && already == 'พร้อมแล้ว') {
         if (already == 'พร้อมแล้ว') {
             responsetext = 'จับตาดูที่ตัวละคร และ สัญญาลักษณ์ให้ดีนะ เริ่มกันเลย ให้พูดว่า เลี้ยวซ้าย';
             state = 'tutorial_state1-1';
