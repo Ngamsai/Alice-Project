@@ -304,7 +304,7 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 2) {
         if (already == 'พร้อมแล้ว') {
-            responsetext = 'จับตาดูที่ตัวละคร และ สัญญาลักษณ์ให้ดีนะ เริ่มกันเลย ให้พูดว่า เลี้ยวซ้าย';
+            responsetext = 'จับตาดูที่ตัวละคร และ สัญลักษณ์ให้ดีนะ เริ่มกันเลย ให้พูดว่า เลี้ยวซ้าย';
             state = 'tutorial_state1-1';
             console.log('access tutorial ', already);
             status_state = 3;
@@ -340,7 +340,7 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 6) {
         if (order == 'forward' && distance == '2') {
-            responsetext = 'ต่อไปจะเรียนการใช้คำสั่งเปลี่ยนนะ สังเกตที่สัญญาลักษณ์ด้วยนะ ถ้าพร้อมแล้วให้พูดว่า พร้อมแล้ว';
+            responsetext = 'ต่อไปจะเรียนการใช้คำสั่งเปลี่ยนนะ สังเกตที่สัญลักษณ์ด้วยนะ ถ้าพร้อมแล้วให้พูดว่า พร้อมแล้ว';
             status_state = 7;
         } else {
             responsetext = 'ยังไม่ถูกนะคะ ลองใหม่อีกครั้งนะ';
@@ -409,7 +409,7 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 14) {
         if (play_flag == true) {
-            responsetext = 'ยินดีด้วยผ่านแล้ว คำสั่งต่อไปเป็นคำสั่งเพิ่ม  ไปต่อพูดว่า พร้อมแล้ว';
+            responsetext = 'ยินดีด้วยผ่านแล้ว เรียนคำสั่งเพิ่มต่อ  พูดว่า พร้อมแล้ว';
             status_state = 15;
         } else {
             responsetext = 'ต้องพูดว่าเล่นใหม่';
@@ -536,7 +536,7 @@ app.post('/', (req, res) => {
         }
     }
     else if (status_state == 28) {
-        if (anser == 'Incorect') {
+        if (anser == 'incorrect') {
             responsetext = 'เก่งมากเลยจ๊า เล่นเกมจะต้องเดินเข้าประตูให้ครบ 6 ด่านนะ';
             status_state = 30;
             state = 'maze1';
