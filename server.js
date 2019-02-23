@@ -6,7 +6,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http); //server
 var port = process.env.PORT || 3000;
 
-var text = null;
 var maze = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
 [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
 [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
@@ -26,6 +25,7 @@ var maze_y = 1;
 var direction = 'E';
 var state = 'startgame';
 var status_state = 0;
+var text = null;
 var position_flag = true;
 var modify_flag = false;
 var delete_flag = false;
@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.post('/', (req, res) => {
 
     console.log("***************************************************************************************************")
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext = req.body.queryResult.fulfillmentText;
@@ -68,18 +68,18 @@ app.post('/', (req, res) => {
     forward_backward_direction = keep['conversation-use'];
     left_right_direction = keep['conversation-direction'];
     direction_return = keep['turn-around'];
-    distance = keep['number-integer'];
+    distance = keep.distance;
     startgame = keep.startgame;
-    play = keep['conversation-replay'];
+    play = keep.play;
     anser = keep.anser;
     test_state = keep.test;
     character = keep.actor;
-    tutorial_state = keep.state;
-    tutorial_num_state = keep['num-state']
+    // tutorial_state = keep.state;
+    // tutorial_num_state = keep['num-state']
     reset = keep.reset;
     modify = keep.modify;
-    already = keep.starttutorial;
-    numberSequence = keep['number-modify'];
+    already = keep.already;
+    numberSequence = keep.position;
     delete_code = keep.delete;
     insert = keep.insert;
     insertPosition = keep['insert-position'];
@@ -92,10 +92,10 @@ app.post('/', (req, res) => {
         order = left_right_direction;
         console.log('show left_right_direction ', order);
     }
-    // else if (direction_return != null ){
-    //   order = direction_return;
-    //   console.log('show return ',order);
-    // }
+    else if (direction_return != null) {
+        console.log('show return ', direction_return);
+        order = 'right';
+    }
     //show value
     if (req.body.queryResult.action == 'input.welcome') {
         status_state = 0;
@@ -106,35 +106,6 @@ app.post('/', (req, res) => {
         console.log('all position when restart', position);
         console.log('array of order when restart', arrayOrder);
     }
-    else if (order != null && distance != null) {
-        if (language == 'th') {
-            if (order == "เดินหน้า") {
-                order = "forward";
-            }
-            else if (order == "ถอยหลัง") {
-                order = "backward";
-            }
-            else if (order == "เลี้ยวซ้าย") {
-                order = "left";
-            }
-            else if (order == "เลี้ยวขวา") {
-                order = "right";
-            }
-            // else if (order == "กลับหลังหัน"){
-            //   order = "return";
-            //   distance = '2';
-            // }
-        }
-        console.log('sh order', order, 'show distance ', distance);
-        if (status_state == 30) {
-            ComputePosition();
-            keepArrayOrder();
-            checkState();
-            status_state = 31;
-        } else {
-            console.log('will access tutorial');
-        }
-    }
     else if (startgame != null && status_state == 0) {
         status_state = 1;
         console.log('show start ', startgame);
@@ -144,7 +115,8 @@ app.post('/', (req, res) => {
         if (status_state == 1) {
             console.log('actor is ', character);
             if (character == "1" || character == "2") {
-                console.log('character is ',character);
+                console.log('character is ', character);
+                state = 'select character';
                 status_state = 2.1;
                 responsetext = 'มาเรียนกันก่อนนะ   ตั้งใจฟังที่พี่อลิซบอกนะคะ  ถ้าพร้อมแล้วให้พูดว่า   พร้อมแล้ว';
             }
@@ -177,13 +149,55 @@ app.post('/', (req, res) => {
         }
         // console.log('numberSequence ',numberSequence); 
     }
-    else if (modify != null) {
+    else if (test_state != null) {
+        if (status_state == 5 && test_state == 'ทดสอบ') {
+            console.log('test5 ', test_state);
+            test_flag = true;
+        } else if (status_state == 11 && test_state == 'ทดสอบ') {
+            console.log('test11 ', test_state);
+            test_flag = true;
+        } else if (status_state == 19 && test_state == 'ทดสอบ') {
+            console.log('test19 ', test_state);
+            test_flag = true;
+        } else if (status_state == 25 && test_state == 'ทดสอบ') {
+            console.log('test25 ', test_state);
+            test_flag = true;
+        } else {
+            test_flag = false;
+        }
+    }
+    else if (anser != null) {
+        if (anser == 'ถูก') {
+            anser = 'correct';
+        } else if (anser == 'ไม่ถูก') {
+            anser = 'incorrect';
+        }
+        if (status_state == 28) {
+            console.log('state28 anser is ', anser);
+        } else if (status_state == 29) {
+            console.log('state29 anser is ', anser);
+        }
+    }
+    else if (already != null) {
+        if (status_state == 2) {
+            console.log('start tutorial mode');
+        }
+        else if (status_state == 7) {
+            console.log('tutorial modify already');
+        }
+        else if (status_state == 15) {
+            console.log('tutorial insert already');
+        }
+    }
+
+    
+    if (modify != null) {
         modify_flag = true;
         number = numberSequence;
         if (status_state == 8) {
             console.log('tutorial_state8_mod_flag ', modify_flag, ' num ', number);
-        }else if (status_state == 12) {
-                console.log('tutorial_state12_mod_flag ', modify_flag, ' num ', number);
+        } else if (status_state == 12) {
+            console.log('tutorial_state12_mod_flag ', modify_flag, ' num ', number);
         } else if (status_state == 31) {
             console.log('state31_mod_flag ', modify_flag);
             console.log(' num_modify ', number);
@@ -222,11 +236,11 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
         if (status_state == 16) {
             console.log('tutorial_state16_insert_flag ', insert_flag, ' position ', insert_position, ' number ', number);
-        }else if (status_state == 20) {
+        } else if (status_state == 20) {
             console.log('tutorial_state20_insert_flag ', insert_flag, ' position ', insert_position, ' number ', number);
-        }else if (status_state == 31) {
+        } else if (status_state == 31) {
             console.log('state31_insert_flag ', insert_flag, ' position ', insert_position, ' number ', number);
-            
+
         } else {
             number = null;
             insert_position = null;
@@ -235,10 +249,10 @@ app.post('/', (req, res) => {
     }
     else if (reset != null) {
         if (status_state == 31) {
-            for ( var ee = 3;ee>-1;ee--){
-                if (ee == 2){
+            for (var ee = 3; ee > -1; ee--) {
+                if (ee == 2) {
                     responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ'
-                }else if (ee == 1){
+                } else if (ee == 1) {
                     responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
                 }
                 console.log('reset in true_state ', reset);
@@ -249,56 +263,65 @@ app.post('/', (req, res) => {
         }
         console.log('reset ', reset);
     }
-    else if (test_state != null) {
-        if (status_state == 5 && test_state == 'ทดสอบ') {
-            console.log('test5 ', test_state);
-            test_flag = true;
-        }else if (status_state == 11 && test_state == 'ทดสอบ'){
-            console.log('test11 ', test_state);
-            test_flag = true;
-        }else if (status_state == 19 && test_state == 'ทดสอบ'){
-            console.log('test19 ', test_state);
-            test_flag = true;
-        }else if (status_state == 25 && test_state == 'ทดสอบ'){
-            console.log('test25 ', test_state);
-            test_flag = true;
-        }else {
-            test_flag = false;
+    else if (numberSequence != null) {
+        if (status_state == 31 && modify_flag == true || insert_flag == true) {
+            number = numberSequence;
         }
-        
-    }
-    else if (anser != null) {
-        if (anser == 'ถูก'){
-            anser = 'correct';
-        }else if (anser == 'ไม่ถูก'){
-            anser = 'incorrect';
-        }
-        if (status_state == 28) {
-            console.log('state28 anser is ',anser);
-        }else if (status_state == 29){
-            console.log('state29 anser is ',anser);
+        else {
+            responsetext = 'ขอโทษค่ะ ฉันไม่เข้าใจ';
         }
     }
-    else if (already != null) {
-        if (status_state == 2) {
-            console.log('start tutorial mode');
+
+    if (order != null && distance != null) {
+        if (language == 'th') {
+            if (order == "เดินหน้า") {
+                order = "forward";
+            }
+            else if (order == "ถอยหลัง") {
+                order = "backward";
+            }
+            else if (order == "เลี้ยวซ้าย") {
+                order = "left";
+            }
+            else if (order == "เลี้ยวขวา") {
+                order = "right";
+            }
+            // else if (order == "กลับหลังหัน"){
+            //   order = "return";
+            //   distance = '2';
+            // }
         }
-        else if (status_state == 7) {
-            console.log('tutorial modify already');
+        console.log('sh order', order, 'show distance ', distance);
+        if (status_state == 30) {
+            ComputePosition();
+            keepArrayOrder();
+            checkState();
+            status_state = 31;
+        } else {
+            console.log('will access tutorial');
         }
-        else if (status_state == 15) {
-            console.log('tutorial insert already');
-        }
-    }
-    if (numberSequence != null){
-        number = numberSequence;
     }
 
 
     console.log('state ', status_state);
 
+    var maze_tutorial = [[0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0]]
+
+    var order_tutorail = null;
+    var position_tutorial = null;
+
     //tutorial**********************************************************************************************************
-    if (status_state == 2.1){
+    if (status_state == 2.1) {
         status_state = 2;
         state = null;
     }
@@ -463,7 +486,7 @@ app.post('/', (req, res) => {
         if (insert_flag == true && insert_position == 'after' && number == '3') {
             responsetext = 'พูดคำสั่งที่ต้องการเพิ่มหลังตัวที่ 3 มาเลย';
             status_state = 21;
-        } else if (insert_flag == true && insert_position == 'before' && number == '4'){
+        } else if (insert_flag == true && insert_position == 'before' && number == '4') {
             responsetext = 'พูดคำสั่งที่ต้องการเพิ่มก่อนตัวที่ 4 มาเลย';
             status_state = 21;
         } else {
@@ -543,7 +566,7 @@ app.post('/', (req, res) => {
             maze_state = 'maze1';
             state = null;
         }
-        else if (anser == 'correct'){
+        else if (anser == 'correct') {
             state = 'tutorial_state5-2';
             responsetext = 'ยังตอบไม่ถูกนะ ลองข้อใหม่ ดูสิว่า  การเดินของตัวละคร ในด้านซ้าย เกิดจาก คำสั่งของรูปด้านขวา ถูก หรือ ไม่ถูก';
             status_state = 29;
@@ -552,26 +575,26 @@ app.post('/', (req, res) => {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ถูกหรือ ไม่ถูก';
         }
     }
-    else if (status_state == 29){
-        if (anser == 'correct'){
+    else if (status_state == 29) {
+        if (anser == 'correct') {
             responsetext = 'เก่งมากเลยจ๊า เล่นเกมจะต้องเดินเข้าประตูให้ครบ 6 ด่านนะ';
             status_state = 30;
             state = 'maze1';
             maze_state = 'maze1';
             state = null;
-        }else {
+        } else {
             responsetext = 'ไม่ผ่านการเรียน เสียใจด้วยนะจ๊า';
         }
     }
 
 
 
-
+//HAVE TO DO *****************************************************************************************************
     if (havetoDo_flag == true && delete_flag == true) {
         havetoDo_flag = false;
         console.log('havetoDo_delete ,', havetoDo_flag);
     }
-
+//function ComputePosition *****************************************************************************************************
     function ComputePosition() {
         console.log('compteposition access');
         if (havetoDo_flag && status_state == 31) {
@@ -789,13 +812,13 @@ app.post('/', (req, res) => {
             console.log('now mo array order is ', arrayOrder);
             console.log('no add array order');
             responsetext = 'say replay for replay your actor';
-            modify_flag = false;
+            // modify_flag = false;
         }
         else if (insert_flag) {
             console.log('now insert array order is ', arrayOrder);
             console.log('no add array order');
             responsetext = 'say replay for replay your actor';
-            insert_flag = false;
+            // insert_flag = false;
         }
         else if (havetoDo_flag == false) {
             if (order == 'forward' || order == 'backward') {
@@ -828,6 +851,14 @@ app.post('/', (req, res) => {
         maze_x = 11;
         maze_y = 1;
         direction = 'E';
+        if (modify_flag) {
+            console.log('mod-flag in play ', modify_flag);
+            modify_flag = false;
+        }
+        else if (insert_flag) {
+            console.log('insert-flag in play ', insert_flag);
+            insert_flag = false;
+        }
         // console.log('mo f ',modify_flag);
         // console.log('in_f '.insert_flag);
         console.log('position from play function ', position);
@@ -849,6 +880,7 @@ app.post('/', (req, res) => {
         console.log('order play1 ', order);
         console.log('distance play1 ', distance);
         // play_flag = false;
+        
     }
 
     function resetPosition() {
@@ -969,7 +1001,7 @@ app.post('/', (req, res) => {
             responsetext = 'ไม่สามารถไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนถึงจะเดินต่อได้น้า';
         }
         else if (responsetext == 'say replay for replay your actor') {
-            responsetext = 'พูดว่า เล่นใหม่ เพื่อเดินตามคำสั่งใหม่ที่แก้เมื่อสักครู่นี้';
+            responsetext = 'ให้พูดว่า เล่นใหม่';
         }
         else if (responsetext == 'In the stage two') {
             responsetext = 'ผ่านด่าน 1 แล้วไปด่าน 2 ต่อเลย';
@@ -1104,8 +1136,8 @@ app.post('/', (req, res) => {
     // console.log('seq ',sequence);
     // console.log('repeat_f ',repeat_flag);
     console.log("playF ", play_flag);
-    io.emit('chat', order, distance, insert_flag, modify_flag, number, insert_position, delete_flag, play_flag, state, startgame, character, reset_flag, number_deletecode,anser);
-    io.emit('symbols', order, distance, state, reset_flag, modify_flag, insert_flag, delete_flag, number, number_deletecode, play_flag, insert_position, repeat_flag, crash_flag, maze_state,anser);
+    io.emit('chat', order, distance, insert_flag, modify_flag, number, insert_position, delete_flag, play_flag, state, startgame, character, reset_flag, number_deletecode, anser);
+    io.emit('symbols', order, distance, state, reset_flag, modify_flag, insert_flag, delete_flag, number, number_deletecode, play_flag, insert_position, repeat_flag, crash_flag, maze_state, anser);
     order = null;
     distance = null;
     anser = null;
