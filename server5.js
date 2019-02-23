@@ -264,8 +264,11 @@ app.post('/', (req, res) => {
         console.log('reset ', reset);
     }
     else if (numberSequence != null) {
-        if (status_state == 31) {
+        if (status_state == 31 && modify_flag == true || insert_flag == true) {
             number = numberSequence;
+        }
+        else {
+            responsetext = 'ขอโทษค่ะ ฉันไม่เข้าใจ';
         }
     }
 
