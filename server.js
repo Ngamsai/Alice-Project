@@ -659,6 +659,7 @@ app.post('/', (req, res) => {
             arrayOrder.splice(number, 1, [order, distance]);
             
             console.log('arrayOrder from compute mod', arrayOrder);
+            number = number + 1;
             // console.log('order change is ',order);
             // console.log('distance change is ',distance);
             // console.log('number ',number);
@@ -671,6 +672,7 @@ app.post('/', (req, res) => {
                 number = number - 1;
                 arrayOrder.splice(number, 0, [order, distance]);
                 console.log('arrayOrder from compute insert before', arrayOrder);
+                number = number + 1;
             } else if (insert_position == 'after') {
                 arrayOrder.splice(number, 0, [order, distance]);
                 console.log('arrayOrder from compute insert after', arrayOrder);
