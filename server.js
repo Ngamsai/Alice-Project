@@ -300,7 +300,7 @@ app.post('/', (req, res) => {
             // }
         }
         console.log('sh order', order, 'show distance ', distance);
-        if (status_state == 30) {
+        if (status_state == 30 || status_state == 31) {
             ComputePosition();
             keepArrayOrder();
             checkState();
