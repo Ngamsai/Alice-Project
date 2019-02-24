@@ -18,6 +18,7 @@ new (function() {
     var number_delete;
     var positioninsert,insert;
     var answerQuestion;
+    var maze_state;
   
   $(document).ready(function(){
     //load this script then .done text 
@@ -37,7 +38,7 @@ new (function() {
           }); 
 
           socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position,delete_fl,play_fl,state_socket,startgame_socket,
-            character_socket,reset_fl,number_deletecode,answer_socket){
+            character_socket,reset_fl,number_deletecode,answer_socket,maze_state_socket){
               console.log('direction is ',direction_socket)
               console.log('distance = ',distance_socket)
               console.log('insert ',insert_fl);
@@ -52,6 +53,7 @@ new (function() {
               console.log('reset ',reset_fl);
               console.log('num_delete ',number_deletecode);
               console.log('answer is',answer_socket);
+              console.log('maze_state is',maze_state_socket);
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
@@ -67,6 +69,7 @@ new (function() {
               reset = reset_fl;
               number_delete = number_deletecode;
               answerQuestion = answer_socket;
+              maze_state = maze_state_socket;
               receive_data = true;
         });
        
@@ -269,6 +272,10 @@ new (function() {
         return answerQuestion;
     }
 
+    ext.get_maze_state = function(){
+        return maze_state;
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -289,6 +296,7 @@ new (function() {
             ['r', 'deleteCode', 'get_deletecode'],
             ['r', 'positionInsert', 'get_positioninsert'],
             ['r', 'answer', 'get_answer'],
+            ['r', 'maze_state', 'get_maze_state'],
         ],
       menus: {
         name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
