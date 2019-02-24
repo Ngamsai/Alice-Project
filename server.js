@@ -38,6 +38,7 @@ var havetoDo_flag = false;
 var test_flag = false;
 var maze_state = null;
 var num = 500;
+var ee = 3; 
 var already = null;
 var anser = null;
 var test_state = null;
@@ -254,19 +255,18 @@ app.post('/', (req, res) => {
     }
     else if (reset != null) {
         if (status_state == 33) {
-            for (var ee = 0; ee <= 3; ee++) {
-                if (ee == 2) {
-                    responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ'
-                } else if (ee == 3) {
-                    responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
-                }
-                console.log('reset in true_state ', reset);
-                reset_flag = true;
-                resetPosition();
-                resetArrayOrder();
+            ee -= ee;
+            if (ee == 1) {
+                responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ';
+            } else if (ee == 0) {
+                responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
             }
+            console.log('reset in true_state ', reset);
+            reset_flag = true;
+            resetPosition();
+            resetArrayOrder();
         }
-        console.log('reset ', reset);
+        console.log('reset_flag ', reset_flag);
     }
     else if (numberSequence != null) {
         if (status_state == 33 && modify_flag == true ) {
