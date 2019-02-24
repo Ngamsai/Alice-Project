@@ -58,7 +58,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.post('/', (req, res) => {
 
     console.log("***************************************************************************************************")
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext = req.body.queryResult.fulfillmentText;
@@ -255,7 +255,7 @@ app.post('/', (req, res) => {
     }
     else if (reset != null) {
         if (status_state == 33) {
-            ee -= ee;
+            // ee -= ee;
             console.log('ee ',ee);
             if (ee == 1) {
                 responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ';
