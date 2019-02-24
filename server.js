@@ -109,6 +109,7 @@ app.post('/', (req, res) => {
     if (req.body.queryResult.action == 'input.welcome') {
         status_state = 0;
         state = 'startgame';
+        ee = 3;
         havetoDo_flag = false;
         resetPosition();
         resetArrayOrder();
@@ -254,7 +255,7 @@ app.post('/', (req, res) => {
         }
     }
     else if (reset != null) {
-        if (status_state == 33) {
+        if (status_state == 33 && ee > 0) {
             ee = ee - 1;
             console.log('ee ',ee);
             if (ee == 1) {
