@@ -314,26 +314,38 @@ app.post('/', (req, res) => {
         status_state = 30;
         state = 'maze1';
         maze_state = 'maze1';
+        resetPosition();
+        resetArrayOrder();
     }else if (status_state == 102){
         status_state = 31;
         state = 'maze2';
         maze_state = 'maze2';
+        resetPosition();
+        resetArrayOrder();
     }else if (status_state == 103){
         status_state = 31;
         state = 'maze3';
         maze_state = 'maze3';
+        resetPosition();
+        resetArrayOrder();
     }else if (status_state == 104){
         status_state = 31;
         state = 'maze4';
         maze_state = 'maze4';
+        resetPosition();
+        resetArrayOrder();
     }else if (status_state == 105){
         status_state = 31;
         state = 'maze5';
         maze_state = 'maze5';
+        resetPosition();
+        resetArrayOrder();
     }else if (status_state == 106){
         status_state = 31;
         state = 'maze6';
         maze_state = 'maze6';
+        resetPosition();
+        resetArrayOrder();
     }
 
     console.log('state ', status_state);
