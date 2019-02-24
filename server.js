@@ -175,15 +175,12 @@ app.post('/', (req, res) => {
         }
     }
     else if (anser != null) {
-        if (anser == 'ถูก') {
-            anser = 'correct';
-        } else if (anser == 'ไม่ถูก') {
-            anser = 'incorrect';
-        }
-        if (status_state == 28) {
-            console.log('state28 anser is ', anser);
-        } else if (status_state == 29) {
+        if (status_state == 29) {
             console.log('state29 anser is ', anser);
+        } else if (status_state == 30) {
+            console.log('state30 anser is ', anser);
+        }else if (status_state == 31) {
+            console.log('state30ช1 anser is ', anser);
         }
     }
     else if (already != null) {
