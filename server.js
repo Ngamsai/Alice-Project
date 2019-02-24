@@ -65,9 +65,9 @@ app.post('/', (req, res) => {
         console.log('sh resend ', text);
     }
 
-    forward_backward_direction = keep['conversation-use'];
-    left_right_direction = keep['conversation-direction'];
-    direction_return = keep['turn-around'];
+    forward_backward_direction = keep.order;
+    left_right_direction = keep.direction;
+    direction_return = keep.return;
     distance = keep.distance;
     startgame = keep.startgame;
     play = keep.play;
