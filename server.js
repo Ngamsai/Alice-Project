@@ -267,6 +267,8 @@ app.post('/', (req, res) => {
             reset_flag = true;
             resetPosition();
             resetArrayOrder();
+        }else {
+            responsetext = 'ไม่สามารถใช้คำสั่งเริ่มต้นใหม่แล้วนะ'
         }
         console.log('reset_flag ', reset_flag);
     }
