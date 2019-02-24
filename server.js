@@ -309,7 +309,32 @@ app.post('/', (req, res) => {
             console.log('will access tutorial');
         }
     }
-
+  
+    if (status_state == 101 ){
+        status_state = 30;
+        state = 'maze1';
+        maze_state = 'maze1';
+    }else if (status_state == 102){
+        status_state = 31;
+        state = 'maze2';
+        maze_state = 'maze2';
+    }else if (status_state == 103){
+        status_state = 31;
+        state = 'maze3';
+        maze_state = 'maze3';
+    }else if (status_state == 104){
+        status_state = 31;
+        state = 'maze4';
+        maze_state = 'maze4';
+    }else if (status_state == 105){
+        status_state = 31;
+        state = 'maze5';
+        maze_state = 'maze5';
+    }else if (status_state == 106){
+        status_state = 31;
+        state = 'maze6';
+        maze_state = 'maze6';
+    }
 
     console.log('state ', status_state);
 
@@ -572,7 +597,6 @@ app.post('/', (req, res) => {
             status_state = 30;
             state = 'maze1';
             maze_state = 'maze1';
-            state = null;
         }
         else if (anser == 'correct') {
             state = 'tutorial_state5-2';
@@ -589,7 +613,6 @@ app.post('/', (req, res) => {
             status_state = 30;
             state = 'maze1';
             maze_state = 'maze1';
-            state = null;
         } else {
             responsetext = 'ไม่ผ่านการเรียน เสียใจด้วยนะจ๊า';
         }
