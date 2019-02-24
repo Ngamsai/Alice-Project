@@ -617,7 +617,7 @@ app.post('/', (req, res) => {
         }
     }
     else if (status_state == 28) {
-        if (test_flag) {
+        if (already == 'พร้อมแล้ว') {
             state = 'tutorial_state5-1';
             responsetext = 'ตั้งใจฟังนะ การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
             status_state = 29;
@@ -721,7 +721,7 @@ app.post('/', (req, res) => {
             }
             
         }
-        else if (havetoDo_flag == false || play_flag == true && status_state == 32) {
+        else if (havetoDo_flag == false || play_flag == true) {
             // console.log('order sh ',order);
             // console.log('disance sh ',distance);
             // console.log('in compute sh arr Order ',arrayOrder);
