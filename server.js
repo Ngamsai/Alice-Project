@@ -657,7 +657,7 @@ app.post('/', (req, res) => {
             // console.log('number ',number);
             number = number - 1;
             arrayOrder.splice(number, 1, [order, distance]);
-            number = null;
+            
             console.log('arrayOrder from compute mod', arrayOrder);
             // console.log('order change is ',order);
             // console.log('distance change is ',distance);
@@ -675,8 +675,7 @@ app.post('/', (req, res) => {
                 arrayOrder.splice(number, 0, [order, distance]);
                 console.log('arrayOrder from compute insert after', arrayOrder);
             }
-            number = null;
-            insert_position = null;
+            
         }
         else if (havetoDo_flag == false || play_flag == true && status_state == 30) {
             // console.log('order sh ',order);
@@ -895,12 +894,15 @@ app.post('/', (req, res) => {
         maze_y = 1;
         direction = 'E';
         if (modify_flag) {
-            console.log('mod-flag in play ', modify_flag);
             modify_flag = false;
+            number = null;
+            console.log('mod-flag in play ', modify_flag);
         }
         else if (insert_flag) {
-            console.log('insert-flag in play ', insert_flag);
             insert_flag = false;
+            number = null;
+            insert_position = null;
+            console.log('insert-flag in play ', insert_flag);
         }
         // console.log('mo f ',modify_flag);
         // console.log('in_f '.insert_flag);
