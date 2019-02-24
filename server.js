@@ -150,7 +150,7 @@ app.post('/', (req, res) => {
             console.log('tutorial_state24_play_flag ', play_flag);
         } else if (status_state == 27) {
             console.log('tutorial_state27_play_flag ', play_flag);
-        } else if (status_state == 31) {
+        } else if (status_state == 33) {
             playFunction();
         } else {
             play_flag = false;
@@ -206,8 +206,8 @@ app.post('/', (req, res) => {
             console.log('tutorial_state8_mod_flag ', modify_flag, ' num ', number);
         } else if (status_state == 12) {
             console.log('tutorial_state12_mod_flag ', modify_flag, ' num ', number);
-        } else if (status_state == 31) {
-            console.log('state31_mod_flag ', modify_flag);
+        } else if (status_state == 33) {
+            console.log('state33_mod_flag ', modify_flag);
             console.log(' num_modify ', number);
         } else {
             modify_flag = false;
@@ -221,8 +221,8 @@ app.post('/', (req, res) => {
             console.log('tutorial_state23_del_flag ', delete_flag, ' num ', number_deletecode);
         } else if (status_state == 26) {
             console.log('tutorial_state26_del_flag ', delete_flag, ' num ', number_deletecode);
-        } else if (status_state == 31) {
-            console.log('state31_del_flag ', delete_flag, ' num ', number_deletecode)
+        } else if (status_state == 33) {
+            console.log('state33_del_flag ', delete_flag, ' num ', number_deletecode)
             deleteCode();
         } else {
             delete_flag = false;
@@ -246,8 +246,8 @@ app.post('/', (req, res) => {
             console.log('tutorial_state16_insert_flag ', insert_flag, ' position ', insert_position, ' number ', number);
         } else if (status_state == 20) {
             console.log('tutorial_state20_insert_flag ', insert_flag, ' position ', insert_position, ' number ', number);
-        } else if (status_state == 31) {
-            console.log('state31_insert_flag ', insert_flag, ' position ', insert_position, ' number ', number);
+        } else if (status_state == 33) {
+            console.log('state33_insert_flag ', insert_flag, ' position ', insert_position, ' number ', number);
 
         } else {
             number = null;
@@ -256,7 +256,7 @@ app.post('/', (req, res) => {
         }
     }
     else if (reset != null) {
-        if (status_state == 31) {
+        if (status_state == 33) {
             for (var ee = 3; ee > -1; ee--) {
                 if (ee == 2) {
                     responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ'
@@ -272,8 +272,22 @@ app.post('/', (req, res) => {
         console.log('reset ', reset);
     }
     else if (numberSequence != null) {
-        if (status_state == 31 && modify_flag == true || insert_flag == true) {
+        if (status_state == 33 && modify_flag == true ) {
             number = numberSequence;
+        }
+        else if (status_state == 33 && insert_flag == true){
+            number = numberSequence;
+            insert_position = insertPosition;
+            if (language == 'th') {
+                if (insert_position == 'ก่อน') {
+                    insert_position = 'before';
+                }
+                else if (insert_position == 'หลัง') {
+                    insert_position = 'after';
+                }
+            }
+            console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
+
         }
         else {
             responsetext = 'ขอโทษค่ะ ฉันไม่เข้าใจ';
@@ -300,48 +314,48 @@ app.post('/', (req, res) => {
             // }
         }
         console.log('sh order', order, 'show distance ', distance);
-        if (status_state == 30 || status_state == 31) {
+        if (status_state == 32 || status_state == 33) {
             ComputePosition();
             keepArrayOrder();
             checkState();
-            status_state = 31;
+            status_state = 33;
         } else {
             console.log('will access tutorial');
         }
     }
   
     if (status_state == 101 ){
-        status_state = 30;
+        status_state = 32;
         state = 'maze1';
         maze_state = 'maze1';
         resetPosition();
         resetArrayOrder();
     }else if (status_state == 102){
-        status_state = 31;
+        status_state = 33;
         state = 'maze2';
         maze_state = 'maze2';
         resetPosition();
         resetArrayOrder();
     }else if (status_state == 103){
-        status_state = 31;
+        status_state = 33;
         state = 'maze3';
         maze_state = 'maze3';
         resetPosition();
         resetArrayOrder();
     }else if (status_state == 104){
-        status_state = 31;
+        status_state = 33;
         state = 'maze4';
         maze_state = 'maze4';
         resetPosition();
         resetArrayOrder();
     }else if (status_state == 105){
-        status_state = 31;
+        status_state = 33;
         state = 'maze5';
         maze_state = 'maze5';
         resetPosition();
         resetArrayOrder();
     }else if (status_state == 106){
-        status_state = 31;
+        status_state = 33;
         state = 'maze6';
         maze_state = 'maze6';
         resetPosition();
@@ -595,38 +609,66 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 27) {
         if (play_flag == true) {
-            state = 'tutorial_state5-1';
             num = 9000;
-            responsetext = 'สุดท้ายแล้วตอบคำถามให้ได้ก่อนถึงจะเล่นเกมได้  ตั้งใจฟังนะ การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ถูกหรือ ไม่ถูก';
+            responsetext = 'สุดท้ายแล้วตอบคำถามให้ถูกต้องทั้ง 3 ข้อก่อนถึงจะเล่นเกมได้  พร้อมเล่นแล้วให้พูดว่า พร้อมแล้ว';
             status_state = 28;
         } else {
             responsetext = 'ต้องพูดว่าเล่นใหม่ก่อนนะ';
         }
     }
     else if (status_state == 28) {
-        if (anser == 'incorrect') {
-            responsetext = 'เก่งมากเลยจ๊า เล่นเกมจะต้องเดินเข้าประตูให้ครบ 6 ด่านนะ';
-            status_state = 30;
-            state = 'maze1';
-            maze_state = 'maze1';
-        }
-        else if (anser == 'correct') {
-            state = 'tutorial_state5-2';
-            responsetext = 'ยังตอบไม่ถูกนะ ลองข้อใหม่ ดูสิว่า  การเดินของตัวละคร ในด้านซ้าย เกิดจาก คำสั่งของรูปด้านขวา ถูก หรือ ไม่ถูก';
+        if (test_flag) {
+            state = 'tutorial_state5-1';
+            responsetext = 'ตั้งใจฟังนะ การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
             status_state = 29;
-        }
-        else {
-            responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ถูกหรือ ไม่ถูก';
+        } else {
+            responsetext = 'ต้องตอบคำถามให้ครบก่อนนะ พูดว่าพร้อมแล้ว';
         }
     }
     else if (status_state == 29) {
-        if (anser == 'correct') {
-            responsetext = 'เก่งมากเลยจ๊า เล่นเกมจะต้องเดินเข้าประตูให้ครบ 6 ด่านนะ';
+        if (anser == 'false') {
+            state = 'tutorial_state5-2';
+            responsetext = 'เก่งมากเลยจ๊า ทำอีกข้อนะ';
             status_state = 30;
+        }
+        else if (anser == 'true') {
+            state = 'startgame';
+            responsetext = 'ยังไม่ผ่านการทดสอบ เสียใจด้วยนะจ๊า';
+            status_state = 0;
+        }
+        else {
+            responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่';
+        }
+    }
+    else if (status_state == 30) {
+        if (anser == 'true') {
+            state = 'tutorial_state5-3';
+            responsetext = 'เก่งมากเลยจ๊า ข้อสุดท้ายแล้ว ';
+            status_state = 31;
+        } 
+        else if (anser == 'false') {
+            state = 'startgame';
+            responsetext = 'ยังไม่ผ่านการทดสอบ เสียใจด้วยนะจ๊า';
+            status_state = 0;
+        }
+        else {
+            responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
+        }
+    }
+    else if (status_state == 31 ){
+        if (anser == 'false') {
+            responsetext = 'เก่งที่สุดเลย ต่อไปได้เล่นเองแล้ว ต้องเดินเข้าประตูให้ได้นะ สู้ๆจ้า';
             state = 'maze1';
             maze_state = 'maze1';
-        } else {
-            responsetext = 'ไม่ผ่านการเรียน เสียใจด้วยนะจ๊า';
+            status_state = 32;
+        }
+        else if (anser == 'true') {
+            state = 'startgame';
+            responsetext = 'ยังไม่ผ่านการทดสอบ เสียใจด้วยนะจ๊า';
+            status_state = 0;
+        }
+        else {
+            responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่';
         }
     }
 
@@ -640,7 +682,7 @@ app.post('/', (req, res) => {
 //function ComputePosition *****************************************************************************************************
     function ComputePosition() {
         console.log('compteposition access');
-        if (havetoDo_flag && status_state == 31) {
+        if (havetoDo_flag && status_state == 33) {
             console.log('havetoDo ,', havetoDo_flag);
             if (modify_flag == true || insert_flag == true || delete_flag == true || reset != null) {
                 havetoDo_flag = false;
@@ -651,7 +693,7 @@ app.post('/', (req, res) => {
             }
             console.log("haveto ", havetoDo_flag);
         }
-        if (modify_flag && status_state == 31) {
+        if (modify_flag && status_state == 33) {
             // console.log('order change is ',order);
             // console.log('distance change is ',distance);
             // console.log('number ',number);
@@ -667,7 +709,7 @@ app.post('/', (req, res) => {
             //   }
             // }
         }
-        else if (insert_flag && status_state == 31) {
+        else if (insert_flag && status_state == 33) {
             if (insert_position == 'before') {
                 number = number - 1;
                 arrayOrder.splice(number, 0, [order, distance]);
@@ -679,7 +721,7 @@ app.post('/', (req, res) => {
             }
             
         }
-        else if (havetoDo_flag == false || play_flag == true && status_state == 30) {
+        else if (havetoDo_flag == false || play_flag == true && status_state == 32) {
             // console.log('order sh ',order);
             // console.log('disance sh ',distance);
             // console.log('in compute sh arr Order ',arrayOrder);
