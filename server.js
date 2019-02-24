@@ -255,7 +255,7 @@ app.post('/', (req, res) => {
     }
     else if (reset != null) {
         if (status_state == 33) {
-            // ee -= ee;
+            ee = ee - 1;
             console.log('ee ',ee);
             if (ee == 1) {
                 responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ';
