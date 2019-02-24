@@ -48,6 +48,8 @@ var startgame = null, language;
 // var tutorial_num_state = null;
 // var tutorial_state = null;
 var character;
+var godmode = null;
+var state_godmode = null;
 var arrayOrder = [];
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json()); // for parsing application/json
@@ -76,6 +78,8 @@ app.post('/', (req, res) => {
     character = keep.actor;
     // tutorial_state = keep.state;
     // tutorial_num_state = keep['num-state']
+    godmode = keep.godmode;
+    state_godmode = keep.state;
     reset = keep.reset;
     modify = keep.modify;
     already = keep.already;
@@ -95,6 +99,10 @@ app.post('/', (req, res) => {
     else if (direction_return != null) {
         console.log('show return ', direction_return);
         order = 'right';
+    }
+
+    if( godmode != null && state_godmode != null){
+        status_state = state_godmode;
     }
     //show value
     if (req.body.queryResult.action == 'input.welcome') {
