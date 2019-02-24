@@ -254,10 +254,10 @@ app.post('/', (req, res) => {
     }
     else if (reset != null) {
         if (status_state == 33) {
-            for (var ee = 3; ee > -1; ee--) {
+            for (var ee = 0; ee <= 3; ee++) {
                 if (ee == 2) {
                     responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ'
-                } else if (ee == 1) {
+                } else if (ee == 3) {
                     responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
                 }
                 console.log('reset in true_state ', reset);
