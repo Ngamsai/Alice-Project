@@ -19,6 +19,7 @@ new (function() {
     var positioninsert,insert;
     var answerQuestion;
     var maze_state;
+    var godmode;
   
   $(document).ready(function(){
     //load this script then .done text 
@@ -38,7 +39,7 @@ new (function() {
           }); 
 
           socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position,delete_fl,play_fl,state_socket,startgame_socket,
-            character_socket,reset_fl,number_deletecode,answer_socket,maze_state_socket){
+            character_socket,reset_fl,number_deletecode,answer_socket,maze_state_socket,godmode_socket){
               console.log('direction is ',direction_socket)
               console.log('distance = ',distance_socket)
               console.log('insert ',insert_fl);
@@ -54,6 +55,7 @@ new (function() {
               console.log('num_delete ',number_deletecode);
               console.log('answer is',answer_socket);
               console.log('maze_state is',maze_state_socket);
+              console.log('godmode ',godmode_socket);
               console.log('******************************')
               direction = direction_socket;
               distance = distance_socket;
@@ -70,6 +72,7 @@ new (function() {
               number_delete = number_deletecode;
               answerQuestion = answer_socket;
               maze_state = maze_state_socket;
+              godmode = godmode_socket;
               receive_data = true;
         });
        
@@ -276,6 +279,10 @@ new (function() {
         return maze_state;
     }
 
+    ext.get_godmode = function(){
+        return godmode;
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -297,6 +304,7 @@ new (function() {
             ['r', 'positionInsert', 'get_positioninsert'],
             ['r', 'answer', 'get_answer'],
             ['r', 'maze_state', 'get_maze_state'],
+            ['r', 'godmode', 'get_godmode'],
         ],
       menus: {
         name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],

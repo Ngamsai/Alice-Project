@@ -6,6 +6,7 @@ new (function() {
     var modify , insert , deletes , seq ,seq_del, play ,positionInsert ;
     var repeat,crash,maze_state;
     var answerQuestion;
+    var godmode;
   
   
   $(document).ready(function(){
@@ -27,7 +28,7 @@ new (function() {
 
           socket.on('symbols',function(direction_socket,distance_socket,state_socket,reset_socket,modify_socket ,
              insert_socket , deletes_socket , seq_socket ,seq_del_socket, play_socket ,
-             positionInsert_socket,repeat_socket,crash_socket,maze_state_socket,answer_socket ){
+             positionInsert_socket,repeat_socket,crash_socket,maze_state_socket,answer_socket,godmode_socket ){
               console.log('direction is ',direction_socket);
               console.log('distance = ',distance_socket);
               console.log('state = ',state_socket);
@@ -42,6 +43,7 @@ new (function() {
               console.log('repeat_f ',repeat_socket);
               console.log('crash ',crash_socket);
               console.log('maze_state ',maze_state_socket);
+              console.log('godmode ',godmode_socket);
               console.log('******************************');
               direction = direction_socket;
               distance = distance_socket;
@@ -58,6 +60,7 @@ new (function() {
               crash = crash_socket;
               maze_state = maze_state_socket;
               answerQuestion = answer_socket;
+              godmode = godmode_socket;
               receive_data = true;
            });
        
@@ -165,6 +168,10 @@ new (function() {
         return answerQuestion;
     }
 
+    ext.get_godmode = function(){
+        return godmode;
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -185,6 +192,7 @@ new (function() {
             ['r', 'maze_state', 'get_maze_state'],
             ['r', 'positionInsert', 'get_positioninsert'],
             ['r', 'answer', 'get_answer'],
+            ['r', 'godmode', 'get_godmode'],
         ],
         menus: {
             name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
