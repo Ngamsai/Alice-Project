@@ -38,6 +38,7 @@ var havetoDo_flag = false;
 var test_flag = false;
 var maze_state = null;
 var num = 500;
+var ee = 3; 
 var already = null;
 var anser = null;
 var test_state = null;
@@ -57,7 +58,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.post('/', (req, res) => {
 
     console.log("***************************************************************************************************")
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext = req.body.queryResult.fulfillmentText;
@@ -108,6 +109,7 @@ app.post('/', (req, res) => {
     if (req.body.queryResult.action == 'input.welcome') {
         status_state = 0;
         state = 'startgame';
+        ee = 3;
         havetoDo_flag = false;
         resetPosition();
         resetArrayOrder();
@@ -253,20 +255,22 @@ app.post('/', (req, res) => {
         }
     }
     else if (reset != null) {
-        if (status_state == 33) {
-            for (var ee = 3; ee > -1; ee--) {
-                if (ee == 2) {
-                    responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ'
-                } else if (ee == 1) {
-                    responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
-                }
-                console.log('reset in true_state ', reset);
-                reset_flag = true;
-                resetPosition();
-                resetArrayOrder();
+        if (status_state == 33 && ee > 0) {
+            ee = ee - 1;
+            console.log('ee ',ee);
+            if (ee == 1) {
+                responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ';
+            } else if (ee == 0) {
+                responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
             }
+            console.log('reset in true_state ', reset);
+            reset_flag = true;
+            resetPosition();
+            resetArrayOrder();
+        }else {
+            responsetext = 'ไม่สามารถใช้คำสั่งเริ่มต้นใหม่แล้วนะ'
         }
-        console.log('reset ', reset);
+        console.log('reset_flag ', reset_flag);
     }
     else if (numberSequence != null) {
         if (status_state == 33 && modify_flag == true ) {
@@ -361,20 +365,6 @@ app.post('/', (req, res) => {
 
     console.log('state ', status_state);
 
-    var maze_tutorial = [[0, 1, 0, 1, 0, 1, 0, 1, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1, 0]]
-
-    var order_tutorail = null;
-    var position_tutorial = null;
 
     //tutorial**********************************************************************************************************
     if (status_state == 2.1) {
@@ -1222,8 +1212,8 @@ app.post('/', (req, res) => {
     // console.log('seq ',sequence);
     // console.log('repeat_f ',repeat_flag);
     console.log("playF ", play_flag);
-    io.emit('chat', order, distance, insert_flag, modify_flag, number, insert_position, delete_flag, play_flag, state, startgame, character, reset_flag, number_deletecode, anser,maze_state);
-    io.emit('symbols', order, distance, state, reset_flag, modify_flag, insert_flag, delete_flag, number, number_deletecode, play_flag, insert_position, repeat_flag, crash_flag, maze_state, anser);
+    io.emit('chat', order, distance, insert_flag, modify_flag, number, insert_position, delete_flag, play_flag, state, startgame, character, reset_flag, number_deletecode, anser,maze_state,godmode);
+    io.emit('symbols', order, distance, state, reset_flag, modify_flag, insert_flag, delete_flag, number, number_deletecode, play_flag, insert_position, repeat_flag, crash_flag, maze_state, anser,godmode);
     order = null;
     distance = null;
     anser = null;
