@@ -211,20 +211,22 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
     }
     else if (reset != null) {
-        if (ee > 0) {
-            ee = ee - 1;
-            console.log('ee ', ee);
-            if (ee == 1) {
-                responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ';
-            } else if (ee == 0) {
-                responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
+        if (status_state == null) {
+            if (ee > 0) {
+                ee = ee - 1;
+                console.log('ee ', ee);
+                if (ee == 1) {
+                    responsetext = 'เหลือหัวใจแค่ 1 ดวงแล้วนะ';
+                } else if (ee == 0) {
+                    responsetext = 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ';
+                }
+                console.log('reset in true_state ', reset);
+                reset_flag = true;
+                resetPosition();
+                resetArrayOrder();
+            } else {
+                responsetext = 'ไม่สามารถใช้คำสั่งเริ่มต้นใหม่แล้วนะ'
             }
-            console.log('reset in true_state ', reset);
-            reset_flag = true;
-            resetPosition();
-            resetArrayOrder();
-        } else {
-            responsetext = 'ไม่สามารถใช้คำสั่งเริ่มต้นใหม่แล้วนะ'
         }
         console.log('reset_flag ', reset_flag);
     }
@@ -521,6 +523,8 @@ app.post('/', (req, res) => {
                 responsetext = order + distance +'ครั้งแล้ว สั่งเดินต่อให้ถึงประตูนะ';
                 state = null;
             }
+        }else if (reset != null){
+
         } else {
             state = null;
             responsetext = 'ใช้คำสั่งไม่ถูกต้อง';
