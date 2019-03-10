@@ -708,6 +708,7 @@ app.post('/', (req, res) => {
             console.log('disance sh ',distance);
             console.log('in compute sh arr Order ',arrayOrder);
             console.log('x ',maze_x,'y ',maze_y);
+            console.log(maze);
             if (order == "forward") {
                 for (var a = 0; a < distance; a++) {
                     if (direction == 'N') {
@@ -758,6 +759,7 @@ app.post('/', (req, res) => {
                             }
                         }
                         position.push([maze_x, maze_y]);
+                        console.log('position af forward ',position);
                     } else {
                         responsetext = 'crashing ,you must modify,delete or insert';
                         crash_flag = true;
