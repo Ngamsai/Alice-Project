@@ -703,9 +703,9 @@ app.post('/', (req, res) => {
 
         }
         else if (havetoDo_flag == false || play_flag == true) {
-            // console.log('order sh ',order);
-            // console.log('disance sh ',distance);
-            // console.log('in compute sh arr Order ',arrayOrder);
+            console.log('order sh in compute',order);
+            console.log('disance sh ',distance);
+            console.log('in compute sh arr Order ',arrayOrder);
             if (order == "forward") {
                 for (var a = 0; a < distance; a++) {
                     if (direction == 'N') {
@@ -863,7 +863,8 @@ app.post('/', (req, res) => {
                 }
                 num = 500;
             }
-            // console.log('in compute sh arr Order ',arrayOrder);
+            console.log('in compute sh arr Order ',arrayOrder);
+            console.log('position in comp '.position);
 
         }
         // console.log(direction);
