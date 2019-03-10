@@ -98,8 +98,8 @@ app.post('/', (req, res) => {
         console.log('show left_right_direction ', order);
     }
     else if (direction_return != null) {
-        console.log('show return ', direction_return,'distance ',distance);
         order = 'หันขวา';
+        console.log('show return ', order,'distance ',distance);
     }
 
     if (godmode != null && state_godmode != null) {
@@ -568,9 +568,9 @@ app.post('/', (req, res) => {
         //test4  modify
         position = [[11,5],[9,5],[7,5],[5,5],[5,3],[5,1],];
         arrayOrder = [['forward',3],['left',1],['forward',2]];
-        var maze_x = 11;
-        var maze_y = 5;
-        var direction = 'N';
+        maze_x = 11;
+        maze_y = 5;
+        direction = 'N';
         if (modify_flag){
             state = null;
             if (number != null){
@@ -604,9 +604,9 @@ app.post('/', (req, res) => {
         // test 5 insert
         position = [[11,1],[11,3],[11,5],[9,5],[7,5],[5,5]];
         arrayOrder = [['forward',2],['left',1],['forward',2],['forward',1]];
-        var maze_x = 11;
-        var maze_y = 1;
-        var direction = 'E';
+        maze_x = 11;
+        maze_y = 1;
+        direction = 'E';
         if (insert_flag) {
             state = null;
             if (insert_position != null && number != null){
@@ -654,7 +654,7 @@ app.post('/', (req, res) => {
     }
     
 
-
+    console.log('x y ',maze_x,maze_y);
 
     //HAVE TO DO *****************************************************************************************************
     if (havetoDo_flag == true && delete_flag == true) {
