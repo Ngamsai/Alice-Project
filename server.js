@@ -98,13 +98,52 @@ app.post('/', (req, res) => {
         console.log('show left_right_direction ', order);
     }
     else if (direction_return != null) {
-        console.log('show return ', direction_return);
-        order = 'right';
+        console.log('show return ', direction_return,'distance ',distance);
+        order = 'หันขวา';
     }
 
     if (godmode != null && state_godmode != null) {
+        console.log('godmode ',godmode,'state ',state_godmode);
         character = 1;
         status_state = state_godmode;
+
+        if (status_state == 101) {
+            status_state = null;
+            state = 'maze1';
+            maze_state = 'maze1';
+            resetPosition();
+            resetArrayOrder();
+        } else if (status_state == 102) {
+            status_state = null;
+            state = 'maze2';
+            maze_state = 'maze2';
+            resetPosition();
+            resetArrayOrder();
+        } else if (status_state == 103) {
+            status_state = null;
+            state = 'maze3';
+            maze_state = 'maze3';
+            resetPosition();
+            resetArrayOrder();
+        } else if (status_state == 104) {
+            status_state = null;
+            state = 'maze4';
+            maze_state = 'maze4';
+            resetPosition();
+            resetArrayOrder();
+        } else if (status_state == 105) {
+            status_state = null;
+            state = 'maze5';
+            maze_state = 'maze5';
+            resetPosition();
+            resetArrayOrder();
+        } else if (status_state == 106) {
+            status_state = null;
+            state = 'maze6';
+            maze_state = 'maze6';
+            resetPosition();
+            resetArrayOrder();
+        }
     }
     //show value
     if (req.body.queryResult.action == 'input.welcome') {
@@ -261,60 +300,18 @@ app.post('/', (req, res) => {
             else if (order == "ถอยหลัง") {
                 order = "backward";
             }
-            else if (order == "เลี้ยวซ้าย") {
+            else if (order == "หันซ้าย") {
                 order = "left";
             }
-            else if (order == "เลี้ยวขวา") {
+            else if (order == "หันขวา") {
                 order = "right";
             }
-            // else if (order == "กลับหลังหัน"){
-            //   order = "return";
-            //   distance = '2';
-            // }
         }
         console.log('sh order', order, 'show distance ', distance);
         ComputePosition();
         keepArrayOrder();
         checkState();
     
-    }
-
-    if (status_state == 101) {
-        status_state = null;
-        state = 'maze1';
-        maze_state = 'maze1';
-        resetPosition();
-        resetArrayOrder();
-    } else if (status_state == 102) {
-        status_state = null;
-        state = 'maze2';
-        maze_state = 'maze2';
-        resetPosition();
-        resetArrayOrder();
-    } else if (status_state == 103) {
-        status_state = null;
-        state = 'maze3';
-        maze_state = 'maze3';
-        resetPosition();
-        resetArrayOrder();
-    } else if (status_state == 104) {
-        status_state = null;
-        state = 'maze4';
-        maze_state = 'maze4';
-        resetPosition();
-        resetArrayOrder();
-    } else if (status_state == 105) {
-        status_state = null;
-        state = 'maze5';
-        maze_state = 'maze5';
-        resetPosition();
-        resetArrayOrder();
-    } else if (status_state == 106) {
-        status_state = null;
-        state = 'maze6';
-        maze_state = 'maze6';
-        resetPosition();
-        resetArrayOrder();
     }
 
     console.log('state ', status_state);
