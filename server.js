@@ -104,7 +104,6 @@ app.post('/', (req, res) => {
 
     if (godmode != null && state_godmode != null) {
         console.log('godmode ',godmode,'state ',state_godmode);
-        character = 1;
         status_state = state_godmode;
 
         if (status_state == 101) {
