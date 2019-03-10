@@ -108,7 +108,6 @@ app.post('/', (req, res) => {
         pass = 0;
         console.log('godmode ', godmode, 'state ', status_state);
         if(status_state == 2){
-            console.log('kkkkkkkkkkk');
             state = 'tutorial_state1';
         }
         else if(status_state == 3){
@@ -139,6 +138,7 @@ app.post('/', (req, res) => {
             state = 'test1-5';
         }
         else if(status_state == 12){
+            console.log('kkkkkkkkkkk');
             state = 'test2';
         }
         else if(status_state == 13) {
