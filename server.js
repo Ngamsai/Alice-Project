@@ -321,25 +321,40 @@ app.post('/', (req, res) => {
 
     console.log('status_state ', status_state);
 
-    var maze_tutorial = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    var maze_tutorial_test35 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+    [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
     var maze_tutorial_test2 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
                                 [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
                                 [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
                                 [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-                                [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]
+                                [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    
+    var maze_tutorial_test4 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0],
+    [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+                            
 
 
 
@@ -564,7 +579,7 @@ app.post('/', (req, res) => {
     else if (status_state == 13) {
         //test3 delete
         if (tutorial_test == 'start'){
-            maze = maze_tutorial;
+            maze = maze_tutorial_test35 ;
             maze_x = 11;
             maze_y = 1;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [7, 7]];
@@ -587,6 +602,7 @@ app.post('/', (req, res) => {
             }
         } else if (reset != null) {
             state = null;
+            maze = maze_tutorial_test35 ;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [7, 7]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['right', 1], ['forward', 1]];
             responsetext = 'ลองใหม่อีกครั้ง ลบแค่ตัวเดียวก็ได้แล้ว';
@@ -600,7 +616,7 @@ app.post('/', (req, res) => {
     else if (status_state == 14) {
         //test4  modify
         if(tutorial_test == 'start'){
-            maze = maze_tutorial;
+            maze = maze_tutorial_test4;
             position = [[11, 5], [9, 5], [7, 5], [5, 5], [5, 3], [5, 1],];
             arrayOrder = [['forward', 3], ['left', 1], ['forward', 2]];
             maze_x = 11;
@@ -634,6 +650,7 @@ app.post('/', (req, res) => {
             }
         } else if (reset != null) {
             state = null;
+            maze = maze_tutorial_test4;
             position = [[11, 5], [9, 5], [7, 5], [5, 5], [5, 3], [5, 1],];
             arrayOrder = [['forward', 3], ['left', 1], ['forward', 2]];
             responsetext = 'ลองใหม่อีกครั้ง เปลี่ยนแค่ตัวเดียวก็ได้แล้ว';
@@ -647,7 +664,7 @@ app.post('/', (req, res) => {
     else if (status_state == 15) {
         // test 5 insert
         if (tutorial_test == 'start'){
-            maze = maze_tutorial;
+            maze = maze_tutorial_test35;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['forward', 1]];
             maze_x = 11;
@@ -699,6 +716,7 @@ app.post('/', (req, res) => {
             }
         } else if (reset != null) {
             state = null;
+            maze = maze_tutorial_test35;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['forward', 1]];
             responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
@@ -976,9 +994,16 @@ app.post('/', (req, res) => {
     function playFunction() {
         console.log('access play function');
         position.splice(1, position.length);
-        maze_x = 11;
-        maze_y = 1;
-        direction = 'E';
+        if (status_state == 14){
+            maze_x = 11;
+            maze_y = 5;
+            direction = 'N';
+        }
+        else{
+            maze_x = 11;
+            maze_y = 1;
+            direction = 'E';
+        }
         if (modify_flag) {
             modify_flag = false;
             number = null;
