@@ -624,9 +624,15 @@ app.post('/', (req, res) => {
                 responsetext = 'เข้าประตูให้ได้โดยใช้คำสั่งเพิ่มเท่านั้นนะคะ';
             } else {
                 state = null;
-                responsetext = 'ยังไม่ถึงประตูเลย';
+                responsetext = 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่';
             }
-        } else {
+        } else if (reset != null) {
+            state = null;
+            position = [[11, 5], [9, 5], [7, 5], [5, 5], [5, 3], [5, 1],];
+            arrayOrder = [['forward', 3], ['left', 1], ['forward', 2]];
+            responsetext = 'ลองใหม่อีกครั้ง เปลี่ยนแค่ตัวเดียวก็ได้แล้ว';
+        }
+        else {
             state = null;
             responsetext = 'ใช้คำสั่งไม่ถูกต้องนะ';
         }
@@ -682,9 +688,15 @@ app.post('/', (req, res) => {
             }
             else {
                 state = null;
-                responsetext = 'ยังไม่ถึงประตูเลย สู้ๆนะคะ';
+                responsetext = 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่';
             }
-        } else {
+        } else if (reset != null) {
+            state = null;
+            position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
+            arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['forward', 1]];
+            responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
+        }
+        else {
             responsetext = 'ใช้คำสั่งไม่ถูกต้องนะ';
         }
     }
