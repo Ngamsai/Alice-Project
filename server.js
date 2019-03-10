@@ -107,7 +107,49 @@ app.post('/', (req, res) => {
         status_state = state_godmode;
         pass = 0;
         console.log('godmode ', godmode, 'state ', status_state);
-        if (status_state > 100) {
+        if(status_state == 2){
+            state = 'tutorial_state1';
+        }
+        else if(status_state == 3){
+            state = 'tutorial_state2';
+        }
+        else if(status_state == 4){
+            state = 'tutorial_state3';
+        }
+        else if(status_state == 5){
+            state = 'tutorial_state4';
+        }
+        else if(status_state == 6){
+            state = 'tutorial_state5';
+        }
+        else if(status_state == 7) {
+            state = 'test1-1';
+        }
+        else if(status_state == 8){
+            state = 'test1-2';
+        }
+        else if(status_state == 9){
+            state = 'test1-3';
+        }
+        else if(status_state == 10){
+            state = 'test1-4';
+        }
+        else if(status_state == 11){
+            state = 'test1-5';
+        }
+        else if(status_state == 12){
+            state = 'test2';
+        }
+        else if(status_state == 13) {
+            state = 'test3';
+        }
+        else if(status_state == 14){
+            state = 'test4';
+        }
+        else if(status_state == 15){
+            state = 'test5';
+        }
+        else if (status_state > 100) {
             resetPosition();
             resetArrayOrder();
             maze = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
