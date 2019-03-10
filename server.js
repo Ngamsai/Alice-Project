@@ -239,8 +239,13 @@ app.post('/', (req, res) => {
         if (status_state == 13) {
             console.log('tutorial_state13_play_flag ', play_flag);
         } else if (status_state == 14) {
+            modify_flag = false;
+            number = null;
             console.log('tutorial_state14_play_flag ', play_flag);
         } else if (status_state == 15) {
+            insert_flag = false;
+            insert_position = null;
+            number = null;
             console.log('tutorial_state15_play_flag ', play_flag);
         } else {
             playFunction();
@@ -420,7 +425,7 @@ app.post('/', (req, res) => {
     else if (status_state == 3) {
         //tutorial 3 chance
         if (already == 'พร้อมแล้ว') {
-            responsetext = 'ต่อด้วยคำสั่งเปลี่ยน เรียนน้องได้แล้วนะคะ';
+            responsetext = 'ต่อด้วยคำสั่งเปลี่ยน สอนน้องได้เลยจ้า';
             state = 'tutorial_state3';
             status_state = 4;
         } else {
@@ -1353,14 +1358,14 @@ app.post('/', (req, res) => {
     repeat_flag = false;
     crash_flag = false;
 
-    if (status_state == 15) {
-        modify_flag = false;
-        number = null;
-    } else if (status_state == null) {
-        insert_flag = false;
-        insert_position = null;
-        number = null;
-    }
+    // if (status_state == 15) {
+    //     modify_flag = false;
+    //     number = null;
+    // } else if (status_state == null) {
+    //     insert_flag = false;
+    //     insert_position = null;
+    //     number = null;
+    // }
 
     // reset = null
     // var num = distance*1000;
