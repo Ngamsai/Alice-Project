@@ -621,6 +621,7 @@ app.post('/', (req, res) => {
             }
         }
         else if (play_flag) {
+            console.log('play_f ',play_flag);
             playFunction();
             if (maze_x == 5 && maze_y == 9) {
                 state = 'test5';
