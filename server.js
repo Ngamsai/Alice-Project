@@ -330,6 +330,12 @@ app.post('/', (req, res) => {
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]
 
+    var maze_tutorial_test2 = [[1,1,1,1,1,1,1,1,1,1,1],
+                                [1,1,1,1,1,0,0,0,0,0,1],
+                                [1,1,1,1,1,0,1,1,1,1,1],
+                                [1,0,0,0,0,0,1,1,1,1,1],
+                                [1,1,1,1,1,1,1,1,1,1,1]]
+
     
 
     //tutorial**********************************************************************************************************
@@ -514,7 +520,7 @@ app.post('/', (req, res) => {
     else if (status_state == 12) {
         //test2 forward
         if (order != null && distance != null) {
-            maze = maze_tutorial;
+            maze = maze_tutorial_test2;
             ComputePosition();
             if (responsetext == 'crashing ,you must modify,delete or insert'){
                 responsetext = 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่';
@@ -541,6 +547,7 @@ app.post('/', (req, res) => {
     ///////////////////////////////////////////////////////////////////////////////////////
     else if (status_state == 13) {
         //test3 delete
+        maze = maze_tutorial;
         position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [7, 7]];
         arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['right', 1], ['forward', 1]];
         if (delete_flag) {
