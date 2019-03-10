@@ -113,36 +113,42 @@ app.post('/', (req, res) => {
             maze_state = 'maze1';
             resetPosition();
             resetArrayOrder();
+            responsetext = 'ต้องใช้คำสั่งที่เรียนมาเดินเข้าประตูให้ได้นะ';
         } else if (status_state == 102) {
             status_state = null;
             state = 'maze2';
             maze_state = 'maze2';
             resetPosition();
             resetArrayOrder();
+            responsetext = 'ด่าน 2 แล้วนะ';
         } else if (status_state == 103) {
             status_state = null;
             state = 'maze3';
             maze_state = 'maze3';
             resetPosition();
             resetArrayOrder();
+            responsetext = 'ด่าน 3 แล้วนะ';
         } else if (status_state == 104) {
             status_state = null;
             state = 'maze4';
             maze_state = 'maze4';
             resetPosition();
             resetArrayOrder();
+            responsetext = 'ด่าน 4 แล้วนะ';
         } else if (status_state == 105) {
             status_state = null;
             state = 'maze5';
             maze_state = 'maze5';
             resetPosition();
             resetArrayOrder();
+            responsetext = 'ด่าน 5 แล้วนะ';
         } else if (status_state == 106) {
             status_state = null;
             state = 'maze6';
             maze_state = 'maze6';
             resetPosition();
             resetArrayOrder();
+            responsetext = 'ด่าน 6 แล้วนะ';
         }
     }
     //show value
@@ -314,7 +320,7 @@ app.post('/', (req, res) => {
     
     }
 
-    console.log('state ', status_state);
+    console.log('status_state ', status_state);
 
     var maze_tutorial = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
