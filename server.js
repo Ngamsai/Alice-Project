@@ -706,6 +706,7 @@ app.post('/', (req, res) => {
             console.log('order sh in compute',order);
             console.log('disance sh ',distance);
             console.log('in compute sh arr Order ',arrayOrder);
+            console.log('x ',maze_x,'y ',maze_y);
             if (order == "forward") {
                 for (var a = 0; a < distance; a++) {
                     if (direction == 'N') {
@@ -864,7 +865,8 @@ app.post('/', (req, res) => {
                 num = 500;
             }
             console.log('in compute sh arr Order ',arrayOrder);
-            console.log('position in comp '.position);
+            console.log('position in comp ',position);
+            console.log('x ',maze_x,'y ',maze_y);
 
         }
         // console.log(direction);
