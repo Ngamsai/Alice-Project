@@ -441,7 +441,7 @@ app.post('/', (req, res) => {
         if (anser == 'false') {
             pass++;
             if (pass == 3) {
-                responsetext = 'เก่งที่สุดเลย ต่อไปต้องเข้าประตูให้ได้นะต้องให้คำสั่งไหนดี';
+                responsetext = 'เก่งที่สุดเลย ต่อไปต้องเล่นเองแล้วนะ เดินเข้าประตูให้ได้นะจ๊ะ';
                 status_state = 12;
                 state = 'test2';
             } else {
@@ -471,7 +471,7 @@ app.post('/', (req, res) => {
         if (anser == 'true') {
             pass++;
             if (pass == 3) {
-                responsetext = 'เก่งที่สุดเลย ต่อไปต้องเข้าประตูให้ได้นะต้องให้คำสั่งไหนดี';
+                responsetext = 'เก่งที่สุดเลย ต่อไปต้องเล่นเองแล้วนะ เดินเข้าประตูให้ได้นะจ๊ะ';
                 status_state = 12;
                 state = 'test2';
             } else {
@@ -501,7 +501,7 @@ app.post('/', (req, res) => {
         if (anser == 'true') {
             pass++;
             if (pass == 3) {
-                responsetext = 'เก่งที่สุดเลย ต่อไปต้องเข้าประตูให้ได้นะต้องให้คำสั่งไหนดี';
+                responsetext = 'เก่งที่สุดเลย ต่อไปต้องเล่นเองแล้วนะ เดินเข้าประตูให้ได้นะจ๊ะ';
                 status_state = 12;
                 state = 'test2';
             }
@@ -531,7 +531,19 @@ app.post('/', (req, res) => {
                 responsetext = 'ต้องเดินไปเข้าประตูโดยใช้คำสั่งลบ';
                 status_state = 13;
             } else {
-                responsetext = order + distance + 'ครั้งแล้ว สั่งเดินต่อให้ถึงประตูนะ';
+                // if (order == "forward") {
+                //     order = "เดินหน้า";
+                // }
+                // else if (order == "backward") {
+                //     order = "ถอยหลัง";
+                // }
+                // else if (order == "left") {
+                //     order = "หันซ้าย";
+                // }
+                // else if (order == "right") {
+                //     order = "หันขวา";
+                // }
+                // responsetext = order + distance + 'ครั้งแล้ว สั่งเดินต่อให้ถึงประตูนะ';
                 state = null;
             }
         } else if (reset != null) {
