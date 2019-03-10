@@ -195,9 +195,9 @@ app.post('/', (req, res) => {
             console.log('tutorial_state14_play_flag ', play_flag);
         } else if (status_state == 15) {
             console.log('tutorial_state15_play_flag ', play_flag);
-        } else  {
+        } else {
             playFunction();
-        } 
+        }
     }
     else if (test_state != null) {
         test_flag = true;
@@ -236,7 +236,7 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
     }
     else if (reset != null) {
-        if (status_state == 12){
+        if (status_state == 12) {
             console.log('reset state 12 go to');
         }
         else if (status_state == null) {
@@ -296,15 +296,15 @@ app.post('/', (req, res) => {
                 order = "right";
             }
         }
-        if (status_state == 12){
+        if (status_state == 12) {
             console.log('go to state 12');
         }
-        else if (status_state == 14){
+        else if (status_state == 14) {
             console.log('got to state 14');
         }
-        else if (status_state == 15){
+        else if (status_state == 15) {
             console.log('go to state 15');
-        } 
+        }
         else {
             console.log('sh order', order, 'show distance ', distance);
             ComputePosition();
@@ -330,13 +330,13 @@ app.post('/', (req, res) => {
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]
 
-    var maze_tutorial_test2 = [[1,1,1,1,1,1,1,1,1,1,1],
-                                [1,1,1,1,1,0,0,0,0,0,1],
-                                [1,1,1,1,1,0,1,1,1,1,1],
-                                [1,0,0,0,0,0,1,1,1,1,1],
-                                [1,1,1,1,1,1,1,1,1,1,1]]
+    var maze_tutorial_test2 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                                [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
+                                [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
+                                [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+                                [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]
 
-    
+
 
     //tutorial**********************************************************************************************************
     if (status_state == 2) {
@@ -521,14 +521,16 @@ app.post('/', (req, res) => {
         //test2 forward
         if (order != null && distance != null) {
             maze = maze_tutorial_test2;
+            maze_x = 3;
+            maze_y = 1;
             ComputePosition();
-            if (responsetext == 'crashing ,you must modify,delete or insert'){
+            if (responsetext == 'crashing ,you must modify,delete or insert') {
                 responsetext = 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่';
-            }else if ( responsetext == 'You can not walk the same route, you must modify,delete or insert.'){
+            } else if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
                 responsetext = 'เดินซ้ำทางเดิมไม่ได้นะ ให้พูดว่าเริ่มต้นใหม่';
             }
             keepArrayOrder();
-            if (maze_x == 9 && maze_y == 9) {
+            if (maze_x == 1 && maze_y == 9) {
                 state = 'test3';
                 responsetext = 'ต้องเดินไปเข้าประตูโดยใช้คำสั่งลบ';
                 status_state = 13;
@@ -548,6 +550,8 @@ app.post('/', (req, res) => {
     else if (status_state == 13) {
         //test3 delete
         maze = maze_tutorial;
+        maze_x = 11;
+        maze_y = 1;
         position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [7, 7]];
         arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['right', 1], ['forward', 1]];
         if (delete_flag) {
