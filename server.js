@@ -220,7 +220,11 @@ app.post('/', (req, res) => {
         number_deletecode = numberSequence;
         delete_flag = true;
         console.log('he will ', delete_code, 'status-delete ', delete_flag, ' delete_number ', numberSequence);
-        deleteCode();
+        if(status_state == 13){
+            console.log('go to 13');
+        }else {
+            deleteCode();
+        }
     }
     else if (insert != null) {
         number = numberSequence;
