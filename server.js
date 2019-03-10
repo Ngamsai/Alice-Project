@@ -1283,10 +1283,10 @@ app.post('/', (req, res) => {
     repeat_flag = false;
     crash_flag = false;
 
-    if (status_state == 9 || status_state == 13) {
+    if (status_state == 14) {
         modify_flag = false;
         number = null;
-    } else if (status_state == 17 || status_state == 21) {
+    } else if (status_state == 15) {
         insert_flag = false;
         insert_position = null;
         number = null;
