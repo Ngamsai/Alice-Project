@@ -189,41 +189,18 @@ app.post('/', (req, res) => {
     else if (play != null) {
         console.log('play is ', play);
         play_flag = true;
-        // if (status_state == 10) {
-        //     console.log('tutorial_state10_play_flag ', play_flag);
-        // } else if (status_state == 14) {
-        //     console.log('tutorial_state14_play_flag ', play_flag);
-        // } else if (status_state == 18) {
-        //     console.log('tutorial_state18_play_flag ', play_flag);
-        // } else if (status_state == 22) {
-        //     console.log('tutorial_state22_play_flag ', play_flag);
-        // } else if (status_state == 24) {
-        //     console.log('tutorial_state24_play_flag ', play_flag);
-        // } else if (status_state == 27) {
-        //     console.log('tutorial_state27_play_flag ', play_flag);
-        // } else if (status_state == 33) {
-        playFunction();
-        // } else {
-        //     play_flag = false;
-        // }
-        // console.log('numberSequence ',numberSequence); 
+        if (status_state == 13) {
+            console.log('tutorial_state13_play_flag ', play_flag);
+        } else if (status_state == 14) {
+            console.log('tutorial_state14_play_flag ', play_flag);
+        } else if (status_state == 15) {
+            console.log('tutorial_state15_play_flag ', play_flag);
+        } else  {
+            playFunction();
+        } 
     }
     else if (test_state != null) {
-        // if (status_state == 5 && test_state == 'ทดสอบ') {
-        //     console.log('test5 ', test_state);
-        //     test_flag = true;
-        // } else if (status_state == 11 && test_state == 'ทดสอบ') {
-        //     console.log('test11 ', test_state);
-        //     test_flag = true;
-        // } else if (status_state == 19 && test_state == 'ทดสอบ') {
-        //     console.log('test19 ', test_state);
-        //     test_flag = true;
-        // } else if (status_state == 25 && test_state == 'ทดสอบ') {
-        //     console.log('test25 ', test_state);
         test_flag = true;
-        // } else {
-        //     test_flag = false;
-        // }
     }
     else if (anser != null) {
         console.log('anser is ', anser);
@@ -259,7 +236,10 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
     }
     else if (reset != null) {
-        if (status_state == null) {
+        if (status_state == 12){
+            console.log('reset state 12 go to');
+        }
+        else if (status_state == null) {
             if (ee > 0) {
                 ee = ee - 1;
                 console.log('ee ', ee);
@@ -316,10 +296,21 @@ app.post('/', (req, res) => {
                 order = "right";
             }
         }
-        console.log('sh order', order, 'show distance ', distance);
-        ComputePosition();
-        keepArrayOrder();
-        checkState();
+        if (status_state == 12){
+            console.log('go to state 12');
+        }
+        else if (status_state == 14){
+            console.log('got to state 14');
+        }
+        else if (status_state == 15){
+            console.log('go to state 15');
+        } 
+        else {
+            console.log('sh order', order, 'show distance ', distance);
+            ComputePosition();
+            keepArrayOrder();
+            checkState();
+        }
 
     }
 
@@ -525,29 +516,23 @@ app.post('/', (req, res) => {
         if (order != null && distance != null) {
             maze = maze_tutorial;
             ComputePosition();
+            if (responsetext == 'crashing ,you must modify,delete or insert'){
+                responsetext = 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่';
+            }else if ( responsetext == 'You can not walk the same route, you must modify,delete or insert.'){
+                responsetext = 'เดินซ้ำทางเดิมไม่ได้นะ ให้พูดว่าเริ่มต้นใหม่';
+            }
             keepArrayOrder();
             if (maze_x == 9 && maze_y == 9) {
                 state = 'test3';
                 responsetext = 'ต้องเดินไปเข้าประตูโดยใช้คำสั่งลบ';
                 status_state = 13;
             } else {
-                // if (order == "forward") {
-                //     order = "เดินหน้า";
-                // }
-                // else if (order == "backward") {
-                //     order = "ถอยหลัง";
-                // }
-                // else if (order == "left") {
-                //     order = "หันซ้าย";
-                // }
-                // else if (order == "right") {
-                //     order = "หันขวา";
-                // }
-                // responsetext = order + distance + 'ครั้งแล้ว สั่งเดินต่อให้ถึงประตูนะ';
                 state = null;
             }
         } else if (reset != null) {
-
+            responsetext = 'เริ่มเล่นใหม่อีกครั้งนะ';
+            resetArrayOrder();
+            resetPosition();
         } else {
             state = null;
             responsetext = 'ใช้คำสั่งไม่ถูกต้อง';
