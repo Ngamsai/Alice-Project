@@ -25,6 +25,7 @@ var maze_y = 1;
 var direction = 'E';
 var state = 'startgame';
 var status_state = 0;
+var pass = 0;
 var text = null;
 var position_flag = true;
 var modify_flag = false;
@@ -336,9 +337,7 @@ app.post('/', (req, res) => {
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]]
 
-    var pass = 0;
-
-
+    
 
     //tutorial**********************************************************************************************************
     if (status_state == 2) {
@@ -376,7 +375,7 @@ app.post('/', (req, res) => {
         //tutorial 4-2 insert before
         if (already == 'พร้อมแล้ว') {
             state = 'tutorial_state4-2';
-            responsetext = 'คำสั่งเพิ่มยังมีอีกแบบนะคะ ช่วยสอนน้องที';
+            responsetext = 'คำสั่งเพิ่มยังมีอีกแบบนะคะ เรียนจบแล้วมีทดสอบก่อนนะ';
             status_state = 6;
         } else {
             responsetext = 'ถ้าเข้าใจแล้วให้พูดว่า พร้อมแล้ว';
@@ -388,7 +387,7 @@ app.post('/', (req, res) => {
             responsetext = 'ตั้งใจฟังนะ การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
             status_state = 7;
         } else {
-            responsetext = 'ถ้าจะเล่นต่อ พูดว่าทดสอบ';
+            responsetext = 'พูดว่าทดสอบ ก่อนนะ';
         }
     }
 
@@ -398,7 +397,7 @@ app.post('/', (req, res) => {
         //1
         if (anser == 'false') {
             state = 'test1-2';
-            responsetext = 'เก่งมากเลยจ๊า ทำอีกข้อนะ';
+            responsetext = 'เก่งมากเลย ทำอีกข้อนะ';
             pass++;
             status_state = 8;
         }
