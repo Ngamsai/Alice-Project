@@ -108,6 +108,7 @@ app.post('/', (req, res) => {
         pass = 0;
         console.log('godmode ', godmode, 'state ', status_state);
         if(status_state == 2){
+            console.log('kkkkkkkkkkk');
             state = 'tutorial_state1';
         }
         else if(status_state == 3){
@@ -190,6 +191,7 @@ app.post('/', (req, res) => {
                 maze_state = 'maze6';
                 responsetext = 'ด่าน 6 แล้วนะ';
             }
+            status_state = null;
         }
         console.log('arr position ', position);
         console.log('x ', maze_x, ' y ', maze_y);
