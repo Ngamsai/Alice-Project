@@ -568,7 +568,7 @@ app.post('/', (req, res) => {
             state = null;
             deleteCode();
         }
-        else if (play_falg) {
+        else if (play_flag) {
             playFunction();
             if (maze_x == 5 && maze_y == 5) {
                 state = 'test4';
