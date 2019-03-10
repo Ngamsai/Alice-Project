@@ -843,7 +843,7 @@ app.post('/', (req, res) => {
                         console.log('do function resetposition when repeat');
                     }
                 }
-                num = distance * 500;
+                // num = distance * 500;
             }
             else if (order == "backward") {
                 for (var c = 0; c < distance; c++) {
@@ -904,7 +904,7 @@ app.post('/', (req, res) => {
                         console.log('do function resetposition when repeat');
                     }
                 }
-                num = distance * 500;
+                // num = distance * 500;
             }
             else if (order == "left") {
                 for (var e = 0; e < distance; e++) {
@@ -921,7 +921,7 @@ app.post('/', (req, res) => {
                         direction = 'E';
                     }
                 }
-                num = 500;
+                // num = 500;
             }
             else if (order == "right") {
                 for (var f = 0; f < distance; f++) {
@@ -938,7 +938,7 @@ app.post('/', (req, res) => {
                         direction = 'E';
                     }
                 }
-                num = 500;
+                // num = 500;
             }
             console.log('in compute sh arr Order ', arrayOrder);
             console.log('position in comp ', position);
@@ -1028,8 +1028,8 @@ app.post('/', (req, res) => {
             // console.log('order play ',order);
             // console.log('distance play ',distance);
         }
-        var turntime = 500 * arrayOrder.length;
-        num = 800 * position.length + turntime;
+        // var turntime = 500 * arrayOrder.length;
+        // num = 800 * position.length + turntime;
         order = null;
         distance = null;
         checkState();
@@ -1321,13 +1321,13 @@ app.post('/', (req, res) => {
 
     // reset = null
     // var num = distance*1000;
-    setTimeout(function () {
-        console.log('send already');
-        return res.json(responseObj);
-    }, num)
-    console.log('num ', num);
-    num = 500;
-    console.log('num ', num);
+    // setTimeout(function () {
+    //     console.log('send already');
+    //     return res.json(responseObj);
+    // }, num)
+    // console.log('num ', num);
+    // num = 500;
+    // console.log('num ', num);
 
 })
 
