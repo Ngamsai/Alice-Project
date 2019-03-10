@@ -47,7 +47,7 @@ var order = null, distance = null, forward_backward_direction = null, left_right
 var modify = null, delete_code = null, insert = null, play = null, reset = null, numberSequence = null, insertPosition = null, number = null, insert_position = null;
 var number_deletecode = null;
 var startgame = null, language;
-var tutorial_test = 'start2';
+var tutorial_test = 'start';
 // var tutorial_state = null;
 var character;
 var godmode = null;
@@ -158,7 +158,7 @@ app.post('/', (req, res) => {
         status_state = 0;
         pass = 0;
         state = 'startgame';
-        tutorial_test = 'start2';
+        tutorial_test = 'start';
         ee = 3;
         havetoDo_flag = false;
         resetPosition();
@@ -520,12 +520,12 @@ app.post('/', (req, res) => {
 
     else if (status_state == 12) {
         //test2 forward
-        if (tutorial_test == 'start2'){
+        if (tutorial_test == 'start'){
             maze = maze_tutorial_test2;
             maze_x = 3;
             maze_y = 1;
             position = [[3, 1]];
-            tutorial_test = 'start3';
+            tutorial_test = null;
         }
         
         if (order != null && distance != null) {
@@ -559,13 +559,13 @@ app.post('/', (req, res) => {
     ///////////////////////////////////////////////////////////////////////////////////////
     else if (status_state == 13) {
         //test3 delete
-        if (tutorial_test == 'start3'){
+        if (tutorial_test == 'start'){
             maze = maze_tutorial;
             maze_x = 11;
             maze_y = 1;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [7, 7]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['right', 1], ['forward', 1]];
-            tutorial_test = 'start4';
+            tutorial_test = null;
         }
         if (delete_flag) {
             state = null;
@@ -595,13 +595,13 @@ app.post('/', (req, res) => {
     ////////////////////////////////////////////////////////////////////////////////////
     else if (status_state == 14) {
         //test4  modify
-        if(tutorial_test == 'start4'){
+        if(tutorial_test == 'start'){
             position = [[11, 5], [9, 5], [7, 5], [5, 5], [5, 3], [5, 1],];
             arrayOrder = [['forward', 3], ['left', 1], ['forward', 2]];
             maze_x = 11;
             maze_y = 5;
             direction = 'N';
-            tutorial_test = 'start5';
+            tutorial_test = null;
         }
         if (modify_flag) {
             state = null;
@@ -640,7 +640,7 @@ app.post('/', (req, res) => {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     else if (status_state == 15) {
         // test 5 insert
-        if (tutorial_test == 'start5'){
+        if (tutorial_test == 'start'){
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['forward', 1]];
             maze_x = 11;
