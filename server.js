@@ -519,11 +519,11 @@ app.post('/', (req, res) => {
 
     else if (status_state == 12) {
         //test2 forward
+        maze = maze_tutorial_test2;
+        maze_x = 3;
+        maze_y = 1;
+        position = [[3, 1]];
         if (order != null && distance != null) {
-            maze = maze_tutorial_test2;
-            maze_x = 3;
-            maze_y = 1;
-            position = [[3, 1]];
             ComputePosition();
             if (responsetext == 'crashing ,you must modify,delete or insert') {
                 responsetext = 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่';
