@@ -417,7 +417,7 @@ app.post('/', (req, res) => {
     else if (status_state == 3) {
         //tutorial 3 chance
         if (already == 'พร้อมแล้ว') {
-            responsetext = 'ต่อด้วยคำสั่งเปลี่ยน เรียนสอนได้แล้วนะคะ';
+            responsetext = 'ต่อด้วยคำสั่งเปลี่ยน เรียนน้องได้แล้วนะคะ';
             state = 'tutorial_state3';
             status_state = 4;
         } else {
@@ -584,6 +584,7 @@ app.post('/', (req, res) => {
     else if (status_state == 12) {
         //test2 forward
         if (tutorial_test == 'start'){
+            console.log('access 12');
             maze = maze_tutorial_test2;
             maze_x = 3;
             maze_y = 1;
