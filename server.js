@@ -1207,6 +1207,7 @@ app.post('/', (req, res) => {
     console.log('state ', state);
     console.log('have to do ', havetoDo_flag);
     console.log('maze_state ', maze_state);
+    console.log('x final ',maze_x,' y final ',maze_y);
     // console.log('seq ',sequence);
     // console.log('repeat_f ',repeat_flag);
     console.log("playF ", play_flag);
