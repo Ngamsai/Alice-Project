@@ -425,7 +425,7 @@ app.post('/', (req, res) => {
     else if (status_state == 3) {
         //tutorial 3 chance
         if (already == 'พร้อมแล้ว') {
-            responsetext = 'ต่อด้วยคำสั่งเปลี่ยน สอนน้องได้เลยจ้า';
+            responsetext = 'ต่อด้วยคำสั่งเปลี่ยน สอนน้องได้เลยจ๊ะ';
             state = 'tutorial_state3';
             status_state = 4;
         } else {
@@ -525,7 +525,7 @@ app.post('/', (req, res) => {
                 responsetext = 'ยังไม่ผ่านการทดสอบนะคะ เสียใจด้วย';
                 status_state = 0;
             } else {
-                responsetext = 'เก่งมากเลย ไปข้อต่อไปเลย';
+                responsetext = 'ยังไม่ถูกนะคะ ไปข้อต่อไปเลย';
                 state = 'test1-4';
                 status_state = 10;
             }
@@ -730,7 +730,7 @@ app.post('/', (req, res) => {
                     ComputePosition();
                     keepArrayOrder();
                 } else {
-                    responsetext = 'พูดคำสั่งที่ต้องการเพิ่ม' + insert_position + 'ตัวที่ ' + number + ' มาเลย';
+                    state = null;
                 }
             } else {
                 responsetext = 'ต้องการเพิ่ม ก่อน หรือ หลัง ตัวไหน';
@@ -875,6 +875,7 @@ app.post('/', (req, res) => {
                             if (position[b][0] == maze_x && position[b][1] == maze_y) {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[b][0], position[b][1]);
+                                havetoDo_flag = true;
                                 repeat_flag = true;
                                 console.log('access check repeat', repeat_flag);
                             }
@@ -884,6 +885,7 @@ app.post('/', (req, res) => {
                     } else {
                         responsetext = 'crashing ,you must modify,delete or insert';
                         crash_flag = true;
+                        havetoDo_flag = true;
                         console.log('text clashing');
                     }
                     if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
@@ -938,12 +940,14 @@ app.post('/', (req, res) => {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[d][0], ' ', position[d][1]);
                                 repeat_flag = true;
+                                havetoDo_flag = true;
                                 console.log('access check repeat', repeat_flag);
                             }
                         }
                         position.push([maze_x, maze_y]);
                     } else {
                         crash_flag = true;
+                        havetoDo_flag =true;
                         responsetext = 'crashing ,you must modify,delete or insert';
                         console.log('text clashing');
                     }
