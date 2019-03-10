@@ -108,6 +108,8 @@ app.post('/', (req, res) => {
 
         if(status_state > 100){
             status_state = null;
+            resetPosition();
+            resetArrayOrder();
             maze = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
                     [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
                     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
@@ -121,44 +123,34 @@ app.post('/', (req, res) => {
                     [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
                     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
-            resetPosition();
-            resetArrayOrder();
-            switch (status_state) {
-                case 101:
-                    state = 'maze1';
-                    maze_state = 'maze1';
-                    responsetext = 'ต้องใช้คำสั่งที่เรียนมาเดินเข้าประตูให้ได้นะ';
-                    console.log('101');
-                    break;
-                case 102:
-                    state = 'maze2';
-                    maze_state = 'maze2';
-                    responsetext = 'ด่าน 2 แล้วนะ';
-                    break;
-                case 103:
-                    state = 'maze3';
-                    maze_state = 'maze3';
-                    responsetext = 'ด่าน 3 แล้วนะ';
-                    break;
-                case 104:
-                    state = 'maze4';
-                    maze_state = 'maze4';
-                    responsetext = 'ด่าน 4 แล้วนะ';
-                    break;
-                case 105:
-                    state = 'maze5';
-                    maze_state = 'maze5';
-                    responsetext = 'ด่าน 5 แล้วนะ';
-                    break;
-                case 106:
-                    state = 'maze6';
-                    maze_state = 'maze6';
-                    responsetext = 'ด่าน 6 แล้วนะ';
-                    break;
+            if (status_state == 101) {
+                state = 'maze1';
+                maze_state = 'maze1';
+                responsetext = 'ต้องใช้คำสั่งที่เรียนมาเดินเข้าประตูให้ได้นะ';            
+            } else if (status_state == 102) {
+                state = 'maze2';
+                maze_state = 'maze2';
+                responsetext = 'ด่าน 2 แล้วนะ';
+            } else if (status_state == 103) {
+                state = 'maze3';
+                maze_state = 'maze3';
+                responsetext = 'ด่าน 3 แล้วนะ';
+            } else if (status_state == 104) {
+                state = 'maze4';
+                maze_state = 'maze4';
+                responsetext = 'ด่าน 4 แล้วนะ';
+            } else if (status_state == 105) {
+                state = 'maze5';
+                maze_state = 'maze5';
+                responsetext = 'ด่าน 5 แล้วนะ';
+            } else if (status_state == 106) {
+                state = 'maze6';
+                maze_state = 'maze6';
+                responsetext = 'ด่าน 6 แล้วนะ';
             }
         }
         console.log('arr position ',position);
-        console.log('x ',maze_x,'y ',maze_y);
+        console.log('x ',maze_x,' y ',maze_y);
     }
     //show value
     else if (req.body.queryResult.action == 'input.welcome') {
