@@ -190,7 +190,6 @@ app.post('/', (req, res) => {
                 maze_state = 'maze6';
                 responsetext = 'ด่าน 6 แล้วนะ';
             }
-            status_state = null;
         }
         console.log('arr position ', position);
         console.log('x ', maze_x, ' y ', maze_y);
@@ -283,7 +282,8 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
     }
     else if (reset != null) {
-        if (status_state == 12) {
+        if (status_state == 12 || status_state == 13 || status_state == 14 || status_state == 15) {
+            reset_flag = true;
             console.log('reset state 12 go to');
         }
         else if (status_state == null) {
