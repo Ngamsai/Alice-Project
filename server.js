@@ -128,6 +128,7 @@ app.post('/', (req, res) => {
                     state = 'maze1';
                     maze_state = 'maze1';
                     responsetext = 'ต้องใช้คำสั่งที่เรียนมาเดินเข้าประตูให้ได้นะ';
+                    console.log('101');
                     break;
                 case 102:
                     state = 'maze2';
