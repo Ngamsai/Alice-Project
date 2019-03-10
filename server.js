@@ -105,6 +105,7 @@ app.post('/', (req, res) => {
 
     if (godmode != null && state_godmode != null) {
         status_state = state_godmode;
+        pass = 0;
         console.log('godmode ', godmode, 'state ', status_state);
         if (status_state > 100) {
             resetPosition();
@@ -155,6 +156,7 @@ app.post('/', (req, res) => {
     //show value
     else if (req.body.queryResult.action == 'input.welcome') {
         status_state = 0;
+        pass = 0;
         state = 'startgame';
         ee = 3;
         havetoDo_flag = false;
