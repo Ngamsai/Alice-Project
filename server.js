@@ -600,6 +600,7 @@ app.post('/', (req, res) => {
     else if (status_state == 14) {
         //test4  modify
         if(tutorial_test == 'start'){
+            maze = maze_tutorial;
             position = [[11, 5], [9, 5], [7, 5], [5, 5], [5, 3], [5, 1],];
             arrayOrder = [['forward', 3], ['left', 1], ['forward', 2]];
             maze_x = 11;
@@ -646,6 +647,7 @@ app.post('/', (req, res) => {
     else if (status_state == 15) {
         // test 5 insert
         if (tutorial_test == 'start'){
+            maze = maze_tutorial;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['forward', 1]];
             maze_x = 11;
