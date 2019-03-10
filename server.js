@@ -103,11 +103,9 @@ app.post('/', (req, res) => {
     }
 
     if (godmode != null && state_godmode != null) {
-        console.log('godmode ',godmode,'state ',state_godmode);
         status_state = state_godmode;
-
+        console.log('godmode ',godmode,'state ',status_state);
         if(status_state > 100){
-            status_state = null;
             resetPosition();
             resetArrayOrder();
             maze = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
@@ -148,6 +146,7 @@ app.post('/', (req, res) => {
                 maze_state = 'maze6';
                 responsetext = 'ด่าน 6 แล้วนะ';
             }
+            status_state = null;
         }
         console.log('arr position ',position);
         console.log('x ',maze_x,' y ',maze_y);
