@@ -47,7 +47,7 @@ var order = null, distance = null, forward_backward_direction = null, left_right
 var modify = null, delete_code = null, insert = null, play = null, reset = null, numberSequence = null, insertPosition = null, number = null, insert_position = null;
 var number_deletecode = null;
 var startgame = null, language;
-// var tutorial_num_state = null;
+var tutorial_test2 = 'start';
 // var tutorial_state = null;
 var character;
 var godmode = null;
@@ -158,6 +158,7 @@ app.post('/', (req, res) => {
         status_state = 0;
         pass = 0;
         state = 'startgame';
+        tutorial_test2 = 'start';
         ee = 3;
         havetoDo_flag = false;
         resetPosition();
@@ -519,10 +520,14 @@ app.post('/', (req, res) => {
 
     else if (status_state == 12) {
         //test2 forward
-        maze = maze_tutorial_test2;
-        maze_x = 3;
-        maze_y = 1;
-        position = [[3, 1]];
+        if (tutorial_test2 == 'start'){
+            maze = maze_tutorial_test2;
+            maze_x = 3;
+            maze_y = 1;
+            position = [[3, 1]];
+            tutorial_test2 = null;
+        }
+        
         if (order != null && distance != null) {
             ComputePosition();
             if (responsetext == 'crashing ,you must modify,delete or insert') {
@@ -542,6 +547,10 @@ app.post('/', (req, res) => {
             responsetext = 'เริ่มเล่นใหม่อีกครั้งนะ';
             resetArrayOrder();
             resetPosition();
+            maze = maze_tutorial_test2;
+            maze_x = 3;
+            maze_y = 1;
+            position = [[3, 1]];
         } else {
             state = null;
             responsetext = 'ใช้คำสั่งไม่ถูกต้อง';
