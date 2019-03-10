@@ -1321,10 +1321,10 @@ app.post('/', (req, res) => {
 
     // reset = null
     // var num = distance*1000;
-    // setTimeout(function () {
-    //     console.log('send already');
-    //     return res.json(responseObj);
-    // }, num)
+    setTimeout(function () {
+        console.log('send already');
+        return res.json(responseObj);
+    })
     // console.log('num ', num);
     // num = 500;
     // console.log('num ', num);
