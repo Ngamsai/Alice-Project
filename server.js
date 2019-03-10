@@ -645,14 +645,14 @@ app.post('/', (req, res) => {
                 responsetext = 'ต้องใช้คำสั่งเปลี่ยน ทำให้เข้าประตูให้ได้';
             } else {
                 state = null;
-                responsetext = 'ใช้ได้แค่คำสั่งลบนะ ถ้าทำผิดไปแล้วให้พูดว่า เริ่มต้นใหม่'
+                responsetext = 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่'
             }
         } else if (reset != null) {
             state = null;
             maze = maze_tutorial_test35 ;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [7, 7]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['right', 1], ['forward', 1]];
-            responsetext = 'ลองใหม่อีกครั้ง ลบแค่ตัวเดียวก็ได้แล้ว';
+            responsetext = 'ลบแค่ตัวเดียวก็ได้แล้วนะ สู้ๆ';
         }
         else {
             responsetext = 'ใช้ได้แค่คำสั่งลบนะ';
@@ -749,10 +749,8 @@ app.post('/', (req, res) => {
                 [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
                 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                 [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
-                position = [[11, 1]];
-                maze_x = 11;
-                maze_y = 1;
-                direction = 'E';
+                resetPosition();
+                resetArrayOrder();
                 responsetext = 'ผ่านการทดสอบแล้ว ต่อไปเล่นเองใช้คำสั่งอะไรก็ได้นะ';
             }
             else {
@@ -1355,10 +1353,10 @@ app.post('/', (req, res) => {
     repeat_flag = false;
     crash_flag = false;
 
-    if (status_state == 14) {
+    if (status_state == 15) {
         modify_flag = false;
         number = null;
-    } else if (status_state == 15) {
+    } else if (status_state == null) {
         insert_flag = false;
         insert_position = null;
         number = null;
