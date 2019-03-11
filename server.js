@@ -597,7 +597,7 @@ app.post('/', (req, res) => {
         //tutorial 2 delete
         if (already == 'พร้อมแล้ว') {
             responsetext = 'ต้องเดินเข้าประตูโดยใช้คำสั่งลบ';
-            state = 'test2';
+            state = 'test3';
             console.log('access tutorial delete ', already);
             status_state = 10;
         } else {
