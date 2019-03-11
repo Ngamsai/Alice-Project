@@ -203,6 +203,7 @@ app.post('/', (req, res) => {
     else if (req.body.queryResult.action == 'input.welcome') {
         status_state = 0;
         pass = 0;
+        number = null;
         state = 'startgame';
         tutorial_test = 'start2';
         ee = 3;
