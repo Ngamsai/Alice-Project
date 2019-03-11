@@ -223,7 +223,7 @@ app.post('/', (req, res) => {
         console.log('show start ', startgame);
         // console.log('Do is ',havetoDo_flag);
     }
-    else if (character != null && status == 'character') {
+    else if (character != null && state == 'character') {
         if (status_state == 1) {
             console.log('actor is ', character);
             if (character == "1" || character == "2") {
