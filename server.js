@@ -741,6 +741,7 @@ app.post('/', (req, res) => {
             playFunction();
             if (maze_x == 7 && maze_y == 7) {
                 state = 'maze1';
+                maze_state = 'maze1';
                 status_state = null;
                 maze = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
                 [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
