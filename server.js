@@ -59,7 +59,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.post('/', (req, res) => {
 
     console.log("***************************************************************************************************")
-    // console.log(req.body);
+    console.log(req.body);
     if (!req.body) return res.sendStatus(400)
     var keep = req.body.queryResult.parameters;
     var responsetext = req.body.queryResult.fulfillmentText;
@@ -203,7 +203,6 @@ app.post('/', (req, res) => {
     else if (req.body.queryResult.action == 'input.welcome') {
         status_state = 0;
         pass = 0;
-        number = null;
         state = 'startgame';
         tutorial_test = 'start2';
         ee = 3;
@@ -1377,6 +1376,7 @@ app.post('/', (req, res) => {
     character = null;
     test_flag = false;
     delete_flag = false;
+    number = null;
     godmode = null;
     play_flag = false;
     maze_state = null;
