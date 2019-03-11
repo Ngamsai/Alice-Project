@@ -877,7 +877,12 @@ app.post('/', (req, res) => {
                             if (position[b][0] == maze_x && position[b][1] == maze_y) {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[b][0], position[b][1]);
-                                havetoDo_flag = true;
+                                if (status_state == 12 || status_state == 13 || status_state == 14 ||status_state == 15 ){
+                                    havetoDo_flag = false;
+                                }
+                                else {
+                                    havetoDo_flag = true;
+                                }
                                 repeat_flag = true;
                                 console.log('access check repeat', repeat_flag);
                             }
@@ -887,7 +892,12 @@ app.post('/', (req, res) => {
                     } else {
                         responsetext = 'crashing ,you must modify,delete or insert';
                         crash_flag = true;
-                        havetoDo_flag = true;
+                        if (status_state == 12 || status_state == 13 || status_state == 14 ||status_state == 15 ){
+                            havetoDo_flag = false;
+                        }
+                        else {
+                            havetoDo_flag = true;
+                        }
                         console.log('text clashing');
                     }
                     if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
@@ -942,14 +952,24 @@ app.post('/', (req, res) => {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[d][0], ' ', position[d][1]);
                                 repeat_flag = true;
-                                havetoDo_flag = true;
+                                if (status_state == 12 || status_state == 13 || status_state == 14 ||status_state == 15 ){
+                                    havetoDo_flag = false;
+                                }
+                                else {
+                                    havetoDo_flag = true;
+                                }
                                 console.log('access check repeat', repeat_flag);
                             }
                         }
                         position.push([maze_x, maze_y]);
                     } else {
                         crash_flag = true;
-                        havetoDo_flag =true;
+                        if (status_state == 12 || status_state == 13 || status_state == 14 ||status_state == 15 ){
+                            havetoDo_flag = false;
+                        }
+                        else {
+                            havetoDo_flag = true;
+                        }
                         responsetext = 'crashing ,you must modify,delete or insert';
                         console.log('text clashing');
                     }
