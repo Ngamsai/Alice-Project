@@ -241,12 +241,12 @@ app.post('/', (req, res) => {
     else if (play != null) {
         console.log('play is ', play);
         play_flag = true;
-        if (status_state == 13) {
-            console.log('tutorial_state13_play_flag ', play_flag);
-        } else if (status_state == 14) {
+        if (status_state == 10) {
+            console.log('tutorial_state10_play_flag ', play_flag);
+        } else if (status_state == 12) {
             modify_flag = false;
             number = null;
-            console.log('tutorial_state14_play_flag ', play_flag);
+            console.log('tutorial_state12_play_flag ', play_flag);
         } else if (status_state == 15) {
             insert_flag = false;
             insert_position = null;
@@ -276,8 +276,8 @@ app.post('/', (req, res) => {
         number_deletecode = numberSequence;
         delete_flag = true;
         console.log('he will ', delete_code, 'status-delete ', delete_flag, ' delete_number ', numberSequence);
-        if (status_state == 13) {
-            console.log('go to 13');
+        if (status_state == 10) {
+            console.log('go to 10');
         } else {
             deleteCode();
         }
@@ -297,9 +297,9 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
     }
     else if (reset != null) {
-        if (status_state == 12 || status_state == 13 || status_state == 14 || status_state == 15) {
+        if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
             reset_flag = true;
-            console.log('reset state 12 go to');
+            console.log('reset state tu go to');
         }
         else if (status_state == null) {
             if (ee > 0) {
@@ -890,7 +890,7 @@ app.post('/', (req, res) => {
                             if (position[b][0] == maze_x && position[b][1] == maze_y) {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[b][0], position[b][1]);
-                                if (status_state == 12 || status_state == 13 || status_state == 14 || status_state == 15) {
+                                if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
                                     havetoDo_flag = false;
                                 }
                                 else {
@@ -905,7 +905,7 @@ app.post('/', (req, res) => {
                     } else {
                         responsetext = 'crashing ,you must modify,delete or insert';
                         crash_flag = true;
-                        if (status_state == 12 || status_state == 13 || status_state == 14 || status_state == 15) {
+                        if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
                             havetoDo_flag = false;
                         }
                         else {
@@ -965,7 +965,7 @@ app.post('/', (req, res) => {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[d][0], ' ', position[d][1]);
                                 repeat_flag = true;
-                                if (status_state == 12 || status_state == 13 || status_state == 14 || status_state == 15) {
+                                if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
                                     havetoDo_flag = false;
                                 }
                                 else {
@@ -977,7 +977,7 @@ app.post('/', (req, res) => {
                         position.push([maze_x, maze_y]);
                     } else {
                         crash_flag = true;
-                        if (status_state == 12 || status_state == 13 || status_state == 14 || status_state == 15) {
+                        if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
                             havetoDo_flag = false;
                         }
                         else {
