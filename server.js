@@ -1084,7 +1084,7 @@ app.post('/', (req, res) => {
     function playFunction() {
         console.log('access play function');
         position.splice(1, position.length);
-        if (status_state == 14) {
+        if (status_state == 12) {
             maze_x = 11;
             maze_y = 5;
             direction = 'N';
