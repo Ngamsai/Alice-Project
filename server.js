@@ -215,6 +215,7 @@ app.post('/', (req, res) => {
     }
     else if (startgame != null && status_state == 0) {
         status_state = 1;
+        state = 'character';
         console.log('show start ', startgame);
         // console.log('Do is ',havetoDo_flag);
     }
