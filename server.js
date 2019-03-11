@@ -358,11 +358,14 @@ app.post('/', (req, res) => {
                 order = "right";
             }
         }
-        if (status_state == 12) {
-            console.log('go to state 12');
+        if (status_state == 8) {
+            console.log('go to state 8');
         }
-        else if (status_state == 14) {
-            console.log('got to state 14');
+        else if (status_state == 10) {
+            console.log('got to state 10');
+        }
+        else if (status_state == 12) {
+            console.log('go to state 12');
         }
         else if (status_state == 15) {
             console.log('go to state 15');
