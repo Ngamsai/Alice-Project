@@ -1419,7 +1419,7 @@ app.post('/', (req, res) => {
         else if (responsetext == 'เรียนคำสั่งเพิ่มกันอีกหน่อยนะ') {
             responsetext = 'Learn add commands';
         }
-
+    }
     
     
     console.log('resq is ', responsetext);
