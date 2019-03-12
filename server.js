@@ -212,6 +212,11 @@ app.post('/', (req, res) => {
         tutorial_test = 'start2';
         ee = 3;
         havetoDo_flag = false;
+        modify_flag = false;
+        insert_flag = false;
+        number = null;
+        number_deletecode = null;
+        insert_position = null;
         resetPosition();
         resetArrayOrder();
         console.log('all position when restart', position);
