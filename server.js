@@ -424,7 +424,7 @@ app.post('/', (req, res) => {
 
 
     //tutorial*************************************************************************************
-    if (status_state == 2) {
+    if (status_state == 2 && test_state != null) {
         if (test_flag) {
             state = 'test1-1';
             responsetext = 'ตั้งใจฟังนะ การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
@@ -1461,16 +1461,7 @@ app.post('/', (req, res) => {
     repeat_flag = false;
     crash_flag = false;
 
-    // if (status_state == 15) {
-    //     modify_flag = false;
-    //     number = null;
-    // } else if (status_state == null) {
-    //     insert_flag = false;
-    //     insert_position = null;
-    //     number = null;
-    // }
-
-    // reset = null
+    
     // var num = distance*1000;
     setTimeout(function () {
         console.log('send already');
