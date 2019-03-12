@@ -450,7 +450,7 @@ app.post('/', (req, res) => {
         else {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่';
         }
-        num = 14000;
+        num = 10000;
         console.log('pass ', pass);
     }
     else if (status_state == 4) {
@@ -536,7 +536,7 @@ app.post('/', (req, res) => {
         else {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
         }
-        num = 13000;
+        num = 10000;
         console.log('pass ', pass);
     }
     else if (status_state == 7) {
@@ -1135,8 +1135,8 @@ app.post('/', (req, res) => {
             // console.log('order play ',order);
             // console.log('distance play ',distance);
         }
-        var turntime = 1000 * arrayOrder.length;
-        num = 800 * position.length + turntime;
+        //var turntime = 1000 * arrayOrder.length;
+        num = 1000 * position.length;
         order = null;
         distance = null;
         checkState();
