@@ -100,7 +100,7 @@ app.post('/', (req, res) => {
         console.log('show left_right_direction ', order);
     }
     else if (direction_return != null) {
-        order = 'หันขวา';
+        order = 'right';
         console.log('show return ', order, 'distance ', distance);
     }
 
@@ -986,13 +986,13 @@ app.post('/', (req, res) => {
                             if (position[d][0] == maze_x && position[d][1] == maze_y) {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[d][0], ' ', position[d][1]);
-                                repeat_flag = true;
                                 if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
                                     havetoDo_flag = false;
                                 }
                                 else {
                                     havetoDo_flag = true;
                                 }
+                                repeat_flag = true;
                                 console.log('access check repeat', repeat_flag);
                             }
                         }
