@@ -41,6 +41,7 @@ var maze_state = null;
 var num = 500;
 var ee = 3;
 var already = null;
+var already_flag = false;
 var anser = null;
 var test_state = null;
 var order = null, distance = null, forward_backward_direction = null, left_right_direction = null, direction_return = null;
@@ -268,6 +269,7 @@ app.post('/', (req, res) => {
         console.log('anser is ', anser);
     }
     else if (already != null) {
+        already_flag = true;
         console.log('tutorial already ', already);
     }
 
@@ -605,7 +607,7 @@ app.post('/', (req, res) => {
 
     else if (status_state == 9) {
         //tutorial 2 delete
-        if (already == 'พร้อมแล้ว') {
+        if (already_flag) {
             responsetext = 'ต้องเดินเข้าประตูโดยใช้คำสั่งลบ';
             state = 'test3';
             console.log('access tutorial delete ', already);
@@ -660,7 +662,7 @@ app.post('/', (req, res) => {
     else if (status_state == 11) {
         //tutorial 3 chance
         num = 6000;
-        if (already == 'พร้อมแล้ว') {
+        if (already_flag) {
             responsetext = 'ต้องใช้คำสั่งเปลี่ยน ทำให้เข้าประตูให้ได้';
             state = 'test4';
             status_state = 12;
@@ -723,7 +725,7 @@ app.post('/', (req, res) => {
 
     else if (status_state == 13) {
         //tutorial 4-1 insert after
-        if (already == 'พร้อมแล้ว') {
+        if (already_flag) {
             responsetext = 'เรียนคำสั่งเพิ่มกันอีกหน่อยนะ';
             state = 'tutorial_state4-2';
             status_state = 14;
@@ -733,7 +735,7 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 14) {
         //tutorial 4-2 insert before
-        if (already == 'พร้อมแล้ว') {
+        if (already_flag) {
             state = 'test5';
             responsetext = 'เข้าประตูให้ได้โดยใช้คำสั่งเพิ่มเท่านั้นนะคะ';
             status_state = 15;
@@ -1336,7 +1338,7 @@ app.post('/', (req, res) => {
             responsetext = "Very good at doing it again";
         }
         else if (responsetext == 'ยังไม่ถูกนะลองทำข้อใหม่ดูอีกทีนะ') {
-            responsetext = "Still not correct. Try to do next.";
+            responsetext = "Still incorrect. Try to do next.";
         }
         else if (responsetext == 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่') {
             responsetext = "Is walking in the left image caused by orders in the picture on the right?";
@@ -1348,7 +1350,7 @@ app.post('/', (req, res) => {
             responsetext = "If the next step is not correct, it will not pass the test.";
         }
         else if (responsetext == 'ไม่ถูกนะข้อต่อไปดูดีดีนะ') {
-            responsetext = "Still not correct. Try to do next.";
+            responsetext = "Still incorrect. Try to do next.";
         }
         else if (responsetext == 'เก่งที่สุดเลย ต่อไปต้องเล่นเองแล้วนะ เดินเข้าประตูให้ได้นะจ๊ะ') {
             responsetext = "good job next walk into the door";
@@ -1357,13 +1359,13 @@ app.post('/', (req, res) => {
             responsetext = "Don't pass the test.";
         }
         else if (responsetext == 'ยังไม่ถูกนะคะ ไปข้อต่อไปเลย') {
-            responsetext = "Still not correct. Try to do next.";
+            responsetext = "Still incorrect. Try to do next.";
         }
         else if (responsetext == 'เก่งมากเลย ข้อสุดท้ายต้องตอบให้ได้นะ') {
             responsetext = "Very good next";
         }
         else if (responsetext == 'ยังไม่ถูกนะ ข้อสุดท้ายต้องตอบให้ได้นะ') {
-            responsetext = "Still not correct Finally, you must answer correctly.";
+            responsetext = "Still incorrect Finally, you must answer correctly.";
         }
         else if (responsetext == 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่') {
             responsetext = "Can't go this route To say reset";
@@ -1390,7 +1392,7 @@ app.post('/', (req, res) => {
             responsetext = 'Continue to learn change orders If you understand, say ready.';
         }
         else if (responsetext == 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่') {
-            responsetext = 'It is still not correct to say reset';
+            responsetext = 'It is still incorrect to say reset';
         }
         else if (responsetext == 'ลบแค่ตัวเดียวก็ได้แล้วนะ สู้ๆ') {
             responsetext = 'delete only one';
@@ -1466,6 +1468,7 @@ app.post('/', (req, res) => {
     test_flag = false;
     delete_flag = false;
     godmode = null;
+    already_flag = false;
     play_flag = false;
     maze_state = null;
     number_deletecode = null;
