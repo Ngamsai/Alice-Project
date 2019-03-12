@@ -432,6 +432,7 @@ app.post('/', (req, res) => {
         } else {
             responsetext = 'พูดว่าทดสอบ ก่อนนะ';
         }
+        num = 7000;
     }
     else if (status_state == 3) {
         //1
@@ -449,10 +450,12 @@ app.post('/', (req, res) => {
         else {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่';
         }
+        num = 14000;
         console.log('pass ', pass);
     }
     else if (status_state == 4) {
         //2
+        num = 10000;
         if (anser == 'true') {
             state = 'test1-3';
             pass++;
@@ -476,6 +479,7 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 5) {
         //3
+        num = ;
         if (anser == 'false') {
             pass++;
             if (pass == 3) {
@@ -613,6 +617,7 @@ app.post('/', (req, res) => {
 
     else if (status_state == 10) {
         //test3 delete
+        num = 7000;
         if (tutorial_test == 'start3') {
             maze = maze_tutorial_test35;
             maze_x = 11;
@@ -651,6 +656,7 @@ app.post('/', (req, res) => {
 
     else if (status_state == 11) {
         //tutorial 3 chance
+        num = 7000;
         if (already == 'พร้อมแล้ว') {
             responsetext = 'ต้องใช้คำสั่งเปลี่ยน ทำให้เข้าประตูให้ได้';
             state = 'test4';
@@ -664,6 +670,7 @@ app.post('/', (req, res) => {
 
     else if (status_state == 12) {
         //test4  modify
+        num = 5000;
         if (tutorial_test == 'start4') {
             maze = maze_tutorial_test4;
             position = [[11, 5], [9, 5], [7, 5], [5, 5], [5, 3], [5, 1],];
@@ -692,6 +699,7 @@ app.post('/', (req, res) => {
             if (maze_x == 5 && maze_y == 9) {
                 state = 'tutorial_state4-1';
                 status_state = 13;
+                num = 7000;
                 responsetext = 'เรียนคำสั่งเพิ่มกันต่อนะคะ';
             } else {
                 state = null;
@@ -735,6 +743,7 @@ app.post('/', (req, res) => {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     else if (status_state == 15) {
         // test 5 insert
+        num = ;
         if (tutorial_test == 'start5') {
             maze = maze_tutorial_test35;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
@@ -1462,11 +1471,11 @@ app.post('/', (req, res) => {
     crash_flag = false;
 
     
-    // var num = distance*1000;
+    var num = distance*1000;
     setTimeout(function () {
         console.log('send already');
         return res.json(responseObj);
-    })
+    },num)
     // console.log('num ', num);
     // num = 500;
     // console.log('num ', num);
