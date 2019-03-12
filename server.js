@@ -320,7 +320,7 @@ app.post('/', (req, res) => {
                 resetPosition();
                 resetArrayOrder();
             } else {
-                responsetext = 'ไม่สามารถใช้คำสั่งเริ่มต้นใหม่แล้วนะ'
+                responsetext = 'ไม่สามารถใช้คำสั่งเริ่มต้นใหม่แล้วนะ';
             }
         }
         console.log('reset_flag ', reset_flag);
@@ -465,7 +465,7 @@ app.post('/', (req, res) => {
                 responsetext = 'ถ้ายังทำข้อต่อไปไม่ได้จะไม่ผ่านการทดสอบนะ';
             }
             else {
-                responsetext = 'ไม่ถูกนะข้อต่อไปดูดีดีนะ'
+                responsetext = 'ไม่ถูกนะข้อต่อไปดูดีดีนะ';
             }
             status_state = 5;
         }
@@ -680,10 +680,10 @@ app.post('/', (req, res) => {
                     ComputePosition();
                     keepArrayOrder();
                 } else {
-                    responsetext = 'จะเปลี่ยนตัวที่' + number + 'เป็นคำสั่งอะไรพูดมาเลย';
+                    console.log('mod ',modify_flag,'num ',number);
                 }
             } else {
-                responsetext = 'จะเปลี่ยนตัวที่เท่าไหร่คะ';
+                console.log('mod ',modify_flag);
             }
         }
         else if (play_flag) {
@@ -755,7 +755,7 @@ app.post('/', (req, res) => {
                     state = null;
                 }
             } else {
-                responsetext = 'ต้องการเพิ่ม ก่อน หรือ หลัง ตัวไหน';
+                console.log('insert ',insert_flag);
             }
         }
         else if (play_flag) {
@@ -1278,94 +1278,150 @@ app.post('/', (req, res) => {
         else if (responsetext == 'excellent!!') {
             responsetext = 'เก่งมากเลย ทำสำเร็จทุกด่านแล้ว มารับรางวัลนะคะ';
         }
+        else if (responsetext == 'Sorry, could you say that again?'){
+            responsetext = 'ขอโทษค่ะ ลองพูดอีกครั้งได้ไหมคะ';
+        }
     }
 
     if (language == 'en' || language == 'en-us') {
-        if (responsetext == 'พูดว่า เลี้ยวซ้าย 1 ครั้ง') {
-            responsetext = 'Say , turn left 1 time';
+        if (responsetext == 'ต้องใช้คำสั่งที่เรียนมาเดินเข้าประตูให้ได้นะ') {
+            responsetext = 'Next walk into the door';
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 2 ช่อง') {
-            responsetext = 'Still can not speak properly, you have to say forward 2 times';
+        else if (responsetext == 'ด่าน 2 แล้วนะ') {
+            responsetext = 'maze 2';
         }
-        else if (responsetext == 'พูดว่า เดินหน้า 1 ช่อง') {
-            responsetext = 'Say , forward 1 time';
+        else if (responsetext == 'ด่าน 3 แล้วนะ') {
+            responsetext = 'maze 3';
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย 1 ครั้ง') {
-            responsetext = 'Still can not speak properly, you have to say turn left 1 time';
+        else if (responsetext == 'ด่าน 4 แล้วนะ') {
+            responsetext = 'maze 4';
         }
-        else if (responsetext == 'พูดว่า เลี้ยวขวา 2 ครั้ง') {
-            responsetext = 'Say , turn right 2 times';
+        else if (responsetext == 'ด่าน 5 แล้วนะ') {
+            responsetext = 'maze 5';
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า 1 ช่อง') {
-            responsetext = 'Still can not speak properly, you have to say go to forward 1 time';
+        else if (responsetext == 'ด่าน 6 แล้วนะ') {
+            responsetext = 'maze 6';
         }
-        else if (responsetext == 'ทีนี้ ลองดูซิว่าจะเกิดอะไรขึ้น เมื่อเดินทับเส้นทางเดิม ให้พูดคำว่าเดินหน้า') {
-            responsetext = "Let's see what happens , when walking the same path , To say forward";
+        else if (responsetext == 'เหลือหัวใจแค่ 1 ดวงแล้วนะ') {
+            responsetext = "Only 1 heart left.";
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวขวา 2 ครั้ง') {
-            responsetext = "Still can't speak properly, you have to say turn right 2 times";
+        else if (responsetext == 'หัวใจหมดแล้วนะ ใช้คำสั่งเริ่มต้นใหม่ไม่ได้แล้วนะ') {
+            responsetext = "Heart is gone Can't use reset.";
         }
-        else if (responsetext == 'ไม่สามารถเดินทับเส้นทางเดิมได้ ขอให้แก้ไขคำสั่งโดยพูดว่าแก้ไขบรรทัดที่5') {
-            responsetext = "Can't walk over the same path, please edit the commands , you can say edit line number 5";
+        else if (responsetext == 'ไม่สามารถใช้คำสั่งเริ่มต้นใหม่แล้วนะ') {
+            responsetext = "Can't use reset.";
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เดินหน้า') {
-            responsetext = "Still can't speak properly, you have to say  forward";
+        else if (responsetext == 'ขอโทษค่ะ ฉันไม่เข้าใจ') {
+            responsetext = "Sorry I don't understand";
         }
-        else if (responsetext == 'พูดสิ่งที่ต้องการเปลี่ยนในบรรทัดที่ 5 มาเลย ให้พูดว่า ถอยหลัง 1 ช่อง') {
-            responsetext = "You can say , what do you want to edit commands  in line number 5 . Say backward 1 time";
+        else if (responsetext == 'ตั้งใจฟังนะ การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่') {
+            responsetext = "Listen carefully. Is walking in the left image caused by orders in the picture on the right?";
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า แก้ไขบรรทัดที่ 5') {
-            responsetext = "Still can't speak properly, you have to say edit line number 5";
+        else if (responsetext == 'พูดว่าทดสอบ ก่อนนะ') {
+            responsetext = "Please say, test first";
         }
-        else if (responsetext == 'ทีนี้ ลองให้ทำงานตามคำสั่งใหม่ทั้งหมดอีกครั้ง พูดว่า เล่นใหม่') {
-            responsetext = "Try to work all new commands again. You have to say replay";
+        else if (responsetext == 'เก่งมากเลย ทำอีกข้อนะ') {
+            responsetext = "Very good at doing it again";
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า ถอยหลัง 1 ช่อง') {
-            responsetext = "Still can't speak properly, you have to say backward 1 time";
+        else if (responsetext == 'ยังไม่ถูกนะลองทำข้อใหม่ดูอีกทีนะ') {
+            responsetext = "Still not correct. Try to do next.";
         }
-        else if (responsetext == 'ยินดีด้วยจบด่าน1แล้ว ทีนี้มาเล่นด่านที่2 สังเกตคำสั่งว่าตัวละครเดินมา 2 ช่องแล้ว ต่อไปให้พูดว่าเลี้ยวซ้าย') {
-            responsetext = "Congratulations to the end of Stage 1.Come to play Stage 2 and Observe the commands that the characters walked in 2 times. Next , you can say turn left";
+        else if (responsetext == 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่') {
+            responsetext = "Is walking in the left image caused by orders in the picture on the right?";
         }
-        else if (responsetext == 'ต่อไปพูดว่าเดินหน้า แล้วสังเกตุว่าเกิดอะไรขึ้น') {
-            responsetext = "Next, you say forward .Let's see what happens?";
+        else if (responsetext == 'เก่งมากเลย ไปข้อต่อไปเลย') {
+            responsetext = "Very good next";
         }
-        else if (responsetext == 'ยังพูดไม่ถูกนะคะ ต้องพูดว่า เลี้ยวซ้าย') {
-            responsetext = "Still can't speak properly, you have to say turn left";
+        else if (responsetext == 'ถ้ายังทำข้อต่อไปไม่ได้จะไม่ผ่านการทดสอบนะ') {
+            responsetext = "If the next step is not correct, it will not pass the test.";
         }
-        else if (responsetext == 'ไม่สามารถเดินไปเส้นทางนี้ได้ ต้องแก้ไขคำสั่งนี้ก่อนให้พูดว่า เพิ่มหลังบรรทัดที่1') {
-            responsetext = "Can not walk this route , you have to edit this command , say insert after line 1";
+        else if (responsetext == 'ไม่ถูกนะข้อต่อไปดูดีดีนะ') {
+            responsetext = "Still not correct. Try to do next.";
         }
-        else if (responsetext == 'พูดคำสั่งที่ต้องการเพิ่มหลังบรรทัดที่ 1 มาเลย ให้พูดว่า เดินหน้า') {
-            responsetext = "You can say , what do you want to insert commands  after  line number 1 . Say forward 1 time";
+        else if (responsetext == 'เก่งที่สุดเลย ต่อไปต้องเล่นเองแล้วนะ เดินเข้าประตูให้ได้นะจ๊ะ') {
+            responsetext = "good job next walk into the door";
         }
-        else if (responsetext == 'ต้องพูดว่า เพิ่มหลังบรรทัดที่1นะ') {
-            responsetext = "Still can't speak properly, you have to say insert after line 1";
+        else if (responsetext == 'ยังไม่ผ่านการทดสอบนะคะ เสียใจด้วย') {
+            responsetext = "Don't pass the test.";
         }
-        else if (responsetext == 'เปลี่ยนด่านใหม่เดินมาใกล้ประตูแล้ว จะเดินเข้าประตูต้องพูดว่า ถอยหลัง 1 ช่องนะ') {
-            responsetext = "Change to stage 3 ,then you near the door. To walk into the door, say back 1 time";
+        else if (responsetext == 'ยังไม่ถูกนะคะ ไปข้อต่อไปเลย') {
+            responsetext = "Still not correct. Try to do next.";
         }
-        else if (responsetext == 'ผ่านด่านมาแล้ว  ไม่สามารถเดินทับเส้นทางเดิมได้  ฉะนั้นด่านต่อไป ต้องพูดว่า ลบบรรทัดที่ 5') {
-            responsetext = "Passed the stage 3 .Can not walk the same path , then you have to say delete line 5";
+        else if (responsetext == 'เก่งมากเลย ข้อสุดท้ายต้องตอบให้ได้นะ') {
+            responsetext = "Very good next";
         }
-        else if (responsetext == 'วิธีที่ง่ายที่สุดที่จะเดินเข้าประตูคือ ถอยหลัง 1 ช่องนะ') {
-            responsetext = "The best way to walk into the door is back 1 time";
+        else if (responsetext == 'ยังไม่ถูกนะ ข้อสุดท้ายต้องตอบให้ได้นะ') {
+            responsetext = "Still not correct Finally, you must answer correctly.";
         }
-        else if (responsetext == 'แค่ลบบรรทัดที่ 5 ทิ้งก็เข้าประตูได้แล้วนะ') {
-            responsetext = "Just delete number 5";
+        else if (responsetext == 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่') {
+            responsetext = "Can't go this route To say reset";
         }
-        else if (responsetext == 'เรียนจบแล้วต่อไปเป็นการทดสอบน้า เดินเข้าประตูให้ครบ 6 ด่านนะจ๊ะ') {
-            responsetext = "Passed the test , Next walk into the door to complete 6 stage";
+        else if (responsetext == 'เดินซ้ำทางเดิมไม่ได้นะ ให้พูดว่าเริ่มต้นใหม่') {
+            responsetext = "Can't repeat the same path To say reset";
         }
-        else if (responsetext == 'ต้องพูดว่าเล่นใหม่ก่อนนะ') {
-            responsetext = 'Have to say replay first';
+        else if (responsetext == 'เรียนคำสั่งลบ ถ้าเข้าใจแล้วให้พูดว่าพร้อมแล้ว') {
+            responsetext = 'Learn how to use the delete order. If you understand, say ready.';
         }
-        else if (responsetext == 'ถ้าจะให้ถูกต้องต้องพูดว่า เดินหน้า 1 ช่องนะคะ') {
-            responsetext = 'If it is correct, I must say forward 1 time';
+        else if (responsetext == 'เริ่มเล่นใหม่อีกครั้งนะ') {
+            responsetext = 'Start replaying again';
         }
-    }
+        else if (responsetext == 'เดินเข้าประตูโดยใช้คำสั่งที่เรียนมานะ') {
+            responsetext = 'Walked into the door';
+        }
+        else if (responsetext == 'ต้องเดินเข้าประตูโดยใช้คำสั่งลบ') {
+            responsetext = 'Must walk into the door using the delete command';
+        }
+        else if (responsetext == 'ถ้าเข้าใจแล้วให้พูดว่า พร้อมแล้ว') {
+            responsetext = 'If you understand, say ready.';
+        }
+        else if (responsetext == 'เรียนคำสั่งเปลี่ยนต่อเลย ถ้าเข้าใจแล้วให้พูดว่าพร้อมแล้ว') {
+            responsetext = 'Continue to learn change orders If you understand, say ready.';
+        }
+        else if (responsetext == 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่') {
+            responsetext = 'It is still not correct to say reset';
+        }
+        else if (responsetext == 'ลบแค่ตัวเดียวก็ได้แล้วนะ สู้ๆ') {
+            responsetext = 'delete only one';
+        }
+        else if (responsetext == 'ใช้ได้แค่คำสั่งลบนะ') {
+            responsetext = 'Can only use delete commands';
+        }
+        else if (responsetext == 'ต้องใช้คำสั่งเปลี่ยน ทำให้เข้าประตูให้ได้') {
+            responsetext = 'Must use the change command Can make it into the door';
+        }
+        else if (responsetext == 'เรียนคำสั่งเพิ่มกันต่อนะคะ') {
+            responsetext = 'Learn add commands';
+        }
+        else if (responsetext == 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่') {
+            responsetext = 'replay please say reset';
+        }
+        else if (responsetext == 'ลองใหม่อีกครั้ง เปลี่ยนแค่ตัวเดียวก็ได้แล้ว') {
+            responsetext = 'Try again Can change only one';
+        }
+        else if (responsetext == 'ด่านนี้ต้องใช้คำสั่งแก้ไขนะ') {
+            responsetext = 'This stage requires change commands.';
+        }
+        else if (responsetext == 'เรียนคำสั่งเพิ่มกันอีกหน่อยนะ') {
+            responsetext = 'Learn add commands';
+        }
+        else if (responsetext == 'เข้าประตูให้ได้โดยใช้คำสั่งเพิ่มเท่านั้นนะคะ') {
+            responsetext = 'Can enter the door using only add order';
+        }
+        else if (responsetext == 'ผ่านการทดสอบแล้ว ต่อไปเล่นเองใช้คำสั่งอะไรก็ได้นะ') {
+            responsetext = 'Congratulations for passing the test Continue to play game';
+        }
+        else if (responsetext == 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว') {
+            responsetext = 'Try again Can only add one';
+        }
+        else if (responsetext == 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ') {
+            responsetext = 'This stage requires add commands.';
+        }
+        else if (responsetext == 'เรียนคำสั่งเพิ่มกันอีกหน่อยนะ') {
+            responsetext = 'Learn add commands';
+        }
 
-
-
+    
+    
     console.log('resq is ', responsetext);
 
     //send response
