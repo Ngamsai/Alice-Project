@@ -479,7 +479,6 @@ app.post('/', (req, res) => {
     }
     else if (status_state == 5) {
         //3
-        num = ;
         if (anser == 'false') {
             pass++;
             if (pass == 3) {
@@ -743,7 +742,7 @@ app.post('/', (req, res) => {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     else if (status_state == 15) {
         // test 5 insert
-        num = ;
+       
         if (tutorial_test == 'start5') {
             maze = maze_tutorial_test35;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
