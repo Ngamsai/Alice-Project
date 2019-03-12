@@ -450,7 +450,7 @@ app.post('/', (req, res) => {
         else {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่';
         }
-        num = 10000;
+        num = 9000;
         console.log('pass ', pass);
     }
     else if (status_state == 4) {
@@ -474,7 +474,7 @@ app.post('/', (req, res) => {
         else {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
         }
-        num = 10000;
+        num = 9000;
         console.log('pass ', pass);
     }
     else if (status_state == 5) {
@@ -505,7 +505,7 @@ app.post('/', (req, res) => {
         else {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา    ใช่หรือไม่';
         }
-        num = 10000;
+        num = 9000;
         console.log('pass ', pass);
     }
     else if (status_state == 6) {
@@ -536,7 +536,7 @@ app.post('/', (req, res) => {
         else {
             responsetext = 'การเดินในรูปด้านซ้าย     เกิดจาก    คำสั่งต่างๆ      ในรูปด้านขวา   ใช่หรือไม่';
         }
-        num = 10000;
+        num = 9000;
         console.log('pass ', pass);
     }
     else if (status_state == 7) {
