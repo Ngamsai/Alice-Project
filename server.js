@@ -1483,7 +1483,7 @@ app.post('/', (req, res) => {
         return res.json(responseObj);
     },num)
     // console.log('num ', num);
-    // num = 500;
+    num = 500;
     console.log('num ', num);
 
 })
