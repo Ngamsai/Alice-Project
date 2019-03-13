@@ -215,6 +215,7 @@ app.post('/', (req, res) => {
         havetoDo_flag = false;
         modify_flag = false;
         insert_flag = false;
+        repeat_flag = false;
         number = null;
         number_deletecode = null;
         insert_position = null;
