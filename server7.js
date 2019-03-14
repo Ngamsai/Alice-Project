@@ -213,6 +213,7 @@ app.post('/', (req, res) => {
         tutorial_test = 'start2';
         ee = 3;
         havetoDo_flag = false;
+        position_flag = true;
         modify_flag = false;
         insert_flag = false;
         repeat_flag = false;
