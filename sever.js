@@ -241,31 +241,47 @@ app.post('/', (req, res) => {
     else if (play != null) {
         console.log('play is ', play);
         play_flag = true;
-        if (status_state == 10) {
-            console.log('tutorial_state10_play_flag ', play_flag);
-        } else if (status_state == 12) {
+        if (status_state == 4) {
+            console.log('tutorial_state4_play_flag ', play_flag);
+        }else if (status_state == 5) {
+            console.log('tutorial_state5_play_flag ', play_flag);
+        } else if (status_state == 6) {
             modify_flag = false;
             number = null;
-            console.log('tutorial_state12_play_flag ', play_flag);
-        } else if (status_state == 15) {
+            console.log('tutorial_state6_play_flag ', play_flag);
+        } else if (status_state == 7) {
+            modify_flag = false;
+            number = null;
+            console.log('tutorial_state7_play_flag ', play_flag);
+        } else if (status_state == 8) {
             insert_flag = false;
             insert_position = null;
             number = null;
-            console.log('tutorial_state15_play_flag ', play_flag);
+            console.log('tutorial_state8_play_flag ', play_flag);
+        } else if (status_state == 9) {
+            insert_flag = false;
+            insert_position = null;
+            number = null;
+            console.log('tutorial_state9_play_flag ', play_flag);
+        } else if (status_state == 10) {
+            insert_flag = false;
+            insert_position = null;
+            number = null;
+            console.log('tutorial_state10_play_flag ', play_flag);
         } else {
             playFunction();
         }
     }
-    else if (test_state != null) {
-        test_flag = true;
-    }
-    else if (anser != null) {
-        console.log('anser is ', anser);
-    }
-    else if (already != null) {
-        already_flag = true;
-        console.log('tutorial already ', already);
-    }
+    // else if (test_state != null) {
+    //     test_flag = true;
+    // }
+    // else if (anser != null) {
+    //     console.log('anser is ', anser);
+    // }
+    // else if (already != null) {
+    //     already_flag = true;
+    //     console.log('tutorial already ', already);
+    // }
 
 
     if (modify != null) {
@@ -298,7 +314,7 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
     }
     else if (reset != null) {
-        if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
+        if (status_state >= 2 && status_state <= 10) {
             reset_flag = true;
             console.log('reset state tu go to');
         }
@@ -359,18 +375,18 @@ app.post('/', (req, res) => {
                 order = "right";
             }
         }
-        if (status_state == 8) {
-            console.log('go to state 8');
+        if (status_state >= 2 && status_state <= 10)  {
+            console.log('go to state tu');
         }
-        else if (status_state == 10) {
-            console.log('got to state 10');
-        }
-        else if (status_state == 12) {
-            console.log('go to state 12');
-        }
-        else if (status_state == 15) {
-            console.log('go to state 15');
-        }
+        // else if (status_state == 10) {
+        //     console.log('got to state 10');
+        // }
+        // else if (status_state == 12) {
+        //     console.log('go to state 12');
+        // }
+        // else if (status_state == 15) {
+        //     console.log('go to state 15');
+        // }
         else {
             console.log('sh order', order, 'show distance ', distance);
             ComputePosition();
@@ -467,6 +483,7 @@ app.post('/', (req, res) => {
             position = [[3, 1]];
             tutorial_start = 'test1';
         }
+
         if (order != null && distance != null) {
             ComputePosition();
             if (responsetext == 'crashing ,you must modify,delete or insert') {
@@ -494,6 +511,9 @@ app.post('/', (req, res) => {
             responsetext = 'ต้องเดินเข้าประตูให้ได้นะ';
         }
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+
     else if (status_state == 3) {
         //test1 forward
         if (tutorial_start == 'test1') {
@@ -531,6 +551,8 @@ app.post('/', (req, res) => {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
     else if (status_state == 4) {
         //teach2 delete
         num = 7000;
@@ -555,7 +577,7 @@ app.post('/', (req, res) => {
                 responsetext = 'ต่อไปให้น้องทดสอบดูว่าเข้าใจรึยัง';
             } else {
                 state = null;
-                responsetext = 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่'
+                responsetext = 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่';
             }
         } else if (reset != null) {
             state = null;
@@ -597,7 +619,7 @@ app.post('/', (req, res) => {
                 responsetext = 'เก่งมากเลย เรียนการใช้คำสั่งเปลี่ยนต่อเลย';
             } else {
                 state = null;
-                responsetext = 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่'
+                responsetext = 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่';
             }
         } else if (reset != null) {
             state = null;
