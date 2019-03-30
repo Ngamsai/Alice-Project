@@ -473,7 +473,7 @@ app.post('/', (req, res) => {
 
 
     //tutorial*************************************************************************************
-    if (status_state == 2) {
+    if (status_state == 2 && order != null || reset != null) {
         //teach 1
         if (tutorial_start == 'teach1') {
             console.log('access teach1');
