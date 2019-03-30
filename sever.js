@@ -103,7 +103,7 @@ app.post('/', (req, res) => {
         order = 'right';
         console.log('show return ', order, 'distance ', distance);
     }
-/////////////////////////////////////////////ggggggggoooooooddddd------mmmmmooooddddddddeeeee/////////////////////
+    /////////////////////////////////////////////ggggggggoooooooddddd------mmmmmooooddddddddeeeee/////////////////////
     if (godmode != null && state_godmode != null) {
         status_state = state_godmode;
         pass = 0;
@@ -144,7 +144,7 @@ app.post('/', (req, res) => {
             tutorial_start = 'test4';
             state = 'test4';
         }
-        
+
         else if (status_state > 100) {
             resetPosition();
             resetArrayOrder();
@@ -382,72 +382,76 @@ app.post('/', (req, res) => {
 
     console.log('status_state ', status_state);
 
-    var maze_tutorial_test24 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-    [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    var maze_tutorial_test24 =
+        [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+        [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+        [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+        [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
-    var test1 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
-    [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
-    [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    var test1 =
+        [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
+        [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
+        [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+        [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
-    var teach1 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-    [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1],
-    [0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    var teach1 =
+        [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1],
+        [0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
-    var teach2 = 
-    [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-     [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
-     [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
-     [1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1],
-     [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
-     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    var teach2 =
+        [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+        [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1],
+        [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
-     var teach3 = 
-    [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-     [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0],
-     [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0],
-     [1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
-     [0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0],
-     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    var teach3 =
+        [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0],
+        [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+        [0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
-     var teach4 = 
-     [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-     [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
-     [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
-     [1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1],
-     [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
-     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    var teach4 =
+        [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+        [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1],
+        [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
-    var maze_tutorial_test3 = [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0],
-    [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-    [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
+    var maze_tutorial_test3 =
+        [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+        [0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0],
+        [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+        [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]];
 
 
 
@@ -532,47 +536,47 @@ app.post('/', (req, res) => {
         }
     }
 
-   ////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
-   else if (status_state == 4) {
-    //teach2 delete
-    num = 7000;
-    if (tutorial_start == 'teach2') {
-        maze = teach2;
-        maze_x = 5;
-        maze_y = 1;
-        position = [[5, 1], [5, 3], [5, 5], [3, 5], [1, 5]];
-        arrayOrder = [['forward', 2], ['left', 1], ['forward', 2]];
-        tutorial_start = 'test2';
-    }
-    if (delete_flag) {
-        state = null;
-        deleteCode();
-    }
-    else if (play_flag) {
-        playFunction();
-        if (maze_x == 5 && maze_y == 9) {
-            state = 'test2';
-            status_state = 5;
-            num = 7000;
-            responsetext = 'ต่อไปให้น้องทดสอบดูว่าเข้าใจรึยัง';
-        } else {
-            state = null;
-            responsetext = 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่'
+    else if (status_state == 4) {
+        //teach2 delete
+        num = 7000;
+        if (tutorial_start == 'teach2') {
+            maze = teach2;
+            maze_x = 5;
+            maze_y = 1;
+            position = [[5, 1], [5, 3], [5, 5], [3, 5], [1, 5]];
+            arrayOrder = [['forward', 2], ['left', 1], ['forward', 2]];
+            tutorial_start = 'test2';
         }
-    } else if (reset != null) {
-        state = null;
-        maze = teach2;
-        maze_x = 5;
-        maze_y = 1;
-        position = [[5, 1], [5, 3], [5, 5], [3, 5], [1, 5]];
-        arrayOrder = [['forward', 2], ['left', 1], ['forward', 2]];
-        responsetext = 'ลบแค่ตัวเดียวก็ได้แล้วนะ สู้ๆ';
+        if (delete_flag) {
+            state = null;
+            deleteCode();
+        }
+        else if (play_flag) {
+            playFunction();
+            if (maze_x == 5 && maze_y == 9) {
+                state = 'test2';
+                status_state = 5;
+                num = 7000;
+                responsetext = 'ต่อไปให้น้องทดสอบดูว่าเข้าใจรึยัง';
+            } else {
+                state = null;
+                responsetext = 'ยังไม่ถูกนะให้พูดว่า เริ่มต้นใหม่'
+            }
+        } else if (reset != null) {
+            state = null;
+            maze = teach2;
+            maze_x = 5;
+            maze_y = 1;
+            position = [[5, 1], [5, 3], [5, 5], [3, 5], [1, 5]];
+            arrayOrder = [['forward', 2], ['left', 1], ['forward', 2]];
+            responsetext = 'ลบแค่ตัวเดียวก็ได้แล้วนะ สู้ๆ';
+        }
+        else {
+            responsetext = 'ใช้ได้แค่คำสั่งลบนะ';
+        }
     }
-    else {
-        responsetext = 'ใช้ได้แค่คำสั่งลบนะ';
-    }
-}
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -633,10 +637,10 @@ app.post('/', (req, res) => {
                     ComputePosition();
                     keepArrayOrder();
                 } else {
-                    console.log('mod ',modify_flag,'num ',number);
+                    console.log('mod ', modify_flag, 'num ', number);
                 }
             } else {
-                console.log('mod ',modify_flag);
+                console.log('mod ', modify_flag);
             }
         }
         else if (play_flag) {
@@ -683,10 +687,10 @@ app.post('/', (req, res) => {
                     ComputePosition();
                     keepArrayOrder();
                 } else {
-                    console.log('mod ',modify_flag,'num ',number);
+                    console.log('mod ', modify_flag, 'num ', number);
                 }
             } else {
-                console.log('mod ',modify_flag);
+                console.log('mod ', modify_flag);
             }
         }
         else if (play_flag) {
@@ -713,106 +717,106 @@ app.post('/', (req, res) => {
         }
     }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-else if (status_state == 8) {
-    // teach 4-1 insert after
-    if (tutorial_start == 'teach4-1') {
-        maze = teach4;
-        position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
-        arrayOrder = [['forward', 2],['forward', 2]];
-        maze_x = 5;
-        maze_y = 1;
-        direction = 'E';
-        tutorial_start = 'teach4-2';
-    }
-
-    if (insert_flag) {
-        state = null;
-        if (insert_position != null && number != null) {
-            if (order != null && distance != null) {
-                ComputePosition();
-                keepArrayOrder();
-            } else {
-                state = null;
-            }
-        } else {
-            console.log('insert ',insert_flag);
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    else if (status_state == 8) {
+        // teach 4-1 insert after
+        if (tutorial_start == 'teach4-1') {
+            maze = teach4;
+            position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
+            arrayOrder = [['forward', 2], ['forward', 2]];
+            maze_x = 5;
+            maze_y = 1;
+            direction = 'E';
+            tutorial_start = 'teach4-2';
         }
-    }
-    else if (play_flag) {
-        playFunction();
-        if (maze_x == 1 && maze_y == 5) {
-            state = 'teach4-2';
-            status_state = 9;
-            responsetext = 'คำสั่งนี้มีอีก 1 วิธีที่พูดได้นะ';
+
+        if (insert_flag) {
+            state = null;
+            if (insert_position != null && number != null) {
+                if (order != null && distance != null) {
+                    ComputePosition();
+                    keepArrayOrder();
+                } else {
+                    state = null;
+                }
+            } else {
+                console.log('insert ', insert_flag);
+            }
+        }
+        else if (play_flag) {
+            playFunction();
+            if (maze_x == 1 && maze_y == 5) {
+                state = 'teach4-2';
+                status_state = 9;
+                responsetext = 'คำสั่งนี้มีอีก 1 วิธีที่พูดได้นะ';
+            }
+            else {
+                state = null;
+                responsetext = 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่';
+            }
+        } else if (reset != null) {
+            state = null;
+            maze = teach4;
+            position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
+            arrayOrder = [['forward', 2], ['forward', 2]];
+            responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
         }
         else {
-            state = null;
-            responsetext = 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่';
+            responsetext = 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ';
         }
-    } else if (reset != null) {
-        state = null;
-        maze = teach4;
-        position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
-        arrayOrder = [['forward', 2],['forward', 2]];
-        responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
     }
-    else {
-        responsetext = 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ';
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-else if (status_state == 9) {
-    // teach 4-2 insert before
-    if (tutorial_start == 'teach4-2') {
-        maze = teach4;
-        position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
-        arrayOrder = [['forward', 2],['forward', 2]];
-        maze_x = 5;
-        maze_y = 1;
-        direction = 'E';
-        tutorial_start = 'test4';
-    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    else if (status_state == 9) {
+        // teach 4-2 insert before
+        if (tutorial_start == 'teach4-2') {
+            maze = teach4;
+            position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
+            arrayOrder = [['forward', 2], ['forward', 2]];
+            maze_x = 5;
+            maze_y = 1;
+            direction = 'E';
+            tutorial_start = 'test4';
+        }
 
-    if (insert_flag) {
-        state = null;
-        if (insert_position != null && number != null) {
-            if (order != null && distance != null) {
-                ComputePosition();
-                keepArrayOrder();
+        if (insert_flag) {
+            state = null;
+            if (insert_position != null && number != null) {
+                if (order != null && distance != null) {
+                    ComputePosition();
+                    keepArrayOrder();
+                } else {
+                    state = null;
+                }
             } else {
-                state = null;
+                console.log('insert ', insert_flag);
             }
-        } else {
-            console.log('insert ',insert_flag);
         }
-    }
-    else if (play_flag) {
-        playFunction();
-        if (maze_x == 1 && maze_y == 5) {
-            state = 'test4';
-            status_state = 10;
-            responsetext = 'ลองให้น้องทดสอบดูสิ';
+        else if (play_flag) {
+            playFunction();
+            if (maze_x == 1 && maze_y == 5) {
+                state = 'test4';
+                status_state = 10;
+                responsetext = 'ลองให้น้องทดสอบดูสิ';
+            }
+            else {
+                state = null;
+                responsetext = 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่';
+            }
+        } else if (reset != null) {
+            state = null;
+            maze = teach4;
+            position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
+            arrayOrder = [['forward', 2], ['forward', 2]];
+            responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
         }
         else {
-            state = null;
-            responsetext = 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่';
+            responsetext = 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ';
         }
-    } else if (reset != null) {
-        state = null;
-        maze = teach4;
-        position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
-        arrayOrder = [['forward', 2],['forward', 2]];
-        responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
     }
-    else {
-        responsetext = 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ';
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
     else if (status_state == 10) {
         // test 4 insert
-       
+
         if (tutorial_start == 'test4') {
             maze = maze_tutorial_test24;
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
@@ -833,7 +837,7 @@ else if (status_state == 9) {
                     state = null;
                 }
             } else {
-                console.log('insert ',insert_flag);
+                console.log('insert ', insert_flag);
             }
         }
         else if (play_flag) {
@@ -1356,7 +1360,7 @@ else if (status_state == 9) {
         else if (responsetext == 'excellent!!') {
             responsetext = 'เก่งมากเลย ทำสำเร็จทุกด่านแล้ว มารับรางวัลนะคะ';
         }
-        else if (responsetext == 'Sorry, could you say that again?'){
+        else if (responsetext == 'Sorry, could you say that again?') {
             responsetext = 'ขอโทษค่ะ ลองพูดอีกครั้งได้ไหมคะ';
         }
     }
@@ -1498,8 +1502,8 @@ else if (status_state == 9) {
             responsetext = 'Learn add commands';
         }
     }
-    
-    
+
+
     console.log('resq is ', responsetext);
 
     //send response
@@ -1540,12 +1544,12 @@ else if (status_state == 9) {
     repeat_flag = false;
     crash_flag = false;
 
-    
+
     // var num = distance*1000;
     setTimeout(function () {
         console.log('send already');
         return res.json(responseObj);
-    },num)
+    }, num)
     console.log('num ', num);
     num = 500;
 
