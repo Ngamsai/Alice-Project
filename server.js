@@ -995,7 +995,7 @@ app.post('/', (req, res) => {
                             if (position[b][0] == maze_x && position[b][1] == maze_y) {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[b][0], position[b][1]);
-                                if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
+                                if (status_state >= 2 && status_state <= 10) {
                                     havetoDo_flag = false;
                                 }
                                 else {
@@ -1010,7 +1010,7 @@ app.post('/', (req, res) => {
                     } else {
                         responsetext = 'crashing ,you must modify,delete or insert';
                         crash_flag = true;
-                        if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
+                        if (status_state >= 2 && status_state <= 10) {
                             havetoDo_flag = false;
                         }
                         else {
@@ -1069,7 +1069,7 @@ app.post('/', (req, res) => {
                             if (position[d][0] == maze_x && position[d][1] == maze_y) {
                                 responsetext = 'You can not walk the same route, you must modify,delete or insert.';
                                 console.log(position[d][0], ' ', position[d][1]);
-                                if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
+                                if (status_state >= 2 && status_state <= 10) {
                                     havetoDo_flag = false;
                                 }
                                 else {
@@ -1082,7 +1082,7 @@ app.post('/', (req, res) => {
                         position.push([maze_x, maze_y]);
                     } else {
                         crash_flag = true;
-                        if (status_state == 8 || status_state == 10 || status_state == 12 || status_state == 15) {
+                        if (status_state >= 2 && status_state <= 10) {
                             havetoDo_flag = false;
                         }
                         else {
