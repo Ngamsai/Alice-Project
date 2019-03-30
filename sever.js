@@ -467,7 +467,6 @@ app.post('/', (req, res) => {
             position = [[3, 1]];
             tutorial_start = 'test1';
         }
-
         if (order != null && distance != null) {
             ComputePosition();
             if (responsetext == 'crashing ,you must modify,delete or insert') {
@@ -495,8 +494,6 @@ app.post('/', (req, res) => {
             responsetext = 'ต้องเดินเข้าประตูให้ได้นะ';
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-
     else if (status_state == 3) {
         //test1 forward
         if (tutorial_start == 'test1') {
@@ -528,15 +525,11 @@ app.post('/', (req, res) => {
             resetArrayOrder();
             resetPosition();
             maze = test1;
-            maze_x = 3;
-            maze_y = 1;
             position = [[3, 1]];
         } else {
             responsetext = 'เดินเข้าประตูโดยใช้คำสั่งที่เรียนมานะ';
         }
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
 
     else if (status_state == 4) {
         //teach2 delete
