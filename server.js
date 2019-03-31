@@ -1482,7 +1482,7 @@ app.post('/', (req, res) => {
     setTimeout(function () {
         console.log('send already');
         return res.json(responseObj);
-    },num)
+    })
     console.log('num ', num);
     num = 500;
 
