@@ -60,16 +60,16 @@ app.post('/', (req, res) => {
       console.log('sh resend ',text);
     }
     
-    forward_backward_direction = keep['conversation-use'];
-    left_right_direction = keep['conversation-direction'];
-    distance = keep['number-integer'];
-    startgame = keep['conversation-gamecontrol'];
-    play =keep['conversation-replay'];
+    forward_backward_direction = keep.order;
+    left_right_direction = keep.direction;
+    distance = keep.distance;
+    startgame = keep.startgame;
+    play =keep.play;
     anser = keep.question;
     character = keep.actor;
     reset = keep.reset;
     modify = keep.modify;
-    numberSequence = keep['number-modify'];
+    numberSequence = keep.position;
     delete_code = keep.delete;
     insert = keep.insert;
     insertPosition = keep['insert-position'];
