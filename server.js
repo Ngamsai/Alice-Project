@@ -311,7 +311,7 @@ app.post('/', (req, res) => {
                 insert_position = 'after';
             }
         }
-        console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
+        console.log('he will ', insert, ' ', insert_position, ' number ', numberSequence);
     }
     else if (reset != null) {
         if (status_state >= 2 && status_state <= 10) {
@@ -684,7 +684,7 @@ app.post('/', (req, res) => {
             responsetext = 'ลองใหม่อีกครั้ง เปลี่ยนแค่ตัวเดียวก็ได้แล้ว';
         }
         else {
-            responsetext = 'ด่านนี้ต้องใช้คำสั่งแก้ไขนะ';
+            responsetext = 'ด่านนี้ต้องใช้คำสั่งเปลี่ยนนะ';
         }
     }
 
@@ -734,7 +734,7 @@ app.post('/', (req, res) => {
             responsetext = 'ลองใหม่อีกครั้ง เปลี่ยนแค่ตัวเดียวก็ได้แล้ว';
         }
         else {
-            responsetext = 'ด่านนี้ต้องใช้คำสั่งแก้ไขนะ';
+            responsetext = 'ด่านนี้ต้องใช้คำสั่งเปลี่ยนนะ';
         }
     }
 
