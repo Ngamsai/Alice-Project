@@ -503,6 +503,7 @@ app.post('/', (req, res) => {
             }
         } else if (reset != null) {
             responsetext = 'เริ่มเล่นใหม่อีกครั้งนะ';
+            console.log('ggggggg');
             resetArrayOrder();
             resetPosition();
             maze = teach1;
