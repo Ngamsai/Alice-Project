@@ -314,9 +314,11 @@ app.post('/', (req, res) => {
         console.log('he will ', insert, ' ', insertPosition, ' number ', numberSequence);
     }
     else if (reset != null) {
-        if (status_state >= 2 && status_state <= 10) {
-            reset_flag = true;
-            console.log('reset state tu go to');
+        if (status_state >= 2) {
+            if (status_state <= 10){
+                reset_flag = true;
+                console.log('reset state tu go to');
+            }
         }
         else if (status_state == null) {
             if (ee > 0) {
