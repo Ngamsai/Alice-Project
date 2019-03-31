@@ -293,8 +293,8 @@ app.post('/', (req, res) => {
         number_deletecode = numberSequence;
         delete_flag = true;
         console.log('he will ', delete_code, 'status-delete ', delete_flag, ' delete_number ', numberSequence);
-        if (status_state == 10) {
-            console.log('go to 10');
+        if (status_state == 4 || status_state == 5) {
+            console.log('go to delete tu');
         } else {
             deleteCode();
         }
@@ -481,6 +481,7 @@ app.post('/', (req, res) => {
             maze_x = 3;
             maze_y = 1;
             position = [[3, 1]];
+            resetArrayOrder ();
             tutorial_start = 'test1';
         }
 
@@ -522,6 +523,7 @@ app.post('/', (req, res) => {
             maze_x = 3;
             maze_y = 1;
             position = [[3, 1]];
+            resetArrayOrder ();
             tutorial_start = 'start3';
         }
 
@@ -1186,10 +1188,20 @@ app.post('/', (req, res) => {
     function playFunction() {
         console.log('access play function');
         position.splice(1, position.length);
-        if (status_state == 12) {
+        if (status_state == 7) {
             maze_x = 11;
             maze_y = 5;
             direction = 'N';
+        }
+        else if (status_state == 4 || status_state == 6 || status_state == 8 || status_state == 9){
+            maze_x = 5;
+            maze_y = 1;
+            direction = 'E';
+        }
+        else if (status_state == 2 || status_state == 3 ){
+            maze_x = 3;
+            maze_y = 1;
+            direction = 'E';
         }
         else {
             maze_x = 11;
