@@ -524,7 +524,7 @@ app.post('/', (req, res) => {
             maze_y = 1;
             position = [[3, 1]];
             resetArrayOrder ();
-            tutorial_start = 'start3';
+            tutorial_start = 'teach2';
         }
 
         if (order != null && distance != null) {
