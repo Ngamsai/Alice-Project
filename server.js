@@ -474,44 +474,46 @@ app.post('/', (req, res) => {
 
 
     //tutorial*************************************************************************************
-    if (status_state == 2 && order != null || reset != null) {
+    if (status_state == 2) {
         //teach 1
-        if (tutorial_start == 'teach1') {
-            console.log('access teach1');
-            maze = teach1;
-            maze_x = 3;
-            maze_y = 1;
-            position = [[3, 1]];
-            resetArrayOrder ();
-            tutorial_start = 'test1';
-        }
+        if (order != null || reset != null){
+            if (tutorial_start == 'teach1') {
+                console.log('access teach1');
+                maze = teach1;
+                maze_x = 3;
+                maze_y = 1;
+                position = [[3, 1]];
+                resetArrayOrder ();
+                tutorial_start = 'test1';
+            }
 
-        if (order != null && distance != null) {
-            ComputePosition();
-            if (responsetext == 'crashing ,you must modify,delete or insert') {
-                responsetext = 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่';
-            } else if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
-                responsetext = 'เดินซ้ำทางเดิมไม่ได้นะ ให้พูดว่าเริ่มต้นใหม่';
-            }
-            keepArrayOrder();
-            if (maze_x == 1 && maze_y == 9) {
-                state = 'test1';
-                responsetext = 'ต่อไปเป็นการทดสอบให้น้องลองเล่นเอง';
-                status_state = 3;
+            if (order != null && distance != null) {
+                ComputePosition();
+                if (responsetext == 'crashing ,you must modify,delete or insert') {
+                    responsetext = 'ไม่สามารถไปเส้นทางนี้ได้นะ ให้พูดว่าเริ่มต้นใหม่';
+                } else if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
+                    responsetext = 'เดินซ้ำทางเดิมไม่ได้นะ ให้พูดว่าเริ่มต้นใหม่';
+                }
+                keepArrayOrder();
+                if (maze_x == 1 && maze_y == 9) {
+                    state = 'test1';
+                    responsetext = 'ต่อไปเป็นการทดสอบให้น้องลองเล่นเอง';
+                    status_state = 3;
+                } else {
+                    state = null;
+                }
+            } else if (reset != null) {
+                responsetext = 'เริ่มเล่นใหม่อีกครั้งนะ';
+                console.log('ggggggg');
+                resetArrayOrder();
+                resetPosition();
+                maze = teach1;
+                maze_x = 3;
+                maze_y = 1;
+                position = [[3, 1]];
             } else {
-                state = null;
+                responsetext = 'ต้องเดินเข้าประตูให้ได้นะ';
             }
-        } else if (reset != null) {
-            responsetext = 'เริ่มเล่นใหม่อีกครั้งนะ';
-            console.log('ggggggg');
-            resetArrayOrder();
-            resetPosition();
-            maze = teach1;
-            maze_x = 3;
-            maze_y = 1;
-            position = [[3, 1]];
-        } else {
-            responsetext = 'ต้องเดินเข้าประตูให้ได้นะ';
         }
     }
 
