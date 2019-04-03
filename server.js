@@ -312,8 +312,10 @@ app.post('/', (req, res) => {
                     insert_position = 'after';
                 }
             }
-            order = 'blank';
-            distance = 1;
+            if (order == null && distance == null){
+                order = 'blank';
+                distance = 1;
+            }
         }
         console.log('he will ', insert_flag, ' ', insert_position, ' number ', number);
     }
@@ -360,6 +362,7 @@ app.post('/', (req, res) => {
                 }
                 order = 'blank';
                 distance = 1;
+                  
             }
             console.log('he will ', insert_flag, ' ', insert_position, ' number ', number);
 
