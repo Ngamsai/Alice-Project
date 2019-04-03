@@ -303,17 +303,13 @@ app.post('/', (req, res) => {
         number = numberSequence;
         insert_position = insertPosition;
         insert_flag = true;
-        if (insert_position != null && number != null){
-            if (language == 'th') {
-                if (insert_position == 'ก่อน') {
-                    insert_position = 'before';
-                }
-                else if (insert_position == 'หลัง') {
-                    insert_position = 'after';
-                }
+        if (language == 'th') {
+            if (insert_position == 'ก่อน') {
+                insert_position = 'before';
             }
-            order = 'blank';
-            distance = 1;
+            else if (insert_position == 'หลัง') {
+                insert_position = 'after';
+            }
         }
         console.log('he will ', insert_flag, ' ', insert_position, ' number ', number);
     }
@@ -349,17 +345,13 @@ app.post('/', (req, res) => {
         else if (insert_flag == true) {
             number = numberSequence;
             insert_position = insertPosition;
-            if (insert_position != null){
-                if (language == 'th') {
-                    if (insert_position == 'ก่อน') {
-                        insert_position = 'before';
-                    }
-                    else if (insert_position == 'หลัง') {
-                        insert_position = 'after';
-                    }
+            if (language == 'th') {
+                if (insert_position == 'ก่อน') {
+                    insert_position = 'before';
                 }
-                order = 'blank';
-                distance = 1;
+                else if (insert_position == 'หลัง') {
+                    insert_position = 'after';
+                }
             }
             console.log('he will ', insert_flag, ' ', insert_position, ' number ', number);
 
