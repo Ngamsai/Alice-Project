@@ -759,7 +759,10 @@ app.post('/', (req, res) => {
         if (insert_flag) {
             state = null;
             if (insert_position != null && number != null) {
-                if (order != null && distance != null) {
+                if (order == 'blank' && distance == 1){
+                    console.log('send order blank dis 1 in teach 4');
+                }
+                else if (order != null && distance != null) {
                     ComputePosition();
                     keepArrayOrder();
                 } else {
@@ -807,7 +810,10 @@ app.post('/', (req, res) => {
         if (insert_flag) {
             state = null;
             if (insert_position != null && number != null) {
-                if (order != null && distance != null) {
+                if (order == 'blank' && distance == 1){
+                    console.log('send order blank dis 1 in teach 4');
+                }
+                else if (order != null && distance != null) {
                     ComputePosition();
                     keepArrayOrder();
                 } else {
@@ -856,7 +862,10 @@ app.post('/', (req, res) => {
         if (insert_flag) {
             state = null;
             if (insert_position != null && number != null) {
-                if (order != null && distance != null) {
+                if (order == 'blank' && distance == 1){
+                    console.log('send order blank dis 1 in teach 4');
+                }
+                else if (order != null && distance != null) {
                     ComputePosition();
                     keepArrayOrder();
                 } else {
