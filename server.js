@@ -387,15 +387,9 @@ app.post('/', (req, res) => {
         if (status_state >= 2 && status_state <= 10)  {
             console.log('go to state tu');
         }
-        // else if (status_state == 10) {
-        //     console.log('got to state 10');
-        // }
-        // else if (status_state == 12) {
-        //     console.log('go to state 12');
-        // }
-        // else if (status_state == 15) {
-        //     console.log('go to state 15');
-        // }
+        else if (order == 'blank' && distance == 1) {
+            console.log('insert send order blank dis 1');
+        }
         else {
             console.log('sh order', order, 'show distance ', distance);
             ComputePosition();
