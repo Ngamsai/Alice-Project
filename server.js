@@ -36,6 +36,7 @@ var repeat_flag = false;
 var insert_flag = false;
 var crash_flag = false;
 var havetoDo_flag = false;
+var sayplay_flag = false;
 //var test_flag = false;
 var maze_state = null;
 var num = 500;
@@ -103,6 +104,8 @@ app.post('/', (req, res) => {
         order = 'right';
         console.log('show return ', order, 'distance ', distance);
     }
+
+
     /////////////////////////////////////////////ggggggggoooooooddddd------mmmmmooooddddddddeeeee/////////////////////
     if (godmode != null && state_godmode != null) {
         status_state = state_godmode;
@@ -243,7 +246,7 @@ app.post('/', (req, res) => {
         play_flag = true;
         if (status_state == 4) {
             console.log('tutorial_state4_play_flag ', play_flag);
-        }else if (status_state == 5) {
+        } else if (status_state == 5) {
             console.log('tutorial_state5_play_flag ', play_flag);
         } else if (status_state == 6) {
             modify_flag = false;
@@ -303,7 +306,7 @@ app.post('/', (req, res) => {
         number = numberSequence;
         insert_position = insertPosition;
         insert_flag = true;
-        if (insert_position != null && number != null){
+        if (insert_position != null && number != null) {
             if (language == 'th') {
                 if (insert_position == 'ก่อน') {
                     insert_position = 'before';
@@ -312,7 +315,7 @@ app.post('/', (req, res) => {
                     insert_position = 'after';
                 }
             }
-            if (order == null && distance == null){
+            if (order == null && distance == null) {
                 order = 'blank';
                 distance = 1;
             }
@@ -351,7 +354,7 @@ app.post('/', (req, res) => {
         else if (insert_flag == true) {
             number = numberSequence;
             insert_position = insertPosition;
-            if (insert_position != null){
+            if (insert_position != null) {
                 if (language == 'th') {
                     if (insert_position == 'ก่อน') {
                         insert_position = 'before';
@@ -362,7 +365,7 @@ app.post('/', (req, res) => {
                 }
                 order = 'blank';
                 distance = 1;
-                  
+
             }
             console.log('he will ', insert_flag, ' ', insert_position, ' number ', number);
 
@@ -387,17 +390,21 @@ app.post('/', (req, res) => {
                 order = "right";
             }
         }
-        if (status_state >= 2 && status_state <= 10)  {
-            console.log('go to state tu');
-        }
-        else if (order == 'blank' && distance == 1) {
-            console.log('insert send order blank dis 1');
-        }
-        else {
-            console.log('sh order', order, 'show distance ', distance);
-            ComputePosition();
-            keepArrayOrder();
-            checkState();
+        if (distance < 10) {
+            if (status_state >= 2 && status_state <= 10) {
+                console.log('go to state tu');
+            }
+            else if (order == 'blank' && distance == 1) {
+                console.log('insert send order blank dis 1');
+            }
+            else {
+                console.log('sh order', order, 'show distance ', distance);
+                ComputePosition();
+                keepArrayOrder();
+                checkState();
+            }
+        } else {
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ กรุณาพูดคำสั่งใหม่';
         }
 
     }
@@ -481,14 +488,14 @@ app.post('/', (req, res) => {
     //tutorial*************************************************************************************
     if (status_state == 2) {
         //teach 1
-        if (order != null || reset != null){
+        if (order != null || reset != null) {
             if (tutorial_start == 'teach1') {
                 console.log('access teach1');
                 maze = teach1;
                 maze_x = 3;
                 maze_y = 1;
                 position = [[3, 1]];
-                resetArrayOrder ();
+                resetArrayOrder();
                 tutorial_start = 'test1';
             }
 
@@ -532,7 +539,7 @@ app.post('/', (req, res) => {
             maze_x = 3;
             maze_y = 1;
             position = [[3, 1]];
-            resetArrayOrder ();
+            resetArrayOrder();
             tutorial_start = 'teach2';
         }
 
@@ -759,7 +766,7 @@ app.post('/', (req, res) => {
         if (insert_flag) {
             state = null;
             if (insert_position != null && number != null) {
-                if (order == 'blank' && distance == 1){
+                if (order == 'blank' && distance == 1) {
                     console.log('send order blank dis 1 in teach 4');
                 }
                 else if (order != null && distance != null) {
@@ -810,7 +817,7 @@ app.post('/', (req, res) => {
         if (insert_flag) {
             state = null;
             if (insert_position != null && number != null) {
-                if (order == 'blank' && distance == 1){
+                if (order == 'blank' && distance == 1) {
                     console.log('send order blank dis 1 in teach 4');
                 }
                 else if (order != null && distance != null) {
@@ -862,7 +869,7 @@ app.post('/', (req, res) => {
         if (insert_flag) {
             state = null;
             if (insert_position != null && number != null) {
-                if (order == 'blank' && distance == 1){
+                if (order == 'blank' && distance == 1) {
                     console.log('send order blank dis 1 in teach 4');
                 }
                 else if (order != null && distance != null) {
@@ -945,6 +952,7 @@ app.post('/', (req, res) => {
 
             console.log('arrayOrder from compute mod', arrayOrder);
             number = number + 1;
+            sayplay_flag = true
             // console.log('order change is ',order);
             // console.log('distance change is ',distance);
             // console.log('number ',number);
@@ -962,196 +970,205 @@ app.post('/', (req, res) => {
                 arrayOrder.splice(number, 0, [order, distance]);
                 console.log('arrayOrder from compute insert after', arrayOrder);
             }
-
+            sayplay_flag = true;
         }
         else if (havetoDo_flag == false || play_flag == true) {
-            console.log('order sh in compute', order);
-            console.log('disance sh ', distance);
-            console.log('in compute sh arr Order ', arrayOrder);
-            console.log('x ', maze_x, 'y ', maze_y);
-            console.log(maze);
-            if (order == "forward") {
-                for (var a = 0; a < distance; a++) {
-                    if (direction == 'N') {
-                        if (maze[maze_x - 1][maze_y] === 0) {
-                            maze_x -= 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    else if (direction == 'S') {
-                        if (maze[maze_x + 1][maze_y] === 0) {
-                            maze_x += 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    else if (direction == 'W') {
-                        if (maze[maze_x][maze_y - 1] === 0) {
-                            maze_y -= 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    else if (direction == 'E') {
-                        if (maze[maze_x][maze_y + 1] === 0) {
-                            maze_y += 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    if (position_flag) {
-                        //check repeat
-                        for (var b = 0; b < position.length; b++) {
-                            // console.log('x ',maze_x,' y ',maze_y);
-                            if (position[b][0] == maze_x && position[b][1] == maze_y) {
-                                responsetext = 'You can not walk the same route, you must modify,delete or insert.';
-                                console.log(position[b][0], position[b][1]);
+            if (arrayOrder.length < 20) {
+                if (sayplay_flag == false) {
+                    console.log('order sh in compute', order);
+                    console.log('disance sh ', distance);
+                    console.log('in compute sh arr Order ', arrayOrder);
+                    console.log('x ', maze_x, 'y ', maze_y);
+                    console.log(maze);
+                    if (order == "forward") {
+                        for (var a = 0; a < distance; a++) {
+                            if (direction == 'N') {
+                                if (maze[maze_x - 1][maze_y] === 0) {
+                                    maze_x -= 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            else if (direction == 'S') {
+                                if (maze[maze_x + 1][maze_y] === 0) {
+                                    maze_x += 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            else if (direction == 'W') {
+                                if (maze[maze_x][maze_y - 1] === 0) {
+                                    maze_y -= 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            else if (direction == 'E') {
+                                if (maze[maze_x][maze_y + 1] === 0) {
+                                    maze_y += 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            if (position_flag) {
+                                //check repeat
+                                for (var b = 0; b < position.length; b++) {
+                                    // console.log('x ',maze_x,' y ',maze_y);
+                                    if (position[b][0] == maze_x && position[b][1] == maze_y) {
+                                        responsetext = 'You can not walk the same route, you must modify,delete or insert.';
+                                        console.log(position[b][0], position[b][1]);
+                                        if (status_state >= 2 && status_state <= 10) {
+                                            havetoDo_flag = false;
+                                        }
+                                        else {
+                                            havetoDo_flag = true;
+                                        }
+                                        repeat_flag = true;
+                                        console.log('access check repeat', repeat_flag);
+                                    }
+                                }
+                                position.push([maze_x, maze_y]);
+                                console.log('position af forward ', position);
+                            } else {
+                                responsetext = 'crashing ,you must modify,delete or insert';
+                                crash_flag = true;
                                 if (status_state >= 2 && status_state <= 10) {
                                     havetoDo_flag = false;
                                 }
                                 else {
                                     havetoDo_flag = true;
                                 }
-                                repeat_flag = true;
-                                console.log('access check repeat', repeat_flag);
+                                console.log('text clashing');
+                            }
+                            if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
+                                position.pop();
+                                console.log('do function resetposition when repeat');
                             }
                         }
-                        position.push([maze_x, maze_y]);
-                        console.log('position af forward ', position);
-                    } else {
-                        responsetext = 'crashing ,you must modify,delete or insert';
-                        crash_flag = true;
-                        if (status_state >= 2 && status_state <= 10) {
-                            havetoDo_flag = false;
-                        }
-                        else {
-                            havetoDo_flag = true;
-                        }
-                        console.log('text clashing');
+                        num = distance * 1000;
                     }
-                    if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
-                        position.pop();
-                        console.log('do function resetposition when repeat');
-                    }
-                }
-                num = distance * 1000;
-            }
-            else if (order == "backward") {
-                for (var c = 0; c < distance; c++) {
-                    if (direction == 'N') {
-                        if (maze[maze_x + 1][maze_y] === 0) {
-                            maze_x += 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    else if (direction == 'S') {
-                        if (maze[maze_x - 1][maze_y] === 0) {
-                            maze_x -= 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    else if (direction == 'W') {
-                        if (maze[maze_x][maze_y + 1] === 0) {
-                            maze_y += 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    else if (direction == 'E') {
-                        if (maze[maze_x][maze_y - 1] === 0) {
-                            maze_y -= 2;
-                            position_flag = true
-                        }
-                        else {
-                            position_flag = false
-                        }
-                    }
-                    if (position_flag) {
-                        for (var d = 0; d < position.length; d++) {
-                            // console.log('x ',maze_x,' y ',maze_y);
-                            if (position[d][0] == maze_x && position[d][1] == maze_y) {
-                                responsetext = 'You can not walk the same route, you must modify,delete or insert.';
-                                console.log(position[d][0], ' ', position[d][1]);
+                    else if (order == "backward") {
+                        for (var c = 0; c < distance; c++) {
+                            if (direction == 'N') {
+                                if (maze[maze_x + 1][maze_y] === 0) {
+                                    maze_x += 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            else if (direction == 'S') {
+                                if (maze[maze_x - 1][maze_y] === 0) {
+                                    maze_x -= 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            else if (direction == 'W') {
+                                if (maze[maze_x][maze_y + 1] === 0) {
+                                    maze_y += 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            else if (direction == 'E') {
+                                if (maze[maze_x][maze_y - 1] === 0) {
+                                    maze_y -= 2;
+                                    position_flag = true
+                                }
+                                else {
+                                    position_flag = false
+                                }
+                            }
+                            if (position_flag) {
+                                for (var d = 0; d < position.length; d++) {
+                                    // console.log('x ',maze_x,' y ',maze_y);
+                                    if (position[d][0] == maze_x && position[d][1] == maze_y) {
+                                        responsetext = 'You can not walk the same route, you must modify,delete or insert.';
+                                        console.log(position[d][0], ' ', position[d][1]);
+                                        if (status_state >= 2 && status_state <= 10) {
+                                            havetoDo_flag = false;
+                                        }
+                                        else {
+                                            havetoDo_flag = true;
+                                        }
+                                        repeat_flag = true;
+                                        console.log('access check repeat', repeat_flag);
+                                    }
+                                }
+                                position.push([maze_x, maze_y]);
+                            } else {
+                                crash_flag = true;
                                 if (status_state >= 2 && status_state <= 10) {
                                     havetoDo_flag = false;
                                 }
                                 else {
                                     havetoDo_flag = true;
                                 }
-                                repeat_flag = true;
-                                console.log('access check repeat', repeat_flag);
+                                responsetext = 'crashing ,you must modify,delete or insert';
+                                console.log('text clashing');
+                            }
+                            if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
+                                position.pop();
+                                console.log('do function resetposition when repeat');
                             }
                         }
-                        position.push([maze_x, maze_y]);
-                    } else {
-                        crash_flag = true;
-                        if (status_state >= 2 && status_state <= 10) {
-                            havetoDo_flag = false;
+                        num = distance * 1000;
+                    }
+                    else if (order == "left") {
+                        for (var e = 0; e < distance; e++) {
+                            if (direction == 'E') {
+                                direction = 'N';
+                            }
+                            else if (direction == 'N') {
+                                direction = 'W';
+                            }
+                            else if (direction == 'W') {
+                                direction = 'S';
+                            }
+                            else if (direction == 'S') {
+                                direction = 'E';
+                            }
                         }
-                        else {
-                            havetoDo_flag = true;
+                        num = 1000;
+                    }
+                    else if (order == "right") {
+                        for (var f = 0; f < distance; f++) {
+                            if (direction == 'E') {
+                                direction = 'S';
+                            }
+                            else if (direction == 'S') {
+                                direction = 'W';
+                            }
+                            else if (direction == 'W') {
+                                direction = 'N';
+                            }
+                            else if (direction == 'N') {
+                                direction = 'E';
+                            }
                         }
-                        responsetext = 'crashing ,you must modify,delete or insert';
-                        console.log('text clashing');
+                        num = 1000;
                     }
-                    if (responsetext == 'You can not walk the same route, you must modify,delete or insert.') {
-                        position.pop();
-                        console.log('do function resetposition when repeat');
-                    }
+                } else {
+                    responsetext = "ต้องพูดว่าเล่นใหม่ก่อนนะคะ";
                 }
-                num = distance * 1000;
+            } else {
+                responsetext = "ใช้คำสั่งมากเกินไป ลองทำใหม่โดยใช้คำสั่งให้น้อยลง ให้พูดว่าเริ่มต้นใหม่";
             }
-            else if (order == "left") {
-                for (var e = 0; e < distance; e++) {
-                    if (direction == 'E') {
-                        direction = 'N';
-                    }
-                    else if (direction == 'N') {
-                        direction = 'W';
-                    }
-                    else if (direction == 'W') {
-                        direction = 'S';
-                    }
-                    else if (direction == 'S') {
-                        direction = 'E';
-                    }
-                }
-                num = 1000;
-            }
-            else if (order == "right") {
-                for (var f = 0; f < distance; f++) {
-                    if (direction == 'E') {
-                        direction = 'S';
-                    }
-                    else if (direction == 'S') {
-                        direction = 'W';
-                    }
-                    else if (direction == 'W') {
-                        direction = 'N';
-                    }
-                    else if (direction == 'N') {
-                        direction = 'E';
-                    }
-                }
-                num = 1000;
-            }
+            console.log('arr len ', arrayOrder.length);
             console.log('in compute sh arr Order ', arrayOrder);
             console.log('position in comp ', position);
             console.log('x ', maze_x, 'y ', maze_y);
@@ -1210,13 +1227,16 @@ app.post('/', (req, res) => {
             maze_x = 11;
             maze_y = 5;
             direction = 'N';
+            sayplay_flag = false;
         }
-        else if (status_state == 4 || status_state == 6 || status_state == 8 || status_state == 9){
+        else if (status_state == 4 || status_state == 6 || status_state == 8 || status_state == 9) {
+            sayplay_flag = false;
             maze_x = 5;
             maze_y = 1;
             direction = 'E';
         }
-        else if (status_state == 2 || status_state == 3 ){
+        else if (status_state == 2 || status_state == 3) {
+            sayplay_flag = false;
             maze_x = 3;
             maze_y = 1;
             direction = 'E';
@@ -1226,16 +1246,18 @@ app.post('/', (req, res) => {
             maze_y = 1;
             direction = 'E';
         }
-        
+
         if (modify_flag) {
             modify_flag = false;
             number = null;
+            sayplay_flag = false;
             console.log('mod-flag in play ', modify_flag);
         }
         else if (insert_flag) {
             insert_flag = false;
             number = null;
             insert_position = null;
+            sayplay_flag = false;
             console.log('insert-flag in play ', insert_flag);
         }
         // console.log('mo f ',modify_flag);
