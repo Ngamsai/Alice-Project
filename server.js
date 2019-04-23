@@ -404,7 +404,9 @@ app.post('/', (req, res) => {
                 checkState();
             }
         } else {
-            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ กรุณาพูดคำสั่งใหม่';
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+            order = null;
+            distance = null;
         }
 
     }
