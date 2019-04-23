@@ -591,7 +591,7 @@ app.post('/', (req, res) => {
             if (maze_x == 5 && maze_y == 9) {
                 state = 'test2';
                 status_state = 5;
-                num = 7000;
+               // num = 7000;
                 responsetext = 'ต่อไปให้น้องทดสอบดูว่าเข้าใจรึยัง';
             } else {
                 state = null;
@@ -615,7 +615,7 @@ app.post('/', (req, res) => {
 
     else if (status_state == 5) {
         //test2 delete
-        num = 7000;
+        //num = 7000;
         if (tutorial_start == 'test2') {
             maze = maze_tutorial_test24;
             maze_x = 11;
@@ -633,7 +633,7 @@ app.post('/', (req, res) => {
             if (maze_x == 5 && maze_y == 5) {
                 state = 'teach3';
                 status_state = 6;
-                num = 7000;
+               // num = 7000;
                 responsetext = 'เก่งมากเลย เรียนการใช้คำสั่งเปลี่ยนต่อเลย';
             } else {
                 state = null;
@@ -682,7 +682,7 @@ app.post('/', (req, res) => {
             if (maze_x == 3 && maze_y == 9) {
                 state = 'test3';
                 status_state = 7;
-                num = 6000;
+               // num = 6000;
                 responsetext = 'ทดสอบดูสิเข้าใจรึยัง';
             } else {
                 state = null;
@@ -732,7 +732,7 @@ app.post('/', (req, res) => {
             if (maze_x == 5 && maze_y == 9) {
                 state = 'teach4-1';
                 status_state = 8;
-                num = 6000;
+                //num = 6000;
                 responsetext = 'ทำถูกแล้วคะ  เรียนคำสั่งสุดท้ายเลย';
             } else {
                 state = null;
@@ -1126,7 +1126,7 @@ app.post('/', (req, res) => {
                                 console.log('do function resetposition when repeat');
                             }
                         }
-                        num = distance * 1000;
+                        //num = distance * 1000;
                     }
                     else if (order == "left") {
                         for (var e = 0; e < distance; e++) {
@@ -1143,7 +1143,7 @@ app.post('/', (req, res) => {
                                 direction = 'E';
                             }
                         }
-                        num = 1000;
+                        //num = 1000;
                     }
                     else if (order == "right") {
                         for (var f = 0; f < distance; f++) {
@@ -1160,7 +1160,7 @@ app.post('/', (req, res) => {
                                 direction = 'E';
                             }
                         }
-                        num = 1000;
+                        //num = 1000;
                     }
                 } else {
                     responsetext = "ต้องพูดว่าเล่นใหม่ก่อนนะคะ";
@@ -1274,7 +1274,7 @@ app.post('/', (req, res) => {
             // console.log('distance play ',distance);
         }
         //var turntime = 1000 * arrayOrder.length;
-        num = 1000 * position.length;
+        //num = 1000 * position.length;
         order = null;
         distance = null;
         checkState();
@@ -1619,7 +1619,7 @@ app.post('/', (req, res) => {
         return res.json(responseObj);
     }, num)
     console.log('num ', num);
-    num = 500;
+    //num = 500;
 
 })
 
