@@ -420,7 +420,7 @@ app.post('/', (req, res) => {
     }
 
     console.log('status_state ', status_state);
-
+    console.log('Noforward10 ',Noforward10_flag);
     var maze_tutorial_test24 =
         [[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
