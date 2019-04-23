@@ -1196,9 +1196,13 @@ app.post('/', (req, res) => {
                         }
                         //num = 1000;
                     }
-                } else {
+                } else if (sayplay_flag == true) {
+                    console.log("say play new");
                     responsetext = "ต้องพูดว่าเล่นใหม่ก่อนนะคะ";
+                    order = null;
+                    distance = null;
                 }
+                
             } else {
                 responsetext = "ใช้คำสั่งมากเกินไป ลองทำใหม่โดยใช้คำสั่งให้น้อยลง ให้พูดว่าเริ่มต้นใหม่";
             }
