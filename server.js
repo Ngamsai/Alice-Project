@@ -579,6 +579,7 @@ app.post('/', (req, res) => {
             maze = test1;
             position = [[3, 1]];
         }else if (Noforward10_flag == true) {
+            console.log('fffffffffff');
             responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
             Noforward10_flag = false;
         }
