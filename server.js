@@ -37,6 +37,7 @@ var insert_flag = false;
 var crash_flag = false;
 var havetoDo_flag = false;
 var sayplay_flag = false;
+var Noforward10_flag = false;
 //var test_flag = false;
 var maze_state = null;
 var num = 500;
@@ -404,9 +405,16 @@ app.post('/', (req, res) => {
                 checkState();
             }
         } else {
+            if (status_state >= 2 && status_state <= 10) {
+                order = null;
+                distance = null;
+                Noforward10_flag = true;
+                console.log('go to state tu dis more than 10');
+            }
             responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
             order = null;
             distance = null;
+
         }
 
     }
@@ -525,7 +533,11 @@ app.post('/', (req, res) => {
                 maze_x = 3;
                 maze_y = 1;
                 position = [[3, 1]];
-            } else {
+            } else if (Noforward10_flag == true) {
+                responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+                Noforward10_flag = false;
+            }
+             else {
                 responsetext = 'ต้องเดินเข้าประตูให้ได้นะ';
             }
         }
@@ -566,7 +578,11 @@ app.post('/', (req, res) => {
             resetPosition();
             maze = test1;
             position = [[3, 1]];
-        } else {
+        }else if (Noforward10_flag == true) {
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+            Noforward10_flag = false;
+        }
+         else {
             responsetext = 'เดินเข้าประตูโดยใช้คำสั่งที่เรียนมานะ';
         }
     }
@@ -575,7 +591,7 @@ app.post('/', (req, res) => {
 
     else if (status_state == 4) {
         //teach2 delete
-        num = 7000;
+        //num = 7000;
         if (tutorial_start == 'teach2') {
             maze = teach2;
             maze_x = 5;
@@ -696,6 +712,9 @@ app.post('/', (req, res) => {
             position = [[5, 1], [5, 3], [5, 5], [3, 5]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 1]];
             responsetext = 'ลองใหม่อีกครั้ง เปลี่ยนแค่ตัวเดียวก็ได้แล้ว';
+        }else if (Noforward10_flag == true) {
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+            Noforward10_flag = false;
         }
         else {
             responsetext = 'ด่านนี้ต้องใช้คำสั่งเปลี่ยนนะ';
@@ -746,6 +765,9 @@ app.post('/', (req, res) => {
             position = [[11, 5], [9, 5], [7, 5], [5, 5], [5, 3], [5, 1],];
             arrayOrder = [['forward', 3], ['left', 1], ['forward', 2]];
             responsetext = 'ลองใหม่อีกครั้ง เปลี่ยนแค่ตัวเดียวก็ได้แล้ว';
+        }else if (Noforward10_flag == true) {
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+            Noforward10_flag = false;
         }
         else {
             responsetext = 'ด่านนี้ต้องใช้คำสั่งเปลี่ยนนะ';
@@ -798,6 +820,9 @@ app.post('/', (req, res) => {
             position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
             arrayOrder = [['forward', 2], ['forward', 2]];
             responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
+        }else if (Noforward10_flag == true) {
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+            Noforward10_flag = false;
         }
         else {
             responsetext = 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ';
@@ -849,6 +874,9 @@ app.post('/', (req, res) => {
             position = [[5, 1], [5, 3], [5, 5], [5, 7], [5, 9]];
             arrayOrder = [['forward', 2], ['forward', 2]];
             responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
+        }else if (Noforward10_flag == true) {
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+            Noforward10_flag = false;
         }
         else {
             responsetext = 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ';
@@ -917,6 +945,9 @@ app.post('/', (req, res) => {
             position = [[11, 1], [11, 3], [11, 5], [9, 5], [7, 5], [5, 5]];
             arrayOrder = [['forward', 2], ['left', 1], ['forward', 2], ['forward', 1]];
             responsetext = 'ลองใหม่อีกครั้ง เพิ่มแค่ตัวเดียวก็ได้แล้ว';
+        } else if (Noforward10_flag == true) {
+            responsetext = 'ไม่สามารถเดินเกิน 10 ช่องได้ พูดคำสั่งใหม่';
+            Noforward10_flag = false;
         }
         else {
             responsetext = 'ด่านนี้ต้องใช้คำสั่งเพิ่มนะ';
