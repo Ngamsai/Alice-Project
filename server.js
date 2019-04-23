@@ -977,7 +977,7 @@ app.post('/', (req, res) => {
             }
             console.log("haveto ", havetoDo_flag);
         }
-        if (modify_flag) {
+        if (modify_flag == true && sayplay_flag == false) {
             // console.log('order change is ',order);
             // console.log('distance change is ',distance);
             // console.log('number ',number);
@@ -994,7 +994,7 @@ app.post('/', (req, res) => {
             //   }
             // }
         }
-        else if (insert_flag) {
+        else if (insert_flag == true && sayplay_flag == false) {
             if (insert_position == 'before') {
                 number = number - 1;
                 arrayOrder.splice(number, 0, [order, distance]);
