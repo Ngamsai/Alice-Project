@@ -1244,10 +1244,10 @@ app.post('/', (req, res) => {
                 arrayOrder.push([order, distance]);
             }
         }
-        
-        if (sayplay_flag == true){
-            responsetext = "ต้องพูดว่าเล่นใหม่ก่อนนะคะ";
-        }
+
+        // if (sayplay_flag == true){
+        //     responsetext = "ต้องพูดว่าเล่นใหม่ก่อนนะคะ";
+        // }
         // sequence = arrayOrder.length;
         console.log('repeating check in funtion keepArray function ', repeat_flag);
         console.log('arrayOrder ', arrayOrder);
