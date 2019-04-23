@@ -755,7 +755,7 @@ app.post('/', (req, res) => {
                 state = 'teach4-1';
                 status_state = 8;
                 //num = 6000;
-                responsetext = 'ทำถูกแล้วคะ  เรียนคำสั่งสุดท้ายเลย';
+                responsetext = 'ทำถูกแล้วค่ะ  เรียนคำสั่งสุดท้ายเลย';
             } else {
                 state = null;
                 responsetext = 'ยังไม่ถึงประตูเลย ให้พูดว่า เริ่มต้นใหม่';
@@ -955,7 +955,7 @@ app.post('/', (req, res) => {
         }
     }
 
-
+    console.log('say play flag ',sayplay_flag);
     console.log('x y ', maze_x, maze_y);
 
     //HAVE TO DO *****************************************************************************************************
@@ -1279,6 +1279,7 @@ app.post('/', (req, res) => {
             maze_x = 11;
             maze_y = 1;
             direction = 'E';
+            sayplay_flag = false;
         }
 
         if (modify_flag) {
