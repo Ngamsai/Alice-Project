@@ -1198,11 +1198,10 @@ app.post('/', (req, res) => {
                     }
                 } else if (sayplay_flag == true) {
                     console.log("say play new");
-                    responsetext = "ต้องพูดว่าเล่นใหม่ก่อนนะคะ";
                     order = null;
                     distance = null;
                 }
-                
+
             } else {
                 responsetext = "ใช้คำสั่งมากเกินไป ลองทำใหม่โดยใช้คำสั่งให้น้อยลง ให้พูดว่าเริ่มต้นใหม่";
             }
@@ -1244,6 +1243,10 @@ app.post('/', (req, res) => {
             } else if (order == 'left' || order == 'right') {
                 arrayOrder.push([order, distance]);
             }
+        }
+        
+        if (sayplay_flag == true){
+            responsetext = "ต้องพูดว่าเล่นใหม่ก่อนนะคะ";
         }
         // sequence = arrayOrder.length;
         console.log('repeating check in funtion keepArray function ', repeat_flag);
