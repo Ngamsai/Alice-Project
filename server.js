@@ -111,6 +111,7 @@ app.post('/', (req, res) => {
     if (godmode != null && state_godmode != null) {
         status_state = state_godmode;
         pass = 0;
+        sayplay_flag = false;
         console.log('godmode ', godmode, 'state ', status_state);
         if (status_state == 2) {
             state = 'teach1';
@@ -212,6 +213,7 @@ app.post('/', (req, res) => {
         modify_flag = false;
         insert_flag = false;
         repeat_flag = false;
+        sayplay_flag = false;
         crash_flag = false;
         number = null;
         number_deletecode = null;
