@@ -134,17 +134,17 @@ app.post('/', (req, res) => {
       // console.log('Do is ',havetoDo_flag);
     }
     else if (character != null) {
-      if (status_state == 1){
-        console.log('actor is ' ,character);
-        if (character == "1" || character == "2" ){
+      // if (status_state == 1){
+        // console.log('actor is ' ,character);
+        // if (character == "1" || character == "2" ){
           status_state = 2;
-        }
-        else{
-          responsetext = 'you can choose 1 or 2 only';
-        }
-      }else {
-        responsetext = 'Sorry, could you say that again?';
-      }
+      //   }
+      //   else{
+      //     responsetext = 'you can choose 1 or 2 only';
+      //   }
+      // }else {
+      //   responsetext = 'Sorry, could you say that again?';
+      // }
     }
     else if(play != null){
       console.log('play is ',play);
