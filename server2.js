@@ -106,10 +106,10 @@ app.post('/', (req, res) => {
         else if (order == "ถอยหลัง"){
           order = "backward";
         }
-        else if (order == "เลี้ยวซ้าย"){
+        else if (order == "หันซ้าย"){
           order = "left";
         }
-        else if (order == "เลี้ยวขวา"){
+        else if (order == "หันขวา"){
           order = "right";
         }
         // else if (order == "กลับหลังหัน"){
