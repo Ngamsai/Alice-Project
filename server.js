@@ -239,7 +239,7 @@ app.post('/', (req, res) => {
     console.log('state ',status_state);
     console.log('tutorial is ',tutorial_state);
    
-    if (responsetext == ' ' ||  responsetext == 'Next, Will be learning how to play the game, Repeat after me, move forward 2 times') {
+    if (responsetext == 'ต่อไปจะเป็นการเรียนรู้วิธีการเล่นเกม ให้พูดตามนะ พูดว่า เดินหน้า 2 ช่อง' ||  responsetext == 'Next, Will be learning how to play the game, Repeat after me, move forward 2 times') {
       tutorial_state = '1-1';
       state = 'tutorial_state1';
     }  
