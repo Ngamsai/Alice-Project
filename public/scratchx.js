@@ -1,23 +1,13 @@
-/* Extension demonstrating a hat block */
-/* Sayamindu Dasgupta <sayamindu@media.mit.edu>, May 2014 */
-// var express = require('express');
-// var app = express();
-// var http = require('http').Server(app);
-// var io = require('socket.io')(http); //server
-// $(document).ready(function(){
-//     $('body').append($('<script src="https://alice-project-nanearnano873492.codeanyapp.com/socket.io/socket.io.js"></script>'));
-// });
 new (function() {
 
     var ext = this;
     var receive_data = false; 
     var socket;
     var direction ,distance ;
-    var start , character , mesg_reply , mesg_value , play , state , reset ;
+    var start , character , play , state , reset ;
     var modify,number;
     var number_delete;
     var positioninsert,insert;
-    var answerQuestion;
     var maze_state;
     var godmode;
   
@@ -39,7 +29,7 @@ new (function() {
           }); 
 
           socket.on('chat',function(direction_socket,distance_socket,insert_fl,modify_fl,number_chat,insert_position,delete_fl,play_fl,state_socket,startgame_socket,
-            character_socket,reset_fl,number_deletecode,answer_socket,maze_state_socket,godmode_socket){
+            character_socket,reset_fl,number_deletecode,maze_state_socket,godmode_socket){
               console.log('direction is ',direction_socket)
               console.log('distance = ',distance_socket)
               console.log('insert ',insert_fl);
@@ -53,7 +43,6 @@ new (function() {
               console.log('char ',character_socket);
               console.log('reset ',reset_fl);
               console.log('num_delete ',number_deletecode);
-              console.log('answer is',answer_socket);
               console.log('maze_state is',maze_state_socket);
               console.log('godmode ',godmode_socket);
               console.log('******************************')
@@ -70,97 +59,11 @@ new (function() {
               character = character_socket;
               reset = reset_fl;
               number_delete = number_deletecode;
-              answerQuestion = answer_socket;
               maze_state = maze_state_socket;
               godmode = godmode_socket;
               receive_data = true;
         });
-       
-        // socket.on('Q2',function(randomtrees_SK,randomstone_SK){
-        //       if(randomtrees_SK != null ){
-        //         console.log('num of trees in Q2 is ',randomtrees_SK)
-        //       }
-        //       if(randomstone_SK != null ){
-        //         console.log('num of stones in Q2 is ',randomstone_SK)
-        //       }
-        //       console.log('******************************')
-        //       trees = randomtrees_SK;
-        //       stones = randomstone_SK;
-        // });
-
-        // socket.on('modify',function(order,distance_mod,number_mod,modify_f){
-        //     console.log('order ',order);
-        //     console.log('distance ',distance);
-        //     console.log('number ',number_mod);
-        //     console.log('modify_flag ',modify_flag);
-        //     console.log('******************************');
-        //     direction = order;
-        //     distance = distance_mod;
-        //     number  = number_mod;
-        //     modify = modify_f;
-
-        // });
-
-        // socket.on('insert',function(insert_f,insert_position,number_in,order,distance){
-        //     console.log('insert_flag is ',insert_flag);
-        //     console.log('position ',insert_position);
-        //     console.log('number ',number_in);
-        //     console.log('order ',order);
-        //     console.log('distance ',distance);
-        //     insert = insert_f;
-        //     positioninsert = insert_position;
-        //     number = number_in;
-        //     direction = order;
-        //     distance = distance;
-        // });
-
-        // socket.on('deletecode',function(delete_code,number_de){
-        //     console.log('delete ',delete_code);
-        //     console.log('number ',number_de);
-        //     deletecode = delete_code;
-        //     number_delete = number_de;
-        //     receive_data = true;
-        // });
-
-        // socket.on('play',function(play_socket){
-        //     console.log('say play ',play_socket);
-        //     play = play_socket;
-        //     receive_data = true;
-        // });
-
-        // socket.on('startgame',function(startgame_socket,character_socket){
-        //     if(character_socket != null ){
-        //         console.log('actor is ',character_socket);
-        //     };
-        //     if(startgame_socket != null ){
-        //         console.log('status is ', startgame_socket);
-        //     } 
-        //     console.log('******************************');
-        //     start = startgame_socket;
-        //     character = character_socket;
-        //     receive_data = true;
-        
-        // });
-
-        // socket.on('reset',function(reset_socket){ 
-        //     if(reset_socket != null ){
-        //         console.log('state is ',state_socket);
-        //     } 
-        //     console.log('******************************');
-        //     reset = reset_socket;
-        //     receive_data = true;
-        
-        // });
-
-        // socket.on('state',function(state_socket){  
-        //     if(state_socket != null ){
-        //         console.log('state is ',state_socket);
-        //     }
-        //     console.log('******************************');
-        //     state = state_socket;
-        //     receive_data = true;
-        // });
-           
+          
      });
 
    });
@@ -212,9 +115,6 @@ new (function() {
 
        return false;
     };
-  
-
-
     ext.get_direction = function(){
         return direction;
     }
@@ -250,11 +150,7 @@ new (function() {
     ext.get_number_delete = function(){
         return number_delete;
     }
-
-    // ext.get_sequence = function(){
-    //     return sequence;
-    // }
-
+    
     ext.get_insert = function(){
         return insert;
     }
@@ -269,10 +165,6 @@ new (function() {
 
     ext.get_positioninsert = function(){
         return positioninsert;
-    }
-
-    ext.get_answer = function(){
-        return answerQuestion;
     }
 
     ext.get_maze_state = function(){
@@ -302,12 +194,11 @@ new (function() {
             ['r', 'modify', 'get_modify'],
             ['r', 'deleteCode', 'get_deletecode'],
             ['r', 'positionInsert', 'get_positioninsert'],
-            ['r', 'answer', 'get_answer'],
             ['r', 'maze_state', 'get_maze_state'],
             ['r', 'godmode', 'get_godmode'],
         ],
       menus: {
-        name_mesg: ['name', 'question', 'answerQues' , 'stateOfMaze'],
+        name_mesg: ['name' , 'stateOfMaze'],
        
       }
     };
