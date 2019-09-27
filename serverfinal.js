@@ -199,6 +199,7 @@ app.post('/', (req, res) => {
         tutorial_state = 'teach1';
         ee = 3; //heart
         havetoDo_flag = false;
+        text = null;
         position_flag = true;
         modify_flag = false;
         insert_flag = false;
@@ -1436,7 +1437,7 @@ app.post('/', (req, res) => {
             responsetext = 'Next is the test for players to try themselves.';
         }
         else if (responsetext == 'เริ่มเล่นใหม่อีกครั้งนะ') {
-            responsetext = 'Start replaying again';
+            responsetext = 'Game was reseted replaying again';
         }
         else if (responsetext == 'ต้องเดินเข้าประตูให้ได้นะ') {
             responsetext = "Must walk into the door";
@@ -1493,7 +1494,7 @@ app.post('/', (req, res) => {
             responsetext = 'Congratulations for passing the test Continue to play game';
         }
         else if (responsetext == 'มีคำสั่งมากเกินไป ลองทำใหม่โดยใช้คำสั่งให้น้อยลง ให้พูดว่าเริ่มต้นใหม่') {
-            responsetext = 'Too many orders Try to do it again using fewer commands. To say replay';
+            responsetext = 'Too many orders Try to do it again using fewer commands. To say reset';
         }
 
 
@@ -1542,6 +1543,7 @@ app.post('/', (req, res) => {
     reset_flag = false;
     repeat_flag = false;
     crash_flag = false;
+    text = null;
 
 
     // var num = distance*1000;
